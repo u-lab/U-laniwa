@@ -33,7 +33,7 @@ u-laniwa.tk (まだアクセスできない)
 | [Usuyuki](https://github.com/Usuyuki)       | 代表＆雑用&インフラエンジニア |      |
 | [tomori2226](https://github.com/tomori2226) | デザイン&UI 設計              |      |
 | [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア            |      |
-| [SeigoMori](https://github.com/SeigoMori)   | フロントエンジニア            |      |
+| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア          |      |
 
 # U-laniwa について
 

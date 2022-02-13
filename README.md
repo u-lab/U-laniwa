@@ -6,13 +6,22 @@ U-lab 内部向けシステム
 
 # ローカルでの使い方
 
-構築
+## 構築
 
 初回
 
 ```
-.env.exampleをコピーして.envに設定を追加
 make init
+```
+
+.env のコピーなど不要
+
+※Windows は make コマンド無いので、WSL 側でコマンド叩いて実行する
+
+node は docker 側で持っていないので、ローカルで npm install 関連動かす
+
+```
+cd backend && npm install && npm run dev
 ```
 
 それ以降
@@ -27,6 +36,8 @@ Mysql 直打ち
 docker-compose exec db mysql -u phper -p
 Enter password:secret
 ```
+
+## リンク
 
 メール
 

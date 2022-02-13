@@ -88,10 +88,3 @@ https://u-laniwa.tk/
 
 ちなみに、talk という意味を込めて.tk ドメイン
 
-# docker 作成で使用
-
-Copyright (c) 2020 ucan-lab/docker-laravel
-
-Released under MIT License.
-
-https://github.com/ucan-lab/docker-laravel/blob/main/LICENSE

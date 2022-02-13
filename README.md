@@ -6,9 +6,26 @@ U-lab 内部向けシステム
 
 # ローカルでの使い方
 
+構築
+
+初回
+
 ```
-mkdir backend
-make create-project
+.env.exampleをコピーして.envに設定を追加
+make init
+```
+
+それ以降
+
+```
+docker-compose up -d
+```
+
+Mysql 直打ち
+
+```
+docker-compose exec db mysql -u phper -p
+Enter password:secret
 ```
 
 メール
@@ -48,9 +65,11 @@ https://u-laniwa.tk/
 | [Usuyuki](https://github.com/Usuyuki)       | 代表＆雑用&インフラエンジニア |      |
 | [tomori2226](https://github.com/tomori2226) | デザイン&UI 設計              |      |
 | [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア            |      |
-| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア          |      |
+| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア        |      |
 
 # U-laniwa について
+
+宇都宮大学にある U-lab というサークル(学生団体)の内部向けシステムです。
 
 ## 名前の由来
 
@@ -58,7 +77,7 @@ https://u-laniwa.tk/
 
 ちなみに、talk という意味を込めて.tk ドメイン
 
-# docker のクレジット
+# docker 作成で使用
 
 Copyright (c) 2020 ucan-lab/docker-laravel
 

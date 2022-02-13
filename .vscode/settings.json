@@ -1,0 +1,8 @@
+{
+  "intelephense.environment.documentRoot": "backend/public/",
+  "cSpell.words": ["tetsu", "U-laniwa"],
+  //psr12の自動整形のための設定↓
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  }
+}

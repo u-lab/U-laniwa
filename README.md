@@ -4,9 +4,24 @@
 
 U-lab 内部向けシステム
 
-# ドメイン
+# ローカルでの使い方
 
-u-laniwa.tk (まだアクセスできない)
+```
+mkdir backend
+make create-project
+```
+
+メール
+
+http://127.0.0.1:8025/
+
+ローカルホスト
+
+http://127.0.0.1:213/
+
+# サイト
+
+https://u-laniwa.tk/
 
 # 技術スタック
 
@@ -42,3 +57,11 @@ u-laniwa.tk (まだアクセスできない)
 2022/2/5 にブレインストーミングにより決定。
 
 ちなみに、talk という意味を込めて.tk ドメイン
+
+# docker のクレジット
+
+Copyright (c) 2020 ucan-lab/docker-laravel
+
+Released under MIT License.
+
+https://github.com/ucan-lab/docker-laravel/blob/main/LICENSE

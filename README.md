@@ -68,6 +68,7 @@ https://u-laniwa.tk/
 - ブレインストーミングツール:hidane
 - 連絡:Slack
 - 会議:Discord
+- PHP コーディングスタイル:PSR-12
 
 # 開発メンバー
 
@@ -87,4 +88,3 @@ https://u-laniwa.tk/
 2022/2/5 にブレインストーミングにより決定。
 
 ちなみに、talk という意味を込めて.tk ドメイン
-

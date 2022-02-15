@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class VerifyAdminUser
+class SecurityClearance
 {
     /**
      * @param Request $request
@@ -15,53 +15,53 @@ class VerifyAdminUser
      * @param null $guard
      * @return mixed
      */
-    public function representative($request, Closure $next, $guard = null)
+    public function level7($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 1 ? abort(403) : '';
+        $user->user_role_id >= 70 ? '' : abort(403);
         return $next($request);
     }
-    public function systemAdministrator($request, Closure $next, $guard = null)
+    public function level6($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 10 ? abort(403) : '';
+        $user->user_role_id >= 60 ? '' : abort(403);
         return $next($request);
     }
-    public function management($request, Closure $next, $guard = null)
+    public function level5($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 20 ? abort(403) : '';
+        $user->user_role_id >= 50 ? '' : abort(403);
         return $next($request);
     }
-    public function mainEntrance($request, Closure $next, $guard = null)
+    public function level4($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 30 ? abort(403) : '';
+        $user->user_role_id >= 40 ? '' : abort(403);
         return $next($request);
     }
-    public function temporaryEntrance($request, Closure $next, $guard = null)
+    public function level3($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 40 ? abort(403) : '';
+        $user->user_role_id >= 30 ? '' : abort(403);
         return $next($request);
     }
-    public function graduates($request, Closure $next, $guard = null)
+    public function level2($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 50 ? abort(403) : '';
+        $user->user_role_id >= 20 ? '' : abort(403);
         return $next($request);
     }
-    public function outside($request, Closure $next, $guard = null)
+    public function level1($request, Closure $next, $guard = null)
     {
         /** @var User $user */
         $user = Auth::user();
-        $user->user_role_id != 60 ? abort(403) : '';
+        $user->user_role_id >= 10 ? '' : abort(403);
         return $next($request);
     }
 }

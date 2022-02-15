@@ -4,6 +4,11 @@
 
 U-lab 内部向けシステム
 
+
+U-laniwa wikiをご覧ください。
+https://github.com/u-lab/U-laniwa/wiki
+
+
 # ローカルでの使い方
 
 ## 構築

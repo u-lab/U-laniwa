@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_invite_codes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_id")->comment("ユーザーid");
+            $table->string("code")->unique()->comment("招待コード");
             $table->timestamps();
         });
     }

@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('municipalities', function (Blueprint $table) {
+        Schema::create('u_u_faculties', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name")->comment("学部");
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('municipalities');
+        Schema::dropIfExists('u_u_faculties');
     }
 };

@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genders', function (Blueprint $table) {
+        Schema::create('prefectures', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name")->comment("都道府県");
+            $table->foreignId("country_id")->comment("国と対応");
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genders');
+        Schema::dropIfExists('prefectures');
     }
 };

@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('project_belongeds', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId("user_id")->comment("参加ユーザー");
+            $table->foreignId("project_id")->comment("参加プロジェクト先");
+            $table->timestamps(); //参加日とか参照するため
+
         });
     }
 

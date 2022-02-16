@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('u_u_faculties', function (Blueprint $table) {
+        Schema::create('u_u_majors', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name")->comment("学科");
+            $table->foreignId("faculty_id")->comment("学部とつなげる");
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('u_u_faculties');
+        Schema::dropIfExists('u_u_majors');
     }
 };

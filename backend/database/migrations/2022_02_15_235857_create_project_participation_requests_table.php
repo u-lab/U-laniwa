@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('project_participation_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("project_id")->comment("参加リクエスト先のプロジェクトid");
+            $table->foreignId("user_id")->comment("参加リクエストしたユーザーid");
+            $table->string("comment")->comment("参加リクエストのコメント");
             $table->timestamps();
         });
     }

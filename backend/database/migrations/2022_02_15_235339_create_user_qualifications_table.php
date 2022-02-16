@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('user_qualifications', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId("user_id")->comment("ユーザーid");
+            $table->string("name")->comment("資格名");
+            $table->string("description")->comment("説明欄");
+            $table->date("date_of_acquisition")->comment("取得日");
         });
     }
 

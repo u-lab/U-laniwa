@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('notice_genres', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name")->comment("ジャンル名");
+            $table->string("description")->nullable()->comment("説明");
         });
     }
 

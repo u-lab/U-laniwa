@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('u_u_majors', function (Blueprint $table) {
+        Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("name")->comment("市区町村");
+            $table->foreignId("prefecture_id")->comment("都道府県と対応");
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('u_u_majors');
+        Schema::dropIfExists('municipalities');
     }
 };

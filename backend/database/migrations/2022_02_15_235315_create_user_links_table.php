@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId("user_id")->comment("ユーザーid");
             $table->string("url")->comment("url");
             $table->string("name")->comment("タイトル");
-            $table->string("description")->comment("説明");
+            $table->string("description")->nullable()->comment("説明");
         });
     }
 

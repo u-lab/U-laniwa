@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("name")->comment("資格名");
             $table->string("description")->comment("説明欄");
             $table->date("start_date")->comment("参加期間(開始)");
-            $table->date("end_date")->comment("参加期間(終了)");
+            $table->date("end_date")->nullable()->comment("参加期間(終了)");
         });
     }
 

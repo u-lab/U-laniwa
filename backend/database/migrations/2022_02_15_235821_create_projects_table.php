@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId("representative_id")->constrained('users')->comment("代表者のユーザーid");
             $table->string("name")->comment("プロジェクト名");
             $table->string("description")->comment("説明欄");
-            $table->string("thumbnail")->comment("サムネイル用画像のパス");
+            $table->string("thumbnail")->nullable()->comment("サムネイル用画像のパス");
             $table->string("place_of_activity")->comment("活動場所");
             $table->date("start_date")->comment("プロジェクト期間(開始)");
-            $table->date("end_date")->comment("プロジェクト期間(終了)");
+            $table->date("end_date")->nullable()->comment("プロジェクト期間(終了)");
 
             $table->softDeletes();
             $table->timestamps(); //参加日とか参照するため

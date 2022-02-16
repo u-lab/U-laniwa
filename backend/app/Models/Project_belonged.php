@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Project_belonged extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "user_id", "project_id", "created_at", "updated_at"
+    ];
+
+    public static $rules = array();
 }

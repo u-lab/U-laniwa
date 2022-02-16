@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string("place_of_activity")->comment("活動場所");
             $table->date("start_date")->comment("プロジェクト期間(開始)");
             $table->date("end_date")->comment("プロジェクト期間(終了)");
+
+            $table->softDeletes();
             $table->timestamps(); //参加日とか参照するため
         });
     }

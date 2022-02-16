@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Project_progress extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "project_id", "date", "title", "description", "created_at", "updated_at"
+    ];
+
+    public static $rules = array();
 }

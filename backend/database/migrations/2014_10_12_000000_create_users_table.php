@@ -58,7 +58,7 @@ return new class extends Migration
             $table->string('languages')->nullable()->comment('言語');
             $table->string('motto')->nullable()->comment('座右の銘');
 
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

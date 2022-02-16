@@ -27,6 +27,37 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_accessed_at',
+        'birth_day',
+        'retired_at',
+        'last_name',
+        'first_name',
+        'description',
+        'user_role_id',
+        'grade_id',
+        'is_udai',
+        'university_meta',
+        'faculty_id',
+        'major_id',
+        'gender_id',
+        'lived_country_id',
+        'lived_prefecture_id',
+        'lived_municipality_id',
+        'birth_country_id',
+        'birth_prefecture_id',
+        'birth_municipality_id',
+        'invited_id',
+        'is_publish_birth_day',
+        'is_graduate',
+        'status',
+        'github_id',
+        'line_name',
+        'slack_name',
+        'discord_name',
+        'hobbies',
+        'interests',
+        'languages',
+        'motto',
     ];
 
     /**
@@ -40,6 +71,9 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
+
+
+    public static $rules = array();
 
     /**
      * The attributes that should be cast.

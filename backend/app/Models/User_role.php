@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class User_role extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "role_id", "url", "name", "description",
+    ];
+
+    public static $rules = array();
+    //時間カラムの自動挿入無効化
+    const CREATED_AT = NULL;
+    const UPDATED_AT = NULL;
 }

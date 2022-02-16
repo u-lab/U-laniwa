@@ -47,6 +47,7 @@ class User extends Authenticatable
         'birth_prefecture_id',
         'birth_municipality_id',
         'invited_id',
+        'is_dark_mode',
         'is_publish_birth_day',
         'is_graduate',
         'status',

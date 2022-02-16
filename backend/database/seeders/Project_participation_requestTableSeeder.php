@@ -15,18 +15,6 @@ class Project_participation_requestTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            [
-                'project_id' => 1,
-                'user_id' => 4,
-                'comment' => "あまりにも素敵で、参加したくなっちゃいました",
-            ],
-            [
-                'project_id' => 1,
-                'user_id' => 5,
-                'comment' => "参加希望いたします。",
-            ],
-        ];
-        DB::table("project_participation_requests")->insert($param);
+        \App\Models\Project_participation_request::factory(10)->create();
     }
 }

@@ -34,7 +34,7 @@ return new class extends Migration
             $table->text('description')->nullable()->comment('自己紹介');
             $table->foreignId('user_role_id')->comment('ユーザー権限(対象の主キーはrole_id)');
             $table->foreignId('grade_id')->comment('学年');
-            $table->boolean('is_udai')->nullable()->comment('宇大かそうでないか');
+            $table->boolean('is_udai')->comment('宇大かそうでないか');
             $table->json('university_meta')->nullable()->comment('大学情報');
             $table->foreignId('faculty_id')->nullable()->comment('学部情報');
             $table->foreignId('major_id')->nullable()->comment('学部情報');
@@ -45,7 +45,8 @@ return new class extends Migration
             $table->foreignId('birth_country_id')->constrained('countries')->comment('現住国情報');
             $table->foreignId('birth_prefecture_id')->constrained('prefectures')->nullable()->comment('現住都道府県情報');
             $table->foreignId('birth_municipality_id')->constrained('municipalities')->nullable()->comment('現住市区町村情報');
-            $table->foreignId('invited_id')->constrained('users')->comment('紹介者id');
+            $table->unsignedBigInteger('invited_id')->nullable()->comment('紹介者id'); //ホントはnullableにしたくなが、創始者がどうやっても外部キーエラーになるので、null可に
+            $table->boolean('is_dark_mode')->comment('ダークモードにするか？');
             $table->boolean('is_publish_birth_day')->comment('誕生日公開するか？');
             $table->boolean('is_graduate')->comment('卒業したか？');
             $table->string('status')->comment('ひとこと(GitHubのstatusと同じ)');
@@ -60,6 +61,12 @@ return new class extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+
+
+            //invitedをnullableにした都合でforeignIdだと事故るので
+            $table->foreign('invited_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

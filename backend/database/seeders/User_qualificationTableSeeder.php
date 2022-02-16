@@ -16,19 +16,7 @@ class User_qualificationTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            [
-                'user_id' => 1,
-                'name' => "第３級アマチュア無線技師",
-                'description' => "モールス信号やりたくて取りました",
-                'date_of_acquisition' => Carbon::create(2021, 5, 30),
-            ],
-            [
-                'user_id' => 1,
-                'name' => "マナー・プロトコール検定",
-                'date_of_acquisition' => Carbon::create(2020, 5, 30),
-            ],
-        ];
-        DB::table("user_qualifications")->insert($param);
+
+        \App\Models\User_qualification::factory(80)->create();
     }
 }

@@ -1,14 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\DoChangeGenerationAdminController;
-use App\Http\Controllers\Admin\DoTaiseiHokanAdminController;
-use App\Http\Controllers\Admin\DoTemporaryEntranceToMainAdminController;
-use App\Http\Controllers\Admin\ShowAdminController;
-use App\Http\Controllers\Admin\ShowTemporaryEntranceToMainAdminController;
-use App\Http\Controllers\Admin\ShowUserOperationAdminController;
-use App\Http\Controllers\Admin\ShowUserRoleAdminController;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\DetailSearch\ShowUserDetailSearchController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShowHomeController;
 use App\Http\Controllers\Management\Notice\CreateManagementNoticeController;
 use App\Http\Controllers\Management\Notice\DeleteManagementNoticeController;
 use App\Http\Controllers\Management\Notice\ShowManagementNoticeController;
@@ -61,6 +53,14 @@ use App\Http\Controllers\User\ShowAllUserController;
 use App\Http\Controllers\User\ShowEditUserController;
 use App\Http\Controllers\User\ShowIndividualUserController;
 use App\Http\Controllers\User\UpdateUserController;
+use App\Http\Controllers\Admin\DoChangeGenerationAdminController;
+use App\Http\Controllers\Admin\DoTaiseiHokanAdminController;
+use App\Http\Controllers\Admin\DoTemporaryEntranceToMainAdminController;
+use App\Http\Controllers\Admin\ShowAdminController;
+use App\Http\Controllers\Admin\ShowTemporaryEntranceToMainAdminController;
+use App\Http\Controllers\Admin\ShowUserOperationAdminController;
+use App\Http\Controllers\Admin\ShowUserRoleAdminController;
+use App\Http\Controllers\DetailSearch\ShowUserDetailSearchController;
 
 /**
  * 【SecurityClearance:level0】
@@ -69,6 +69,7 @@ use App\Http\Controllers\User\UpdateUserController;
 Route::get('/', function () {
     return view('top');
 });
+
 Route::get('/privacyPolicy', function () {
     return view('privacyPolicy');
 });
@@ -124,7 +125,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('groupRules');
     });
 
-    Route::get('/home', HomeController::class)->name('home'); //ホームページ
+    Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
     Route::get('/statistics', AllStatisticController::class)->name('statistics'); //統計情報
     Route::get('/statistic/user', ProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
     Route::get('/statistic/project', UserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報

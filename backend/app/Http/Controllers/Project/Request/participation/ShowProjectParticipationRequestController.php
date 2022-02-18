@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class ShowProjectParticipationRequestController extends Controller
 {
-    //
+    public function __invoke()
+    {
+    }
 }

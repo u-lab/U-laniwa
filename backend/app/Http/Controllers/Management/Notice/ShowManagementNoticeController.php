@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class ShowManagementNoticeController extends Controller
 {
-    //
+    public function __invoke()
+    {
+    }
 }

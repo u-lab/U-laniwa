@@ -14,5 +14,10 @@
   },
   "[blade]": {
     "editor.defaultFormatter": "onecentlin.laravel-blade"
-  }
+  },
+  "laravel_goto_view.folders": {
+    "default": "/backend/resources/views"
+  },
+  "laravel_goto_view.extensions": [".blade.php"],
+  "laravel_goto_controller.pathController": "/backend/app/Http/Controllers"
 }

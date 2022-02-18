@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class DoWithDrawProcedureController extends Controller
 {
-    //
+    public function __invoke()
+    {
+    }
 }

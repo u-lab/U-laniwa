@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class ShowAllStatisticController extends Controller
 {
-    //
+    public function __invoke()
+    {
+    }
 }

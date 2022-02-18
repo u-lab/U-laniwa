@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class UpdateSystemNoticeController extends Controller
 {
-    //
+    public function __invoke()
+    {
+    }
 }

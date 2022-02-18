@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class ShowTemporaryEntranceToMainAdminController extends Controller
 {
-    //
+    public function __invoke()
+    {
+    }
 }

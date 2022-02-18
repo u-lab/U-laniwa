@@ -11,5 +11,6 @@ class ShowUserRoleAdminController extends Controller
 {
     public function __invoke()
     {
+        return view('admin.userRole', []);
     }
 }

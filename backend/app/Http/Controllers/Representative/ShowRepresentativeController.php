@@ -11,5 +11,6 @@ class ShowRepresentativeController extends Controller
 {
     public function __invoke()
     {
+        return view('representative.index', []);
     }
 }

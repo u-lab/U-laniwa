@@ -11,5 +11,6 @@ class UpdateSystemNoticeController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/system/notice');
     }
 }

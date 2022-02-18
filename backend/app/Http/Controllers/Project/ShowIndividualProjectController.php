@@ -11,5 +11,6 @@ class ShowIndividualProjectController extends Controller
 {
     public function __invoke()
     {
+        return view('project.individual', []);
     }
 }

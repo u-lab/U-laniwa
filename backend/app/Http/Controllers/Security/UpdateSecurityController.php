@@ -11,5 +11,6 @@ class UpdateSecurityController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/security');
     }
 }

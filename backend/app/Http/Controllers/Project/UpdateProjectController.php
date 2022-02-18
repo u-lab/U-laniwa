@@ -11,5 +11,6 @@ class UpdateProjectController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/project/' . '$project_id' . '/edit');
     }
 }

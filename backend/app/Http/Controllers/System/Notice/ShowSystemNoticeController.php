@@ -11,5 +11,6 @@ class ShowSystemNoticeController extends Controller
 {
     public function __invoke()
     {
+        return view('system.notice', []);
     }
 }

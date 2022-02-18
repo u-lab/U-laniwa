@@ -11,5 +11,6 @@ class DoTemporaryEntranceToMainAdminController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/admin');
     }
 }

@@ -11,5 +11,6 @@ class ShowSystemController extends Controller
 {
     public function __invoke()
     {
+        return view('system.index', []);
     }
 }

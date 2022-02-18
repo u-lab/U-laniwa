@@ -16,6 +16,6 @@ class ShowAllUserController extends Controller
         $users = User::where("id", ">", "1")->get();
         $projects = Project::where("id", ">", "1")->get();
 
-        return view('user.index', compact('users', 'projects'));
+        return view('user.index', ["users" => $users, "projects" => $projects,]);
     }
 }

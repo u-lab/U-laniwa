@@ -11,5 +11,6 @@ class ShowProjectParticipationRequestController extends Controller
 {
     public function __invoke()
     {
+        return view('project.request.participation.index', []);
     }
 }

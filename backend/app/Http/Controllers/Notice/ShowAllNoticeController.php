@@ -11,5 +11,6 @@ class ShowAllNoticeController extends Controller
 {
     public function __invoke()
     {
+        return view('notice.index', []);
     }
 }

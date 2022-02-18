@@ -11,5 +11,6 @@ class CreateProjectParticipationRequestController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/project/' . '$project_id' . '/request/participation', []);
     }
 }

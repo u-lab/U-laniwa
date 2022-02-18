@@ -4,6 +4,11 @@
 
 U-lab 内部向けシステム
 
+
+U-laniwa wikiをご覧ください。
+https://github.com/u-lab/U-laniwa/wiki
+
+
 # ローカルでの使い方
 
 ## 構築
@@ -79,6 +84,7 @@ https://u-laniwa.tk/
 | [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア            |                                                           |
 | [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア        |                                                           |
 | [H37kouya](https://github.com/H37kouya)     | スペシャルサンクス            | DB 設計やルーティング、機能に関してアドバイス頂きました。 |
+
 
 # U-laniwa について
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("representative_id")->constrained('users')->comment("代表者のユーザーid");
+            $table->foreignId("representative_id")->constrained('users')->restrictOnDelete()->comment("代表者のユーザーid");
             $table->string("name")->comment("プロジェクト名");
             $table->string("description")->comment("説明欄");
             $table->string("thumbnail")->nullable()->comment("サムネイル用画像のパス");

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_links', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->comment("ユーザーid");
+            $table->foreignId("user_id")->cascadeOnDelete()->comment("ユーザーid");
             $table->string("url")->comment("url");
             $table->string("name")->comment("タイトル");
             $table->string("description")->nullable()->comment("説明");

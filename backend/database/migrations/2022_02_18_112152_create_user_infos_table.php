@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->comment('該当ユーザーのid');
+            $table->foreignId('user_id')->cascadeOnDelete()->comment('該当ユーザーのid');
             $table->date('birth_day')->comment('誕生日');
             $table->string('last_name')->nullable()->comment('姓'); //nullableなのは姓が存在しない国出身の人対応のため
             $table->string('first_name')->comment('名');

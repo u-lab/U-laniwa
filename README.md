@@ -27,6 +27,24 @@ node は docker 側で持っていないので、ローカルで npm install 関
 cd backend && npm install && npm run dev
 ```
 
+データベースクリア
+
+```
+dc exec app php artisan migrate:fresh --seed
+```
+
+テスト
+
+```
+dc exec app php artisan test
+```
+
+Larastan による静的解析
+
+```
+dc exec app ./vendor/bin/phpstan analyse
+```
+
 それ以降
 
 ```

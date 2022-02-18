@@ -29,6 +29,7 @@ class UserInfoFactory extends Factory
             ];
 
         return array_merge($universityInfo, [
+            // 'user_id' => $this->faker->numberBetween(1, 40),
             'birth_day' => $this->faker->dateTimeBetween('-80 years', '-20years')->format('Y-m-d'),
             'last_name' => $this->faker->lastName(),
             'first_name' => $this->faker->firstName(),
@@ -36,7 +37,7 @@ class UserInfoFactory extends Factory
             'grade' => $this->faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
             'is_udai' => $udai,
             //宇大かそうでないかの出し分けは上記の配列結合で対応
-            'gender_id' => $this->faker->randomElement([1, 2, 3,]),
+            'gender' => $this->faker->randomElement([1, 2, 3,]),
             'lived_country_id' => 1,
             'lived_prefecture_id' => 1,
             'lived_municipality_id' => 1,

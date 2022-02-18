@@ -20,21 +20,24 @@ class UserTimelineFactory extends Factory
         $user_belonged = [
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
-                'name' =>  $this->faker->word() . "部",
+                'title' =>  $this->faker->word() . "部",
                 'description' => $this->faker->realText(20),
+                'genre' => $this->faker->numberBetween(1, 4),
                 'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
                 'end_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
             ],
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
-                'name' =>  $this->faker->word() . "部",
+                'title' =>  $this->faker->word() . "部",
                 'description' => $this->faker->realText(20),
+                'genre' => $this->faker->numberBetween(1, 4),
                 'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
 
             ],
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
-                'name' =>  $this->faker->word() . "部",
+                'title' =>  $this->faker->word() . "部",
+                'genre' => $this->faker->numberBetween(1, 4),
                 'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
 
             ],

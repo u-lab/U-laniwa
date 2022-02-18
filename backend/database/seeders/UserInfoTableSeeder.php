@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,6 @@ class UserInfoTableSeeder extends Seeder
         ];
         DB::table("user_infos")->insert($param);
         //招待idで事故るのでここで一部作る
-        \App\Models\UserInfo::factory(40)->create();
+        // \App\Models\UserInfo::factory(40)->has(User::factory()->count(1))->create();
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id")->cascadeOnDelete()->comment("該当ユーザーid");
             $table->string("title")->comment("タイトル");
-            $table->string("description")->comment("説明");
+            $table->string("description")->nullable()->comment("説明");
             $table->tinyInteger("genre")->comment("Enumジャンル");
             $table->date("start_date")->comment("開始日(必須)");
             $table->date("end_date")->nullable()->comment("終了日(必須でない)");

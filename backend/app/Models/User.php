@@ -65,4 +65,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function userInfo()
+    {
+        return $this->hasOne(UserInfo::class);
+    }
 }

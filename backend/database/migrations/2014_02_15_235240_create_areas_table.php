@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->comment("国");
+            $table->unsignedTinyInteger("country_code")->comment("国コード");
+            $table->unsignedMediumInteger("prefecture_code")->nullable()->comment("都道府県コード");
+            $table->string("municipality")->nullable()->comment("市区町村名");
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('areas');
     }
 };

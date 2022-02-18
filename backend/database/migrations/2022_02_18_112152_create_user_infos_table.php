@@ -26,12 +26,8 @@ return new class extends Migration
             $table->foreignId('faculty_id')->nullable()->constrained('u_u_faculties')->comment('学部情報');
             $table->foreignId('major_id')->nullable()->constrained('u_u_majors')->comment('学部情報');
             $table->unsignedTinyInteger('gender')->comment('enum性別');
-            $table->foreignId('lived_country_id')->constrained('countries')->comment('現住国情報');
-            $table->foreignId('lived_prefecture_id')->constrained('prefectures')->nullable()->comment('現住都道府県情報');
-            $table->foreignId('lived_municipality_id')->constrained('municipalities')->nullable()->comment('現住市区町村情報');
-            $table->foreignId('birth_country_id')->constrained('countries')->comment('現住国情報');
-            $table->foreignId('birth_prefecture_id')->constrained('prefectures')->nullable()->comment('現住都道府県情報');
-            $table->foreignId('birth_municipality_id')->constrained('municipalities')->nullable()->comment('現住市区町村情報');
+            $table->foreignId('lived_area_id')->constrained('areas')->comment('現住地域');
+            $table->foreignId('birth_area_id')->constrained('areas')->comment('出身地域');
             $table->boolean('is_dark_mode')->comment('ダークモードにするか？');
             $table->boolean('is_publish_birth_day')->comment('誕生日公開するか？');
             $table->boolean('is_graduate')->comment('卒業したか？');

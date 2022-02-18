@@ -6,8 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-
-class CountryTableSeeder extends Seeder
+class AreaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,12 +17,15 @@ class CountryTableSeeder extends Seeder
     {
         $param = [
             [
-                'name' => "日本",
+                'country_code' => 81,
+                'prefecture_code' => 9,
+                'municipality' => "宇都宮市",
             ],
-            [
-                'name' => "その他",
-            ],
+
+
+
+
         ];
-        DB::table("countries")->insert($param);
+        DB::table("areas")->insert($param);
     }
 }

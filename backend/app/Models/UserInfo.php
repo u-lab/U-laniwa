@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\Gender;
+use App\Enums\Grade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,5 +51,6 @@ class UserInfo extends Model
      */
     protected $casts = [
         'gender' => Gender::class,
+        'grade' => Grade::class,
     ];
 }

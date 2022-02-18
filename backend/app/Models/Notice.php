@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\NoticeGenre;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,4 +14,13 @@ class Notice extends Model
     ];
 
     public static $rules = array();
+
+    /**
+     * Enumキャスト
+     *
+     * @var array
+     */
+    protected $casts = [
+        'genre' => NoticeGenre::class,
+    ];
 }

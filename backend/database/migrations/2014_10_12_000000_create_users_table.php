@@ -22,6 +22,14 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            /**
+             * ここから独自定義
+             */
+            $table->foreignId('user_role_id')->comment('ユーザー権限(対象の主キーはrole_id)');
+            $table->foreignId('invited_id')->nullable()->constrained('users')->comment('紹介者id'); //ホントはnullableにしたくなが、創始者がどうやっても外部キーエラーになるので、null可に
+            $table->date('retired_at')->nullable()->comment('退部した日'); //退部後n日で垢削除の仕組み用。退部の判定自体はuser_rankを見る
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

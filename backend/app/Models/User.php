@@ -27,6 +27,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_role_id',
+        'invited_id',
+        'retired_at',
+
     ];
 
     /**
@@ -40,6 +44,9 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
+
+
+    public static $rules = array();
 
     /**
      * The attributes that should be cast.
@@ -58,4 +65,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function userInfo()
+    {
+        return $this->hasOne(UserInfo::class);
+    }
 }

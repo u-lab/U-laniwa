@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_progresses', function (Blueprint $table) {
+        Schema::create('project_progress', function (Blueprint $table) {
             $table->id();
             $table->foreignId("project_id")->comment("参加リクエスト先のプロジェクトid");
             $table->date("date")->comment("日付");
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_progresses');
+        Schema::dropIfExists('project_progress');
     }
 };

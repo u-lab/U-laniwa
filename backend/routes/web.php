@@ -92,6 +92,7 @@ Route::get('/aboutThisSite', function () {
 Route::get('/teapot', function () {
     abort(418);
 });
+Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
 
 /**
  * 未完成ページは   abort(423)にしておく
@@ -114,6 +115,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
      * 【SecurityClearance:level1】
      * 外部ユーザーレベル
      */
+    Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
 
     Route::get('/calender', function () {
         return view('calender');
@@ -125,7 +127,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('groupRules');
     });
 
-    Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
     Route::get('/statistics', AllStatisticController::class)->name('statistics'); //統計情報
     Route::get('/statistic/user', ProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
     Route::get('/statistic/project', UserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
@@ -134,9 +135,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
     //ユーザー情報閲覧(level1では各種制限があるがここではできないので、中身の制御はbladeで行う)
-    Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
+    // Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
     Route::get('/user/individual/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
-
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::post('/user/edit/update', UpdateUserController::class)->name('userEditUpdate'); //ユーザー閲覧

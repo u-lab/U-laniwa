@@ -24,6 +24,16 @@ Released under the MIT license
 
 https://github.com/spatie/laravel-backup/blob/main/LICENSE.md
 
+## larastan
+
+※静的解析で使用
+
+Copyright (c) Nuno Maduro enunomaduro@gmail.com
+
+Released under the MIT license
+
+https://github.com/nunomaduro/larastan/blob/master/LICENSE.md
+
 ## laravel-debugbar
 
 ※ローカルのデバッグに使用

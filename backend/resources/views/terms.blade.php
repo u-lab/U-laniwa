@@ -1,13 +1,13 @@
-<x-guest-layout>
-    <div class="pt-4 bg-gray-100">
-        <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
-            <div>
-                <x-jet-authentication-card-logo />
-            </div>
+@extends("layouts.noLogIn")
+@section("title","利用規約")
 
-            <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
-                {!! $terms !!}
-            </div>
-        </div>
-    </div>
-</x-guest-layout>
+@section('header')
+@parent
+@endsection
+@section('content')
+<h1 class="text-center my-8 text-3xl kiwi-maru">利用規約</h1>
+<div class="mx-auto px-4 " style="max-width: 1200px">
+    <p>利用規約が連なる</p>
+</div>
+
+@endsection

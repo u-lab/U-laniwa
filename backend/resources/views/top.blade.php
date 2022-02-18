@@ -1,1 +1,11 @@
-<h1 class="text-center text-4xl">U-laniwaへようこそ！</h1>
+@extends("layouts.noLogIn")
+@section("title","トップ")
+
+@section('header')
+@parent
+@endsection
+@section('content')
+<h1 class="text-center my-8 text-3xl kiwi-maru">U-laniwa</h1>
+
+
+@endsection

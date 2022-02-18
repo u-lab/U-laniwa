@@ -63,12 +63,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        // 'level7' => [\App\Http\Middleware\SecurityClearance::class, "level7"],
-        // 'level6' => [\App\Http\Middleware\SecurityClearance::class, "level6"],
-        // 'level5' => [\App\Http\Middleware\SecurityClearance::class, "level5"],
-        // 'level4' => [\App\Http\Middleware\SecurityClearance::class, "level4"],
-        // 'level3' => [\App\Http\Middleware\SecurityClearance::class, "level3"],
-        // 'level2' => [\App\Http\Middleware\SecurityClearance::class, "level2"],
-        // 'level1' => [\App\Http\Middleware\SecurityClearance::class, "level1"],
+        'level7' => \App\Http\Middleware\Level7Middleware::class,
+        'level6' => \App\Http\Middleware\Level6Middleware::class,
+        'level5' => \App\Http\Middleware\Level5Middleware::class,
+        'level4' => \App\Http\Middleware\Level4Middleware::class,
+        'level3' => \App\Http\Middleware\Level3Middleware::class,
+        'level2' => \App\Http\Middleware\Level2Middleware::class,
+        'level1' => \App\Http\Middleware\Level1Middleware::class,
+
     ];
 }

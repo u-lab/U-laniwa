@@ -17,6 +17,14 @@ class AreaTableSeeder extends Seeder
      */
     public function run(Client $client, Area $area)
     {
+
+        $area->create([
+            'country_code' => 0,
+            'prefecture_code' => 0,
+            'municipality_code'     => "00000",
+            'municipality'          => "その他",
+        ]);
+
         /**
          * 実装の参考
          * https://qiita.com/namizatork/items/2f227184d1c2f1eb0e15

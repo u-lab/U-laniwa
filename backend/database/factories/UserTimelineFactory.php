@@ -16,8 +16,30 @@ class UserTimelineFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
+        //説明ありとなし、終了日なしの3種類用意
+        $user_belonged = [
+            [
+                'user_id' => $this->faker->numberBetween(1, 40),
+                'name' =>  $this->faker->word() . "部",
+                'description' => $this->faker->realText(20),
+                'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
+                'end_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
+            ],
+            [
+                'user_id' => $this->faker->numberBetween(1, 40),
+                'name' =>  $this->faker->word() . "部",
+                'description' => $this->faker->realText(20),
+                'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
+
+            ],
+            [
+                'user_id' => $this->faker->numberBetween(1, 40),
+                'name' =>  $this->faker->word() . "部",
+                'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
+
+            ],
         ];
+        //説明ありとなし、終了日なしユーザーリンクをランダムに返す
+        return  $user_belonged[$this->faker->randomElement([0, 1, 2])];
     }
 }

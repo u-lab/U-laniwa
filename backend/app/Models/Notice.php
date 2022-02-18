@@ -9,7 +9,7 @@ class Notice extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "genre_id", "date", "title", "description", "created_at", "updated_at"
+        "genre", "date", "title", "description", "created_at", "updated_at"
     ];
 
     public static $rules = array();

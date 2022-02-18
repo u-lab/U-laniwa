@@ -14,6 +14,6 @@ class UserTimelineTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\UserTimeline::factory(200)->create();
     }
 }

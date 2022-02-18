@@ -17,7 +17,7 @@ class NoticeFactory extends Factory
     public function definition()
     {
         return [
-            'genre_id' =>    $this->faker->numberBetween(1, 2),
+            'genre' =>    $this->faker->numberBetween(1, 2),
             'date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
             'title' => $this->faker->realText(10),
             'description' => $this->faker->realText(60),

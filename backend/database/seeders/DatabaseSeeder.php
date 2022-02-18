@@ -17,9 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserRoleTableSeeder::class);
         $this->call(UUFacultyTableSeeder::class);
         $this->call(UUMajorTableSeeder::class);
-        $this->call(CountryTableSeeder::class);
-        $this->call(PrefectureTableSeeder::class);
-        $this->call(MunicipalityTableSeeder::class);
+        $this->call(AreaTableSeeder::class);
         //user依存↑
         $this->call(UserTableSeeder::class); //自動生成(40人)+手動1
         //user被依存↓

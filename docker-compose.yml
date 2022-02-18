@@ -74,17 +74,17 @@ services:
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
-# 動かない
-# phpmyadmin:
-#   image: phpmyadmin/phpmyadmin
-#   environment:
-#     - PMA_ARBITRARY=1
-#     - PMA_HOST=db
-#     - PMA_USER=root
-#     - PMA_PASSWORD=${DB_PASS:-secret}
-#   depends_on:
-#     - db
-#   ports:
-#     - 214:80
-#   volumes:
-#     - ./infra/docker/phpmyadmin/sessions:/sessions
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db:${DB_PORT:-33066}
+      - PMA_USER=${DB_USER:-phper}
+      - PMA_PASSWORD=${DB_PASS:-secret}
+    depends_on:
+      - db
+    ports:
+      - 214:80
+    volumes:
+      - ./infra/docker/phpmyadmin/sessions:/sessions

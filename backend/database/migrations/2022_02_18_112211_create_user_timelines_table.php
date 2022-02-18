@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_timelines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->cascadeOnDelete()->comment("該当ユーザーid");
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete()->comment("該当ユーザーid");
             $table->string("title")->comment("タイトル");
             $table->string("description")->nullable()->comment("説明");
             $table->tinyInteger("genre")->comment("Enumジャンル");

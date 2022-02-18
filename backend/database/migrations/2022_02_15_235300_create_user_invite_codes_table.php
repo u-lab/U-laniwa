@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_invite_codes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->unique()->cascadeOnDelete()->comment("ユーザーid");
+            $table->foreignId("user_id")->unique()->constrained()->cascadeOnDelete()->comment("ユーザーid");
             $table->string("code")->unique()->comment("招待コード");
             $table->timestamps();
         });

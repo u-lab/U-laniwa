@@ -25,7 +25,7 @@ return new class extends Migration
             /**
              * ここから独自定義
              */
-            $table->foreignId('user_role_id')->comment('ユーザー権限(対象の主キーはrole_id)');
+            $table->foreignId('user_role_id')->constrained()->comment('ユーザー権限(対象の主キーはid)');
             $table->foreignId('invited_id')->nullable()->constrained('users')->comment('紹介者id'); //ホントはnullableにしたくなが、創始者がどうやっても外部キーエラーになるので、null可に
             $table->date('retired_at')->nullable()->comment('退部した日'); //退部後n日で垢削除の仕組み用。退部の判定自体はuser_rankを見る
 

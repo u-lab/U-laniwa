@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->cascadeOnDelete()->comment('該当ユーザーのid');
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete()->comment('該当ユーザーのid');
             $table->date('birth_day')->comment('誕生日');
             $table->string('last_name')->nullable()->comment('姓'); //nullableなのは姓が存在しない国出身の人対応のため
             $table->string('first_name')->comment('名');
             $table->text('description')->nullable()->comment('自己紹介');
             $table->tinyInteger('grade')->comment('enum学年');
             $table->boolean('is_udai')->comment('宇大かそうでないか');
-            $table->json('university_meta')->nullable()->comment('大学情報');
-            $table->foreignId('faculty_id')->nullable()->comment('学部情報');
-            $table->foreignId('major_id')->nullable()->comment('学部情報');
+            $table->json('university_meta')->nullable()->constrained()->comment('大学情報');
+            $table->foreignId('faculty_id')->nullable()->constrained('u_u_faculties')->comment('学部情報');
+            $table->foreignId('major_id')->nullable()->constrained('u_u_majors')->comment('学部情報');
             $table->tinyInteger('gender')->comment('enum性別');
             $table->foreignId('lived_country_id')->constrained('countries')->comment('現住国情報');
             $table->foreignId('lived_prefecture_id')->constrained('prefectures')->nullable()->comment('現住都道府県情報');

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger("role_id")->primary()->unique()->comment("管理用のIDはこちらで(連番では無く、飛ばし飛ばしにすることで扱いやすくする)→このIDを元にSecurityClearanceを制御");
+            $table->unsignedBigInteger("id")->unique()->primary()->comment("管理用のIDはこちらで(連番では無く、飛ばし飛ばしにすることで扱いやすくする)→このIDを元にSecurityClearanceを制御");
             $table->string("name")->comment("役職");
             $table->string("description")->nullable()->comment("説明");
         });

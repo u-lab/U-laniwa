@@ -11,5 +11,6 @@ class ShowProjectTimelineController extends Controller
 {
     public function __invoke()
     {
+        return view('timeline.project', []);
     }
 }

@@ -11,5 +11,6 @@ class DeleteProjectController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/project');
     }
 }

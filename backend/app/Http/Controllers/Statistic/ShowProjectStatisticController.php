@@ -11,5 +11,6 @@ class ShowProjectStatisticController extends Controller
 {
     public function __invoke()
     {
+        return view('statistic.project', []);
     }
 }

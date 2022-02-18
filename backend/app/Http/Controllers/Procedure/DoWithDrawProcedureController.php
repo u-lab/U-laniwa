@@ -11,5 +11,6 @@ class DoWithDrawProcedureController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/procedure');
     }
 }

@@ -11,5 +11,6 @@ class ShowEditProjectController extends Controller
 {
     public function __invoke()
     {
+        return view('project.edit', []);
     }
 }

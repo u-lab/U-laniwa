@@ -11,5 +11,6 @@ class CreateManagementNoticeController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/management/notice');
     }
 }

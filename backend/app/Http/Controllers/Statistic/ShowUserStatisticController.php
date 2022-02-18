@@ -11,5 +11,6 @@ class ShowUserStatisticController extends Controller
 {
     public function __invoke()
     {
+        return view('statistic.user', []);
     }
 }

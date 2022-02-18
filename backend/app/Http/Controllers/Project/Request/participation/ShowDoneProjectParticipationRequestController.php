@@ -11,5 +11,6 @@ class ShowDoneProjectParticipationRequestController extends Controller
 {
     public function __invoke()
     {
+        return view('project.request.participation.done', []);
     }
 }

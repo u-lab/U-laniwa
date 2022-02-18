@@ -11,5 +11,6 @@ class ShowUserDetailSearchController extends Controller
 {
     public function __invoke()
     {
+        return view('detailSearch.user', []);
     }
 }

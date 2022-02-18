@@ -11,5 +11,6 @@ class DeleteManagementNoticeController extends Controller
 {
     public function __invoke()
     {
+        return redirect('/management/notice');
     }
 }

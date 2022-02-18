@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project_progress>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProjectBelonged>
  */
-class Project_progressFactory extends Factory
+class ProjectBelongedFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,8 @@ class Project_progressFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => $this->faker->numberBetween(1, 40),
             'project_id' =>  $this->faker->numberBetween(1, 20),
-            'date' =>  $this->faker->dateTimeThisDecade()->format('Y-m-d'),
-            'title' => $this->faker->realText(10),
-            'description' => $this->faker->realText(30),
         ];
     }
 }

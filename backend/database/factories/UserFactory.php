@@ -47,7 +47,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'first_name' => $this->faker->firstName(),
             'description' => $this->faker->realText(),
-            'user_role_id' => $this->faker->randomElement([10, 20, 30, 40, 50, 51, 52, 60, 70]),
+            'UserRole_id' => $this->faker->randomElement([10, 20, 30, 40, 50, 51, 52, 60, 70]),
             'grade_id' => $this->faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
             'is_udai' => $udai,
             //宇大かそうでないかの出し分けは上記の配列結合で対応

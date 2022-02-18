@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User_link>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserLink>
  */
-class User_linkFactory extends Factory
+class UserLinkFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class User_linkFactory extends Factory
     public function definition()
     {
         //説明ありとなしの2種類用意
-        $user_link = [
+        $UserLink = [
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
                 'url' =>  $this->faker->url(),
@@ -32,6 +32,6 @@ class User_linkFactory extends Factory
             ],
         ];
         //説明なしかありのユーザーリンクをランダムに返す
-        return  $user_link[$this->faker->randomElement([0, 1])];
+        return  $UserLink[$this->faker->randomElement([0, 1])];
     }
 }

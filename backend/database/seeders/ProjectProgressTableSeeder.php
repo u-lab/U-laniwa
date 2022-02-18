@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class User_belonged_organizationTableSeeder extends Seeder
+class ProjectProgressTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,6 @@ class User_belonged_organizationTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User_link::factory(30)->create();
+        \App\Models\ProjectProgress::factory(10)->create();
     }
 }

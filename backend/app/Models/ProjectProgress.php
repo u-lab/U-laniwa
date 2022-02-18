@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project_belonged extends Model
+class ProjectProgress extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "user_id", "project_id", "created_at", "updated_at"
+        "project_id", "date", "title", "description", "created_at", "updated_at"
     ];
 
     public static $rules = array();

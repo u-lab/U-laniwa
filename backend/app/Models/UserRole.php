@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_qualification extends Model
+class UserRole extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "user_id", "name", "date_of_acquisition", "description"
+        "role_id", "url", "name", "description",
     ];
 
     public static $rules = array();

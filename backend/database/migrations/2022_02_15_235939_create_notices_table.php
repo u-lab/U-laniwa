@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("genre_id")->comment("お知らせジャンルid");
+            $table->tinyInteger("genre")->comment("お知らせジャンル");
             $table->date("date")->comment("日付");
             $table->string("title")->comment("タイトル");
             $table->string("description")->comment("説明");

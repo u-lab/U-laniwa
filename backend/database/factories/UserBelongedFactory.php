@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class User_belongedFactory extends Factory
+class UserBelongedFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class User_belongedFactory extends Factory
     public function definition()
     {
         //説明ありとなし、終了日なしの3種類用意
-        $user_belonged = [
+        $UserBelonged = [
             [
                 'user_id' => 1,
                 'name' =>  $this->faker->word() . "部",
@@ -40,6 +40,6 @@ class User_belongedFactory extends Factory
             ],
         ];
         //説明ありとなし、終了日なしユーザーリンクをランダムに返す
-        return  $user_belonged[$this->faker->randomElement([0, 1, 2])];
+        return  $UserBelonged[$this->faker->randomElement([0, 1, 2])];
     }
 }

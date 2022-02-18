@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User_qualification>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserQualification>
  */
-class User_qualificationFactory extends Factory
+class UserQualificationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class User_qualificationFactory extends Factory
     {
 
         //説明ありとなしの2種類用意
-        $user_qualification = [
+        $UserQualification = [
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
                 'name' =>  $this->faker->word() . "検定",
@@ -32,6 +32,6 @@ class User_qualificationFactory extends Factory
             ],
         ];
         //説明なしかありのユーザーリンクをランダムに返す
-        return  $user_qualification[$this->faker->randomElement([0, 1])];
+        return  $UserQualification[$this->faker->randomElement([0, 1])];
     }
 }

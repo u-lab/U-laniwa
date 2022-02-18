@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_belonged_organization extends Model
+class ProjectParticipationRequest extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "user_id", "name", "description", "start_date", "end_date"
+        "project_id", "user_id", "comment", "created_at", "updated_at"
     ];
 
     public static $rules = array();
-    //時間カラムの自動挿入無効化
-    const CREATED_AT = NULL;
-    const UPDATED_AT = NULL;
 }

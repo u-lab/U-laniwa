@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project_progress extends Model
+class UUFaculty extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "project_id", "date", "title", "description", "created_at", "updated_at"
+        "name",
     ];
 
     public static $rules = array();
+
+    //時間カラムの自動挿入無効化
+    const CREATED_AT = NULL;
+    const UPDATED_AT = NULL;
 }

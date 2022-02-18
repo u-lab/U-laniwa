@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class User_invite_codeTableSeeder extends Seeder
+class ProjectBelongedTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class User_invite_codeTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\ProjectBelonged::factory(50)->create();
     }
 }

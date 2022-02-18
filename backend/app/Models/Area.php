@@ -9,7 +9,7 @@ class Area extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "country_code", "prefecture_code", "municipality"
+        "country_code", "prefecture_code", "municipality_code", "municipality"
     ];
 
     public static $rules = array();

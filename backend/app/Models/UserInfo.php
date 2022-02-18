@@ -40,4 +40,14 @@ class UserInfo extends Model
     ];
 
     public static $rules = array();
+
+
+    /**
+     * Enumキャスト
+     *
+     * @var array
+     */
+    protected $casts = [
+        'gender' => Gender::class,
+    ];
 }

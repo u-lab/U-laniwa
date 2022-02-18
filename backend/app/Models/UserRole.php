@@ -9,11 +9,18 @@ class UserRole extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "role_id", "url", "name", "description",
+        "id",  "name", "description",
     ];
 
     public static $rules = array();
     //時間カラムの自動挿入無効化
     const CREATED_AT = NULL;
     const UPDATED_AT = NULL;
+
+
+
+    /// 主キーカラム名を指定
+    protected $primaryKey = 'id';
+    /// オートインクリメント無効化
+    public $incrementing = false;
 }

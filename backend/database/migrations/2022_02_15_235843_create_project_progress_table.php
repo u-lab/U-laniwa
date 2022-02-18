@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('project_progress', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("project_id")->comment("参加リクエスト先のプロジェクトid");
+            $table->foreignId("project_id")->constrained()->comment("参加リクエスト先のプロジェクトid");
             $table->date("date")->comment("日付");
             $table->string("title")->comment("タイトル");
             $table->text("description")->comment("説明");

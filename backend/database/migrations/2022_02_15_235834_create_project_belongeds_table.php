@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('project_belongeds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->cascadeOnDelete()->comment("参加ユーザー");
-            $table->foreignId("project_id")->cascadeOnDelete()->comment("参加プロジェクト先");
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete()->comment("参加ユーザー");
+            $table->foreignId("project_id")->constrained()->cascadeOnDelete()->comment("参加プロジェクト先");
             $table->timestamps(); //参加日とか参照するため
 
         });

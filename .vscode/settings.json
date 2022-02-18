@@ -10,5 +10,8 @@
   //psr12の自動整形のための設定↓
   "[php]": {
     "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[blade]": {
+    "editor.defaultFormatter": "onecentlin.laravel-blade"
   }
 }

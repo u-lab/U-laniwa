@@ -114,6 +114,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
      * 【SecurityClearance:level1】
      * 外部ユーザーレベル
      */
+    Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
 
     Route::get('/calender', function () {
         return view('calender');
@@ -125,7 +126,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('groupRules');
     });
 
-    Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
     Route::get('/statistics', AllStatisticController::class)->name('statistics'); //統計情報
     Route::get('/statistic/user', ProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
     Route::get('/statistic/project', UserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報

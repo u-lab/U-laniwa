@@ -1,4 +1,4 @@
-@extends("layouts.noLogIn")
+@extends("layouts.noLogin")
 @section("title","419")
 
 @section('header')

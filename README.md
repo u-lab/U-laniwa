@@ -4,10 +4,8 @@
 
 U-lab 内部向けシステム
 
-
-U-laniwa wikiをご覧ください。
+U-laniwa wiki をご覧ください。
 https://github.com/u-lab/U-laniwa/wiki
-
 
 # ローカルでの使い方
 
@@ -52,6 +50,10 @@ http://127.0.0.1:8025/
 
 http://127.0.0.1:213/
 
+PHPMyAdmin
+
+http://127.0.0.1:214/
+
 # サイト
 
 https://u-laniwa.tk/
@@ -84,7 +86,6 @@ https://u-laniwa.tk/
 | [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア            |                                                           |
 | [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア        |                                                           |
 | [H37kouya](https://github.com/H37kouya)     | スペシャルサンクス            | DB 設計やルーティング、機能に関してアドバイス頂きました。 |
-
 
 # U-laniwa について
 

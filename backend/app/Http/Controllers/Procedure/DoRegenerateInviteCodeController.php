@@ -13,7 +13,7 @@ class DoRegenerateInviteCodeController extends Controller
 {
 
     /**
-     * 招待コード生成・再生成
+     * 招待コード生成・再生成するコントローラー
      *
      * @return Redirector|RedirectResponse
      */

@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-class ShowEditProjectController extends Controller
+class ShowAllProjectController extends Controller
 {
     /**
-     * プロジェクト編集ページを表示するコントローラー
+     * 手続きページを表示するコントローラー
      *
-     * @return void
+     * @return View|Factory
      */
-    public function __invoke(): View |Factory
+    public function __invoke(): View|Factory
     {
-        return view('project.edit', []);
+        return view('project.index', []);
     }
 }

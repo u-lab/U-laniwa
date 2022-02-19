@@ -49,6 +49,11 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 
     /**
@@ -71,12 +76,12 @@ class User extends Authenticatable
 
 
     /**
-     * Undocumented function
+     * ユーザー情報とつなぐ用のやつ
      *
      * @return HasOne
      */
     public function userInfo(): HasOne
     {
-        return $this->hasOne(UserInfo::class);
+        return $this->hasOne(UserInfo::class)->withDefault();
     }
 }

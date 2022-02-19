@@ -14,5 +14,10 @@ class ProjectParticipationRequest extends Model
         "project_id", "user_id", "comment", "created_at", "updated_at"
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 }

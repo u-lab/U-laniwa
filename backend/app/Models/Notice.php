@@ -15,6 +15,11 @@ class Notice extends Model
         "genre", "date", "title", "description", "created_at", "updated_at"
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 
     /**

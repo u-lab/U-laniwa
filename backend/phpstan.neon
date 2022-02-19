@@ -7,9 +7,10 @@ parameters:
         - app
 
     # The level 9 is the highest level
-    level: 3
+    level: 8
 
     excludePaths:
         - ./*/*/FileToBeExcluded.php
 
     checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false

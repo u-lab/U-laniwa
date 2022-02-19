@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Security;
+namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-class ShowSecurityController extends Controller
+class ShowAllProjectController extends Controller
 {
     /**
-     * セキュリティページを表示するコントローラー
+     * 手続きページを表示するコントローラー
      *
-     * @return  View|Factory
+     * @return View|Factory
      */
     public function __invoke(): View|Factory
     {
-        return view('security.index', []);
+        return view('project.index', []);
     }
 }

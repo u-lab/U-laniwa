@@ -16,6 +16,11 @@ class Area extends Model
         "country_code", "prefecture_code", "municipality_code", "municipality"
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 
     //時間カラムの自動挿入無効化

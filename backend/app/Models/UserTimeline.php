@@ -14,5 +14,10 @@ class UserTimeline extends Model
         "user_id", "title", "description", "genre", "start_date", "end_date",
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 }

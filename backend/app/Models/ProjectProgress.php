@@ -14,5 +14,10 @@ class ProjectProgress extends Model
         "project_id", "date", "title", "description", "created_at", "updated_at"
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 }

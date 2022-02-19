@@ -14,5 +14,10 @@ class Project extends Model
         "representative_id", "name", "description",  "thumbnail", "place_of_activity", "start_date", "end_date", "created_at", "updated_at"
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 }

@@ -14,5 +14,10 @@ class ProjectBelonged extends Model
         "user_id", "project_id", "created_at", "updated_at"
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 }

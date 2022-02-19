@@ -14,6 +14,11 @@ class UserInviteCode extends Model
         "user_id", "code",
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
     //時間カラムの自動挿入無効化
     const CREATED_AT = NULL;

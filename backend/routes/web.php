@@ -173,7 +173,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
     //プロジェクト周り
-    Route::get('/project', ShowAllProcedureController::class)->name('project'); //プロジェクト一覧
+    Route::get('/project', ShowAllProjectController::class)->name('project'); //プロジェクト一覧
     Route::get('/project/{project_id}', ShowIndividualProjectController::class)->name('project');   //各プロジェクト情報
 
     //プロジェクト編集(編集はプロジェクトメンバーであれば可能なので、level1のコーナーで用意)

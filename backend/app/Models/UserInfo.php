@@ -43,6 +43,11 @@ class UserInfo extends Model
         'motto',
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 
 

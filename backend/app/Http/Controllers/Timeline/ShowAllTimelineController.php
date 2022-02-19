@@ -6,10 +6,17 @@ namespace App\Http\Controllers\timeline;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class ShowAllTimelineController extends Controller
 {
-    public function __invoke()
+    /**
+     * 全体タイムラインを表示するコントローラー
+     *
+     * @return View|Factory
+     */
+    public function __invoke(): View|Factory
     {
         return view('timeline.index', []);
     }

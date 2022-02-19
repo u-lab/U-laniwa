@@ -44,6 +44,16 @@ Released under the MIT license
 
 https://github.com/barryvdh/laravel-debugbar/blob/master/LICENSE
 
+## laravel-ide-helper
+
+※ローカルのデバッグに使用
+
+Copyright (c) Barry vd. Heuvel barryvdh@gmail.com
+
+Released under the MIT license
+
+https://github.com/barryvdh/laravel-ide-helper/blob/master/LICENSE.md
+
 # その他
 
 # docker 作成で使用

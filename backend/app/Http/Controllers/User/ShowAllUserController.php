@@ -8,10 +8,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class ShowAllUserController extends Controller
 {
-    public function __invoke()
+    /**
+     * ユーザー一覧を表示するコントローラー
+     *
+     * @return View|Factory
+     */
+    public function __invoke(): View|Factory
     {
         $users = User::where("id", ">", "1")->get();
         $projects = Project::where("id", ">", "1")->get();

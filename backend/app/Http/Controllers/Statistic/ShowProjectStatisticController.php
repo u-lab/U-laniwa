@@ -6,10 +6,17 @@ namespace App\Http\Controllers\statistic;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class ShowProjectStatisticController extends Controller
 {
-    public function __invoke()
+    /**
+     * プロジェクトの統計を表示するコントローラー
+     *
+     * @return View|Factory
+     */
+    public function __invoke(): View|Factory
     {
         return view('statistic.project', []);
     }

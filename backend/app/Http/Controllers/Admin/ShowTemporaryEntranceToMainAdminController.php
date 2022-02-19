@@ -16,7 +16,7 @@ class ShowTemporaryEntranceToMainAdminController extends Controller
      *
      * @return View|Factory
      */
-    public function __invoke(): View |Factory
+    public function __invoke(): View|Factory
     {
         return view('admin.temporaryEntranceToMain', []);
     }

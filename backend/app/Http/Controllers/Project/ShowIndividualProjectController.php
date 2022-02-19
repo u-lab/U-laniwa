@@ -14,9 +14,9 @@ class ShowIndividualProjectController extends Controller
     /**
      * 個別のプロジェクト(プロジェクト詳細ページ)を表示するコントローラー
      *
-     * @return void
+     * @return View|Factory
      */
-    public function __invoke(): View |Factory
+    public function __invoke(): View|Factory
     {
         return view('project.individual', []);
     }

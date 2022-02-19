@@ -14,9 +14,9 @@ class ShowEditProjectController extends Controller
     /**
      * プロジェクト編集ページを表示するコントローラー
      *
-     * @return void
+     * @return View|Factory
      */
-    public function __invoke(): View |Factory
+    public function __invoke(): View|Factory
     {
         return view('project.edit', []);
     }

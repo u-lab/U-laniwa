@@ -15,6 +15,11 @@ class UUMajor extends Model
         "name", "faculty_id",
     ];
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 
     //時間カラムの自動挿入無効化

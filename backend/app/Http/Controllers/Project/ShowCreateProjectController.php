@@ -14,9 +14,9 @@ class ShowCreateProjectController extends Controller
     /**
      * プロジェクト作成ページを表示するコントローラー
      *
-     * @return void
+     * @return View|Factory
      */
-    public function __invoke(): View |Factory
+    public function __invoke(): View|Factory
     {
         return view('project.create', []);
     }

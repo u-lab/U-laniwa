@@ -39,7 +39,6 @@ class UserInfo extends Model
         'discord_name',
         'hobbies',
         'interests',
-        'languages',
         'motto',
     ];
 

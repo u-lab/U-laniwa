@@ -61,6 +61,7 @@ use App\Http\Controllers\Admin\ShowTemporaryEntranceToMainAdminController;
 use App\Http\Controllers\Admin\ShowUserOperationAdminController;
 use App\Http\Controllers\Admin\ShowUserRoleAdminController;
 use App\Http\Controllers\DetailSearch\ShowUserDetailSearchController;
+use App\Http\Controllers\Procedure\DoRegenerateInviteCodeController;
 
 /**
  * 【SecurityClearance:level0】
@@ -127,7 +128,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('groupRules');
     });
 
-    Route::get('/statistics', AllStatisticController::class)->name('statistics'); //統計情報
+    Route::get('/statistic', AllStatisticController::class)->name('statistics'); //統計情報
     Route::get('/statistic/user', ProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
     Route::get('/statistic/project', UserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
 
@@ -136,7 +137,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     //ユーザー情報閲覧(level1では各種制限があるがここではできないので、中身の制御はbladeで行う)
     // Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
-    Route::get('/user/individual/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
+    Route::get('/user/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::post('/user/edit/update', UpdateUserController::class)->name('userEditUpdate'); //ユーザー閲覧
@@ -225,6 +226,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
                  * 本入部レベル
                  */
                 Route::post('/procedure/retire', DoRetireProcedureController::class)->name('retire'); //引退処理
+                Route::post('/procedure/regenerateInviteCode', DoRegenerateInviteCodeController::class)->name('regenerateInviteCode'); //招待コード生成処理
 
                 //プロジェクト新規作成
                 Route::get('/project/create', ShowCreateProjectController::class)->name('projectCreate');

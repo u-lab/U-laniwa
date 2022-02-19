@@ -50,7 +50,6 @@ class UserInfoFactory extends Factory
             'discord_name' => $this->faker->word(),
             'hobbies' => $this->faker->realText(30),
             'interests' => $this->faker->realText(30),
-            'languages' => $this->faker->realText(30),
             'motto' => $this->faker->realText(30),
         ]);
     }

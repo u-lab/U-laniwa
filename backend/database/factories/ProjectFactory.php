@@ -19,7 +19,7 @@ class ProjectFactory extends Factory
 
         return [
             'representative_id' => $this->faker->numberBetween(1, 10),
-            'name' => $this->faker->word() . "の" . $this->faker->word(),
+            'name' =>   $this->faker->realText(15),
             'description' => $this->faker->sentence(),
             'place_of_activity' => $this->faker->city(),
             'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),

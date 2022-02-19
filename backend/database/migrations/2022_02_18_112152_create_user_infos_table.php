@@ -38,7 +38,6 @@ return new class extends Migration
             $table->string('discord_name')->nullable()->comment('Discordでのユーザー名');
             $table->string('hobbies')->nullable()->comment('趣味');
             $table->string('interests')->nullable()->comment('興味');
-            $table->string('languages')->nullable()->comment('言語');
             $table->string('motto')->nullable()->comment('座右の銘');
 
             $table->timestamps();

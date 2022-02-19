@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\Auth;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\UnauthorizedException;
 
 class Level3Middleware
 {
@@ -17,8 +18,11 @@ class Level3Middleware
      */
     public function handle(Request $request, Closure $next)
     {
-        /** @var Auth $user */
         $user = Auth::user();
+
+        // 未認証はありえない。未認証はエラー発生。
+        if ($user === null) throw new UnauthorizedException();
+
         $user->user_role_id >= 30 ? '' : abort(403);
         return $next($request);
     }

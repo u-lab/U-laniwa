@@ -13,6 +13,6 @@ class ShowHomeController extends Controller
     {
 
 
-        return view('home', compact(''));
+        return view('home', []);
     }
 }

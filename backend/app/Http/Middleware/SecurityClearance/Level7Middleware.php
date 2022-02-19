@@ -17,7 +17,7 @@ class Level7Middleware
      */
     public function handle(Request $request, Closure $next)
     {
-        /** @var User $user */
+        /** @var Auth $user */
         $user = Auth::user();
         $user->user_role_id >= 70 ? '' : abort(403);
         return $next($request);

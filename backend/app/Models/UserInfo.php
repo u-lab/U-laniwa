@@ -20,8 +20,9 @@ class UserInfo extends Model
         'grade',
         'is_udai',
         'university_meta',
+        'company_meta',
         'faculty_id',
-        'major_id',
+        'uu_major_id',
         'gender',
         'lived_country_id',
         'lived_prefecture_id',
@@ -39,7 +40,6 @@ class UserInfo extends Model
         'discord_name',
         'hobbies',
         'interests',
-        'languages',
         'motto',
     ];
 

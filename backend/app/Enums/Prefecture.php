@@ -6,6 +6,7 @@ namespace App\Enums;
 
 enum Prefecture: int
 {
+    case other = 0;
     case hokkaido = 1;
     case aomori = 2;
     case iwate = 3;
@@ -61,6 +62,7 @@ enum Prefecture: int
     {
         return match ($this) {
 
+            self::other => "その他",
             self::hokkaido => "北海道",
             self::aomori => "青森県",
             self::iwate => "岩手県",

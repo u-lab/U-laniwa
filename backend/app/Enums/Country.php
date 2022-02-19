@@ -8,6 +8,9 @@ enum Country: int
 {
     case ot = 0;
     case jp = 81;
+    /**
+     * 国名コードは3桁がマックスのはず
+     */
 
 
     public function label(): string

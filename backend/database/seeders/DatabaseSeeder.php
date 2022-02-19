@@ -15,14 +15,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserRoleTableSeeder::class);
-        $this->call(UUFacultyTableSeeder::class);
         $this->call(UUMajorTableSeeder::class);
         $this->call(AreaTableSeeder::class);
         //user依存↑
         $this->call(UserTableSeeder::class); //自動生成(40人)+手動1
         //user被依存↓
         // $this->call(UserInfoTableSeeder::class);\\Userのファクトリー実行時に併せて生成
-        // $this->call(UserInviteCodeTableSeeder::class);
+        $this->call(UserInviteCodeTableSeeder::class);
         $this->call(UserTimelineTableSeeder::class); //自動生成(200)
         $this->call(UserLinkTableSeeder::class); //自動生成(80)
         $this->call(ProjectTableSeeder::class); //自動生成(20)+手動1

@@ -20,12 +20,20 @@ class UserInfoFactory extends Factory
         //宇大生
         $udai = $this->faker->randomElement([true, false]);
         $universityInfo = $udai ? [
-            'faculty_id' => $this->faker->numberBetween(1, 5),
-            'major_id' => $this->faker->numberBetween(1, 21),
+            'uu_major_id' => $this->faker->numberBetween(1, 21),
         ]
             : [
 
-                'university_meta' => json_encode(['university' => "東京大学", 'faculty' => "工学部", 'major' => "電子情報工学科",]),
+                'university_meta' => json_encode(['university' => "XX大学", 'faculty' => "工学部", 'major' => "電子情報工学科",]),
+            ];
+        //社会人か？
+        $grade = $this->faker->numberBetween(1, 11);
+        $universityInfo = $grade >= 10 ? [
+            'grade' => $grade,
+        ]
+            : [
+                'grade' => $grade,
+                'company_meta' => json_encode(['company_name' => "XX株式会社", 'position' => "珈琲エンジニア",]),
             ];
 
         return array_merge($universityInfo, [
@@ -34,7 +42,6 @@ class UserInfoFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'first_name' => $this->faker->firstName(),
             'description' => $this->faker->realText(),
-            'grade' => $this->faker->numberBetween(1, 11),
             'is_udai' => $udai,
             //宇大かそうでないかの出し分けは上記の配列結合で対応
             'gender' => $this->faker->numberBetween(1, 3),

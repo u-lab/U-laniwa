@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger("country_code")->comment("国コード");
+            $table->unsignedSmallInteger("country_code")->comment("国コード");
             $table->unsignedMediumInteger("prefecture_code")->nullable()->comment("都道府県コード");
             $table->string("municipality_code")->nullable()->comment("市区町村コード");
             $table->string("municipality")->nullable()->comment("市区町村名");

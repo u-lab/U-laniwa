@@ -26,7 +26,7 @@ class UserInfoTableSeeder extends Seeder
                 'grade' => 2,
                 'is_udai' => true,
                 'faculty_id' => 1,
-                'major_id' => 1,
+                'uu_major_id' => 1,
                 'gender' => 1,
                 'lived_area_id' => 1,
                 'birth_area_id' => 1,

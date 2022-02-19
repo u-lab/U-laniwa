@@ -82,6 +82,6 @@ class User extends Authenticatable
      */
     public function userInfo(): HasOne
     {
-        return $this->hasOne(UserInfo::class)->withDefault();;
+        return $this->hasOne(UserInfo::class)->withDefault();
     }
 }

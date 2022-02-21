@@ -14,9 +14,9 @@ class DoChangeGenerationAdminController extends Controller
     /**
      * 盛大交代をするコントローラー
      *
-     *
+     * @return Redirector|RedirectResponse
      */
-    public function __invoke()
+    public function __invoke(): Redirector|RedirectResponse
     {
         return redirect('/admin');
     }

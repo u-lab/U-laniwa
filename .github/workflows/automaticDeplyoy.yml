@@ -1,4 +1,4 @@
-name: 自動デプロイ
+name: 自動デプロイと後処理
 
 on:
   pull_request:
@@ -31,7 +31,7 @@ jobs:
             cd ${{ secrets.SERVER_DEPLOY_DIR }}/backend
             composer install
             npm ci
-      - name: composer_npm_update
+      - name: php_artisan_migrate
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}

@@ -33,18 +33,18 @@ jobs:
         id: cache
         uses: actions/cache@v1
         with:
-          path: ./vendor
+          path: ./backend/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: composer install -n --prefer-dist
+        run: cd backend && composer install -n --prefer-dist
       - name: composer dump autoload
-        run: composer dump-autoload
+        run: cd backend && composer dump-autoload
       - name: generate key
-        run: php artisan key:generate --env=testing
+        run: cd backend && php artisan key:generate --env=testing
       - name: migrate
-        run: php artisan migrate
+        run: cd backend && php artisan migrate
       - name: unit test
-        run: ./vendor/bin/phpunit
+        run: ./backend/vendor/bin/phpunit

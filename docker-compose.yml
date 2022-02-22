@@ -25,6 +25,7 @@ services:
         volume:
           nocopy: true
     environment:
+      - LOG_CHANNEL=single
       - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=${DB_PORT:-33066}

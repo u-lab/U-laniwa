@@ -30,41 +30,37 @@ cd backend && npm install && npm run dev
 データベースクリア
 
 ```
-dc exec app php artisan migrate:fresh --seed
+make fresh
 ```
 
 テスト
 
 ```
-dc exec app php artisan test
+make test
 ```
 
 Larastan による静的解析
 
 ```
-dc exec app ./vendor/bin/phpstan analyse
+make stan
 ```
 
 それ以降
 
 ```
-docker-compose up -d
+make up
 ```
 
 ide-helper
 
 ```
-	docker compose exec app php artisan clear-compiled
-	docker compose exec app php artisan ide-helper:generate
-	docker compose exec app php artisan ide-helper:meta
-	docker compose exec app php artisan ide-helper:models --nowrite
+make ide-helper
 ```
 
 Mysql 直打ち
 
 ```
-docker-compose exec db mysql -u phper -p
-Enter password:secret
+make sql
 ```
 
 ## リンク

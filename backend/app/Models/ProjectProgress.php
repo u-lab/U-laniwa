@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProjectProgress extends Model
 {
@@ -20,4 +21,14 @@ class ProjectProgress extends Model
      * @var array
      */
     public static $rules = array();
+
+    /**
+     * プロジェクトをつなぐ
+     *
+     * @return HasOne
+     */
+    public function project(): HasOne
+    {
+        return $this->hasOne(Project::class)->withDefault();
+    }
 }

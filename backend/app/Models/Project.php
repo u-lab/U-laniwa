@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Project extends Model
 {
@@ -20,4 +22,43 @@ class Project extends Model
      * @var array
      */
     public static $rules = array();
+
+
+    /**
+     * プロジェクト進捗取得
+     *
+     * @return HasMany
+     */
+    public function projectProgress(): HasMany
+    {
+        return $this->hasMany(ProjectProgress::class);
+    }
+    /**
+     * プロジェクト参加者取得
+     *
+     * @return HasMany
+     */
+    public function projectBelonged(): HasMany
+    {
+        return $this->hasMany(ProjectBelonged::class);
+    }
+    /**
+     * プロジェクト参加リクエスト取得
+     *
+     * @return HasMany
+     */
+    public function projectParticipationRequest(): HasMany
+    {
+        return $this->hasMany(ProjectParticipationRequest::class);
+    }
+
+    /**
+     * プロジェクトをつなぐ
+     *
+     * @return HasOne
+     */
+    public function project(): HasOne
+    {
+        return $this->hasOne(Project::class)->withDefault();
+    }
 }

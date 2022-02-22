@@ -8,6 +8,7 @@ use App\Enums\Gender;
 use App\Enums\Grade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserInfo extends Model
 {
@@ -60,4 +61,24 @@ class UserInfo extends Model
         'gender' => Gender::class,
         'grade' => Grade::class,
     ];
+
+
+    /**
+     * 専攻をつなぐ
+     *
+     * @return HasOne
+     */
+    public function uuMajor(): HasOne
+    {
+        return $this->hasOne(UUMajor::class)->withDefault();
+    }
+    /**
+     * 地域をつなぐ
+     *
+     * @return HasOne
+     */
+    public function area(): HasOne
+    {
+        return $this->hasOne(Area::class)->withDefault();
+    }
 }

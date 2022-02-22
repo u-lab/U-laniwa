@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\statistic;
+namespace App\Http\Controllers\Statistic;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

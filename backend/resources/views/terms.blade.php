@@ -5,7 +5,7 @@
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl kiwi-maru">利用規約</h1>
+<h1 class="text-center my-8 text-3xl ">利用規約</h1>
 <div class="mx-auto px-4 " style="max-width: 1200px">
     <p>利用規約が連なる</p>
 </div>

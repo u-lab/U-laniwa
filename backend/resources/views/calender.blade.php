@@ -5,7 +5,7 @@
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl kiwi-maru">カレンダー</h1>
+<h1 class="text-center my-8 text-3xl ">カレンダー</h1>
 
 
 @endsection

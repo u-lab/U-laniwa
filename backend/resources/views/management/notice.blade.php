@@ -5,7 +5,7 @@
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl kiwi-maru">運営からのお知らせ編集</h1>
+<h1 class="text-center my-8 text-3xl ">運営からのお知らせ編集</h1>
 
 
 @endsection

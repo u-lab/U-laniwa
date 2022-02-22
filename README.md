@@ -83,13 +83,13 @@ https://u-laniwa.tk/
 
 # 技術スタック
 
-- ドメイン取得:Dot tk(Freenom)
+- ドメイン取得:Dot tk(Freenom)  
   → 無料
-- ネームサーバー:Cloudflare
+- ネームサーバー:Cloudflare  
   → 安全面と操作性のため
-- メインサーバー:Oracle Cloud Always free osaka Region
+- メインサーバー:Oracle Cloud Always free osaka Region  
   → 永年無料枠を使用、東京は混雑してるので大阪のサーバーに
-- タスク管理:Asana+Instagantt
+- タスク管理:Asana+Instagantt  
   → 無料でガントチャートが気持ちよく使える構成
 - デザイン制作:Figma
 - 議事録管理:Notion
@@ -99,6 +99,8 @@ https://u-laniwa.tk/
 - 連絡:Slack
 - 会議:Discord
 - PHP コーディングスタイル:PSR-12
+- 静的解析:Larastan
+- CI:GitHub Actions
 
 # 開発メンバー
 

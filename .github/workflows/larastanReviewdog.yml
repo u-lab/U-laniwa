@@ -16,8 +16,18 @@ jobs:
         with:
           php-version: '8.1'
           tools: composer:v2
-      - name: Resolve dependencies
+      - name: cache vendor
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ./backend/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: composer install
+        if: steps.cache.outputs.cache-hit != 'true'
         run: cd backend && composer install --no-progress --prefer-dist --optimize-autoloader
+        
       - name: Run PHPstan
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.USUYUKI_GITHUB_TOKEN }}

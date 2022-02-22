@@ -102,13 +102,13 @@ https://u-laniwa.tk/
 
 # 開発メンバー
 
-| GitHub アカウント名                         | 役職                          | 備考                                                                 |
-| ------------------------------------------- | ----------------------------- | -------------------------------------------------------------------- |
-| [Usuyuki](https://github.com/Usuyuki)       | 代表＆雑用&インフラエンジニア |                                                                      |
-| [tomori2226](https://github.com/tomori2226) | デザイン&UI 設計              |                                                                      |
-| [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア            |                                                                      |
-| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア        |                                                                      |
-| [H37kouya](https://github.com/H37kouya)     | スペシャルサンクス            | DB 設計やルーティング、機能、Larastan に関してアドバイス頂きました。 |
+| GitHub アカウント名                         | 役職                                                                   | 備考                                                                 |
+| ------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [Usuyuki](https://github.com/Usuyuki)       | 代表＆雑用&インフラエンジニア&バックエンドとフロントエンドとデザイン q |                                                                      |
+| [tomori2226](https://github.com/tomori2226) | デザイン&UI 設計                                                       |                                                                      |
+| [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア                                                     |                                                                      |
+| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア                                                 |                                                                      |
+| [H37kouya](https://github.com/H37kouya)     | スペシャルサンクス                                                     | DB 設計やルーティング、機能、Larastan に関してアドバイス頂きました。 |
 
 # U-laniwa について
 

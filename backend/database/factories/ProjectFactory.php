@@ -19,7 +19,8 @@ class ProjectFactory extends Factory
 
         return [
             'representative_id' => $this->faker->numberBetween(1, 10),
-            'name' =>   $this->faker->realText(15),
+            'title' =>   $this->faker->realText(15),
+            'subtitle' =>   $this->faker->realText(30),
             'description' => $this->faker->sentence(),
             'place_of_activity' => $this->faker->city(),
             'start_date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),

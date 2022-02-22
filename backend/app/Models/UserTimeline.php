@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserTimeline extends Model
 {
@@ -20,4 +21,14 @@ class UserTimeline extends Model
      * @var array
      */
     public static $rules = array();
+
+    /**
+     * ユーザーをつなぐ
+     *
+     * @return HasOne
+     */
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class)->withDefault();
+    }
 }

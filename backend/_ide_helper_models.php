@@ -71,6 +71,13 @@ namespace App\Models{
  * @property string|null $end_date プロジェクト期間(終了)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Project $project
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProjectBelonged[] $projectBelonged
+ * @property-read int|null $project_belonged_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProjectParticipationRequest[] $projectParticipationRequest
+ * @property-read int|null $project_participation_request_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProjectProgress[] $projectProgress
+ * @property-read int|null $project_progress_count
  * @method static \Database\Factories\ProjectFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Project newQuery()
@@ -98,6 +105,8 @@ namespace App\Models{
  * @property int $project_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Project $project
+ * @property-read \App\Models\User $userInviteCode
  * @method static \Database\Factories\ProjectBelongedFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectBelonged newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectBelonged newQuery()
@@ -121,6 +130,8 @@ namespace App\Models{
  * @property string $comment 参加リクエストのコメント
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Project $project
+ * @property-read \App\Models\User $user
  * @method static \Database\Factories\ProjectParticipationRequestFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectParticipationRequest newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectParticipationRequest newQuery()
@@ -146,6 +157,7 @@ namespace App\Models{
  * @property string $description 説明
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Project $project
  * @method static \Database\Factories\ProjectProgressFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectProgress newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProjectProgress newQuery()
@@ -201,9 +213,16 @@ namespace App\Models{
  * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Project[] $project
+ * @property-read int|null $project_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
- * @property-read \App\Models\UserInfo|null $userInfo
+ * @property-read \App\Models\UserInfo $userInfo
+ * @property-read \App\Models\UserInviteCode $userInviteCode
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserLink[] $userLink
+ * @property-read int|null $user_link_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserTimeline[] $userTimeline
+ * @property-read int|null $user_timeline_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -259,6 +278,8 @@ namespace App\Models{
  * @property string|null $motto 座右の銘
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Area $area
+ * @property-read \App\Models\UUMajor $uuMajor
  * @method static \Database\Factories\UserInfoFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo newQuery()
@@ -367,6 +388,7 @@ namespace App\Models{
  * @property string|null $end_date 終了日(必須でない)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
  * @method static \Database\Factories\UserTimelineFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UserTimeline newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserTimeline newQuery()

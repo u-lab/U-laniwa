@@ -39,16 +39,14 @@ use App\Http\Controllers\Project\ShowIndividualProjectController;
 use App\Http\Controllers\Project\UpdateProjectController;
 use App\Http\Controllers\Representative\ShowRepresentativeController;
 use App\Http\Controllers\Security\UpdateSecurityController;
-use App\Http\Controllers\Statistic\ProjectStatisticController;
-use App\Http\Controllers\Statistic\UserStatisticController;
 use App\Http\Controllers\System\Notice\CreateSystemNoticeController;
 use App\Http\Controllers\System\Notice\DeleteSystemNoticeController;
 use App\Http\Controllers\System\Notice\ShowSystemNoticeController;
 use App\Http\Controllers\System\Notice\UpdateSystemNoticeController;
 use App\Http\Controllers\System\ShowSystemController;
-use App\Http\Controllers\timeline\ShowProjectTimelineController;
-use App\Http\Controllers\timeline\ShowQualificationTimelineController;
-use App\Http\Controllers\timeline\ShowAllTimelineController;
+use App\Http\Controllers\Timeline\ShowProjectTimelineController;
+use App\Http\Controllers\Timeline\ShowQualificationTimelineController;
+use App\Http\Controllers\Timeline\ShowAllTimelineController;
 use App\Http\Controllers\User\ShowAllUserController;
 use App\Http\Controllers\User\ShowEditUserController;
 use App\Http\Controllers\User\ShowIndividualUserController;
@@ -62,6 +60,11 @@ use App\Http\Controllers\Admin\ShowUserOperationAdminController;
 use App\Http\Controllers\Admin\ShowUserRoleAdminController;
 use App\Http\Controllers\DetailSearch\ShowUserDetailSearchController;
 use App\Http\Controllers\Procedure\DoRegenerateInviteCodeController;
+use App\Http\Controllers\Project\ShowAllProjectController;
+use App\Http\Controllers\Security\ShowSecurityController;
+use App\Http\Controllers\Statistic\ShowAllStatisticController;
+use App\Http\Controllers\Statistic\ShowProjectStatisticController;
+use App\Http\Controllers\Statistic\ShowUserStatisticController;
 
 /**
  * 【SecurityClearance:level0】
@@ -93,7 +96,6 @@ Route::get('/aboutThisSite', function () {
 Route::get('/teapot', function () {
     abort(418);
 });
-Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
 
 /**
  * 未完成ページは   abort(423)にしておく
@@ -104,19 +106,20 @@ Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザ
  * ログイン後のリダイレクト
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return redirect('/home ');
+    return redirect('/home');
 })->name('home_redirect');
 
 
 /**
  * ログインで閲覧できるページ
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     /**
      * 【SecurityClearance:level1】
      * 外部ユーザーレベル
      */
     Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
+    Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
 
     Route::get('/calender', function () {
         return view('calender');
@@ -128,9 +131,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('groupRules');
     });
 
-    Route::get('/statistic', AllStatisticController::class)->name('statistics'); //統計情報
-    Route::get('/statistic/user', ProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
-    Route::get('/statistic/project', UserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
+    Route::get('/statistic', ShowAllStatisticController::class)->name('statistics'); //統計情報
+    Route::get('/statistic/user', ShowProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
+    Route::get('/statistic/project', ShowUserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
 
 
 
@@ -152,7 +155,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
     //ユーザー検索
-    Route::get('/search/user/{words}',  ShowShowUserDetailSearchController::class)->name('search'); //検索リクエスト
+    Route::get('/search/user/{words}',  ShowUserDetailSearchController::class)->name('search'); //検索リクエスト
 
     //ユーザー詳細検索
     //ここはクエリ文字列を使う(複数になる可能性があるので ?faculty=1&gender=1みたいな)
@@ -162,7 +165,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     //パスワード要求
     Route::middleware(['password.confirm'])->group(function () {
         //セキュリティページ(パスワード変更など)
-        Route::get('/security', ShowSecurityPageController::class)->name('security');
+        Route::get('/security', ShowSecurityController::class)->name('security');
         Route::post('/security/update', UpdateSecurityController::class)->name('securityUpdate');
     });
 

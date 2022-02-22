@@ -17,79 +17,80 @@ https://github.com/u-lab/U-laniwa/wiki
 make init
 ```
 
-.env のコピーなど不要
+※Windows は標準で make コマンド無いので、別途インストールまたは WSL 側でコマンド叩いて実行してください。
 
-※Windows は make コマンド無いので、WSL 側でコマンド叩いて実行する
-
-node は docker 側で持っていないので、ローカルで npm install 関連動かす
+node は docker 側で持っていないので、ローカルで npm install 関連は動かしてください。
 
 ```
 cd backend && npm install && npm run dev
 ```
 
+## よく使うコマンド集
+
 データベースクリア
 
 ```
-make fresh
+dc exec app php artisan migrate:fresh --seed
 ```
 
 テスト
 
 ```
-make test
+dc exec app php artisan test
 ```
 
 Larastan による静的解析
 
 ```
-make stan
+dc exec app ./vendor/bin/phpstan analyse
 ```
 
 それ以降
 
 ```
-make up
+docker-compose up -d
 ```
 
 ide-helper
 
 ```
-make ide-helper
+	docker compose exec app php artisan clear-compiled
+	docker compose exec app php artisan ide-helper:generate
+	docker compose exec app php artisan ide-helper:meta
+	docker compose exec app php artisan ide-helper:models --nowrite
 ```
 
 Mysql 直打ち
 
 ```
-make sql
+docker-compose exec db mysql -u phper -p
+Enter password:secret
 ```
 
 ## リンク
 
-メール
-
-http://127.0.0.1:8025/
-
-ローカルホスト
-
+ローカルホスト  
 http://127.0.0.1:213/
 
-PHPMyAdmin
-
+PHPMyAdmin  
 http://127.0.0.1:214/
 
-# サイト
+メール  
+http://127.0.0.1:8025/
+
+# 本番環境のサイト
 
 https://u-laniwa.tk/
 
 # 技術スタック
 
-- ドメイン取得:Dot tk(Freenom)  
+- ドメイン取得:Dot tk(Freenom)
   → 無料
-- ネームサーバー:Cloudflare  
+- ネームサーバー:Cloudflare
   → 安全面と操作性のため
-- メインサーバー:Oracle Cloud Always free osaka Region  
+- メインサーバー:Oracle Cloud Always free osaka Region
   → 永年無料枠を使用、東京は混雑してるので大阪のサーバーに
-- タスク管理:Asana+Instagantt  
+- タスク管理:Asana+Instagantt
   → 無料でガントチャートが気持ちよく使える構成
 - デザイン制作:Figma
 - 議事録管理:Notion
@@ -99,8 +100,12 @@ https://u-laniwa.tk/
 - 連絡:Slack
 - 会議:Discord
 - PHP コーディングスタイル:PSR-12
+<<<<<<< Updated upstream
+=======
 - 静的解析:Larastan
 - CI:GitHub Actions
+- エラー通知:Slack
+>>>>>>> Stashed changes
 
 # 開発メンバー
 

@@ -37,16 +37,14 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-      - name: move backend
-        run: cd backend
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: composer install -n --prefer-dist
+        run: cd backend && composer install -n --prefer-dist
       - name: composer dump autoload
-        run: composer dump-autoload
+        run: cd backend && composer dump-autoload
       - name: generate key
-        run: php artisan key:generate --env=testing
+        run: cd backend && php artisan key:generate --env=testing
       - name: migrate
-        run: php artisan migrate
+        run: cd backend && php artisan migrate
       - name: unit test
-        run: ./vendor/bin/phpunit
+        run: cd backend && ./vendor/bin/phpunit

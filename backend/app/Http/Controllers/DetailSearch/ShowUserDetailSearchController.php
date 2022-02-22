@@ -14,9 +14,9 @@ class ShowUserDetailSearchController extends Controller
     /**
      *  ユーザー詳細検索の結果を表示するコントローラー
      *
-     *
+     * @return View|Factory
      */
-    public function __invoke()
+    public function __invoke(): View|Factory
     {
         return view('detailSearch.user', []);
     }

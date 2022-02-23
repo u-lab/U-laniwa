@@ -19,10 +19,10 @@ make init
 
 ※Windows は標準で make コマンド無いので、別途インストールまたは WSL 側でコマンド叩いて実行してください。
 
-node は docker 側で持っていないので、ローカルで npm install 関連は動かしてください。
+npm install
 
 ```
-cd backend && npm install && npm run dev
+make npm-install
 ```
 
 ## よく使うコマンド集

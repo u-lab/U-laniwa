@@ -20,15 +20,22 @@
 */
 @endphp
 @php
-var_dump($userInfo->hobbies);//userInfoがないユーザーも居ます。(登録したての人など)
+// var_dump($userInfo);//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userMajor->faculty_id->label());//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userMajor->name);//userInfoがないユーザーも居ます。(登録したての人など)
 echo($userBirthArea->country_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
 echo($userBirthArea->prefecture_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
 echo($userBirthArea->municipality);//userInfoがないユーザーも居ます。(登録したての人など)
-// var_dump($userMajor);//userInfoがないユーザーも居ます。(登録したての人など)
-if(empty($userProjects)){
+// var_dump($userBirthArea);
+// var_dump($userProjects);
+
+if($userProjects->isEmpty()){
 echo "所属しているプロジェクトはありません";
+}else{
+foreach ($userProjects as $userProject) {
+echo "プロジェクトタイトル:";
+echo $userProject->project->title;
+}
 }
 // var_dump($timelines);
 @endphp

@@ -28,14 +28,20 @@ class ShowHomeController extends Controller
         $user_id = Auth::id();
         //ログイン中のユーザー情報
         //get->firstの順にすることでフロント側で使いやすくする
-        /** @var UserInfo */
-        $userInfo = UserInfo::where('user_id', $user_id)->get()->first();
-        $userMajor = UUMajor::where('id', $user_id)->get()->first();
-        $userBirthArea = Area::where('id', $userInfo->birth_area_id)->get()->first();
-        $userLiveArea = Area::where('id', $userInfo->live_area_id)->get()->first();
+        /** @var UserInfo|null */
+        $userInfo = UserInfo::where('user_id',  $user_id)->first();
+        if (empty($userInfo)) {
+            $userMajor = [];
+            $userBirthArea = [];
+            $userLiveArea = [];
+        } else {
+            $userMajor = UUMajor::where('id', $user_id)->first();
+            $userBirthArea = Area::where('id', $userInfo->birth_area_id)->first();
+            $userLiveArea = Area::where('id', $userInfo->live_area_id)->first();
+        }
         //ログイン中のユーザーの所属プロジェクト
-        $userProjects = ProjectBelonged::where('user_id', $user_id)->get()->all();
-        $timelines = UserTimeline::orderBy('start_date', 'desc')->take(10)->get();
+        $userProjects = ProjectBelonged::where('user_id', $user_id)->limit(20)->get();
+        $timelines = UserTimeline::orderBy('start_date', 'desc')->take(10);
         //お知らせは初回リリース未実装
         return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userBirthArea' => $userBirthArea, 'userLiveArea' => $userLiveArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);
     }

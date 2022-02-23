@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProjectBelonged extends Model
@@ -25,20 +26,20 @@ class ProjectBelonged extends Model
     /**
      * ユーザーをつなぐ
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function userInviteCode(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class)->withDefault();
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     /**
      * プロジェクトをつなぐ
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function project(): HasOne
+    public function project(): BelongsTo
     {
-        return $this->hasOne(Project::class)->withDefault();
+        return $this->belongsTo(Project::class)->withDefault();
     }
 }

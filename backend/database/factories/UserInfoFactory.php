@@ -45,7 +45,7 @@ class UserInfoFactory extends Factory
             'is_udai' => $udai,
             //宇大かそうでないかの出し分けは上記の配列結合で対応
             'gender' => $this->faker->numberBetween(1, 3),
-            'lived_area_id' => $this->faker->numberBetween(1, 1923),
+            'live_area_id' => $this->faker->numberBetween(1, 1923),
             'birth_area_id' => $this->faker->numberBetween(1, 1923),
             'is_dark_mode' => $this->faker->randomElement([true, false]),
             'is_publish_birth_day' => $this->faker->randomElement([true, false]),

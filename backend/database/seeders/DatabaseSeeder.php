@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         //user依存↑
         $this->call(UserTableSeeder::class); //自動生成(40人)+手動1
         //user被依存↓
-        // $this->call(UserInfoTableSeeder::class);\\Userのファクトリー実行時に併せて生成
+        $this->call(UserInfoTableSeeder::class); //Userのファクトリー実行時に併せて生成
         $this->call(UserInviteCodeTableSeeder::class);
         $this->call(UserTimelineTableSeeder::class); //自動生成(200)
         $this->call(UserLinkTableSeeder::class); //自動生成(80)

@@ -74,7 +74,7 @@ class UserInfo extends Model
      *
      * @return BelongsTo
      */
-    public function live_area(): BelongsTo
+    public function liveArea(): BelongsTo
     {
         return $this->belongsTo(Area::class, 'foreign_key', 'live_area_id')->withDefault();
     }
@@ -83,7 +83,7 @@ class UserInfo extends Model
      *
      * @return BelongsTo
      */
-    public function birth_area(): BelongsTo
+    public function birthArea(): BelongsTo
     {
         return $this->belongsTo(Area::class, 'foreign_key', 'birth_area_id')->withDefault();
     }

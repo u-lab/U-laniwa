@@ -28,6 +28,7 @@ class ShowHomeController extends Controller
         $user_id = Auth::id();
         //ログイン中のユーザー情報
         //get->firstの順にすることでフロント側で使いやすくする
+        /** @var UserInfo */
         $userInfo = UserInfo::where('user_id', $user_id)->get()->first();
         $userMajor = UUMajor::where('id', $user_id)->get()->first();
         $userBirthArea = Area::where('id', $userInfo->birth_area_id)->get()->first();

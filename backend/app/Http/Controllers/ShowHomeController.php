@@ -39,13 +39,8 @@ class ShowHomeController extends Controller
             $userMajor = UUMajor::find($userInfo->u_u_major_id);
             $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
             //在住と出身が同じだった場合、返り値1つなので
-            if ($userInfo->birth_area_id == $userInfo->live_area_id) {
-                $userBirthArea = $userAreas[0];
-                $userLiveArea = $userAreas[0];
-            } else {
-                $userBirthArea = $userAreas[0];
-                $userLiveArea = $userAreas[1];
-            }
+            $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
+            $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
         }
         //ログイン中のユーザーの所属プロジェクト
         $userProjects = ProjectBelonged::where('user_id', $user_id)->limit(20)->get();

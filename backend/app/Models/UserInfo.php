@@ -8,6 +8,7 @@ use App\Enums\Gender;
 use App\Enums\Grade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserInfo extends Model
@@ -23,14 +24,10 @@ class UserInfo extends Model
         'university_meta',
         'company_meta',
         'faculty_id',
-        'uu_major_id',
+        'u_u_major_id',
         'gender',
-        'lived_country_id',
-        'lived_prefecture_id',
-        'lived_municipality_id',
-        'birth_country_id',
-        'birth_prefecture_id',
-        'birth_municipality_id',
+        'live_area_id',
+        'birth_area_id',
         'is_dark_mode',
         'is_publish_birth_day',
         'is_graduate',
@@ -66,19 +63,28 @@ class UserInfo extends Model
     /**
      * 専攻をつなぐ
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function uuMajor(): HasOne
+    public function uuMajor(): BelongsTo
     {
-        return $this->hasOne(UUMajor::class)->withDefault();
+        return $this->belongsTo(UUMajor::class)->withDefault();
     }
     /**
-     * 地域をつなぐ
+     * 在住地域をつなぐ
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function area(): HasOne
+    public function liveArea(): BelongsTo
     {
-        return $this->hasOne(Area::class)->withDefault();
+        return $this->belongsTo(Area::class, 'foreign_key', 'live_area_id')->withDefault();
+    }
+    /**
+     * 出身地域をつなぐ
+     *
+     * @return BelongsTo
+     */
+    public function birthArea(): BelongsTo
+    {
+        return $this->belongsTo(Area::class, 'foreign_key', 'birth_area_id')->withDefault();
     }
 }

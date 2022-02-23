@@ -14,3 +14,4 @@ parameters:
 
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
+    noUnnecessaryCollectionCallExcept: ['count', 'first']

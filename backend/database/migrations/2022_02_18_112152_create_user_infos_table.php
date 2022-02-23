@@ -22,11 +22,11 @@ return new class extends Migration
             $table->text('description')->nullable()->comment('自己紹介');
             $table->unsignedTinyInteger('grade')->comment('enum学年');
             $table->boolean('is_udai')->comment('宇大かそうでないか');
-            $table->foreignId('uu_major_id')->nullable()->constrained('u_u_majors')->comment('宇大の学部学科情報');
+            $table->foreignId('u_u_major_id')->nullable()->constrained('u_u_majors')->comment('宇大の学部学科情報');
             $table->json('university_meta')->nullable()->constrained()->comment('大学情報');
             $table->json('company_meta')->nullable()->constrained()->comment('企業情報');
             $table->unsignedTinyInteger('gender')->comment('enum性別');
-            $table->foreignId('lived_area_id')->constrained('areas')->comment('現住地域');
+            $table->foreignId('live_area_id')->constrained('areas')->comment('現住地域');
             $table->foreignId('birth_area_id')->constrained('areas')->comment('出身地域');
             $table->boolean('is_dark_mode')->comment('ダークモードにするか？');
             $table->boolean('is_publish_birth_day')->comment('誕生日公開するか？');

@@ -20,8 +20,9 @@ class ProjectTableSeeder extends Seeder
         $param = [
             [
                 'representative_id' => 1,
-                'name' => "U-laniwa",
-                'description' => "U-lab内部向けシステム。",
+                'title' => "U-laniwa",
+                'subtitle' => "U-lab内部向けシステム",
+                'description' => "このプロジェクトではLTS版LaravelやOracleCloudを用いることで費用のかからない持続可能サービスを作成することを目指しました。",
                 'place_of_activity' => "インターネット",
                 'start_date' => Carbon::create(2021, 12, 30),
             ],

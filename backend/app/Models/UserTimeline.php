@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserTimeline extends Model
@@ -25,10 +26,10 @@ class UserTimeline extends Model
     /**
      * ユーザーをつなぐ
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class)->withDefault();
+        return $this->belongsTo(User::class)->withDefault();
     }
 }

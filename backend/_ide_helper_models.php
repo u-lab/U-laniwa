@@ -275,7 +275,7 @@ namespace App\Models {
 	 * @property string|null $description 自己紹介
 	 * @property \App\Enums\Grade $grade enum学年
 	 * @property int $is_udai 宇大かそうでないか
-	 * @property int|null $uu_major_id
+	 * @property int|null $u_u_major_id
 	 * @property mixed|null $university_meta 大学情報
 	 * @property mixed|null $company_meta 企業情報
 	 * @property \App\Enums\Gender $gender enum性別

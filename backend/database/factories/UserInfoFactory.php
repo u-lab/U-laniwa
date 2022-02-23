@@ -20,7 +20,7 @@ class UserInfoFactory extends Factory
         //宇大生
         $udai = $this->faker->randomElement([true, false]);
         $universityInfo = $udai ? [
-            'uu_major_id' => $this->faker->numberBetween(1, 21),
+            'u_u_major_id' => $this->faker->numberBetween(1, 21),
         ]
             : [
 

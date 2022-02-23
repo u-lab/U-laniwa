@@ -31,18 +31,26 @@ class ShowHomeController extends Controller
         /** @var UserInfo|null */
         $userInfo = UserInfo::where('user_id',  $user_id)->first();
         if (empty($userInfo)) {
-            $userMajor = [];
-            $userBirthArea = [];
-            $userLiveArea = [];
+            $userMajor = null;
+            $userAreas = null;
+            $userBirthArea = null;
+            $userLiveArea = null;
         } else {
-            $userMajor = UUMajor::find($user_id);
-            $userBirthArea = Area::find($userInfo->birth_area_id);
-            $userLiveArea = Area::find($userInfo->birth_area_id);
+            $userMajor = UUMajor::find($userInfo->u_u_major_id);
+            $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
+            //在住と出身が同じだった場合、返り値1つなので
+            if ($userInfo->birth_area_id == $userInfo->live_area_id) {
+                $userBirthArea = $userAreas[0];
+                $userLiveArea = $userAreas[0];
+            } else {
+                $userBirthArea = $userAreas[0];
+                $userLiveArea = $userAreas[1];
+            }
         }
         //ログイン中のユーザーの所属プロジェクト
         $userProjects = ProjectBelonged::where('user_id', $user_id)->limit(20)->get();
         $timelines = UserTimeline::orderBy('start_date', 'desc')->take(10);
         //お知らせは初回リリース未実装
-        return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userBirthArea' => $userBirthArea, 'userLiveArea' => $userLiveArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);
+        return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userLiveArea' => $userLiveArea, 'userBirthArea' => $userBirthArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);
     }
 }

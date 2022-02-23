@@ -24,7 +24,7 @@ class UserInfo extends Model
         'university_meta',
         'company_meta',
         'faculty_id',
-        'uu_major_id',
+        'u_u_major_id',
         'gender',
         'live_area_id',
         'birth_area_id',
@@ -67,7 +67,7 @@ class UserInfo extends Model
      */
     public function uuMajor(): BelongsTo
     {
-        return $this->belongsTo(UUMajor::class, 'foreign_key', 'uu_major_id')->withDefault();
+        return $this->belongsTo(UUMajor::class)->withDefault();
     }
     /**
      * 在住地域をつなぐ

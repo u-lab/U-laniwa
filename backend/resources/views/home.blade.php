@@ -23,10 +23,15 @@
 // var_dump($userInfo);//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userMajor->faculty_id->label());//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userMajor->name);//userInfoがないユーザーも居ます。(登録したての人など)
-echo($userBirthArea->country_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
-echo($userBirthArea->prefecture_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
-echo($userBirthArea->municipality);//userInfoがないユーザーも居ます。(登録したての人など)
-// var_dump($userBirthArea);
+
+
+var_dump($userBirthArea->municipality);
+var_dump($userLiveArea->municipality);
+
+
+// echo($userBirthArea->country_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
+// echo($userBirthArea->prefecture_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
+// echo($userBirthArea->municipality);//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userProjects);
 
 if($userProjects->isEmpty()){

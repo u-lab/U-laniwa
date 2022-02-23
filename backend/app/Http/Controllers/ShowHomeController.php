@@ -35,9 +35,9 @@ class ShowHomeController extends Controller
             $userBirthArea = [];
             $userLiveArea = [];
         } else {
-            $userMajor = UUMajor::where('id', $user_id)->first();
-            $userBirthArea = Area::where('id', $userInfo->birth_area_id)->first();
-            $userLiveArea = Area::where('id', $userInfo->live_area_id)->first();
+            $userMajor = UUMajor::find($user_id);
+            $userBirthArea = Area::find($userInfo->birth_area_id);
+            $userLiveArea = Area::find($userInfo->birth_area_id);
         }
         //ログイン中のユーザーの所属プロジェクト
         $userProjects = ProjectBelonged::where('user_id', $user_id)->limit(20)->get();

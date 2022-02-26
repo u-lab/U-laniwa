@@ -35,7 +35,7 @@ services:
   mail:
     image: mailhog/mailhog
     ports:
-      - 8025:8025
+      - 215:8025
   web:
     build:
       context: .

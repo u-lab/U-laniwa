@@ -19,8 +19,8 @@
                 <select
                     class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
                     name="user_role_id" name="{{ __('HopeUserRole') }}">
-                    <option value="10">外部</option>
                     <option value="20">仮入部</option>
+                    <option value="10">外部</option>
                 </select>
             </div>
             <div>
@@ -39,6 +39,8 @@
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" />
+                <p class="text-gray-500 text-sm">パスワードは、英字大文字小文字と数字を含む8文字以上60字以下である必要があります。</p>
+                <p class="text-gray-500 text-sm">データベース登録時暗号化されるため、システム管理者でもパスワードの特定はできません。お忘れないようご注意ください。</p>
             </div>
 
             <div class="mt-4">

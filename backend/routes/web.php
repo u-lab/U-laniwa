@@ -105,7 +105,7 @@ Route::get('/teapot', function () {
 /**
  * ログイン後のリダイレクト
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified', 'first'])->get('/dashboard', function () {
     return redirect('/home');
 })->name('home_redirect');
 
@@ -113,7 +113,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 /**
  * ログインで閲覧できるページ
  */
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     /**
      * 【SecurityClearance:level1】
      * 外部ユーザーレベル

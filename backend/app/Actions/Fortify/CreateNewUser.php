@@ -29,13 +29,14 @@ class CreateNewUser implements CreatesNewUsers
             'invite_code' => ['exists:user_invite_codes,code'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
-
+        /** @var UserInviteCode */
+        $user_invite_code = UserInviteCode::where('code', $input['invite_code'],)->first();
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'user_role_id' => $input['user_role_id'],
-            'invited_id' => UserInviteCode::where('code', $input['invite_code'],)->first()->user_id,
+            'invited_id' => $user_invite_code->code,
         ]);
     }
 }

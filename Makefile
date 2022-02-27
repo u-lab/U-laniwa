@@ -131,3 +131,5 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:models --nowrite
 stan:
 	docker compose exec app ./vendor/bin/phpstan analyse
+barth:
+	docker-compose down --rmi all --volumes --remove-orphans

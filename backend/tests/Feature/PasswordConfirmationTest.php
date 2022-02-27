@@ -11,6 +11,7 @@ class PasswordConfirmationTest extends TestCase
 {
     use RefreshDatabase;
 
+
     public function test_confirm_password_screen_can_be_rendered()
     {
         $user = User::factory()->withPersonalTeam()->create();
@@ -25,7 +26,7 @@ class PasswordConfirmationTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post('/user/confirm-password', [
-            'password' => 'password',
+            'password' => $user->email,
         ]);
 
         $response->assertRedirect();

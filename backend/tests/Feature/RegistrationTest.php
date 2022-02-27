@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\UserInviteCode;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Fortify\Features;
@@ -14,7 +15,7 @@ class RegistrationTest extends TestCase
 
     public function test_registration_screen_can_be_rendered()
     {
-        if (! Features::enabled(Features::registration())) {
+        if (!Features::enabled(Features::registration())) {
             return $this->markTestSkipped('Registration support is not enabled.');
         }
 
@@ -36,15 +37,17 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
-        if (! Features::enabled(Features::registration())) {
+        if (!Features::enabled(Features::registration())) {
             return $this->markTestSkipped('Registration support is not enabled.');
         }
 
         $response = $this->post('/register', [
+            'invite_code' => UserInviteCode::find(1)->code,
+            'user_role_id' => 20,
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => 'Test1234',
+            'password_confirmation' => 'Test1234',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
         ]);
 

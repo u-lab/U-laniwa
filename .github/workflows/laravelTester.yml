@@ -17,13 +17,13 @@ jobs:
         options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: testdatabase
+          MYSQL_DATABASE: app_test
 
     env:
       DB_CONNECTION: mysql
       DB_HOST: 127.0.0.1
       DB_PORT: 3306
-      DB_DATABASE: testdatabase
+      DB_DATABASE: app_test
       DB_USERNAME: root
       DB_PASSWORD: password
 

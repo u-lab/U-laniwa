@@ -3,13 +3,18 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Models\UserRole;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
+
     use RefreshDatabase;
+
+
+
 
     public function test_login_screen_can_be_rendered()
     {
@@ -24,7 +29,7 @@ class AuthenticationTest extends TestCase
 
         $response = $this->post('/login', [
             'email' => $user->email,
-            'password' => 'password',
+            'password' =>  $user->email,
         ]);
 
         $this->assertAuthenticated();

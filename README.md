@@ -99,6 +99,7 @@ https://u-laniwa.tk/
 - 静的解析:Larastan
 - CI:GitHub Actions
 - エラー通知:Slack
+- メール配信:Mailgun
 
 # 開発メンバー
 

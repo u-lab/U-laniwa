@@ -33,8 +33,6 @@ class SecurityClearanceServiceProvider extends ServiceProvider
             return $user_role_id >= 30;
         });
         $gate->define('level4~', function (User $user, int $user_role_id): bool {
-            \Log::debug('($user_role_id)');
-            \Log::debug($user_role_id);
             return $user_role_id >= 40;
         });
         $gate->define('level5~', function (User $user, int $user_role_id): bool {

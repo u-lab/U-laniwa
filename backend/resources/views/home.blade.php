@@ -7,6 +7,7 @@
 @section('content')
 <h1 class="text-center my-8 text-3xl ">ホーム</h1>
 @php
+//てつくんへ、この@phpから@endphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。
 /**
 * $userInfo→ログインしているユーザーの情報 nullabnle
 * $userMajor→ログインしているユーザーの学部学科 nullabnle
@@ -18,15 +19,11 @@
 *
 *
 */
-@endphp
-@php
 // var_dump($userInfo);//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userMajor->faculty_id->label());//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userMajor->name);//userInfoがないユーザーも居ます。(登録したての人など)
-
-
-var_dump($userBirthArea->municipality);
-var_dump($userLiveArea->municipality);
+// var_dump($userBirthArea->municipality);
+// var_dump($userLiveArea->municipality);
 
 
 // echo($userBirthArea->country_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
@@ -34,15 +31,14 @@ var_dump($userLiveArea->municipality);
 // echo($userBirthArea->municipality);//userInfoがないユーザーも居ます。(登録したての人など)
 // var_dump($userProjects);
 
-if($userProjects->isEmpty()){
-echo "所属しているプロジェクトはありません";
-}else{
-foreach ($userProjects as $userProject) {
-echo "プロジェクトタイトル:";
-echo $userProject->project->title;
-}
-}
-// var_dump($timelines);
+// if($userProjects->isEmpty()){
+// echo "所属しているプロジェクトはありません";
+// }else{
+// foreach ($userProjects as $userProject) {
+// echo "プロジェクトタイトル:";
+// echo $userProject->project->title;
+// }
+// }
 @endphp
 
 @endsection

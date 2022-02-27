@@ -1,4 +1,8 @@
 {
+    "invite_code": "招待コード",
+    "HopeUserRole": "希望するユーザー権限",
+    "UserRole": "ユーザー権限",
+    "InviteCode": "招待コード",
     "30 Days": "30日",
     "60 Days": "60日",
     "90 Days": "90日",
@@ -364,7 +368,7 @@
     "Morocco": "モロッコ",
     "Mozambique": "モザンビーク",
     "Myanmar": "ミャンマー",
-    "Name": "氏名",
+    "Name": "ユーザー名",
     "Namibia": "ナミビア",
     "Nauru": "ナウル",
     "Nepal": "ネパール",

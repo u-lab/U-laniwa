@@ -24,7 +24,6 @@ class RunFirstAccessMiddleware
         // 未認証はありえない。未認証はエラー発生。
         if ($user === null) throw new UnauthorizedException();
         //ユーザー情報がなく、アクセスしているページがuser/editでなければリダイレクト
-        \Log::debug($request->path());
         if (UserInfo::where('user_id', $user->id)->exists() == "" && $request->path() != "user/edit") {
             return redirect('/user/edit');
         }

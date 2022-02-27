@@ -119,27 +119,20 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
      * 外部ユーザーレベル
      */
     Route::get('/home', ShowHomeController::class)->name('home'); //ホームページ
-    Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
 
     Route::get('/calender', function () {
         return view('calender');
     });
-    Route::get('/mediaKit', function () {
-        return view('mediaKit');
-    });
-    Route::get('/groupRules', function () {
-        return view('groupRules');
-    });
-
-    Route::get('/statistic', ShowAllStatisticController::class)->name('statistics'); //統計情報
-    Route::get('/statistic/user', ShowProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
-    Route::get('/statistic/project', ShowUserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
-
-
+    // Route::get('/mediaKit', function () {
+    //     return view('mediaKit');
+    // });
+    // Route::get('/groupRules', function () {
+    //     return view('groupRules');
+    // });
 
 
     //ユーザー情報閲覧(level1では各種制限があるがここではできないので、中身の制御はbladeで行う)
-    // Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
+    Route::get('/user', ShowAllUserController::class)->name('users'); //全ユーザーのリスト
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::get('/user/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
@@ -148,18 +141,21 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
 
     //ユーザータイムライン
     Route::post('/timeline', ShowAllTimelineController::class)->name('timelineAll');
-    Route::post('/timeline/qualification',  ShowQualificationTimelineController::class)->name('timelineGetQualification');
-    Route::post('/timeline/project',  ShowProjectTimelineController::class)->name('timelineJoinedProject');
-    // Route::post('/timeline/u-lab', Controller::class)->name('timelineJoinedU-lab');
     //タイムラインは今後増やしていく予定
+    // Route::post('/timeline/qualification',  ShowQualificationTimelineController::class)->name('timelineGetQualification');
+    // Route::post('/timeline/project',  ShowProjectTimelineController::class)->name('timelineJoinedProject');
+    // Route::post('/timeline/u-lab', Controller::class)->name('timelineJoinedU-lab');
 
+    // Route::get('/statistic', ShowAllStatisticController::class)->name('statistics'); //統計情報
+    // Route::get('/statistic/user', ShowProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
+    // Route::get('/statistic/project', ShowUserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
 
     //ユーザー検索
-    Route::get('/search/user/{words}',  ShowUserDetailSearchController::class)->name('search'); //検索リクエスト
+    // Route::get('/search/user/{words}',  ShowUserDetailSearchController::class)->name('search'); //検索リクエスト
 
     //ユーザー詳細検索
     //ここはクエリ文字列を使う(複数になる可能性があるので ?faculty=1&gender=1みたいな)
-    Route::get('/detailSearch/user', ShowUserDetailSearchController::class)->name('detailedSearchPost'); //検索リクエスト
+    // Route::get('/detailSearch/user', ShowUserDetailSearchController::class)->name('detailedSearchPost'); //検索リクエスト
 
 
     //パスワード要求
@@ -185,13 +181,13 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     Route::post('/project/{project_id}/update', UpdateProjectController::class)->name('projectUpdate');   //プロジェクト更新
     Route::post('/project/{project_id}/delete', DeleteProjectController::class)->name('projectDelete');   //プロジェクト削除
     //プロジェクトのお知らせ
-    Route::post('/project/{project_id}/notice/create', CreateProjectNoticeController::class)->name('noticeProject'); //新規←ここはプロジェクト編集に相乗りできるのでgetページ不要
-    Route::post('/project/{project_id}/notice/update', UpdateProjectNoticeController::class)->name('noticeProject'); //更新
-    Route::post('/project/{project_id}/notice/delete', DeleteProjectNoticeController::class)->name('noticeSystem'); //削除
+    // Route::post('/project/{project_id}/notice/create', CreateProjectNoticeController::class)->name('noticeProject'); //新規←ここはプロジェクト編集に相乗りできるのでgetページ不要
+    // Route::post('/project/{project_id}/notice/update', UpdateProjectNoticeController::class)->name('noticeProject'); //更新
+    // Route::post('/project/{project_id}/notice/delete', DeleteProjectNoticeController::class)->name('noticeSystem'); //削除
     //プロジェクト参加リクエスト
-    Route::get('/project/{project_id}/request/participation ', ShowProjectParticipationRequestController::class)->name('participationRequest'); //参加リクエスト文などを入力するページ
-    Route::post('/project/{project_id}/request/participation', CreateProjectParticipationRequestController::class)->name('participationRequestPost');
-    Route::get('/project/{project_id}/request/participation/done', ShowDoneProjectParticipationRequestController::class)->name('participationRequestDone'); //送信完了ページ
+    // Route::get('/project/{project_id}/request/participation ', ShowProjectParticipationRequestController::class)->name('participationRequest'); //参加リクエスト文などを入力するページ
+    // Route::post('/project/{project_id}/request/participation', CreateProjectParticipationRequestController::class)->name('participationRequestPost');
+    // Route::get('/project/{project_id}/request/participation/done', ShowDoneProjectParticipationRequestController::class)->name('participationRequestDone'); //送信完了ページ
 
 
 
@@ -205,8 +201,8 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
          */
 
         //お知らせ
-        Route::get('/notice', ShowAllNoticeController::class)->name('noticeAll'); //一覧
-        Route::get('/notice/{genre_id}', ShowPerGenreNoticeController::class)->name('noticeGenre'); //ジャンルごとの一覧
+        // Route::get('/notice', ShowAllNoticeController::class)->name('noticeAll'); //一覧
+        // Route::get('/notice/{genre_id}', ShowPerGenreNoticeController::class)->name('noticeGenre'); //ジャンルごとの一覧
 
 
 
@@ -246,22 +242,22 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
                      */
 
                     //運営以上の管理者権限用ページ
-                    Route::get('/admin', ShowAdminController::class)->name('admin'); //adminページ
-                    Route::get('/admin/userOperation', ShowUserOperationAdminController::class)->name('userOperation'); //ユーザー編集
-                    Route::get('/admin/userRole', ShowUserRoleAdminController::class)->name('Role'); //ユーザー権限編集
+                    // Route::get('/admin', ShowAdminController::class)->name('admin'); //adminページ
+                    // Route::get('/admin/userOperation', ShowUserOperationAdminController::class)->name('userOperation'); //ユーザー編集
+                    // Route::get('/admin/userRole', ShowUserRoleAdminController::class)->name('Role'); //ユーザー権限編集
                     //仮入部→本入部へ
-                    Route::get('/admin/temporaryEntranceToMain', ShowTemporaryEntranceToMainAdminController::class)->name('temporaryEntranceToMain');
-                    Route::post('/admin/temporaryEntranceToMain', DoTemporaryEntranceToMainAdminController::class)->name('temporaryEntranceToMain');
+                    // Route::get('/admin/temporaryEntranceToMain', ShowTemporaryEntranceToMainAdminController::class)->name('temporaryEntranceToMain');
+                    // Route::post('/admin/temporaryEntranceToMain', DoTemporaryEntranceToMainAdminController::class)->name('temporaryEntranceToMain');
 
 
                     //運営用ページ
-                    Route::get('/management', ShowManagementController::class)->name('managementHome');
+                    // Route::get('/management', ShowManagementController::class)->name('managementHome');
 
                     //運営からのお知らせ
-                    Route::get('/management/notice', ShowManagementNoticeController::class)->name('managementHome'); //お知らせ一覧
-                    Route::post('/management/notice/create', CreateManagementNoticeController::class)->name('noticeManagement'); //新規
-                    Route::post('/management/notice/update', UpdateManagementNoticeController::class)->name('noticeManagement'); //更新
-                    Route::post('/management/notice/delete', DeleteManagementNoticeController::class)->name('noticeManagement'); //削除
+                    // Route::get('/management/notice', ShowManagementNoticeController::class)->name('managementHome'); //お知らせ一覧
+                    // Route::post('/management/notice/create', CreateManagementNoticeController::class)->name('noticeManagement'); //新規
+                    // Route::post('/management/notice/update', UpdateManagementNoticeController::class)->name('noticeManagement'); //更新
+                    // Route::post('/management/notice/delete', DeleteManagementNoticeController::class)->name('noticeManagement'); //削除
 
 
 
@@ -273,13 +269,13 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
                          */
 
                         //システム運用者用ページ
-                        Route::get('/system', ShowSystemController::class)->name('systemHome');
+                        // Route::get('/system', ShowSystemController::class)->name('systemHome');
 
                         //システムからのお知らせ
-                        Route::get('/system/notice', ShowSystemNoticeController::class)->name('systemHome'); //お知らせ一覧
-                        Route::post('/system/notice/create', CreateSystemNoticeController::class)->name('createNoticeDystem'); //新規
-                        Route::post('/system/notice/update', UpdateSystemNoticeController::class)->name('updateNoticeDystem'); //更新
-                        Route::post('/system/notice/delete', DeleteSystemNoticeController::class)->name('deleteNoticeDystem'); //削除
+                        // Route::get('/system/notice', ShowSystemNoticeController::class)->name('systemHome'); //お知らせ一覧
+                        // Route::post('/system/notice/create', CreateSystemNoticeController::class)->name('createNoticeDystem'); //新規
+                        // Route::post('/system/notice/update', UpdateSystemNoticeController::class)->name('updateNoticeDystem'); //更新
+                        // Route::post('/system/notice/delete', DeleteSystemNoticeController::class)->name('deleteNoticeDystem'); //削除
 
 
 
@@ -291,10 +287,10 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
                              */
 
                             //代表用ページ
-                            Route::get('/representative', ShowRepresentativeController::class)->name('representativeHome');
+                            // Route::get('/representative', ShowRepresentativeController::class)->name('representativeHome');
 
-                            Route::post('/admin/changeGeneration', DoChangeGenerationAdminController::class)->name('retire'); //世代交代処理
-                            Route::post('/admin/taiseiHokan', DoTaiseiHokanAdminController::class)->name('retire'); //サークル削除処理
+                            // Route::post('/admin/changeGeneration', DoChangeGenerationAdminController::class)->name('retire'); //世代交代処理
+                            // Route::post('/admin/taiseiHokan', DoTaiseiHokanAdminController::class)->name('retire'); //サークル削除処理
 
                         });
                     });

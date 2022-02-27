@@ -12,7 +12,7 @@ $authUser=Auth::user();
 @php
 
 @endphp
-@if($gate->allows('level4~', $authUser->user_role_id))
+@if($gate->allows('level7~'))
 あなたは本入部以上のため、すべての情報の閲覧が可能です
 @else
 あなたは本入部以下のため、一部の情報は閲覧できません

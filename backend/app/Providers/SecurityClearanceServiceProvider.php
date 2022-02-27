@@ -23,26 +23,26 @@ class SecurityClearanceServiceProvider extends ServiceProvider
 
         $this->registerPolicies();
 
-        $gate->define('level1~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 10;
+        $gate->define('level1~', function (User $user): bool {
+            return $user->user_role_id >= 10;
         });
-        $gate->define('level2~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 20;
+        $gate->define('level2~', function (User $user): bool {
+            return $user->user_role_id >= 20;
         });
-        $gate->define('level3~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 30;
+        $gate->define('level3~', function (User $user): bool {
+            return $user->user_role_id >= 30;
         });
-        $gate->define('level4~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 40;
+        $gate->define('level4~', function (User $user): bool {
+            return $user->user_role_id >= 40;
         });
-        $gate->define('level5~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 50;
+        $gate->define('level5~', function (User $user): bool {
+            return $user->user_role_id >= 50;
         });
-        $gate->define('level6~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 60;
+        $gate->define('level6~', function (User $user): bool {
+            return $user->user_role_id >= 60;
         });
-        $gate->define('level7~', function (User $user, int $user_role_id): bool {
-            return $user_role_id >= 70;
+        $gate->define('level7~', function (User $user): bool {
+            return $user->user_role_id >= 70;
         });
 
         //

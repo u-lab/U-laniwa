@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\UserInviteCode;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Fortify\Features;
@@ -41,10 +42,12 @@ class RegistrationTest extends TestCase
         }
 
         $response = $this->post('/register', [
+            'invite_code' => UserInviteCode::find(1)->code,
+            'user_role_id' => 20,
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => 'Test1234',
+            'password_confirmation' => 'Test1234',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
         ]);
 

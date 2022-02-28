@@ -4,14 +4,13 @@
 
 ## 対応ブラウザについて
 
-Chrome や Brave、Microsoft Edge など Chromium 系のブラウザを推奨します。  
-他 Firefox および Safari に対応していますが、一部スタイルが適応されない可能性があります。  
-InternetExplore でのアクセスは非対応です。
+Chrome や Brave、Microsoft Edge など Chromium 系のブラウザ、Firefox および Safari に対応しています。  
+Internet Explore でのアクセスは非対応です。
 
 ## JavaScript
 
-本サイトでは、グラフの表示などデザインのために JavaScript を使用しています。  
-ご使用のブラウザ設定において JavaScript を有効にされていない場合に、グラフや検索窓が正しく表示されない場合や、レイアウトが崩れる場合がありますので、JavaScript を有効にすることをオススメします。
+本サイトでは、グラフの表示をはじめとして JavaScript を使用しています。  
+ご使用のブラウザ設定において JavaScript を有効にされていない場合に、一分機能が動作しない場合や、レイアウトが崩れる場合がありますので、JavaScript を有効にすることをオススメします。
 
 ## Cookie
 

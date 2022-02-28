@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\UserTimelineGenre;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,4 +33,13 @@ class UserTimeline extends Model
     {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    /**
+     * Enumキャスト
+     *
+     * @var array
+     */
+    protected $casts = [
+        'genre' => UserTimelineGenre::class,
+    ];
 }

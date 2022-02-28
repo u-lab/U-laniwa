@@ -13,8 +13,8 @@
 <body>
 
     <!---ヘッダーここから--->
-    @component('components.basis.headerNoLogin')
-    @endcomponent
+    {{--@component('components.basis.headerNoLogin')
+    @endcomponent--}}
     <!---ヘッダーここまで--->
     <!---コンテンツここから--->
     <div class="main-wrapper">

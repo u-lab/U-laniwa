@@ -1,3 +1,7 @@
+html {
+    font-family: "Sawarabi Gothic", sans-serif;
+}
+
 .main-wrapper {
     max-width: min(90vw, 1600px);
     margin: 0 auto;

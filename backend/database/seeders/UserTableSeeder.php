@@ -31,6 +31,6 @@ class UserTableSeeder extends Seeder
         ];
         DB::table("users")->insert($param);
         //招待idで事故るのでここで一部作る
-        \App\Models\User::factory(40)->has(\App\Models\UserInfo::factory()->count(1))->create();
+        \App\Models\User::factory(39)->has(\App\Models\UserInfo::factory()->count(1))->create();
     }
 }

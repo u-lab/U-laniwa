@@ -56,7 +56,9 @@ https://github.com/barryvdh/laravel-ide-helper/blob/master/LICENSE.md
 
 # その他
 
-# docker 作成で使用
+## docker-laravel
+
+※docker 作成で使用
 
 Copyright (c) 2020 ucan-lab/docker-laravel
 

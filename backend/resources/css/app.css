@@ -6,6 +6,11 @@ body {
     font-family: "Sawarabi Gothic", sans-serif;
 }
 
+ol {
+    list-style-type: decimal;
+    padding-left: 1.3rem;
+}
+
 h1 {
     @apply text-3xl;
 }
@@ -14,9 +19,50 @@ h2 {
     @apply text-2xl;
 }
 
+.docs p,
+.docs a,
+.docs li {
+    @apply mb-2 ml-4;
+}
+
+.docs h2 {
+    @apply my-4;
+}
+
+.aboutThisSite > div,
+.credit > div {
+    @apply text-center mt-8 mb-4;
+}
+
+.credit {
+    @apply text-center;
+}
+
+.credit h3 {
+    @apply inline-block p-2 mb-2 border;
+}
+
 .wrapper {
-    margin: 0 auto;
+    @apply mx-auto;
     max-width: 1000px;
+}
+
+.deco {
+    @apply w-fit;
+    position: relative;
+    display: inline-block;
+    padding-left: 16px;
+    line-height: 1;
+}
+
+.deco::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 105%;
+    background-color: #fedfdf;
 }
 
 .main-wrapper {

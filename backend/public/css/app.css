@@ -1397,10 +1397,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(254 223 223 / var(--tw-bg-opacity));
 }
-.bg-bg-main {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 241 241 / var(--tw-bg-opacity));
-}
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -1743,6 +1739,16 @@ select {
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.main-wrapper {
+    max-width: min(90vw, 1600px);
+    margin: 0 auto;
+    min-height: 100vh;
+}
+@media screen and (max-width: 640px) {
+    .main-wrapper {
+        max-width: 100%;
+    }
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

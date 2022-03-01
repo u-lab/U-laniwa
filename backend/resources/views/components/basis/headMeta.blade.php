@@ -14,4 +14,3 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
 {{-- CSS読み込み --}}
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/ulaniwa.css') }}?ver=0.1">

@@ -67,7 +67,7 @@ class UUMajorTableSeeder extends Seeder
             ],
             [
                 'faculty_id' => 2,
-                'name' => "基盤工学科物質環境科学コース)",
+                'name' => "基盤工学科物質環境科学コース",
             ],
             [
                 'faculty_id' => 2,

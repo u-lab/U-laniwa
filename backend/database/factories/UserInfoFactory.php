@@ -17,9 +17,10 @@ class UserInfoFactory extends Factory
     public function definition()
     {
 
-        //宇大生
+        //宇大生か他大生
         $udai = $this->faker->randomElement([true, false]);
-        $universityInfo = $udai ? [
+        \Log::debug($udai);
+        $universityInfo1 = $udai ? [
             'u_u_major_id' => $this->faker->numberBetween(1, 21),
         ]
             : [
@@ -28,7 +29,7 @@ class UserInfoFactory extends Factory
             ];
         //社会人か？
         $grade = $this->faker->numberBetween(1, 11);
-        $universityInfo = $grade >= 10 ? [
+        $universityInfo2 = $grade >= 10 ? [
             'grade' => $grade,
         ]
             : [
@@ -36,7 +37,7 @@ class UserInfoFactory extends Factory
                 'company_meta' => json_encode(['company_name' => "XX株式会社", 'position' => "珈琲エンジニア",]),
             ];
 
-        return array_merge($universityInfo, [
+        return array_merge($universityInfo1, $universityInfo2, [
             // 'user_id' => $this->faker->numberBetween(1, 40),
             'birth_day' => $this->faker->dateTimeBetween('-80 years', '-18years')->format('Y-m-d'),
             'last_name' => $this->faker->lastName(),

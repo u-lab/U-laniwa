@@ -110,7 +110,7 @@ yarn:
 	docker compose exec web yarn
 yarn-install:
 	@make yarn
-yarn-dev:
+yarn-dev:k
 	docker compose exec web yarn dev
 yarn-watch:
 	docker compose exec web yarn watch

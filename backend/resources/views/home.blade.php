@@ -10,12 +10,14 @@
 <div class='w-96'></div>
 
 <div class="belongsProject">
+    <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
     <p>
         @if($userProjects->isEmpty())
         所属しているプロジェクトはありません
         @else
+        あなたが所属しているプロジェクトは、<br>
         @foreach ($userProjects as $userProject)
-        プロジェクトタイトル: {{$userProject->project->title}} <br>
+        {{$userProject->project->title}} <br>
         @endforeach
         @endif
     </p>

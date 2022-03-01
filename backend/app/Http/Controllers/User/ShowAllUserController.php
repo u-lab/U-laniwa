@@ -12,6 +12,7 @@ use App\Models\UserInfo;
 use App\Models\UUMajor;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 class ShowAllUserController extends Controller
 {
@@ -23,7 +24,8 @@ class ShowAllUserController extends Controller
     public function __invoke(): View|Factory
     {
         //ユーザー情報入力済みのユーザーを引っ張り出す
-        $users = UserInfo::with('user:id,name,profile_photo_path')->get([
+        /** @var UserInfo|Collection */
+        $userInfos = UserInfo::with('user:id,name,profile_photo_path')->get([
             'id',
             'status',
             'grade',
@@ -32,22 +34,24 @@ class ShowAllUserController extends Controller
 
 
         $listedUsers = [];
-        foreach ($users as $user) {
+        foreach ($userInfos as $userInfo) {
             //ユーザー情報のu_u_major_idの情報をもとにUUMajorを取得
-            $uuMajor =  UUMajor::find($user->u_u_major_id);
+
+            /** @var  UUMajor|null */
+            $uuMajor =  UUMajor::find($userInfo->u_u_major_id);
             if ($uuMajor) {
-                $user->uuMajor = $uuMajor->name;
-                $user->uuFaculty = $uuMajor->faculty_id->label();
+                $userInfo->uuMajor = $uuMajor->name;
+                $userInfo->uuFaculty = $uuMajor->faculty_id->label();
             } else {
-                $user->uuMajor = "";
-                $user->uuFaculty = "";
+                $userInfo->uuMajor = "";
+                $userInfo->uuFaculty = "";
             }
             //学年ごとに仕分け
-            if (!array_key_exists($user->grade->label(), $listedUsers)) {
-                $listedUsers[$user->grade->label()] = [];
-                $listedUsers[$user->grade->label()] = array_merge($listedUsers[$user->grade->label()], [$user]);
+            if (!array_key_exists($userInfo->grade->label(), $listedUsers)) {
+                $listedUsers[$userInfo->grade->label()] = [];
+                $listedUsers[$userInfo->grade->label()] = array_merge($listedUsers[$userInfo->grade->label()], [$userInfo]);
             } else {
-                $listedUsers[$user->grade->label()] = array_merge($listedUsers[$user->grade->label()], [$user]);
+                $listedUsers[$userInfo->grade->label()] = array_merge($listedUsers[$userInfo->grade->label()], [$userInfo]);
             }
         }
         \Log::debug($listedUsers);

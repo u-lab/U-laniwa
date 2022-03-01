@@ -19,27 +19,12 @@ h2 {
     @apply text-2xl;
 }
 
-.docs p,
-.docs a,
+.docs a {
+    @apply mb-2;
+}
+
 .docs li {
     @apply mb-2 ml-4;
-}
-
-.docs h2 {
-    @apply my-4;
-}
-
-.aboutThisSite > div,
-.credit > div {
-    @apply text-center mt-8 mb-4;
-}
-
-.credit {
-    @apply text-center;
-}
-
-.credit h3 {
-    @apply inline-block p-2 mb-2 border;
 }
 
 .wrapper {

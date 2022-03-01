@@ -103,7 +103,7 @@ Route::get('/teapot', function () {
  * ログイン後のリダイレクト
  */
 Route::middleware(['auth:sanctum', 'verified', 'first'])->get('/dashboard', function () {
-    return redirect('/home');
+    return redirect('/dashboard');
 })->name('home_redirect');
 
 

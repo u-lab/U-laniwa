@@ -16,7 +16,7 @@ enum Country: int
     public function label(): string
     {
         return match ($this) {
-            self::ot => "その他",
+            self::ot => "外国",
             self::jp => "日本",
         };
     }

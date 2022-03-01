@@ -22,32 +22,39 @@ class ShowAllUserController extends Controller
      */
     public function __invoke(): View|Factory
     {
-        $users = User::with('UserInfo:id,status,u_u_major_id')->get([
+        //ユーザー情報入力済みのユーザーを引っ張り出す
+        $users = UserInfo::with('user:id,name,profile_photo_path')->get([
             'id',
-            'name',
-            'profile_photo_path',
+            'status',
+            'grade',
+            'u_u_major_id',
         ]);
 
-        // $userInfos = UserInfo::with('user_id.user')->get();
 
-        //ユーザー情報からu_u_major_idの情報をUUMajorにする
+        $listedUsers = [];
         foreach ($users as $user) {
-            $uuMajor =  UUMajor::find($user->userInfo->u_u_major_id);
-            \Log::debug($uuMajor);
+            //ユーザー情報のu_u_major_idの情報をもとにUUMajorを取得
+            $uuMajor =  UUMajor::find($user->u_u_major_id);
             if ($uuMajor) {
-                $user->userInfo->uuMajor = $uuMajor->name;
-                $user->userInfo->uuFaculty = $uuMajor->faculty_id->label();
+                $user->uuMajor = $uuMajor->name;
+                $user->uuFaculty = $uuMajor->faculty_id->label();
             } else {
-                $user->userInfo->uuMajor = "";
-                $user->userInfo->uuFaculty = "";
+                $user->uuMajor = "";
+                $user->uuFaculty = "";
             }
-            \Log::debug($user->userInfo->uuFaculty);
-            \Log::debug($user->userInfo->uuMajor);
+            //学年ごとに仕分け
+            if (!array_key_exists($user->grade->label(), $listedUsers)) {
+                $listedUsers[$user->grade->label()] = [];
+                $listedUsers[$user->grade->label()] = array_merge($listedUsers[$user->grade->label()], [$user]);
+            } else {
+                $listedUsers[$user->grade->label()] = array_merge($listedUsers[$user->grade->label()], [$user]);
+            }
         }
+        \Log::debug($listedUsers);
 
 
 
 
-        return view('user.index', ["users" => $users]);
+        return view('user.index', ["listedUsers" => $listedUsers]);
     }
 }

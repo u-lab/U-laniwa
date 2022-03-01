@@ -5,25 +5,21 @@
 @parent
 @endsection
 @section('content')
-@php
-/*
-* $users:ユーザー情報
-* $projects:プロジェクト情報
-*/
-@endphp
 <h1 class="text-center my-8 text-3xl ">U-laniwa</h1>
 
 
 <div class="text-center my-12">
     <h2 class="text-2xl">ユーザー</h2>
-    @foreach ($users as $user)
-    {{-- <img src="{{}}" alt=""> --}}
-    <p>{{$user->profile_photo_path}}</p>
-    <p>{{$user->userInfo->status}}</p>
-    <p>{{$user->name}}</p>
-    @empty(!$user->userInfo->uuMajor)
-    <p>{{$user->userInfo->uuFaculty}}/{{$user->userInfo->uuMajor}}</p>
+    @foreach ($listedUsers as $grade=>$listedUser)
+    <h1 class="text-2xl">{{$grade}}</h1>
+    @foreach($listedUser as $user)
+    <img src="{{$user->user->profile_photo_path}}" alt="">
+    <p>{{$user->user->name}}</p>
+    <p>{{$user->status}}</p>
+    @empty(!$user->uuMajor)
+    <p>{{$user->uuFaculty}}/{{$user->uuMajor}}</p>
     @endempty
+    @endforeach
     @endforeach
 </div>
 

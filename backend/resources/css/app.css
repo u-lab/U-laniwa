@@ -2,10 +2,27 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+body {
+    font-family: "Sawarabi Gothic", sans-serif;
+}
+
+h1 {
+    @apply text-3xl;
+}
+
+h2 {
+    @apply text-2xl;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
 .main-wrapper {
     max-width: min(90vw, 1600px);
     margin: 0 auto;
-    min-height: 100vh;
+    min-height: calc(100vh - 110px);
 }
 @media screen and (max-width: 640px) {
     .main-wrapper {

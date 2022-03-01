@@ -24,5 +24,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/get/area/prefecture/{country_id}', GetPrefectureController::class)->name('getPrefecture');
 Route::get('/get/area/municipality/{prefecture_id}', GetMunicipalityController::class)->name('getMunicipality');
 Route::get('/get/major/{faculty_id}', GetMajorController::class)->name('getMajor');
-Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
-});

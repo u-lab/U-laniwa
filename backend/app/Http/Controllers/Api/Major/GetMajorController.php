@@ -16,7 +16,7 @@ class GetMajorController extends Controller
      */
     public function __invoke(int $facultyId): JsonResponse
     {
-        $majors = UUMajor::where('facultyId', $facultyId)->get();
+        $majors = UUMajor::where('faculty_id', $facultyId)->get();
         return  response()->json($majors);
     }
 }

@@ -386,7 +386,7 @@ namespace App\Models{
  * @property int $user_id
  * @property string $title タイトル
  * @property string|null $description 説明
- * @property int $genre Enumジャンル
+ * @property \App\Enums\UserTimelineGenre $genre Enumジャンル
  * @property string $start_date 開始日(必須)
  * @property string|null $end_date 終了日(必須でない)
  * @property \Illuminate\Support\Carbon|null $created_at

@@ -87,9 +87,6 @@ Route::get('/releaseNote', function () {
 Route::get('/terms', function () {
     return view('terms');
 });
-Route::get('/privacyPolicy', function () {
-    return view('privacyPolicy');
-});
 Route::get('/aboutThisSite', function () {
     return view('aboutThisSite');
 });

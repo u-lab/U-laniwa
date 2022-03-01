@@ -7,7 +7,7 @@
 @section('content')
 <h1 class="text-center my-8 text-3xl ">ホーム</h1>
 @php
-//てつくんへ、この@phpから@endphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。
+//てつくんへ、このphpからendphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。
 /**
 * $userInfo→ログインしているユーザーの情報 nullabnle
 * $userMajor→ログインしているユーザーの学部学科 nullabnle

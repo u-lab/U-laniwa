@@ -17,8 +17,8 @@
         <img src="{{$user->profile_photo_path}}" alt="">
         <p>{{$user->name}}</p>
         <p>{{$user->status}}</p>
-        @empty(!$user->uuMajor)
-        <p>{{$user->uuFaculty}}/{{$user->uuMajor}}</p>
+        @empty(!$user->uu_faculty)
+        <p>{{$user->uu_faculty}}/{{$user->uu_major}}</p>
         @endempty
     </a>
     @endforeach

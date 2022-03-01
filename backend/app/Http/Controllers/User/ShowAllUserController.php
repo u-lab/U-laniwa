@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\user;
 
 use App\Enums\Grade;
+use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\UserInfo;
-use App\Models\UUMajor;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
@@ -32,26 +32,19 @@ class ShowAllUserController extends Controller
          * @var User|UserInfo
          */
         $users = DB::table('user_infos')
-            ->join('users', 'users.id', '=', 'user_infos.user_id')
-            ->select('users.id', 'users.name', 'users.profile_photo_path', 'user_infos.status', 'user_infos.grade', 'user_infos.u_u_major_id',)
+            ->join('users', 'user_infos.user_id', '=', 'users.id')
+            ->leftJoin('u_u_majors', 'user_infos.u_u_major_id', '=', 'u_u_majors.id')
+            ->select('users.id', 'users.name', 'users.profile_photo_path', 'user_infos.status', 'user_infos.grade', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
             ->orderBy('grade', 'asc') //後ほど学部順で使うため
             ->get();
+        \Log::debug($users);
 
         $listedUsers = [];
         foreach ($users as $user) {
             /**
-             * ユーザー情報のu_u_major_idの情報をもとにUUMajorを取得
+             * enmuを用いて学部を取得
              */
-
-            /** @var  UUMajor|null */
-            $uuMajor =  UUMajor::find($user->u_u_major_id);
-            if ($uuMajor) {
-                $user->uuMajor = $uuMajor->name;
-                $user->uuFaculty = $uuMajor->faculty_id->label();
-            } else {
-                $user->uuMajor = null;
-                $user->uuFaculty = null;
-            }
+            $user->uu_faculty = $user->uu_faculty == null ? "" : UUFaculty::from($user->uu_faculty)->label();
 
             /**
              * 学年ごとに仕分けする

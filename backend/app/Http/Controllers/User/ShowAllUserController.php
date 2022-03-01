@@ -37,7 +37,6 @@ class ShowAllUserController extends Controller
             ->select('users.id', 'users.name', 'users.profile_photo_path', 'user_infos.status', 'user_infos.grade', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
             ->orderBy('grade', 'asc') //後ほど学部順で使うため
             ->get();
-        \Log::debug($users);
 
         $listedUsers = [];
         foreach ($users as $user) {

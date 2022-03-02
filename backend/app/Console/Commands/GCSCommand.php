@@ -43,13 +43,22 @@ class GCSCommand extends Command
         $bucket = $client->bucket(env('GCS_PACKET')); // 作成したバケット
 
 
-        // ディレクトリハンドルの取得
+
+        /**
+         * ディレクトリハンドルの取得
+         * @var resource|null
+         */
         $dirH = opendir(storage_path('app/laravel-backup/'));
-        while (false !== ($fileList[] = readdir($dirH)));
+
+        while (false !== (
+            /** @var array|null  */
+            $fileList[] = readdir($dirH)
+        ));
         closedir($dirH);
 
         //最新ファイルの探索
         $timer = date_create_from_format("Y-m-d-H-i-s", "2021-10-20-07-16-00");
+        $recentFile = "";
         foreach ($fileList as $newFile) {
             $dateFromName = substr($newFile, 0, -4); //時刻抽出(ファイル名から)
             $timeDate = date_create_from_format("Y-m-d-H-i-s", $dateFromName); //ファイルの更新日時を取得
@@ -59,13 +68,18 @@ class GCSCommand extends Command
                 $timer = $timeDate; //最新の更新日時
             }
         }
-        $latestFile = $recentFile;
+        if ($recentFile != "") {
+
+            $latestFile = $recentFile;
 
 
-        $bucket->upload(
-            fopen(storage_path('app/laravel-backup/') . $latestFile, 'r')
-        );
-        echo ('uploaded:' . $latestFile);
+            /** @var resource|string|null */
+            $uploadData = fopen(storage_path('app/laravel-backup/') . $latestFile, 'r');
+            $bucket->upload($uploadData);
+            echo ('uploaded:' . $latestFile);
+        } else {
+            echo ('ファイルがありませんでした');
+        }
         return Command::SUCCESS;
     }
 }

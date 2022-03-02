@@ -26,9 +26,12 @@ class ShowHomeController extends Controller
     public function __invoke(): View|Factory
     {
         $user_id = Auth::id();
-        //ログイン中のユーザー情報
+        //
         //get->firstの順にすることでフロント側で使いやすくする
-        /** @var UserInfo|null */
+        /**
+         * ログイン中のユーザー情報
+         *  @var UserInfo|null
+         */
         $userInfo = UserInfo::where('user_id',  $user_id)->first();
         if (empty($userInfo)) {
             $userMajor = null;
@@ -42,8 +45,15 @@ class ShowHomeController extends Controller
             $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
             $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
         }
-        //ログイン中のユーザーの所属プロジェクト
+
+        /**
+         * ログイン中のユーザーの所属プロジェクト
+         *  @var ProjectBelonged|null
+         */
         $userProjects = ProjectBelonged::where('user_id', $user_id)->limit(20)->get();
+        /**
+         * U-lab民の最近のタイムライン
+         */
         $timelines = UserTimeline::orderBy('start_date', 'desc')->take(10);
         //お知らせは初回リリース未実装
         return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userLiveArea' => $userLiveArea, 'userBirthArea' => $userBirthArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);

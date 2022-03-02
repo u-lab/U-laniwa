@@ -51,14 +51,14 @@ class UserInfoFactory extends Factory
             'is_dark_mode' => $this->faker->randomElement([true, false]),
             'is_publish_birth_day' => $this->faker->randomElement([true, false]),
             'is_graduate' => $this->faker->randomElement([true, false]),
-            'status' => $this->faker->realText(15),
-            'github_id' => $this->faker->slug(),
+            'status' =>     $this->faker->city() . "に" . $this->faker->randomElement(["行きたい", "住みたい", "に行ってきました", "別荘がほしい", "思い入れがあります。"]),
+            'github_id' => $this->faker->word(),
             'line_name' => $this->faker->word(),
             'slack_name' => $this->faker->word(),
             'discord_name' => $this->faker->word(),
-            'hobbies' => $this->faker->realText(30),
-            'interests' => $this->faker->realText(30),
-            'motto' => $this->faker->realText(30),
+            'hobbies' => $this->faker->name('male') . "の" . $this->faker->randomElement(["映画", "イラスト", "アニメ", "小説", "マンガ"]) . "が好きです",
+            'interests' =>     $this->faker->country() . "について調べること。",
+            'motto' => $this->faker->randomElement(["コーヒー", "お酒", "紅茶", "お水", "牛乳", "お酒"]) . "は" . $this->faker->randomElement(["ご飯のあと", "剣よりも強し", "正義"]),
         ]);
     }
 }

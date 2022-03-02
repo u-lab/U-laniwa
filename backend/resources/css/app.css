@@ -50,6 +50,34 @@ h2 {
     background-color: #fedfdf;
 }
 
+.tree {
+    width: 400px;
+    min-height: 400px;
+    @apply mx-auto my-20 pl-20 relative;
+}
+
+.tree::before {
+    content: "";
+    top: -5%;
+    left: 0;
+    width: 1rem;
+    height: 120%;
+    @apply absolute bg-bg-gray rounded-full;
+}
+
+.tree-content {
+    @apply relative mb-20;
+}
+
+.tree-content::before {
+    content: "";
+    left: -5.5rem;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    @apply absolute rounded-full bg-bg-gray;
+}
+
 .main-wrapper {
     max-width: min(90vw, 1600px);
     margin: 0 auto;

@@ -282,6 +282,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Area|null $birthArea
  * @property-read \App\Models\Area|null $liveArea
+ * @property-read \App\Models\User|null $user
  * @property-read \App\Models\UUMajor|null $uuMajor
  * @method static \Database\Factories\UserInfoFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo newModelQuery()

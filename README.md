@@ -88,6 +88,10 @@ https://u-laniwa.tk/
   → 永年無料枠を使用、東京は混雑してるので大阪のサーバーに
 - タスク管理:Asana+Instagantt
   → 無料でガントチャートが気持ちよく使える構成
+- メール配信:Mailgun
+  → 無料枠
+- バックアップ:Google Cloud Platform
+  → 無料枠
 - デザイン制作:Figma
 - 議事録管理:Notion
 - wiki:GitHub Wiki
@@ -99,7 +103,6 @@ https://u-laniwa.tk/
 - 静的解析:Larastan
 - CI:GitHub Actions
 - エラー通知:Slack
-- メール配信:Mailgun
 
 # 開発メンバー
 

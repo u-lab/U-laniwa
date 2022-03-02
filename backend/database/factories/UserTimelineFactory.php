@@ -20,8 +20,10 @@ class UserTimelineFactory extends Factory
         /**
          * 終了日が開始日より遅くなるようにCarbonを用いる
          */
-        $startDate = new Carbon($this->faker->dateTimeThisDecade());
-        $endDate = $startDate->addMonths($this->faker->numberBetween(1, 36));
+        $carbon1 = new Carbon('2016-01-01');
+        $startDate = $carbon1->addMonths($this->faker->numberBetween(1, 36))->format('Y-m-d');
+        $carbon2 = new Carbon('2021-01-01');
+        $endDate = $carbon2->addMonths($this->faker->numberBetween(1, 12))->format('Y-m-d');
         $city = $this->faker->city();
         $company = $this->faker->company();
         $workType = $this->faker->randomElement(["アルバイト", "インターン", "勤務"]);
@@ -39,36 +41,36 @@ class UserTimelineFactory extends Factory
                 'genre' => 1,
                 'title' =>  $city . "立高校卒業",
                 'description' => $city . "立高校卒業を卒業しました",
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 1,
                 'title' =>  $city . "立高校卒業",
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 2,
                 'title' =>  $company . $workType,
                 'description' => $city . "にある" . $company . "で" . $workType . "しました",
-                'start_date' => $startDate->format('Y-m-d'),
-                'end_date' => $endDate->format('Y-m-d'),
+                'start_date' => $startDate,
+                'end_date' => $endDate,
             ],
             [
                 'genre' => 2,
                 'title' =>  $company . $workType,
-                'start_date' => $startDate->format('Y-m-d'),
-                'end_date' => $endDate->format('Y-m-d'),
+                'start_date' => $startDate,
+                'end_date' => $endDate,
             ],
             [
                 'genre' => 2,
                 'title' =>  $company . $workType,
                 'description' => $city . "にある" . $company . "で" . $workType . "しています",
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 2,
                 'title' =>  $company . $workType,
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 3,
@@ -85,38 +87,38 @@ class UserTimelineFactory extends Factory
                 'genre' => 4,
                 'title' =>  $city . $group_affiliationType . "所属",
                 'description' => $city . "に拠点を置く団体で" . $group_affiliationPosition . "を務めました",
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 4,
                 'title' =>  $city . $group_affiliationType . "所属",
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 4,
                 'title' =>  $company . $workType,
                 'title' =>  $city . $group_affiliationType . "所属",
                 'description' => $city . "に拠点を置く団体で" . $group_affiliationPosition . "を務めました",
-                'start_date' => $startDate->format('Y-m-d'),
-                'end_date' => $endDate->format('Y-m-d'),
+                'start_date' => $startDate,
+                'end_date' => $endDate,
             ],
             [
                 'genre' => 4,
                 'title' =>  $company . $workType,
                 'title' =>  $city . $group_affiliationType . "所属",
-                'start_date' => $startDate->format('Y-m-d'),
-                'end_date' => $endDate->format('Y-m-d'),
+                'start_date' => $startDate,
+                'end_date' => $endDate,
             ],
             [
                 'genre' => 5,
                 'title' =>  $city . $contestType,
                 'description' => $city . "で行われた" . $contestType . "で" . $contestResult . "しました",
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
             [
                 'genre' => 5,
                 'title' =>  $city . $contestType,
-                'start_date' => $startDate->format('Y-m-d'),
+                'start_date' => $startDate,
             ],
         ];
 

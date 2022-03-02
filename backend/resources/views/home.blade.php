@@ -32,11 +32,10 @@
     ～{{$timeline->end_date}}
     @endempty
 </p>
-<p>{{$timeline->user->name}}</p>
-<p>{{$timeline->title}}</p>
-<p>{{$timeline->description}}</p>
-<p>{{$timeline->genre->label()}}</p>
-<p>{{$timeline->description}}</p>
+<p>名前:{{$timeline->user->name}}</p>
+<p>タイトル:{{$timeline->title}}</p>
+<p>説明:{{$timeline->description}}</p>
+<p>ジャンル:{{$timeline->genre->label()}}</p>
 @endforeach
 
 @php

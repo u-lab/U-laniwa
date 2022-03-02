@@ -14,13 +14,9 @@
     </div>
 
     <div class="text-center mb-8">
-        <h2 class="deco">Laravel</h2>
-        <p>The MIT License (MIT) Copyright © Taylor Otwell</p>
-        <a href="https://opensource.org/licenses/mit-license.php" target="_blank"
-            rel="noopener">https://opensource.org/licenses/mit-license.php</a><br>
-        <a href="https://laravel-guide.readthedocs.io/en/latest/license/" target="_blank"
-            rel="noopener">https://laravel-guide.readthedocs.io/en/latest/license/</a><br>
-        <a href="https://laravel.com/" target="_blank" rel="noopener">https://laravel.com/</a>
+        <h2 class="deco">Laravel</h2><br>
+        <a href="https://laravel-guide.readthedocs.io/en/latest/license/" target="_blank" rel="noopener">The MIT License
+            (MIT) Copyright © Taylor Otwell</a>
     </div>
 
     @include('components.noLogin.credit',[

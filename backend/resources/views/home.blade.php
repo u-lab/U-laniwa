@@ -10,6 +10,21 @@
 <div class='w-96'></div>
 
 <div class="belongsProject">
+    {{--@include('components.forMembers.userTimeline')--}}
+    <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
+        <h2 class="text-xl">タイムライン</h2>
+        <div class="tree h-96">
+            @foreach ($timelines as $timeline)
+            @include('components.forMembers.timelineItem',[
+            'date'=>$timeline->start_date,
+            'name'=>$userInfo->last_name,
+            'genre'=>$timeline->genre,
+            'title'=>$timeline->title])
+            @endforeach
+
+
+        </div>
+    </div>
     <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
     <p>
         @if($userProjects->isEmpty())

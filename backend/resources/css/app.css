@@ -66,16 +66,42 @@ h2 {
 }
 
 .tree-content {
-    @apply relative mb-20;
+    @apply relative;
 }
 
-.tree-content::before {
+.tree-content::after {
     content: "";
     left: -5.5rem;
     top: 0;
     width: 2rem;
     height: 2rem;
     @apply absolute rounded-full bg-bg-gray;
+}
+
+.belongsProject .tree {
+    @apply mt-12 pl-16;
+}
+
+.belongsProject .tree::before {
+    @apply bg-main-btn;
+}
+
+.belongsProject .tree-content::after {
+    left: -4.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    @apply bg-main-btn;
+}
+
+.belongsProject .tree-content::before {
+    content: "";
+    height: 1rem;
+    width: 5rem;
+    top: 50%;
+    left: -4rem;
+    transform: translateY(-50%);
+    z-index: 0;
+    @apply absolute rounded-full bg-main-btn;
 }
 
 .main-wrapper {

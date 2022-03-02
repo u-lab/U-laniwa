@@ -15,12 +15,12 @@
 <body>
 
     <!---コンテンツここから--->
-    <div class="flex relative pl-80">
+    <div class="flex relative pl-60">
         <!---サイドバーここから--->
         @component('components.basis.sidebar')
         <!---サイドバーここまで--->
         @endcomponent
-        <div class="main-wrapper">
+        <div class="main-wrapper" style="width: 600px">
             @yield('content')
         </div>
         <!---サイドバーここから--->

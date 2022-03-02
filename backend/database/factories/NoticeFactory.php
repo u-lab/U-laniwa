@@ -19,8 +19,8 @@ class NoticeFactory extends Factory
         return [
             'genre' =>    $this->faker->numberBetween(1, 2),
             'date' => $this->faker->dateTimeThisDecade()->format('Y-m-d'),
-            'title' => $this->faker->realText(10),
-            'description' => $this->faker->realText(60),
+            'title' => "「" . $this->faker->realText($this->faker->numberBetween(10, 15)) . "」について",
+            'description' => $this->faker->realText(60) . "です。",
         ];
     }
 }

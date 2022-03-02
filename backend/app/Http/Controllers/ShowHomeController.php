@@ -54,7 +54,8 @@ class ShowHomeController extends Controller
         /**
          * U-lab民の最近のタイムライン
          */
-        $timelines = UserTimeline::orderBy('start_date', 'desc')->take(10);
+        $timelines = UserTimeline::with('User:id,name')->orderBy('start_date', 'desc')->take(10)->get();
+
         //お知らせは初回リリース未実装
         return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userLiveArea' => $userLiveArea, 'userBirthArea' => $userBirthArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);
     }

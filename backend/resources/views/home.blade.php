@@ -23,7 +23,21 @@
     </p>
 </div>
 
-
+<h2 class="text-3xl">タイムライン</h2>
+@foreach($timelines as $timeline)
+<p>
+    {{$timeline->start_date}}
+    @empty($timeline->end_date)
+    @else
+    ～{{$timeline->end_date}}
+    @endempty
+</p>
+<p>{{$timeline->user->name}}</p>
+<p>{{$timeline->title}}</p>
+<p>{{$timeline->description}}</p>
+<p>{{$timeline->genre->label()}}</p>
+<p>{{$timeline->description}}</p>
+@endforeach
 
 @php
 //てつくんへ、このphpからendphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。

@@ -7,6 +7,7 @@
                 @include('components.buttons.navButton', ['link'=>'/home', 'title'=>'U-laniwaホーム'])
                 @include('components.buttons.navButton', ['link'=>'/notice', 'title'=>'お知らせ'])
                 @include('components.buttons.navButton', ['link'=>'/calender', 'title'=>'U-labカレンダー'])
+                @include('components.buttons.navButton', ['link'=>'/user', 'title'=>'ユーザー一覧'])
                 @include('components.buttons.navButton', ['link'=>'/project', 'title'=>'プロジェクト'])
                 @include('components.buttons.navButton', ['link'=>'/groupRules', 'title'=>'U-labの決め事'])
                 @include('components.buttons.navButton', ['link'=>'/statistic/user', 'title'=>'統計情報'])

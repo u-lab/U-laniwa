@@ -18,6 +18,7 @@
         あなたが所属しているプロジェクトは、<br>
         @foreach ($userProjects as $userProject)
         {{$userProject->project->title}} <br>
+        <img src="{{url('/'.$userProject->thumbnail)}}" alt="">
         @endforeach
         @endif
     </p>
@@ -34,7 +35,11 @@
 </p>
 <p>名前:{{$timeline->user->name}}</p>
 <p>タイトル:{{$timeline->title}}</p>
+@empty($timeline->description)
+{{-- 説明は必須でない --}}
+@else
 <p>説明:{{$timeline->description}}</p>
+@endempty
 <p>ジャンル:{{$timeline->genre->label()}}</p>
 @endforeach
 

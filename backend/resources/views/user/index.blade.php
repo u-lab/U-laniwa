@@ -14,7 +14,7 @@
     <h1 class="text-2xl">{{$grade}}</h1>
     @foreach($listedUser as $user)
     <a href="{{url('/user/'.$user->id)}}">
-        <img src="{{$user->profile_photo_path}}" alt="">
+        <img src="{{url('/'.$user->profile_photo_path)}}" alt="">
         <p>{{$user->name}}</p>
         <p>{{$user->status}}</p>
         @empty(!$user->uu_faculty)

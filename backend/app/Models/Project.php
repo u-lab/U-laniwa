@@ -23,6 +23,13 @@ class Project extends Model
      */
     public static $rules = array();
 
+    /**
+     * 初期値設定
+     * @var array
+     */
+    protected $attributes = [
+        "thumbnail" => "img/default_project_thumbnail.png",
+    ];
 
     /**
      * プロジェクト進捗取得

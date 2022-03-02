@@ -282,6 +282,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Area|null $birthArea
  * @property-read \App\Models\Area|null $liveArea
+ * @property-read \App\Models\User|null $user
  * @property-read \App\Models\UUMajor|null $uuMajor
  * @method static \Database\Factories\UserInfoFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo newModelQuery()
@@ -386,7 +387,7 @@ namespace App\Models{
  * @property int $user_id
  * @property string $title タイトル
  * @property string|null $description 説明
- * @property int $genre Enumジャンル
+ * @property \App\Enums\UserTimelineGenre $genre Enumジャンル
  * @property string $start_date 開始日(必須)
  * @property string|null $end_date 終了日(必須でない)
  * @property \Illuminate\Support\Carbon|null $created_at

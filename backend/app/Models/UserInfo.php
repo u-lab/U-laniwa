@@ -61,6 +61,15 @@ class UserInfo extends Model
 
 
     /**
+     * ユーザーを繋ぐ
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'foreign_key', 'user_id')->withDefault();
+    }
+    /**
      * 専攻をつなぐ
      *
      * @return BelongsTo

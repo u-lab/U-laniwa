@@ -24,6 +24,7 @@ class UserTableSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make("test1234"),
                 'remember_token' => Str::random(10),
+                'profile_photo_path' => "img/default_profile_photo.png",
                 'user_role_id' => 70,
                 // 'invited_id' => 1,
 
@@ -31,6 +32,6 @@ class UserTableSeeder extends Seeder
         ];
         DB::table("users")->insert($param);
         //招待idで事故るのでここで一部作る
-        \App\Models\User::factory(40)->has(\App\Models\UserInfo::factory()->count(1))->create();
+        \App\Models\User::factory(39)->has(\App\Models\UserInfo::factory()->count(1))->create();
     }
 }

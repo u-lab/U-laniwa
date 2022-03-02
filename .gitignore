@@ -5,4 +5,7 @@
 .env
 
 # DS_Store
-.DS_Store
+*.DS_Store
+
+# WSL系のファイル管理ファイル
+*.Identifier

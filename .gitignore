@@ -3,3 +3,8 @@
 
 # Docker Compose
 .env
+
+
+
+# WSL系のファイル管理ファイル
+*.Identifier

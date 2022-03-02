@@ -13,7 +13,7 @@
     @foreach ($listedUsers as $grade=>$listedUser)
     <h1 class="text-2xl">{{$grade}}</h1>
     @foreach($listedUser as $user)
-    <a href="{{url("/".$user->id)}}">
+    <a href="{{url('/user/'.$user->id)}}">
         <img src="{{$user->profile_photo_path}}" alt="">
         <p>{{$user->name}}</p>
         <p>{{$user->status}}</p>

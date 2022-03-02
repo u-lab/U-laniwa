@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -73,6 +74,14 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = [
         'profile_photo_url',
+    ];
+
+    /**
+     * 初期値設定
+     * @var array
+     */
+    protected $attributes = [
+        "profile_photo_path" => "img/default_profile_photo.png",
     ];
 
 

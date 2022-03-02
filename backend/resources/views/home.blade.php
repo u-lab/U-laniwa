@@ -11,17 +11,28 @@
 
 <div class="belongsProject">
     <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
-    <p>
-        @if($userProjects->isEmpty())
+    @if($userProjects->isEmpty())
+    <h2 class="text-2xl">
         所属しているプロジェクトはありません
-        @else
-        あなたが所属しているプロジェクトは、<br>
-        @foreach ($userProjects as $userProject)
-        {{$userProject->project->title}} <br>
+    </h2>
+    @else
+    <h2 class="text-2xl">
+        あなたが所属しているプロジェクトは、 </h2>
+    @foreach ($userProjects as $userProject)
+    <a href="{{url('/project/'.$userProject->id)}}">
         <img src="{{url('/'.$userProject->thumbnail)}}" alt="">
-        @endforeach
-        @endif
-    </p>
+        <p>タイトル:{{$userProject->title}} </p>
+        <p>サブタイトル:{{$userProject->subtitle}} </p>
+        <p>
+            {{$userProject->start_date}}
+            @empty($userProject->end_date)
+            @else
+            ～{{$userProject->end_date}}
+            @endempty
+        </p>
+    </a>
+    @endforeach
+    @endif
 </div>
 
 <h2 class="text-3xl">タイムライン</h2>

@@ -15,6 +15,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 class ShowHomeController extends Controller
 {
@@ -25,14 +26,14 @@ class ShowHomeController extends Controller
      */
     public function __invoke(): View|Factory
     {
-        $user_id = Auth::id();
+        $userId = Auth::id();
         //
         //get->firstの順にすることでフロント側で使いやすくする
         /**
          * ログイン中のユーザー情報
          *  @var UserInfo|null
          */
-        $userInfo = UserInfo::where('user_id',  $user_id)->first();
+        $userInfo = UserInfo::where('user_id',  $userId)->first();
         if (empty($userInfo)) {
             $userMajor = null;
             $userAreas = null;
@@ -50,9 +51,18 @@ class ShowHomeController extends Controller
          * ログイン中のユーザーの所属プロジェクト
          *  @var ProjectBelonged|null
          */
-        $userProjects = ProjectBelonged::where('user_id', $user_id)->limit(20)->get();
+        $userProjects = DB::table('projects')
+            ->leftJoin('project_belongeds', 'projects.id', '=', 'project_belongeds.project_id')
+            ->where('projects.representative_id', $userId) //後ほど学部順で使うため
+            ->orWhere('project_belongeds.user_id', $userId) //後ほど学部順で使うため
+            ->select('projects.id', 'projects.thumbnail', 'projects.title', 'projects.subtitle', 'projects.start_date', 'projects.end_date', 'projects.created_at', 'projects.updated_at')
+            ->get();
+
+
+
         /**
          * U-lab民の最近のタイムライン
+         * @var UserTimeline|null
          */
         $timelines = UserTimeline::with('User:id,name')->orderBy('start_date', 'desc')->take(10)->get();
 

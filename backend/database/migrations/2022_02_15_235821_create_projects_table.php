@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("title")->comment("プロジェクト名(題名)");
             $table->string("subtitle")->comment("プロジェクト名(副題)");
             $table->string("description")->comment("説明(活動内容)");
-            $table->string("thumbnail")->nullable()->comment("サムネイル用画像のパス");
+            $table->string("thumbnail")->default("img/default_project_thumbnail.png")->comment("サムネイル用画像のパス");
             $table->string("place_of_activity")->comment("活動場所");
             $table->date("start_date")->comment("プロジェクト期間(開始)");
             $table->date("end_date")->nullable()->comment("プロジェクト期間(終了)");

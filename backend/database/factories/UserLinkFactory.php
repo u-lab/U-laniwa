@@ -16,18 +16,21 @@ class UserLinkFactory extends Factory
      */
     public function definition(): array
     {
+        //SNSの正しいリンク発行用(favicon検証で用いる)
+        $sns = $this->faker->randomElement([["Twitter", "https://twitter.com"], ["Facebook", "https://www.facebook.com"], ["Instagram", "https://www.instagram.com"], ["YouTube", "https://youtube.com"], ["Misskey", "https://misskey.io"], ["mixi", "https://mixi.jp"]]);
+
         //説明ありとなしの2種類用意
         $userLink = [
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
                 'url' =>  $this->faker->url(),
-                'name' => $this->faker->word() . "のサイト",
-                'description' => $this->faker->realText(20),
+                'name' => $this->faker->company() . "のサイト",
+                'description' => $this->faker->city() . "にある企業で" . $this->faker->randomElement(["インターン", "バイト"]) . "でお世話になりました。",
             ],
             [
                 'user_id' => $this->faker->numberBetween(1, 40),
-                'url' =>  $this->faker->url(),
-                'name' => $this->faker->word() . "のサイト",
+                'url' =>  $sns[1],
+                'name' => $sns[0],
                 // 'description' => $this->faker->realText(20),
             ],
         ];

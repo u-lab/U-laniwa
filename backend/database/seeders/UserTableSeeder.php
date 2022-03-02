@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
     {
         $param = [
             [
-                'name' => "開発者",
+                'name' => "開発者1",
                 'email' => "test1@example.com",
                 'email_verified_at' => now(),
                 'password' => Hash::make("test1234"),

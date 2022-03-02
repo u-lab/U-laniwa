@@ -11,19 +11,48 @@
 
 <div class="belongsProject">
     <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
-    <p>
-        @if($userProjects->isEmpty())
+    @if($userProjects->isEmpty())
+    <h2 class="text-2xl">
         所属しているプロジェクトはありません
-        @else
-        あなたが所属しているプロジェクトは、<br>
-        @foreach ($userProjects as $userProject)
-        {{$userProject->project->title}} <br>
-        @endforeach
-        @endif
-    </p>
+    </h2>
+    @else
+    <h2 class="text-2xl">
+        あなたが所属しているプロジェクトは、 </h2>
+    @foreach ($userProjects as $userProject)
+    <a href="{{url('/project/'.$userProject->id)}}">
+        <img src="{{url('/'.$userProject->thumbnail)}}" alt="">
+        <p>タイトル:{{$userProject->title}} </p>
+        <p>サブタイトル:{{$userProject->subtitle}} </p>
+        <p>
+            {{$userProject->start_date}}
+            @empty($userProject->end_date)
+            @else
+            ～{{$userProject->end_date}}
+            @endempty
+        </p>
+    </a>
+    @endforeach
+    @endif
 </div>
 
-
+<h2 class="text-3xl">タイムライン</h2>
+@foreach($timelines as $timeline)
+<p>
+    {{$timeline->start_date}}
+    @empty($timeline->end_date)
+    @else
+    ～{{$timeline->end_date}}
+    @endempty
+</p>
+<p>名前:{{$timeline->user->name}}</p>
+<p>タイトル:{{$timeline->title}}</p>
+@empty($timeline->description)
+{{-- 説明は必須でない --}}
+@else
+<p>説明:{{$timeline->description}}</p>
+@endempty
+<p>ジャンル:{{$timeline->genre->label()}}</p>
+@endforeach
 
 @php
 //てつくんへ、このphpからendphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。

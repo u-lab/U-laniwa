@@ -18,7 +18,7 @@ class ProjectBelongedFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 40),
-            'project_id' =>  $this->faker->numberBetween(1, 20),
+            'project_id' =>  $this->faker->numberBetween(2, 20),
         ];
     }
 }

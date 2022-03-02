@@ -19,8 +19,8 @@ class ProjectProgressFactory extends Factory
         return [
             'project_id' =>  $this->faker->numberBetween(1, 20),
             'date' =>  $this->faker->dateTimeThisDecade()->format('Y-m-d'),
-            'title' => $this->faker->realText(10),
-            'description' => $this->faker->realText(30),
+            'title' => $this->faker->randomElement(["新機能", "新しいメンバー", "イベント"]) . $this->faker->randomElement(["を実装しました", "がニュースに載りました", "が参加しました", "を開きます"]),
+            'description' => $this->faker->realText(30) . "ということです",
         ];
     }
 }

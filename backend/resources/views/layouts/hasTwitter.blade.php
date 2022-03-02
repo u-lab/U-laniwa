@@ -23,6 +23,15 @@
         <div class="main-wrapper">
             @yield('content')
         </div>
+        <!---サイドバーここから--->
+        <div class="side w-96 text-center">
+            <div class="twitter mt-20">
+                <a class="twitter-timeline" data-width="320" data-height="800"
+                    href="https://twitter.com/Ulab_uu?ref_src=twsrc%5Etfw">Tweets by Ulab_uu</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+        <!---サイドバーここまで--->
     </div>
     <!----コンテンツここまで--->
 

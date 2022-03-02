@@ -1,13 +1,32 @@
-@extends("layouts.main")
+@extends("layouts.hasTwitter")
 @section("title","ホーム")
 
 @section('header')
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl ">ホーム</h1>
+@include('components.forMembers.pageTitle', ['title'=>'U-laniwa ホーム'])
+
+<div class='w-96'></div>
+
+<div class="belongsProject">
+    <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
+    <p>
+        @if($userProjects->isEmpty())
+        所属しているプロジェクトはありません
+        @else
+        あなたが所属しているプロジェクトは、<br>
+        @foreach ($userProjects as $userProject)
+        {{$userProject->project->title}} <br>
+        @endforeach
+        @endif
+    </p>
+</div>
+
+
+
 @php
-//てつくんへ、この@phpから@endphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。
+//てつくんへ、このphpからendphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。
 /**
 * $userInfo→ログインしているユーザーの情報 nullabnle
 * $userMajor→ログインしているユーザーの学部学科 nullabnle

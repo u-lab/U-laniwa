@@ -133,3 +133,5 @@ stan:
 	docker compose exec app ./vendor/bin/phpstan analyse
 barth:
 	docker-compose down --rmi all --volumes --remove-orphans
+777:
+	sudo chmod 777 -R backend

@@ -20,7 +20,10 @@
         @component('components.basis.sidebar')
         <!---サイドバーここまで--->
         @endcomponent
-        <div class="main-wrapper overflow-x-hidden pr-2">
+        <div class="main-wrapper overflow-x-hidden pr-2 relative">
+            <div class="absolute right-12 top-8">
+                @include('components.forMembers.userIcon')
+            </div>
             @yield('content')
         </div>
         {{--<div class="pt-8 w-24">

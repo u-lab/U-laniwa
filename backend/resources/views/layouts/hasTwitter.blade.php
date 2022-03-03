@@ -24,12 +24,13 @@
             @yield('content')
         </div>
         <!---サイドバーここから--->
-        <div class="side mt-12" style="width: 330px">
-            <div class="w-fit mx-auto">
+        <div class="side relative" style="width: 330px">
+
+            <div class="absolute right-12 top-8">
                 @include('components.forMembers.userIcon')
             </div>
 
-            <div class="calender mb-10">
+            <div class="calender mt-36 mb-10">
                 <iframe
                     src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=1&mode=AGENDA&src=dWxhYjA4MTJAZ21haWwuY29t&color=%23AD1457"
                     style="border-width:0;" width="300" height="600" frameborder="0" scrolling="no"></iframe>

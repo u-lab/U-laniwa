@@ -106,6 +106,7 @@ h2 {
 }
 
 .main-wrapper {
+    width: 100%;
     max-width: min(calc(100vw - 20rem), 1600px);
     margin: 0 auto;
     min-height: calc(100vh - 110px);
@@ -122,6 +123,6 @@ h2 {
 
 @media screen and (min-width: 1280px) {
     .userFrame {
-        width: calc(50% - 1.5rem);
+        width: calc(50% - 1.5rem) !important;
     }
 }

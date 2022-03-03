@@ -137,7 +137,7 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
 
 
     //ユーザータイムライン
-    Route::post('/timeline', ShowAllTimelineController::class)->name('timelineAll');
+    Route::get('/timeline', ShowAllTimelineController::class)->name('timelineAll');
     //タイムラインは今後増やしていく予定
     // Route::post('/timeline/qualification',  ShowQualificationTimelineController::class)->name('timelineGetQualification');
     // Route::post('/timeline/project',  ShowProjectTimelineController::class)->name('timelineJoinedProject');

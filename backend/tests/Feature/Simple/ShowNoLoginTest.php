@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\NoLogin;
+namespace Tests\Feature\Simple;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ShowTest extends TestCase
+class ShowNoLoginTest extends TestCase
 {
 
     /** @test */

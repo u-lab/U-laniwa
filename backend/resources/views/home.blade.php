@@ -29,11 +29,11 @@
     <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
     @if($userProjects->isEmpty())
     <h2 class="text-2xl">
-        所属しているプロジェクトはありません
+        現在進行中のプロジェクトはありません
     </h2>
     @else
     <h2 class="text-2xl">
-        あなたが所属しているプロジェクトは、 </h2>
+        現在進行中のプロジェクトは </h2>
     @foreach ($userProjects as $userProject)
     <a href="{{url('/project/'.$userProject->id)}}">
         <img src="{{url('/'.$userProject->thumbnail)}}" alt="">

@@ -47,16 +47,12 @@ class ShowHomeController extends Controller
             $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
         }
 
+        $now = date('Y-m-d');
         /**
-         * ログイン中のユーザーの所属プロジェクト
+         * まだ開始していないor終了していないor終了日がないプロジェクトを表示
          *  @var ProjectBelonged|null
          */
-        $userProjects = DB::table('projects')
-            ->leftJoin('project_belongeds', 'projects.id', '=', 'project_belongeds.project_id')
-            ->where('projects.representative_id', $userId) //後ほど学部順で使うため
-            ->orWhere('project_belongeds.user_id', $userId) //後ほど学部順で使うため
-            ->select('projects.id', 'projects.thumbnail', 'projects.title', 'projects.subtitle', 'projects.start_date', 'projects.end_date', 'projects.created_at', 'projects.updated_at')
-            ->get();
+        $userProjects = Project::whereNull('end_date')->orWhere('start_date', ">=", $now)->orWhere('end_date', ">=", $now)->get();
 
 
 

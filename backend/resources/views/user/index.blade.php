@@ -15,7 +15,7 @@
     @foreach($listedUser as $user)
     <a href="{{url('/user/'.$user->id)}}">
         <img src="{{url('/'.$user->profile_photo_path)}}" alt="">
-        <p>{{$user->name}}</p>
+        <p>{{$user->last_name}} {{$user->first_name}}({{$user->name}})</p>
         <p>{{$user->status}}</p>
         @empty(!$user->uu_faculty)
         <p>{{$user->uu_faculty}}/{{$user->uu_major}}</p>

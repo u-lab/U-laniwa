@@ -34,7 +34,7 @@ class ShowAllUserController extends Controller
         $users = DB::table('user_infos')
             ->join('users', 'user_infos.user_id', '=', 'users.id')
             ->leftJoin('u_u_majors', 'user_infos.u_u_major_id', '=', 'u_u_majors.id')
-            ->select('users.id', 'users.name', 'users.profile_photo_path', 'user_infos.status', 'user_infos.grade', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
+            ->select('users.id', 'users.name', 'users.profile_photo_path', 'user_infos.status', 'user_infos.last_name', 'user_infos.first_name', 'user_infos.grade', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
             ->orderBy('grade', 'asc') //後ほど学部順で使うため
             ->get();
 

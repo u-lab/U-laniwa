@@ -968,10 +968,6 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -979,10 +975,6 @@ select {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1064,6 +1056,9 @@ select {
 }
 .mb-20 {
   margin-bottom: 5rem;
+}
+.mb-28 {
+  margin-bottom: 7rem;
 }
 .mb-1 {
   margin-bottom: 0.25rem;
@@ -1190,6 +1185,12 @@ select {
 .w-96 {
   width: 24rem;
 }
+.w-24 {
+  width: 6rem;
+}
+.w-80 {
+  width: 20rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1292,12 +1293,15 @@ select {
 .gap-1 {
   gap: 0.25rem;
 }
+.gap-2 {
+  gap: 0.5rem;
+}
 .gap-8 {
   gap: 2rem;
 }
-.gap-x-20 {
-  -moz-column-gap: 5rem;
-       column-gap: 5rem;
+.gap-x-12 {
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
 }
 .gap-y-8 {
   row-gap: 2rem;
@@ -1491,11 +1495,14 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-8 {
-  padding: 2rem;
+.p-10 {
+  padding: 2.5rem;
 }
 .p-5 {
   padding: 1.25rem;
+}
+.p-8 {
+  padding: 2rem;
 }
 .p-4 {
   padding: 1rem;
@@ -1556,10 +1563,6 @@ select {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1614,6 +1617,9 @@ select {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pr-2 {
+  padding-right: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -1750,6 +1756,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
+.text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1848,15 +1858,17 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 body {
-    font-family: "Sawarabi Gothic", sans-serif;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
 }
 ol {
     list-style-type: decimal;
     padding-left: 1.3rem;
 }
 h1 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+    font-weight: bold;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
 }
 h2 {
   font-size: 1.5rem;
@@ -1954,32 +1966,22 @@ h2 {
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
-/*.userImage:before {
-    content: "";
-    display: block;
-    padding-top: 100%;
-}
-
-.userImage img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    object-fit: cover;
-}*/
 .main-wrapper {
-    max-width: min(90vw, 1600px);
+    max-width: min(calc(100vw - 20rem), 1600px);
     margin: 0 auto;
     min-height: calc(100vh - 110px);
 }
 @media screen and (max-width: 640px) {
     .main-wrapper {
         max-width: 100%;
+    }
+}
+/*.aaa * {
+    @apply mb-6;
+}*/
+@media screen and (min-width: 1280px) {
+    .userFrame {
+        width: calc(50% - 1.5rem);
     }
 }
 .hover\:border-gray-300:hover {

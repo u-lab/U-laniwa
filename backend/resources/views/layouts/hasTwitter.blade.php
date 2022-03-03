@@ -25,7 +25,9 @@
         </div>
         <!---サイドバーここから--->
         <div class="side mt-12" style="width: 330px">
-            @include('components.forMembers.userIcon')
+            <div class="w-fit mx-auto">
+                @include('components.forMembers.userIcon')
+            </div>
 
             <div class="calender mb-10">
                 <iframe

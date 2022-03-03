@@ -50,7 +50,7 @@ class ShowLoginTest extends TestCase
     {
         $user = User::where('id', 1)->first();
         $response = $this->actingAs($user);
-        $response->get('/user/2')->assertStatus(200);
+        $response->get('/user/2')->assertStatus(404);
     }
     /** @test */
     public function 情報入力済みユーザーならタイムライン見れる()

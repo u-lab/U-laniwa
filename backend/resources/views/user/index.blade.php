@@ -16,10 +16,11 @@
     <a href="{{url('/user/'.$user->id)}}">
         <img src="{{url('/'.$user->profile_photo_path)}}" alt="">
         <p>{{$user->last_name}} {{$user->first_name}}({{$user->name}})</p>
+        @empty($user->satatus)
+        @else
         <p>{{$user->status}}</p>
-        @empty(!$user->uu_faculty)
-        <p>{{$user->uu_faculty}}/{{$user->uu_major}}</p>
         @endempty
+        <p>{{$user->profession}}</p>
     </a>
     @endforeach
     @endforeach

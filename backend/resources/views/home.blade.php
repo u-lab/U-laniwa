@@ -7,6 +7,7 @@
 @section('content')
 @include('components.forMembers.pageTitle', ['title'=>'U-laniwa ホーム'])
 
+
 <div class='w-96'></div>
 
 <div class="belongsProject">

@@ -61,7 +61,9 @@ class ShowHomeController extends Controller
          * @var UserTimeline|null
          */
         $timelines = UserTimeline::with('User:id,name')->orderBy('start_date', 'desc')->take(10)->get();
-
+        foreach ($timelines as $timeline) {
+            $timeline->genreName = $timeline->genre->label();
+        }
         //お知らせは初回リリース未実装
         return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userLiveArea' => $userLiveArea, 'userBirthArea' => $userBirthArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);
     }

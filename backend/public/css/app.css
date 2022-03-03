@@ -1087,6 +1087,12 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mb-80 {
+  margin-bottom: 20rem;
+}
+.mb-32 {
+  margin-bottom: 8rem;
+}
 .block {
   display: block;
 }
@@ -1098,6 +1104,9 @@ select {
 }
 .inline-flex {
   display: inline-flex;
+}
+.table {
+  display: table;
 }
 .grid {
   display: grid;
@@ -1131,6 +1140,11 @@ select {
 }
 .h-20 {
   height: 5rem;
+}
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .h-48 {
   height: 12rem;
@@ -1315,6 +1329,13 @@ select {
 .gap-y-8 {
   row-gap: 2rem;
 }
+.gap-x-3 {
+  -moz-column-gap: 0.75rem;
+       column-gap: 0.75rem;
+}
+.gap-y-16 {
+  row-gap: 4rem;
+}
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
@@ -1390,6 +1411,9 @@ select {
 .border-2 {
   border-width: 2px;
 }
+.border-4 {
+  border-width: 4px;
+}
 .border-b-2 {
   border-bottom-width: 2px;
 }
@@ -1420,6 +1444,10 @@ select {
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+.border-bg {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 223 223 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1621,6 +1649,12 @@ select {
 .pr-2 {
   padding-right: 0.5rem;
 }
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
+}
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1681,6 +1715,9 @@ select {
 }
 .font-semibold {
   font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
 }
 .uppercase {
   text-transform: uppercase;
@@ -1872,6 +1909,8 @@ select {
 body {
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 500;
+    --tw-text-opacity: 1;
+    color: rgb(38 37 31 / var(--tw-text-opacity));
 }
 ol {
     list-style-type: decimal;
@@ -1992,6 +2031,9 @@ h2 {
 /*.aaa * {
     @apply mb-6;
 }*/
+.userFrame td {
+  padding-bottom: 0.25rem;
+}
 @media screen and (min-width: 1280px) {
     .userFrame {
         width: calc(50% - 1.5rem) !important;
@@ -2462,18 +2504,14 @@ h2 {
     overflow-x: hidden;
   }
 
-  .xl\:overflow-x-scroll {
-    overflow-x: scroll;
+  .xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .xl\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  .xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
   }
 }
 

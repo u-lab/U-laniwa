@@ -5,6 +5,7 @@
 body {
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 500;
+    @apply text-main;
 }
 
 ol {
@@ -120,6 +121,10 @@ h2 {
 /*.aaa * {
     @apply mb-6;
 }*/
+
+.userFrame td {
+    @apply pb-1;
+}
 
 @media screen and (min-width: 1280px) {
     .userFrame {

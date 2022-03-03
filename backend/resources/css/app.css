@@ -122,12 +122,19 @@ h2 {
     @apply mb-6;
 }*/
 
-.userFrame td {
+.infoFrame td {
     @apply pb-1;
 }
 
 @media screen and (min-width: 1280px) {
-    .userFrame {
+    .userFrame,
+    .infoFrame {
         width: calc(50% - 1.5rem) !important;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .userFrame {
+        width: calc(100% / 3 - 2rem) !important;
     }
 }

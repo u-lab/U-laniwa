@@ -1084,14 +1084,14 @@ select {
 .mb-16 {
   margin-bottom: 4rem;
 }
+.mb-32 {
+  margin-bottom: 8rem;
+}
 .-mt-px {
   margin-top: -1px;
 }
-.mb-80 {
-  margin-bottom: 20rem;
-}
-.mb-32 {
-  margin-bottom: 8rem;
+.mb-12 {
+  margin-bottom: 3rem;
 }
 .block {
   display: block;
@@ -1535,9 +1535,6 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-10 {
-  padding: 2.5rem;
-}
 .p-5 {
   padding: 1.25rem;
 }
@@ -1602,6 +1599,10 @@ select {
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 .px-8 {
   padding-left: 2rem;
@@ -1804,10 +1805,6 @@ select {
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-.text-blue-700 {
-  --tw-text-opacity: 1;
-  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -2031,12 +2028,18 @@ h2 {
 /*.aaa * {
     @apply mb-6;
 }*/
-.userFrame td {
+.infoFrame td {
   padding-bottom: 0.25rem;
 }
 @media screen and (min-width: 1280px) {
-    .userFrame {
+    .userFrame,
+    .infoFrame {
         width: calc(50% - 1.5rem) !important;
+    }
+}
+@media screen and (min-width: 1900px) {
+    .userFrame {
+        width: calc(100% / 3 - 2rem) !important;
     }
 }
 .hover\:border-gray-300:hover {

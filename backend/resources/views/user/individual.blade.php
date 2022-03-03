@@ -14,24 +14,29 @@ $authUser=Auth::user();
 {{--<h1 class="text-center my-8 text-3xl ">個別ユーザー情報</h1>--}}
 @include('components.forMembers.pageTitle', ['title'=>$name])
 
-@if($gate->allows('level7~'))
-あなたは本入部以上のため、すべての情報の閲覧が可能です
-@else
-あなたは本入部以下のため、一部の情報は閲覧できません
-@endif
+<div class="w-full text-center">
+    <p>
+        @if($gate->allows('level7~'))
+        あなたは本入部以上のため、すべての情報の閲覧が可能です
+        @else
+        あなたは本入部以下のため、一部の情報は閲覧できません
+        @endif
+    </p>
 
-@if ($userInfo->user_id == $authUser->id)
-<a href='/user/edit' class="block p-10 bg-bg">edit</a>
+    @if ($userInfo->user_id == $authUser->id)
+    <a href='/user/edit' class="inline-block px-10 bg-bg rounded-lg">edit</a>
+</div>
 @endif
 
 <div class="mx-auto mt-8 mb-16 flex flex-wrap gap-x-3 gap-y-16 justify-between" style="width: 1200px">
-    <div class="flex bg-bg-main rounded-2xl p-6 userFrame h-fit" style="width: 500px">
+    <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit" style="width: 500px">
         <div class="flex items-center w-1/2">
             <img src="{{url('/'.$userInfo->profile_photo_path)}}" alt="" class="object-fit-cover">
         </div>
         <div class="px-4 text-left w-1/2">
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
-            <p class="xl:text-lg pl-2 mb-2">{{$userInfo->last_name}} {{$userInfo->first_name}} ({{$userInfo->name}})</p>
+            <p class="xl:text-lg pl-2 mb-2">{{$userInfo->last_name}} {{$userInfo->first_name}} ({{$userInfo->name}})
+            </p>
             @empty($userInfo->status)
             @else
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">一言コメント</p>
@@ -48,7 +53,7 @@ $authUser=Auth::user();
         </div>
     </div>
 
-    <div class="basicInformation userFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
+    <div class="basicInformation infoFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">基本情報</h2>
         <table class="mt-6 mx-auto">
             <tr>
@@ -82,7 +87,7 @@ $authUser=Auth::user();
         </table>
     </div>
 
-    <div class="basicInformation userFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
+    <div class="basicInformation infoFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">パーソナルデータ</h2>
         <table class="mt-6 mx-auto">
             <tr>
@@ -104,7 +109,7 @@ $authUser=Auth::user();
         </table>
     </div>
 
-    <div class="basicInformation userFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
+    <div class="basicInformation infoFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">情報</h2>
         <table class="mt-6 mx-auto">
             <tr>
@@ -156,7 +161,8 @@ $authUser=Auth::user();
     </div>
 
     <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative">
-        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクトクト</h2>
+        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクトクト
+        </h2>
         <div class="flex flex-wrap gap-x-12 my-8">
             {{--@foreach ($collection as $item)--}}
             <a href="https://hogehoge.com" target="_blank" rel="noopener"

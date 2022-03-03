@@ -5,11 +5,10 @@
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl ">U-laniwa</h1>
+@include('components.forMembers.pageTitle', ['title'=>'ユーザー一覧'])
 
 
 <div class="text-center my-12 px-20">
-    <h2 class="text-2xl mb-8">ユーザー</h2>
     @foreach ($listedUsers as $grade=>$listedUser)
     <h1 class="text-2xl mb-8">{{$grade}}</h1>
     <div class="mx-auto w-fit">
@@ -31,6 +30,13 @@
                     @endempty
                 </div>
             </a>
+            {{--@include('components.forMembers.userFrame', [
+            'id'=>$user->id,
+            'path'=>$user->profile_photo_path,
+            'name'=>$user->name,
+            'status'=>$user->status,
+            'faculty'=>$user->uu_faculty,
+            'major'=>$user->uu_major])--}}
             @endforeach
         </div>
     </div>

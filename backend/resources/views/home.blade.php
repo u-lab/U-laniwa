@@ -5,7 +5,7 @@
 @parent
 @endsection
 @section('content')
-@include('components.forMembers.pageTitle', ['title'=>'U-laniwa ホーム'])
+@include('components.forMembers.pageTitle', ['title'=>'ホーム'])
 
 
 <div class='w-96'></div>

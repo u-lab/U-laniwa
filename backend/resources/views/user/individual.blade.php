@@ -1,8 +1,5 @@
 @extends("layouts.main")
-@php
-$name = $userInfo->last_name." ".$userInfo->first_name;
-@endphp
-@section("title", $name)
+@section("title", $user->name)
 
 @section('header')
 @parent
@@ -12,7 +9,7 @@ $name = $userInfo->last_name." ".$userInfo->first_name;
 $authUser=Auth::user();
 @endphp
 {{--<h1 class="text-center my-8 text-3xl ">個別ユーザー情報</h1>--}}
-@include('components.forMembers.pageTitle', ['title'=>$name])
+@include('components.forMembers.pageTitle', ['title'=>$user->name])
 
 <div class="w-full text-center">
     <p>
@@ -23,7 +20,7 @@ $authUser=Auth::user();
         @endif
     </p>
 
-    @if ($userInfo->user_id == $authUser->id)
+    @if ($user->id == $authUser->id)
     <a href='/user/edit' class="inline-block px-10 bg-bg rounded-lg">edit</a>
     @endif
 </div>
@@ -31,25 +28,25 @@ $authUser=Auth::user();
 <div class="mx-auto mt-8 mb-16 flex flex-wrap gap-x-3 gap-y-16 justify-between" style="width: 1200px">
     <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit" style="width: 500px">
         <div class="flex items-center w-1/2">
-            <img src="{{url('/'.$userInfo->profile_photo_path)}}" alt="" class="object-fit-cover">
+            <img src="{{url('/'.$user->profile_photo_path)}}" alt="" class="object-fit-cover">
         </div>
         <div class="px-4 text-left w-1/2">
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
-            <p class="xl:text-lg pl-2 mb-2">{{$userInfo->last_name}} {{$userInfo->first_name}} ({{$userInfo->name}})
+            <p class="xl:text-lg pl-2 mb-2">({{$user->name}})
             </p>
-            @empty($userInfo->status)
+            @empty($user->status)
             @else
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">一言コメント</p>
-            <p class="xl:text-lg pl-2 mb-2">{{$userInfo->status}}</p>
+            <p class="xl:text-lg pl-2 mb-2">{{$user->status}}</p>
             @endempty
             {{--@if($grade == '社会人' || $grade == 'その他' )--}}
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">所属</p>
             {{--@else--}}
             {{--<p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">学部/学科</p>--}}
             {{--@endif--}}
-            <p class="xl:text-lg pl-2 mb-2">{{$userInfo->profession}}</p>
+            <p class="xl:text-lg pl-2 mb-2">{{$user->profession}}</p>
             {{--<p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">せつめい</p>
-            <p class="xl:text-lg pl-2 mb-2">{{$userInfo->description}}</p>--}}
+            <p class="xl:text-lg pl-2 mb-2">{{$user->description}}</p>--}}
         </div>
     </div>
 
@@ -58,11 +55,11 @@ $authUser=Auth::user();
         <table class="mt-6 mx-auto">
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">学年</td>
-                <td class="w-1/2 pl-5">{{$userInfo->grade->label()}}</td>
+                <td class="w-1/2 pl-5">{{$user->grade}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">性別</td>
-                <td class="w-1/2 pl-5">{{$userInfo->gender->label()}}</td>
+                <td class="w-1/2 pl-5">{{$user->gender}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">権限レベル</td>
@@ -96,15 +93,15 @@ $authUser=Auth::user();
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">趣味</td>
-                <td class="w-1/2 pl-5">{{$userInfo->hobbies}}</td>
+                <td class="w-1/2 pl-5">{{$user->hobbies}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">興味</td>
-                <td class="w-1/2 pl-5">{{$userInfo->interests}}</td>
+                <td class="w-1/2 pl-5">{{$user->interests}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">座右の銘</td>
-                <td class="w-1/2 pl-5">{{$userInfo->motto}}</td>
+                <td class="w-1/2 pl-5">{{$user->motto}}</td>
             </tr>
         </table>
     </div>
@@ -114,21 +111,21 @@ $authUser=Auth::user();
         <table class="mt-6 mx-auto">
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">Slack名</td>
-                <td class="w-1/2 pl-5">{{$userInfo->slack_name}}</td>
+                <td class="w-1/2 pl-5">{{$user->slack_name}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">Discord名</td>
-                <td class="w-1/2 pl-5">{{$userInfo->discord_name}}</td>
+                <td class="w-1/2 pl-5">{{$user->discord_name}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">LINE名</td>
-                <td class="w-1/2 pl-5">{{$userInfo->line_name}}</td>
+                <td class="w-1/2 pl-5">{{$user->line_name}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">GitHubID</td>
                 <td class="w-1/2 pl-5">
-                    <a href='https://github.com/{{$userInfo->github_id}}' target="_blank" rel="noopener"
-                        class="inline-block">{{$userInfo->github_id}}</a>
+                    <a href='https://github.com/{{$user->github_id}}' target="_blank" rel="noopener"
+                        class="inline-block">{{$user->github_id}}</a>
                 </td>
             </tr>
         </table>

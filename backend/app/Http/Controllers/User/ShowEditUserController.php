@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\User;
 
 use App\Enums\Country;
+use App\Enums\Gender;
+use App\Enums\Grade;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -24,6 +26,20 @@ class ShowEditUserController extends Controller
         /**
          * DBに格納していないEnum型のデータを取得する
          */
+        //性別
+        $genderEnum = Gender::cases();
+        $genders = array_map(fn (Gender $genderCode): array => [
+            'gender_code' => $genderCode, //学年 名前がスネークケースなのはDBの都合
+            'name' => $genderCode->label(), //名前
+        ], $genderEnum);
+
+        //学年
+        $gradeEnum = Grade::cases();
+        $grades = array_map(fn (Grade $gradeCode): array => [
+            'grade_code' => $gradeCode, //学年 名前がスネークケースなのはDBの都合
+            'name' => $gradeCode->label(), //名前
+        ], $gradeEnum);
+
         //国
         //都道府県、市区町村に関しては動的に取得する(api.php参照)
         $countryEnum = Country::cases();
@@ -38,6 +54,12 @@ class ShowEditUserController extends Controller
             'id' => $id, //学部id(学科の取得に用いる)
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
-        return view('user.edit', ['countries' => $countries, 'uuFaculties' => $uuFaculties]);
+        \Log::debug($grades);
+        return view('user.edit', [
+            'genders' => $genders,
+            'grades' => $grades,
+            'countries' => $countries,
+            'uuFaculties' => $uuFaculties,
+        ]);
     }
 }

@@ -90,6 +90,7 @@ class ShowIndividualUserController extends Controller
         foreach ($events as $event) {
             $event->genreName = $event->genre->label();
         }
+
         /**
          * userにprofessionメソッドを追加
          * 社会人→会社名＋役職
@@ -109,14 +110,15 @@ class ShowIndividualUserController extends Controller
             //この場合は存在しないはずだがエラーになるのは困るので空文字
             $user->profession = '';
         }
-        // relatedUserにprofessionメソッドを追加
+
+        /**
+         * relatedUserにprofessionメソッドを追加
+         * 社会人→会社名＋役職
+         * 他大生→学名＋学部＋学科
+         * 宇大生→学部＋学科
+         * (宇大生から社会人になった場合、宇大のデータが残っている可能性が否めないので、それ防止のために先に社会人から条件分岐させている)
+         */
         foreach ($relatedUsers as $relatedUser) {
-            /**
-             * 社会人→会社名＋役職
-             * 他大生→学名＋学部＋学科
-             * 宇大生→学部＋学科
-             * (宇大生から社会人になった場合、宇大のデータが残っている可能性が否めないので、それ防止のために先に社会人から条件分岐させている)
-             */
             if ($relatedUser->company_meta) {
                 $company_meta = json_decode($relatedUser->company_meta);
                 $relatedUser->profession = $company_meta->company_name . "/" . $company_meta->position;
@@ -141,7 +143,6 @@ class ShowIndividualUserController extends Controller
         preg_match_all('/[1-9]\d?/', $user->birth_day, $matches, PREG_PATTERN_ORDER, 4);
         $user->birth_day = implode('/', $matches[0]);
 
-        // \Log::debug($relatedUsers);
         return view('user.individual', [
             'gate' => $this->gate,
             'user' => $user,

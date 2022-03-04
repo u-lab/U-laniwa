@@ -29,6 +29,7 @@ class UserInfoTableSeeder extends Seeder
                 'gender' => 1,
                 'live_area_id' => 24,
                 'birth_area_id' => 125,
+                'group_affiliation' => '烏龍茶',
                 'is_dark_mode' => true,
                 'is_publish_birth_day' => true,
                 'is_graduate' => false,

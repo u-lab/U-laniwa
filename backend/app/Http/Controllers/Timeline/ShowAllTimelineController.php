@@ -19,6 +19,10 @@ class ShowAllTimelineController extends Controller
      */
     public function __invoke(): View|Factory
     {
+        /**
+         * @var UserTimeline
+         * @param string $genreName
+         */
         $timelines = UserTimeline::with('User:id,name')
             ->orderBy('start_date', 'desc')
             ->take(10)

@@ -47,6 +47,6 @@ jobs:
       - name: generate key
         run: cd backend && php artisan key:generate --env=testing
       - name: migrate
-        run: cd backend && php artisan migrate
+        run: cd backend && php artisan migrate:fresh
       - name: unit test
         run: cd backend && ./vendor/bin/phpunit

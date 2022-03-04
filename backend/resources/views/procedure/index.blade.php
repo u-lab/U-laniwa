@@ -7,7 +7,7 @@
 @section('content')
 <h1 class="text-center my-8 text-3xl ">手続き</h1>
 
-
+<h2>招待コード: {{$inviteCode}}</h2>
 
 <h2>招待ユーザー</h2>
 @foreach ($invitedUsers as $invitedUser)

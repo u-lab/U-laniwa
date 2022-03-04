@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Procedure;
 
 use App\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\UserInviteCode;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class DoRegenerateInviteCodeController extends Controller
      */
     public function __invoke(): Redirector | RedirectResponse
     {
+        /** @var User */
         $user = Auth::user();
         if ($this->gate->allows('level4~')) {
             //本入部以上の場合

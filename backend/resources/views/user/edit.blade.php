@@ -282,8 +282,8 @@ $user=Auth::user();
                         </td>
                         <td style="width: 150px"><input style="width: 80%" type="text"></td>
                         <td style="width: 150px; font-size:.875rem; ">
-                            開始日 : <input style="width:50%" type="date"><br>
-                            終了日 : <input style="width:50%" type="date">
+                            <div class="mb-1">開始日 : <input style="width:50%" type="date"></div>
+                            <div>終了日 : <input style="width:50%" type="date"></div>
                         </td>
                         <td style="width: 80px"><input type="submit" value="更新"></td>
                         <td style="width: 80px">
@@ -300,8 +300,8 @@ $user=Auth::user();
                         </td>
                         <td style="width: 150px"><input style="width: 80%" type="text"></td>
                         <td style="width: 150px; font-size:.875rem; ">
-                            開始日 : <input style="width:50%" type="date"><br>
-                            終了日 : <input style="width:50%" type="date">
+                            <div class="mb-1">開始日 : <input style="width:50%" type="date"></div>
+                            <div>終了日 : <input style="width:50%" type="date"></div>
                         </td>
                         <td style="width: 80px"><input type="submit" value="更新"></td>
                         <td style="width: 80px">

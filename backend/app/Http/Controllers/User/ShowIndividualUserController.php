@@ -76,7 +76,7 @@ class ShowIndividualUserController extends Controller
             ->where('user_id', $user_id)
             ->join('users', 'user_infos.user_id', '=', 'users.id')
             ->leftJoin('u_u_majors', 'user_infos.u_u_major_id', '=', 'u_u_majors.id')
-            ->select('users.id', 'users.name', 'users.profile_photo_path', 'users.user_role_id', 'user_infos.status', 'user_infos.grade', 'user_infos.gender', 'user_infos.university_meta', 'user_infos.company_meta', 'user_infos.birth_area_id', 'user_infos.live_area_id', 'user_infos.group_affiliation', 'user_infos.is_publish_birth_day', 'user_infos.birth_day', 'user_infos.hobbies', 'user_infos.interests', 'user_infos.motto', 'user_infos.slack_name', 'user_infos.discord_name', 'user_infos.line_name', 'user_infos.github_id', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
+            ->select('users.id', 'users.name', 'users.profile_photo_path', 'users.user_role_id', 'user_infos.first_name', 'user_infos.last_name', 'user_infos.status', 'user_infos.grade', 'user_infos.gender', 'user_infos.university_meta', 'user_infos.company_meta', 'user_infos.birth_area_id', 'user_infos.live_area_id', 'user_infos.group_affiliation', 'user_infos.is_publish_birth_day', 'user_infos.birth_day', 'user_infos.hobbies', 'user_infos.interests', 'user_infos.motto', 'user_infos.slack_name', 'user_infos.discord_name', 'user_infos.line_name', 'user_infos.github_id', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
             ->first();
 
         $userAreas = Area::whereIn('id', [$user->birth_area_id, $user->live_area_id])->get();
@@ -108,7 +108,7 @@ class ShowIndividualUserController extends Controller
             ->where('grade', $user->grade)
             ->join('users', 'user_infos.user_id', '=', 'users.id')
             ->leftJoin('u_u_majors', 'user_infos.u_u_major_id', '=', 'u_u_majors.id')
-            ->select('users.name', 'users.profile_photo_path', 'user_infos.user_id', 'user_infos.grade', 'user_infos.u_u_major_id', 'user_infos.university_meta', 'user_infos.company_meta', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
+            ->select('users.name', 'users.profile_photo_path', 'user_infos.first_name', 'user_infos.last_name', 'user_infos.user_id', 'user_infos.grade', 'user_infos.u_u_major_id', 'user_infos.university_meta', 'user_infos.company_meta', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
             ->inRandomOrder()
             ->limit(2)
             ->get();

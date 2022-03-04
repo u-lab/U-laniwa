@@ -55,6 +55,11 @@ $user=Auth::user();
                 <tr>
                     <form>
                         <td style="width: 200px">姓/名</td>
+                        {{-- TODO: 性別はプルダウンメニューでお願いします
+                        @foreach ($genders as $gender)
+                        <option value="{{$loop->iteration}}">{{$gender['name']}}</option>
+                        @endforeach
+                        こんな感じで！ --}}
                         <td><input style="width: 38%; margin-right:4%;" type="text"><input style="width: 38%"
                                 type="text"></td>
                         <td style="width: 100px"><input type="submit" value="更新"></td>
@@ -77,6 +82,11 @@ $user=Auth::user();
                 <tr>
                     <form>
                         <td style="width: 200px">学年</td>
+                        {{-- TODO: 学年はプルダウンメニューでお願いします
+                        @foreach ($grades as $grade)
+                        <option value="{{$loop->iteration}}">{{$grade['name']}}</option>
+                        @endforeach
+                        こんな感じで！ --}}
                         <td><input style="width: 80%" type="text"></td>
                         <td style="width: 100px"><input type="submit" value="更新"></td>
                     </form>
@@ -98,6 +108,11 @@ $user=Auth::user();
                 <tr>
                     <form>
                         <td style="width: 200px">学部/学科</td>
+                        {{-- TODO: 学部はプルダウンメニューでお願いします
+                        @foreach ($uuFaculties as $uuFacultie)
+                        <option value="{{$loop->iteration}}">{{$uuFacultie['name']}}</option>
+                        @endforeach
+                        こんな感じで！ --}}
                         <td><input style="width: 38%; margin-right:4%;" type="text"><input style="width: 38%"
                                 type="text"></td>
                         <td style="width: 100px"><input type="submit" value="更新"></td>
@@ -125,6 +140,11 @@ $user=Auth::user();
                     <form>
                         <td style="width: 200px">出身地</td>
                         <td>
+                            {{-- TODO: 出身地・現在地の国はプルダウンメニューでお願いします
+                            @foreach ($countries as $country)
+                            <option value="{{$loop->index}}">{{$country['name']}}</option>
+                            @endforeach
+                            こんな感じで！ --}}
                             <input style="width: 24%; margin-right:4%;" type="text">
                             <input style="width: 24%; margin-right:4%;" type="text">
                             <input style="width: 24%" type="text">
@@ -136,6 +156,7 @@ $user=Auth::user();
                     <form>
                         <td style="width: 200px">現住地</td>
                         <td>
+                            {{-- TODO: 同上 --}}
                             <input style="width: 24%; margin-right:4%;" type="text">
                             <input style="width: 24%; margin-right:4%;" type="text">
                             <input style="width: 24%" type="text">

@@ -8,7 +8,7 @@
 <div class="main-wrapper flex items-center justify-center">
     <div>
         <div class="py-8">
-            <img src="/img/logo.png" class='w-48 h-48 mx-auto'>
+            <img src="/img/ulaniwa_logo.svg" class='w-48 h-48 mx-auto'>
         </div>
         <h1 class="text-center mb-6 ">U-laniwaへようこそ！</h1>
 

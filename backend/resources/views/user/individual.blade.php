@@ -35,17 +35,12 @@ $authUser=Auth::user();
 <p>{{$user->gender}}</p>
 <h2>権限レベル</h2>
 <p>{{$user->user_role_id}}</p>
-{{-- 宇大生・他大生・社会人の条件分岐 --}}
-@if ($user->company_meta)
-<h2>会社情報</h2>
-<p>{{$user->profession}}</p>
-@elseif ($user->university_meta)
-<h2>大学情報</h2>
-<p>{{$user->profession}}</p>
+@if ($user->grade == '社会人' || $user->grade == 'その他')
+<h2>所属</h2>
 @else
 <h2>学部</h2>
-<p>{{$user->profession}}</p>
 @endif
+<p>{{$user->profession}}</p>
 <h2>出身</h2>
 <p>{{$user->birth_area}}</p>
 <h2>現住所</h2>

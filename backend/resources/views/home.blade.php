@@ -11,17 +11,18 @@
 <div class='w-96'></div>
 
 <div class="belongsProject">
-    {{--@include('components.forMembers.userTimeline')--}}
     <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>
         <div class="tree">
 
             @foreach ($timelines as $timeline)
             @include('components.forMembers.timelineItem',[
-            'date'=>$timeline->start_date,
+            'start_date'=>$timeline->start_date,
+            'end_date'=>$timeline->end_date,
             'name'=>$timeline->user->name,
             'genre'=>$timeline->genre->label(),
-            'title'=>$timeline->title])
+            'title'=>$timeline->title,
+            'text'=>$timeline->description])
             @endforeach
 
         </div>

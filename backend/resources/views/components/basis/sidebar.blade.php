@@ -2,7 +2,7 @@
     <div class="my-10 w-full">
         <div class="px-8">
             <a href="/" class="inline-block w-full mb-10 hover:opacity-80" style="transition: .2s"><img
-                    src="/img/logo.png" alt="U-laniwa"> </a>
+                    src="/img/ulaniwa_logo.svg" alt="U-laniwa"> </a>
             <nav class="flex flex-col gap-2 sidenav">
                 @include('components.buttons.navButton', ['link'=>'/home', 'title'=>'ホーム'])
                 {{--@include('components.buttons.navButton', ['link'=>'/notice', 'title'=>'お知らせ'])--}}

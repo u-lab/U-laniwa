@@ -21,6 +21,8 @@ use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class ShowIndividualUserController extends Controller
@@ -38,8 +40,19 @@ class ShowIndividualUserController extends Controller
      */
     public function __invoke(int $user_id): View|Factory
     {
+
+        /*
+        *
+        */
         /**
-         * @var User|UserInfo|UUMajor
+         * @var UserInfo
+         * @property int $birth_area_id
+         * @property int $live_area_id
+         * @property int $grade
+         * @property int $gender
+         * @property string $birth_area
+         * @property string $live_area
+         * @property string $live_area
          */
         $user = DB::table('user_infos')
             ->where('user_id', $user_id)
@@ -48,11 +61,9 @@ class ShowIndividualUserController extends Controller
             ->select('users.id', 'users.name', 'users.profile_photo_path', 'users.user_role_id', 'user_infos.status', 'user_infos.grade', 'user_infos.gender', 'user_infos.university_meta', 'user_infos.company_meta', 'user_infos.birth_area_id', 'user_infos.live_area_id', 'user_infos.group_affiliation', 'user_infos.is_publish_birth_day', 'user_infos.birth_day', 'user_infos.hobbies', 'user_infos.interests', 'user_infos.motto', 'user_infos.slack_name', 'user_infos.discord_name', 'user_infos.line_name', 'user_infos.github_id', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')
             ->first();
 
-        /**
-         * @var Area
-         */
         $userAreas = Area::whereIn('id', [$user->birth_area_id, $user->live_area_id])->get();
         // 在住と出身が同じだった場合、返り値1つなので
+        /** @extends  */
         $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $user->birth_area_id);
         $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $user->live_area_id);
         // userにbirthとliveメソッドを追加

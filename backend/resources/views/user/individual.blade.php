@@ -32,7 +32,7 @@ $authUser=Auth::user();
         </div>
         <div class="px-4 text-left w-1/2">
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
-            <p class="xl:text-lg pl-2 mb-2">({{$user->name}})
+            <p class="xl:text-lg pl-2 mb-2">{{$name->last_name}} {{$name->first_name}} ({{$user->name}})
             </p>
             @empty($user->status)
             @else

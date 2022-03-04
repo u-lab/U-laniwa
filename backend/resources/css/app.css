@@ -3,7 +3,9 @@
 @import "tailwindcss/utilities";
 
 body {
-    font-family: "Sawarabi Gothic", sans-serif;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    @apply text-main;
 }
 
 ol {
@@ -12,6 +14,7 @@ ol {
 }
 
 h1 {
+    font-weight: bold;
     @apply text-3xl;
 }
 
@@ -56,20 +59,24 @@ h2 {
     @apply mx-auto my-20 pl-20 relative;
 }
 
+.userTimeline > .tree {
+    width: 80%;
+}
+
 .tree::before {
     content: "";
-    top: -5%;
+    top: -20px;
     left: 0;
     width: 1rem;
-    height: 120%;
+    height: calc(100% + 60px);
     @apply absolute bg-bg-gray rounded-full;
 }
 
 .tree-content {
-    @apply relative mb-20;
+    @apply relative;
 }
 
-.tree-content::before {
+.tree-content::after {
     content: "";
     left: -5.5rem;
     top: 0;
@@ -78,8 +85,34 @@ h2 {
     @apply absolute rounded-full bg-bg-gray;
 }
 
+.belongsProject .tree {
+    @apply mt-12 pl-16;
+}
+
+.belongsProject .tree::before {
+    @apply bg-main-btn;
+}
+
+.belongsProject .tree-content::after {
+    left: -4.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    @apply bg-main-btn;
+}
+
+.belongsProject .tree-content::before {
+    content: "";
+    height: 1rem;
+    width: 5rem;
+    top: 50%;
+    left: -4rem;
+    transform: translateY(-50%);
+    @apply absolute rounded-full bg-main-btn;
+}
+
 .main-wrapper {
-    max-width: min(90vw, 1600px);
+    width: 100%;
+    max-width: min(calc(100vw - 20rem), 1600px);
     margin: 0 auto;
     min-height: calc(100vh - 110px);
 }
@@ -87,4 +120,50 @@ h2 {
     .main-wrapper {
         max-width: 100%;
     }
+}
+
+/*.aaa * {
+    @apply mb-6;
+}*/
+
+.infoFrame td {
+    @apply pb-1;
+}
+
+@media screen and (min-width: 1280px) {
+    .userFrame,
+    .infoFrame {
+        width: calc(50% - 1.5rem) !important;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .userFrame {
+        width: calc(100% / 3 - 2rem) !important;
+    }
+}
+
+.edit td {
+    @apply py-4;
+}
+
+input[type="submit"] {
+    @apply px-3 rounded-lg bg-bg-gray cursor-pointer;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="date"],
+textarea {
+    border: none;
+    @apply bg-bg-main rounded px-0;
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    outline: none;
+    --tw-ring-shadow: 0;
+    @apply outline-offset-0;
 }

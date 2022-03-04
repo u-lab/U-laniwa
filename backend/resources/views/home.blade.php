@@ -5,12 +5,28 @@
 @parent
 @endsection
 @section('content')
-@include('components.forMembers.pageTitle', ['title'=>'U-laniwa ホーム'])
+@include('components.forMembers.pageTitle', ['title'=>'ホーム'])
+
 
 <div class='w-96'></div>
 
 <div class="belongsProject">
-    <p>{{$userInfo->last_name}} {{$userInfo->first_name}}さん、こんにちは！</p>
+    <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
+        <h2 class="text-xl">タイムライン</h2>
+        <div class="tree">
+
+            @foreach ($timelines as $timeline)
+            @include('components.forMembers.timelineItem',[
+            'start_date'=>$timeline->start_date,
+            'end_date'=>$timeline->end_date,
+            'name'=>$timeline->user->name,
+            'genre'=>$timeline->genre->label(),
+            'title'=>$timeline->title,
+            'text'=>$timeline->description])
+            @endforeach
+
+        </div>
+    </div>
     @if($userProjects->isEmpty())
     <h2 class="text-2xl">
         現在進行中のプロジェクトはありません
@@ -34,59 +50,4 @@
     @endforeach
     @endif
 </div>
-
-<h2 class="text-3xl">タイムライン</h2>
-@foreach($timelines as $timeline)
-<p>
-    {{$timeline->start_date}}
-    @empty($timeline->end_date)
-    @else
-    ～{{$timeline->end_date}}
-    @endempty
-</p>
-<p>名前:{{$timeline->user->name}}</p>
-<p>タイトル:{{$timeline->title}}</p>
-@empty($timeline->description)
-{{-- 説明は必須でない --}}
-@else
-<p>説明:{{$timeline->description}}</p>
-@endempty
-<p>ジャンル:{{$timeline->genre->label()}}</p>
-@endforeach
-
-@php
-//てつくんへ、このphpからendphpまでは消して大丈夫です。取れる値やその確認時に書いたコードを一応残しているだけです。
-/**
-* $userInfo→ログインしているユーザーの情報 nullabnle
-* $userMajor→ログインしているユーザーの学部学科 nullabnle
-* $userBirthArea→ログインしているユーザーの出身地 nullabnle
-* $userLiveAreaログインしているユーザーの現住地 nullabnle
-* $userMajor→ログインしているユーザーの学部学科 nullabnle
-* $userProjects→ログインしているユーザーが所属してるプロジェクト nullabnle
-* $timelines→U-labユーザー全体のタイムライン直近10件(start_dateが新しい順) nullabnle
-*
-*
-*/
-// var_dump($userInfo);//userInfoがないユーザーも居ます。(登録したての人など)
-// var_dump($userMajor->faculty_id->label());//userInfoがないユーザーも居ます。(登録したての人など)
-// var_dump($userMajor->name);//userInfoがないユーザーも居ます。(登録したての人など)
-// var_dump($userBirthArea->municipality);
-// var_dump($userLiveArea->municipality);
-
-
-// echo($userBirthArea->country_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
-// echo($userBirthArea->prefecture_code->label());//userInfoがないユーザーも居ます。(登録したての人など)
-// echo($userBirthArea->municipality);//userInfoがないユーザーも居ます。(登録したての人など)
-// var_dump($userProjects);
-
-// if($userProjects->isEmpty()){
-// echo "所属しているプロジェクトはありません";
-// }else{
-// foreach ($userProjects as $userProject) {
-// echo "プロジェクトタイトル:";
-// echo $userProject->project->title;
-// }
-// }
-@endphp
-
 @endsection

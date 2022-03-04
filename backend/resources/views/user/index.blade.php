@@ -5,26 +5,25 @@
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl ">U-laniwa</h1>
+@include('components.forMembers.pageTitle', ['title'=>'ユーザー一覧'])
 
 
-<div class="text-center my-12">
-    <h2 class="text-2xl">ユーザー</h2>
+<div class="text-center mt-12 mb-28 px-4">
     @foreach ($listedUsers as $grade=>$listedUser)
-    <h1 class="text-2xl">{{$grade}}</h1>
-    @foreach($listedUser as $user)
-    <a href="{{url('/user/'.$user->id)}}">
-        <img src="{{url('/'.$user->profile_photo_path)}}" alt="">
-        <p>{{$user->last_name}} {{$user->first_name}}({{$user->name}})</p>
-        @empty($user->satatus)
-        @else
-        <p>{{$user->status}}</p>
-        @endempty
-        <p>{{$user->profession}}</p>
-    </a>
-    @endforeach
-    @endforeach
-</div>
 
+    <h2 class="text-2xl mb-8 font-bold">{{$grade}}</h2>
+    <div class="overflow-x-scroll xl:overflow-x-hidden mb-20">
+        <div class="mx-auto w-fit">
+            <div class="flex flex-nowrap xl:flex-wrap gap-x-12 gap-y-8">
+                @foreach($listedUser as $user)
+                @include('components.forMembers.userFrame')
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
+</div>
 
 @endsection

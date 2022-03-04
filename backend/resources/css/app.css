@@ -59,6 +59,10 @@ h2 {
     @apply mx-auto my-20 pl-20 relative;
 }
 
+.userTimeline > .tree {
+    width: 80%;
+}
+
 .tree::before {
     content: "";
     top: -20px;

@@ -1965,6 +1965,9 @@ h2 {
     margin-bottom: 5rem;
     padding-left: 5rem;
 }
+.userTimeline > .tree {
+    width: 80%;
+}
 .tree::before {
     content: "";
     top: -20px;

@@ -20,7 +20,7 @@
         @component('components.basis.sidebar')
         <!---サイドバーここまで--->
         @endcomponent
-        <div class="main-wrapper" style="width: 600px">
+        <div class="main-wrapper" style="width: 800px">
             @yield('content')
         </div>
         <!---サイドバーここから--->

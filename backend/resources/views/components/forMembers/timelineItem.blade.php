@@ -1,5 +1,15 @@
-<div class="tree-content bg-main-btn rounded-2xl p-4 mb-8">
-    <p class="text-sm mb-1">{{$date}}</p>
-    <h3 class="text-base mb-1">{{$name}}が</h3>
-    <p class="mb-1">{{$genre}} : {{$title}}</p>
+<div class="tree-content bg-main-btn rounded-2xl p-4 mb-8 flex justify-between">
+    <div>
+        <p class="text-sm mb-1">{{$start_date}}〜{{$end_date}}</p>
+        <p class="mb-1 font-bold text-lg">{{$title}}</p>
+        <a href="{{url('/user'.'/'.$timeline->user->id)}}" class="w-fit h-fit mb-1 flex flex-row items-center">
+            <img src="{{url('/'.$timeline->user->profile_photo_path)}}" alt=""
+                class="w-6 h-6 inline-block rounded-full">
+            <p class="inline-block pl-3"><img src="">{{$name}}</p>
+        </a>
+        <p>{{$text}}</p>
+    </div>
+    <div>
+        <p class="px-4 py-1 border-2 border-bg inline-block">{{$genre}}</p>
+    </div>
 </div>

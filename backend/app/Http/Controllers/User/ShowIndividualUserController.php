@@ -40,19 +40,37 @@ class ShowIndividualUserController extends Controller
      */
     public function __invoke(int $user_id): View|Factory
     {
-
-        /*
-        *
-        */
         /**
-         * @var UserInfo
-         * @property int $birth_area_id
+         * @var mixed $user
+         * @property int $id
+         * @property int $user_id
+         * @property string $birth_day — 誕生日
+         * @property string|null $last_name — 姓
+         * @property string $first_name — 名
+         * @property string|null $description — 自己紹介
+         * @property int $is_udai — 宇大かそうでないか
+         * @property int|null $u_u_major_id
+         * @property mixed|null $university_meta — 大学情報
+         * @property mixed|null $company_meta — 企業情報
          * @property int $live_area_id
+         * @property int $birth_area_id
+         * @property int $is_dark_mode — ダークモードにするか？
+         * @property int $is_publish_birth_day — 誕生日公開するか？
+         * @property int $is_graduate — 卒業したか？
+         * @property string $status — ひとこと(GitHubのstatusと同じ)
+         * @property string|null $github_id — GitHubのid
+         * @property string|null $line_name — LINEでのユーザー名
+         * @property string|null $slack_name — Slackでのユーザー名
+         * @property string|null $discord_name — Discordでのユーザー名
+         * @property string|null $hobbies — 趣味
+         * @property string|null $interests — 興味
+         * @property string|null $motto — 座右の銘
          * @property int $grade
          * @property int $gender
          * @property string $birth_area
          * @property string $live_area
          * @property string $live_area
+         * @property string $profession
          */
         $user = DB::table('user_infos')
             ->where('user_id', $user_id)
@@ -63,12 +81,13 @@ class ShowIndividualUserController extends Controller
 
         $userAreas = Area::whereIn('id', [$user->birth_area_id, $user->live_area_id])->get();
         // 在住と出身が同じだった場合、返り値1つなので
-        /** @extends  */
+        /** @var Area */
         $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $user->birth_area_id);
+        /** @var Area */
         $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $user->live_area_id);
         // userにbirthとliveメソッドを追加
-        $user->birth_area = $userBirthArea->prefecture_code->label() . $userBirthArea->municipality;
-        $user->live_area = $userLiveArea->prefecture_code->label() . $userLiveArea->municipality;
+        $user->birth_area = $userBirthArea->prefecture_code == null ?  "-" : $userBirthArea->prefecture_code->label()  . $userBirthArea->municipality;
+        $user->live_area = $userLiveArea->prefecture_code == null ?  "-" : $userLiveArea->prefecture_code->label() . $userLiveArea->municipality;
 
         $links = DB::table('user_links')
             ->where('user_id', $user_id)
@@ -79,10 +98,12 @@ class ShowIndividualUserController extends Controller
             ->join('projects', 'project_belongeds.project_id', '=', 'projects.id')
             ->get();
 
+        /** @var UserTimeline */
         $events = UserTimeline::where('user_id', $user_id)
             ->orderBy('start_date', 'asc')
             ->get();
 
+        /** @var UserInfo */
         $relatedUsers = DB::table('user_infos')
             ->where('grade', $user->grade)
             ->join('users', 'user_infos.user_id', '=', 'users.id')

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('gender')->comment('enum性別');
             $table->foreignId('live_area_id')->constrained('areas')->comment('現住地域');
             $table->foreignId('birth_area_id')->constrained('areas')->comment('出身地域');
+            $table->string('group_affiliation')->nullable()->comment('所属団体');
             $table->boolean('is_dark_mode')->comment('ダークモードにするか？');
             $table->boolean('is_publish_birth_day')->comment('誕生日公開するか？');
             $table->boolean('is_graduate')->comment('卒業したか？');

@@ -29,23 +29,8 @@ class ShowHomeController extends Controller
         $userId = Auth::id();
         //
         //get->firstの順にすることでフロント側で使いやすくする
-        /**
-         * ログイン中のユーザー情報
-         *  @var UserInfo|null
-         */
-        $userInfo = UserInfo::where('user_id',  $userId)->first();
-        if (empty($userInfo)) {
-            $userMajor = null;
-            $userAreas = null;
-            $userBirthArea = null;
-            $userLiveArea = null;
-        } else {
-            $userMajor = UUMajor::find($userInfo->u_u_major_id);
-            $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
-            //在住と出身が同じだった場合、返り値1つなので
-            $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
-            $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
-        }
+
+
 
         $now = date('Y-m-d');
         /**
@@ -65,6 +50,6 @@ class ShowHomeController extends Controller
             $timeline->genreName = $timeline->genre->label();
         }
         //お知らせは初回リリース未実装
-        return view('home', ['userInfo' => $userInfo, 'userMajor' => $userMajor, 'userLiveArea' => $userLiveArea, 'userBirthArea' => $userBirthArea, 'userProjects' => $userProjects, 'timelines' => $timelines]);
+        return view('home', ['userProjects' => $userProjects, 'timelines' => $timelines]);
     }
 }

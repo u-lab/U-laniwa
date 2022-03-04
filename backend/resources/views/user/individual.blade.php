@@ -137,7 +137,7 @@ $authUser=Auth::user();
 
 <div class="mx-auto mb-32" style='max-width: 1000px'>
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
-        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">情報</h2>
+        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
         <div class="flex flex-wrap gap-x-12 my-8">
             {{--@foreach ($collection as $item)--}}
             <a href="https://hogehoge.com" target="_blank" rel="noopener"
@@ -161,7 +161,7 @@ $authUser=Auth::user();
     </div>
 
     <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative">
-        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクトクト
+        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクト
         </h2>
         <div class="flex flex-wrap gap-x-12 my-8">
             {{--@foreach ($collection as $item)--}}

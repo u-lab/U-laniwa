@@ -66,7 +66,7 @@ namespace App\Models{
  * @property string $title プロジェクト名(題名)
  * @property string $subtitle プロジェクト名(副題)
  * @property string $description 説明(活動内容)
- * @property string|null $thumbnail サムネイル用画像のパス
+ * @property string $thumbnail サムネイル用画像のパス
  * @property string $place_of_activity 活動場所
  * @property string $start_date プロジェクト期間(開始)
  * @property string|null $end_date プロジェクト期間(終了)
@@ -205,7 +205,7 @@ namespace App\Models{
  * @property string|null $two_factor_recovery_codes
  * @property string|null $remember_token
  * @property int|null $current_team_id
- * @property string|null $profile_photo_path
+ * @property string $profile_photo_path
  * @property int $user_role_id
  * @property int|null $invited_id
  * @property string|null $retired_at 退部した日

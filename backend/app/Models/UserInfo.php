@@ -28,6 +28,7 @@ class UserInfo extends Model
         'gender',
         'live_area_id',
         'birth_area_id',
+        'group_affiliation',
         'is_dark_mode',
         'is_publish_birth_day',
         'is_graduate',

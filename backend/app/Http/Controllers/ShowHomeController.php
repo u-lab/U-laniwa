@@ -60,7 +60,7 @@ class ShowHomeController extends Controller
          * U-lab民の最近のタイムライン
          * @var UserTimeline|null
          */
-        $timelines = UserTimeline::with('User:id,name')->orderBy('start_date', 'desc')->take(10)->get();
+        $timelines = UserTimeline::with('User:id,name,profile_photo_path')->orderBy('start_date', 'desc')->take(10)->get();
         foreach ($timelines as $timeline) {
             $timeline->genreName = $timeline->genre->label();
         }

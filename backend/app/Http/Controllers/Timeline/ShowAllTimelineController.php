@@ -21,7 +21,7 @@ class ShowAllTimelineController extends Controller
     {
         /**
          * @var UserTimeline
-         * @param string $genreName
+         * @property string $genreName
          */
         $timelines = UserTimeline::with('User:id,name')
             ->orderBy('start_date', 'desc')

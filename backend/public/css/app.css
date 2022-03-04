@@ -1087,11 +1087,14 @@ select {
 .mb-32 {
   margin-bottom: 8rem;
 }
-.-mt-px {
-  margin-top: -1px;
-}
 .mb-12 {
   margin-bottom: 3rem;
+}
+.mb-80 {
+  margin-bottom: 20rem;
+}
+.-mt-px {
+  margin-top: -1px;
 }
 .block {
   display: block;
@@ -2041,6 +2044,37 @@ h2 {
     .userFrame {
         width: calc(100% / 3 - 2rem) !important;
     }
+}
+.edit td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+input[type="submit"] {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 196 196 / var(--tw-bg-opacity));
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+input[type="text"],
+input[type="url"],
+input[type="date"],
+textarea {
+    border: none;
+    border-radius: 0.25rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 241 241 / var(--tw-bg-opacity));
+    padding-left: 0px;
+    padding-right: 0px;
+}
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    outline: none;
+    --tw-ring-shadow: 0;
+    outline-offset: 0px;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

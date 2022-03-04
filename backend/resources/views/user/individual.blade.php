@@ -25,8 +25,8 @@ $authUser=Auth::user();
 
     @if ($userInfo->user_id == $authUser->id)
     <a href='/user/edit' class="inline-block px-10 bg-bg rounded-lg">edit</a>
+    @endif
 </div>
-@endif
 
 <div class="mx-auto mt-8 mb-16 flex flex-wrap gap-x-3 gap-y-16 justify-between" style="width: 1200px">
     <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit" style="width: 500px">

@@ -980,14 +980,13 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -1078,6 +1077,9 @@ select {
 .mt-12 {
   margin-top: 3rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .mb-28 {
   margin-bottom: 7rem;
 }
@@ -1087,6 +1089,7 @@ select {
 .mb-1 {
   margin-bottom: 0.25rem;
 }
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -1236,14 +1239,14 @@ select {
 .w-1\/2 {
   width: 50%;
 }
+.w-2\/3 {
+  width: 66.666667%;
+}
 .w-96 {
   width: 24rem;
 }
 .w-24 {
   width: 6rem;
-}
-.w-2\/3 {
-  width: 66.666667%;
 }
 .min-w-0 {
   min-width: 0px;
@@ -2123,9 +2126,24 @@ textarea:focus {
     --tw-ring-shadow: 0;
     outline-offset: 0px;
 }
+/* チャート用 */
+.chartWrapper {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 600px;
+}
+.chartWrapper_small {
+    margin: 0 auto;
+    padding: 2em;
+    /* overflow-x: scroll; */
+    width: 300px;
+    height: 300px;
+}
 /*input[type="checkbox"] {
     @apply p-0;
 }*/
+
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User;
 use App\Enums\Country;
 use App\Enums\Gender;
 use App\Enums\Grade;
+use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use App\Models\UserLink;
@@ -63,7 +64,13 @@ class ShowEditUserController extends Controller
         $links = UserLink::where('user_id', $userId)->get();
         //タイムライン
         $timelines = UserTimeline::where('user_id', $userId)->get();
-
+        //タイムラインジャンル
+        $timelineGenreEnum = UserTimelineGenre::cases();
+        $timelineGenres = array_map(fn (UserTimelineGenre $timelineGenre): array => [
+            'id' => $timelineGenre->value,
+            'name' => $timelineGenre->label(), //名前
+        ], $timelineGenreEnum);
+        \Log::debug($timelineGenres);
         return view('user.edit', [
             'genders' => $genders,
             'grades' => $grades,
@@ -71,6 +78,7 @@ class ShowEditUserController extends Controller
             'uuFaculties' => $uuFaculties,
             'links' => $links,
             'timelines' => $timelines,
+            'timelineGenres' => $timelineGenres,
         ]);
     }
 }

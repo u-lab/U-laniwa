@@ -157,6 +157,7 @@ input[type="date"],
 input[type="checkbox"],
 select,
 textarea {
+    resize: none;
     border: none;
     @apply bg-bg-main rounded px-0 pl-4;
 }

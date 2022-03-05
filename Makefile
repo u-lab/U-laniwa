@@ -110,7 +110,7 @@ yarn:
 	docker compose exec web yarn
 yarn-install:
 	@make yarn
-yarn-dev:
+yarn-dev:k
 	docker compose exec web yarn dev
 yarn-watch:
 	docker compose exec web yarn watch
@@ -129,3 +129,9 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
+stan:
+	docker compose exec app ./vendor/bin/phpstan analyse
+barth:
+	docker-compose down --rmi all --volumes --remove-orphans
+777:
+	sudo chmod 777 -R backend

@@ -2,6 +2,7 @@
   "intelephense.environment.documentRoot": "backend/public/",
   "cSpell.words": [
     "project_belongeds",
+    "Redirector",
     "taiseiHokan",
     "tetsu",
     "U-laniwa",
@@ -19,5 +20,6 @@
     "default": "/backend/resources/views"
   },
   "laravel_goto_view.extensions": [".blade.php"],
-  "laravel_goto_controller.pathController": "/backend/app/Http/Controllers"
+  "laravel_goto_controller.pathController": "/backend/app/Http/Controllers",
+  "editor.formatOnSave": true
 }

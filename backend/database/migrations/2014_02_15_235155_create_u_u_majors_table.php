@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('u_u_majors', function (Blueprint $table) {
             $table->id();
             $table->string("name")->comment("学科");
-            $table->foreignId("faculty_id")->constrained('u_u_faculties')->comment("学部とつなげる");
+            $table->tinyInteger("faculty_id")->comment("学部とつなげる");
         });
     }
 

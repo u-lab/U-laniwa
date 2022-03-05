@@ -1,16 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -33,6 +37,7 @@ class User extends Authenticatable
 
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,6 +51,11 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * バリデーションルール
+     *
+     * @var array
+     */
     public static $rules = array();
 
     /**
@@ -66,14 +76,60 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    /**
+     * 初期値設定
+     * @var array
+     */
+    protected $attributes = [
+        "profile_photo_path" => "img/default_profile_photo.png",
+    ];
+
 
     /**
-     * Undocumented function
+     * ユーザー情報とつなぐ用のやつ
      *
-     * @return void
+     * @return HasOne
      */
-    public function userInfo()
+    public function userInfo(): HasOne
     {
         return $this->hasOne(UserInfo::class);
+    }
+
+    /**
+     * 招待コードをつなぐ
+     *
+     * @return HasOne
+     */
+    public function userInviteCode(): HasOne
+    {
+        return $this->hasOne(UserInviteCode::class)->withDefault();
+    }
+
+    /**
+     * ユーザーリンク取得
+     *
+     * @return HasMany
+     */
+    public function userLink(): HasMany
+    {
+        return $this->hasMany(UserLink::class);
+    }
+    /**
+     * ユーザータイムライン取得
+     *
+     * @return HasMany
+     */
+    public function userTimeline(): HasMany
+    {
+        return $this->hasMany(UserTimeline::class);
+    }
+    /**
+     * プロジェクトをつなぐ
+     *
+     * @return HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 }

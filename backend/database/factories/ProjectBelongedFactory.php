@@ -17,8 +17,8 @@ class ProjectBelongedFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 40),
-            'project_id' =>  $this->faker->numberBetween(1, 20),
+            'user_id' => $this->faker->numberBetween(2, 40),
+            'project_id' =>  $this->faker->numberBetween(2, 20),
         ];
     }
 }

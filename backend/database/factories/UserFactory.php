@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
@@ -26,12 +27,12 @@ class UserFactory extends Factory
     public function definition()
     {
 
-
+        $email = $this->faker->unique()->safeEmail();
         return  [
-            'name' => $this->faker->word(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'name' =>  $this->faker->firstName(),
+            'email' => $email,
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' =>  Hash::make($email),
             'remember_token' => Str::random(10),
             'user_role_id' => $this->faker->randomElement([10, 20, 30, 40, 50, 51, 52, 60, 70]),
             'invited_id' => $this->faker->randomElement([1, 2]),

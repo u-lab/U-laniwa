@@ -15,8 +15,11 @@
     <input type="submit" class="text-black" value="招待コード再生成">
 </form>
 @endif
-
-<h2>招待コード: {{$inviteCode}}</h2>
+@empty($inviteCode)
+<h2>招待コードはありません</h2>
+@else
+<h2>招待コード: {{$inviteCode->code}}</h2>
+@endempty
 
 <h2>招待ユーザー</h2>
 @foreach ($invitedUsers as $invitedUser)

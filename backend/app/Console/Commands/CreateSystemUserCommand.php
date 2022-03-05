@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Str;
 
+/**
+ * @method  string argument(string $key, string $default = null)
+ */
 class ChangeSCLevelCommand extends Command
 {
     /**

@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-
+/**
+ * @method  string argument(string $key, string $default = null)
+ */
 class ChangeSCLevelCommand extends Command
 {
     /**

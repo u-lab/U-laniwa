@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Console\Command;
 
 
+/**
+ * @method  string argument(string $key, string $default = null)
+ */
 class ChangeMainEntranceCommand extends Command
 {
     /**
@@ -39,8 +42,13 @@ class ChangeMainEntranceCommand extends Command
      */
     public function handle()
     {
-        User::where('id', $this->argument('user_id'))->update(['user_role_id' => 40]);
-        echo ('user_id:' . $this->argument('user_id') . 'を本入部に変更しました。');
+        //string型だったら実行
+        if (gettype($this->argument('user_id')) == 'string') {
+            User::where('id', $this->argument('user_id'))->update(['user_role_id' => 40]);
+            echo ('user_id:' . $this->argument('user_id') . 'を本入部に変更しました。');
+        } else {
+            echo ('ちゃんと入力してください');
+        }
         return Command::SUCCESS;
     }
 }

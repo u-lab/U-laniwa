@@ -10,7 +10,7 @@ use Str;
 /**
  * @method  string argument(string $key, string $default = null)
  */
-class ChangeSCLevelCommand extends Command
+class CreateSystemUserCommand extends Command
 {
     /**
      * The name and signature of the console command.

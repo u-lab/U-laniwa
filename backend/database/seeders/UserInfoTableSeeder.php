@@ -31,7 +31,6 @@ class UserInfoTableSeeder extends Seeder
                 'group_affiliation' => '烏龍茶',
                 'is_dark_mode' => true,
                 'is_publish_birth_day' => true,
-                'is_graduate' => false,
                 'status' => "珈琲駆動開発",
                 'github_id' => "Tester",
                 'line_name' => "てすと",

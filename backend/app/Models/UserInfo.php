@@ -30,7 +30,6 @@ class UserInfo extends Model
         'group_affiliation',
         'is_dark_mode',
         'is_publish_birth_day',
-        'is_graduate',
         'status',
         'github_id',
         'line_name',
@@ -48,6 +47,14 @@ class UserInfo extends Model
      */
     public static $rules = array();
 
+    /**
+     * 初期値設定
+     * @var array
+     */
+    protected $attributes = [
+        "is_publish_birth_day" => true,
+        "is_dark_mode" => false,
+    ];
 
     /**
      * Enumキャスト

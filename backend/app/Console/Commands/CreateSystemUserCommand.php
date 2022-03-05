@@ -52,6 +52,8 @@ class ChangeSCLevelCommand extends Command
                 'remember_token' => Str::random(10),
                 'profile_photo_path' => "img/default_profile_photo.png",
                 'user_role_id' => 60,
+                'created_at' => now(),
+                'updated_at' => now(),
                 // 'invited_id' => 1,
 
             ],

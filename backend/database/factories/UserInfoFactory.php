@@ -42,28 +42,35 @@ class UserInfoFactory extends Factory
                 ];
             }
         }
+        /**
+         * nullableなものを生成したり生成しなかったりするフィールド
+         * @var array[]
+         */
+        $nullableElements = [
+            [
+                'group_affiliation' => $this->faker->randomElement(["硬式テニス", 'ESS', 'Resource Network', 'フライングディスク', '宇都宮大学TRPG同好会']),
+                'status' =>     $this->faker->city() . "に" . $this->faker->randomElement(["行きたい", "住みたい", "に行ってきました", "別荘がほしい", "思い入れがあります。"]),
+                'github_id' => $this->faker->word(),
+                'line_name' => $this->faker->word(),
+                'slack_name' => $this->faker->word(),
+                'discord_name' => $this->faker->word(),
+                'hobbies' => $this->faker->name('male') . "の" . $this->faker->randomElement(["映画", "イラスト", "アニメ", "小説", "マンガ"]) . "が好きです",
+                'interests' =>     $this->faker->country() . "について調べること。",
+                'motto' => $this->faker->randomElement(["コーヒー", "お酒", "紅茶", "お水", "牛乳", "お酒"]) . "は" . $this->faker->randomElement(["ご飯のあと", "剣よりも強し", "正義"]),
+            ],
+            [],
+        ];
 
-        return array_merge($universityInfo, [
-            // 'user_id' => $this->faker->numberBetween(1, 40),
+        return array_merge($nullableElements[$this->faker->numberBetween(0, 1)], $universityInfo, [
+            'description' => $this->faker->realText(),
             'birth_day' => $this->faker->dateTimeBetween('-80 years', '-18years')->format('Y-m-d'),
             'last_name' => $this->faker->lastName(),
             'first_name' => $this->faker->firstName(),
-            'description' => $this->faker->realText(),
             'gender' => $this->faker->numberBetween(1, 3),
             'live_area_id' => $this->faker->numberBetween(1, 1923),
             'birth_area_id' => $this->faker->numberBetween(1, 1923),
-            'group_affiliation' => $this->faker->randomElement(["硬式テニス", 'ESS', 'Resource Network', 'フライングディスク', '宇都宮大学TRPG同好会']),
             'is_dark_mode' => $this->faker->randomElement([true, false]),
             'is_publish_birth_day' => $this->faker->randomElement([true, false]),
-            'is_graduate' => $this->faker->randomElement([true, false]),
-            'status' =>     $this->faker->city() . "に" . $this->faker->randomElement(["行きたい", "住みたい", "に行ってきました", "別荘がほしい", "思い入れがあります。"]),
-            'github_id' => $this->faker->word(),
-            'line_name' => $this->faker->word(),
-            'slack_name' => $this->faker->word(),
-            'discord_name' => $this->faker->word(),
-            'hobbies' => $this->faker->name('male') . "の" . $this->faker->randomElement(["映画", "イラスト", "アニメ", "小説", "マンガ"]) . "が好きです",
-            'interests' =>     $this->faker->country() . "について調べること。",
-            'motto' => $this->faker->randomElement(["コーヒー", "お酒", "紅茶", "お水", "牛乳", "お酒"]) . "は" . $this->faker->randomElement(["ご飯のあと", "剣よりも強し", "正義"]),
         ]);
     }
 }

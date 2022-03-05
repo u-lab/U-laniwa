@@ -62,6 +62,8 @@ use App\Http\Controllers\DetailSearch\ShowUserDetailSearchController;
 use App\Http\Controllers\Procedure\DoRegenerateInviteCodeController;
 use App\Http\Controllers\Project\ShowAllProjectController;
 use App\Http\Controllers\Security\ShowSecurityController;
+use App\Http\Controllers\Security\UpdateEmailSecurityController;
+use App\Http\Controllers\Security\UpdatePasswordSecurityController;
 use App\Http\Controllers\Statistic\ShowAllStatisticController;
 use App\Http\Controllers\Statistic\ShowProjectStatisticController;
 use App\Http\Controllers\Statistic\ShowUserStatisticController;
@@ -136,9 +138,9 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::get('/user/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
-    Route::post('/user/edit/userInfo/update', UpdateUserInfoController::class)->name('userInfoUpdate'); //ユーザー閲覧
-    Route::post('/user/edit/userTimeline/update', UpdateUserTimelineController::class)->name('userTimelineUpdate'); //ユーザー閲覧
-    Route::post('/user/edit/userLink/update', UpdateUserLinkController::class)->name('userLinkUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/update/userInfo/', UpdateUserInfoController::class)->name('userInfoUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/update/userTimeline', UpdateUserTimelineController::class)->name('userTimelineUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/update/userLink', UpdateUserLinkController::class)->name('userLinkUpdate'); //ユーザー閲覧
 
 
     //ユーザータイムライン
@@ -164,7 +166,8 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     Route::middleware(['password.confirm'])->group(function () {
         //セキュリティページ(パスワード変更など)
         Route::get('/security', ShowSecurityController::class)->name('security');
-        Route::post('/security/update', UpdateSecurityController::class)->name('securityUpdate');
+        Route::post('/security/update/password', UpdatePasswordSecurityController::class)->name('securityPasswordUpdate');
+        Route::post('/security/update/email', UpdateEmailSecurityController::class)->name('securityEmailUpdate');
     });
 
     //手続きページ

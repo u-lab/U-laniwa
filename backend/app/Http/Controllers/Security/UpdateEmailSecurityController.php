@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 
-class UpdateSecurityController extends Controller
+class UpdateEmailSecurityController extends Controller
 {
     /**
-     * セキュリティ周りのユーザー情報を更新するコントローラー
+     * セキュリティページのメールを更新するコントローラー
      *
      * @return Redirector|RedirectResponse
      */

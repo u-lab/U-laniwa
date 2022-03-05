@@ -26,7 +26,6 @@ class ShowEditUserController extends Controller
      */
     public function __invoke(): View|Factory
     {
-        /** @var User */
         $userId = Auth::id();
         /**
          * DBに格納していないEnum型のデータを取得する

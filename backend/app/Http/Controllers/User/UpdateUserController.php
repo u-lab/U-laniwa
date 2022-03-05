@@ -37,7 +37,7 @@ class UpdateUserController extends Controller
             'groupAffiliation' => 'string | max:255',
             'birthCountry' => 'required | integer | in:0,81',
             'birthPrefecture' => 'required | integer',
-            'birthMunicipality' => 'required | string | max:255',
+            'birthMunicipalityId' => 'required | integer',
             'liveCountry' => 'required | integer | in:0,81',
             'livePrefecture' => 'required | integer',
             'liveMunicipalityId' => 'required | integer',

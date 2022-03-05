@@ -44,6 +44,11 @@ class ShowUserStatisticController extends Controller
         /**
          * 学年ごと、学部ごと、学科ごと、出身地、現住地、性別ごとの取得
          * @var UserInfo
+         * @property int $grade_count
+         * @property int $u_u_major_count
+         * @property int $birth_area_count
+         * @property int $live_area_count
+         * @property int $gender_count
          */
         $perUserInfos = UserInfo::groupBy('grade', 'u_u_major_id', 'birth_area_id', 'live_area_id', 'gender')
             ->select(['grade', DB::raw('count(*) as grade_count'), 'u_u_major_id', DB::raw('count(*) as u_u_major_count'), 'birth_area_id', DB::raw('count(*) as birth_area_count'), 'live_area_id', DB::raw('count(*) as live_area_count'), 'gender', DB::raw('count(*) as gender_count')])

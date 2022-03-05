@@ -17,7 +17,7 @@ module.exports = {
                 main: {
                     DEFAULT: '#26251F',
                     hover: '#FF6F6F',
-                    em: '#B73A5B',
+                    em: '',
                     btn: '#FFFEFE',
                     border: '#FFF3F3',
                 },

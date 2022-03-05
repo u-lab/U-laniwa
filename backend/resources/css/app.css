@@ -69,7 +69,7 @@ h2 {
     left: 0;
     width: 1rem;
     height: calc(100% + 60px);
-    @apply absolute bg-bg-gray rounded-full;
+    @apply absolute bg-main-btn rounded-full;
 }
 
 .tree-content {
@@ -82,7 +82,7 @@ h2 {
     top: 0;
     width: 2rem;
     height: 2rem;
-    @apply absolute rounded-full bg-bg-gray;
+    @apply absolute rounded-full bg-main-btn;
 }
 
 .belongsProject .tree {
@@ -93,14 +93,20 @@ h2 {
     @apply bg-main-btn;
 }
 
-.belongsProject .tree-content::after {
+.belongsProject .tree-content::after,
+.timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
     transform: translateY(-50%);
     @apply bg-main-btn;
 }
 
-.belongsProject .tree-content::before {
+.timeline .tree-content::after {
+    left: -5.5rem;
+}
+
+.belongsProject .tree-content::before,
+.timeline .tree-content::before {
     content: "";
     height: 1rem;
     width: 5rem;
@@ -108,6 +114,12 @@ h2 {
     left: -4rem;
     transform: translateY(-50%);
     @apply absolute rounded-full bg-main-btn;
+}
+
+.release.tree::before,
+.release.tree .tree-content::before,
+.release.tree .tree-content::after {
+    @apply bg-bg-gray;
 }
 
 .main-wrapper {

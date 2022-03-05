@@ -1994,7 +1994,7 @@ h2 {
     position: absolute;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(196 196 196 / var(--tw-bg-opacity));
+    background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
 .tree-content {
   position: relative;
@@ -2008,7 +2008,7 @@ h2 {
     position: absolute;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(196 196 196 / var(--tw-bg-opacity));
+    background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
 .belongsProject .tree {
   margin-top: 3rem;
@@ -2018,14 +2018,19 @@ h2 {
   --tw-bg-opacity: 1;
   background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
-.belongsProject .tree-content::after {
+.belongsProject .tree-content::after,
+.timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
     transform: translateY(-50%);
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
-.belongsProject .tree-content::before {
+.timeline .tree-content::after {
+    left: -5.5rem;
+}
+.belongsProject .tree-content::before,
+.timeline .tree-content::before {
     content: "";
     height: 1rem;
     width: 5rem;
@@ -2036,6 +2041,10 @@ h2 {
     border-radius: 9999px;
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
+}
+.release.tree::before, .release.tree .tree-content::before, .release.tree .tree-content::after {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 196 196 / var(--tw-bg-opacity));
 }
 .main-wrapper {
     width: 100%;

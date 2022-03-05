@@ -22,16 +22,9 @@ class ShowSecurityController extends Controller
     {
         $userId = Auth::id();
 
-        /**
-         * usersテーブルからログインユーザーのレコードを取得
-         * @var User
-         * @property string $created_at
-         */
-        $loginUser = User::where('id', $userId)->first();
+        // usersテーブルからログインユーザーのレコードを取得
+        $user = User::where('id', $userId)->first();
 
-        // 一応エラーを防ぐためcreated_atが存在しているときのみformatをかける
-        $registerDate = $loginUser->created_at ? $loginUser->created_at->format('Y/n/j') : '-----';
-
-        return view('security.index', ['registerDate' => $registerDate]);
+        return view('security.index', ['user' => $user]);
     }
 }

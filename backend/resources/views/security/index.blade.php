@@ -6,7 +6,9 @@
 @endsection
 @section('content')
 <h1 class="text-center my-8 text-3xl ">セキュリティ</h1>
-<h2>登録日: {{$registerDate}}</h2>
-{{-- 開発者1でログインしている場合'-----'と表示されますがバグではないです！ --}}
+{{-- inputタグのvalueに入れておく用 --}}
+<h2>メールアドレス: {{$user->email}}</h2>
+
+<h2>登録日: {{$user->created_at->format('Y/n/j')}}</h2>
 
 @endsection

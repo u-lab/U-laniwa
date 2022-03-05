@@ -11,13 +11,14 @@
 
             <div>
                 <x-jet-label for="name" value="{{ __('InviteCode') }}" />
-                <x-jet-input id="invite_code" class="block mt-1 w-full" type="text" name="invite_code"
+                <x-jet-input id="invite_code" class="block mt-1 w-full "
+                    style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" type="text" name="invite_code"
                     :value="old('invite_code')" required autofocus />
             </div>
             <div>
                 <p class="block font-medium text-sm text-gray-700">{{ __('HopeUserRole') }}</p>
                 <select
-                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
+                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full bg-bg"
                     name="user_role_id" name="{{ __('HopeUserRole') }}">
                     <option value="20">仮入部</option>
                     <option value="10">外部</option>
@@ -25,8 +26,9 @@
             </div>
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                    autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full "
+                    style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" ty type="text" name="name"
+                    :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">

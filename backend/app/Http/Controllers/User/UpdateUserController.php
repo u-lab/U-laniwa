@@ -40,7 +40,7 @@ class UpdateUserController extends Controller
             'birthMunicipality' => 'required | string | max:255',
             'liveCountry' => 'required | integer | in:0,81',
             'livePrefecture' => 'required | integer',
-            'liveMunicipality' => 'required | string | max:255',
+            'liveMunicipalityId' => 'required | integer',
             'hobbies' => 'string | max:255',
             'interests' => 'string | max:255',
             'motto' => 'string | max:255',

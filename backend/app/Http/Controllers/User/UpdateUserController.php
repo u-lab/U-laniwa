@@ -30,7 +30,6 @@ class UpdateUserController extends Controller
             'grade' => 'required | integer | digits_between:1,2',
             'companyName' => 'string | max:255',
             'position' => 'string | max:255',
-            'UUFaculty' => 'integer | digits:1',
             'UUMajor' => 'integer | digits_between:1,2',
             'university' => 'string | max:255',
             'faculty' => 'string | max:255',

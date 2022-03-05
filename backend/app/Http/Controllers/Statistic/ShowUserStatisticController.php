@@ -36,8 +36,9 @@ class ShowUserStatisticController extends Controller
         /** @var array<string,int> 権限名:数 の連想配列 */
         $userRoleCounter = [];
         foreach ($perUserRoles as $perUserRole) {
-            //
-            $userRoleCounter[$userRoles->where('id', $perUserRole->user_role_id)->first()->name] = $perUserRole->user_role_count;
+            /** @var UserRole */
+            $userRole = $userRoles->where('id', $perUserRole->user_role_id)->first();
+            $userRoleCounter[$userRole->name] = $perUserRole->user_role_count;
         }
 
         /**
@@ -77,8 +78,8 @@ class ShowUserStatisticController extends Controller
              */
             //学部はenumに変換して加算する
             if ($perUserInfo->u_u_major_id) {
+                /** @var UUMajor */
                 $major = $uuMajors->where('id', $perUserInfo->u_u_major_id)->first();
-                \Log::debug($major);
                 $MajorName = $major->name;
                 $facultyName = $major->faculty_id->label();
                 //学部計測
@@ -102,13 +103,14 @@ class ShowUserStatisticController extends Controller
              */
             $userAreas = Area::whereIn('id', [$perUserInfo->birth_area_id, $perUserInfo->live_area_id])->get();
             // 在住と出身が同じだった場合、返り値1つなので
+
             /** @var Area */
             $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $perUserInfo->birth_area_id);
             /** @var Area */
             $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $perUserInfo->live_area_id);
 
-            $userLiveAreaPrefecture = $userLiveArea->prefecture_code->label();
-            $userBirthAreaPrefecture = $userBirthArea->prefecture_code->label();
+            $userLiveAreaPrefecture = $userBirthArea->prefecture_code == null ?  "-" : $userLiveArea->prefecture_code->label();
+            $userBirthAreaPrefecture = $userLiveArea->prefecture_code == null ?  "-" : $userBirthArea->prefecture_code->label();
             //現住地
             if (!array_key_exists($userLiveAreaPrefecture, $userLiveAreaCounter)) {
                 $userLiveAreaCounter[$userLiveAreaPrefecture] = 0;

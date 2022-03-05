@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 
-class UpdateUserController extends Controller
+class UpdateUserInfoController extends Controller
 {
     /**
      * ユーザー情報を更新するコントローラー

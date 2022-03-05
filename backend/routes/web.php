@@ -65,6 +65,9 @@ use App\Http\Controllers\Security\ShowSecurityController;
 use App\Http\Controllers\Statistic\ShowAllStatisticController;
 use App\Http\Controllers\Statistic\ShowProjectStatisticController;
 use App\Http\Controllers\Statistic\ShowUserStatisticController;
+use App\Http\Controllers\User\UpdateUserInfoController;
+use App\Http\Controllers\User\UpdateUserLinkController;
+use App\Http\Controllers\User\UpdateUserTimelineController;
 
 /**
  * 【SecurityClearance:level0】
@@ -133,7 +136,9 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::get('/user/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
-    Route::post('/user/edit/update', UpdateUserController::class)->name('userEditUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/userInfo/update', UpdateUserInfoController::class)->name('userInfoUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/userTimeline/update', UpdateUserTimelineController::class)->name('userTimelineUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/userLink/update', UpdateUserLinkController::class)->name('userLinkUpdate'); //ユーザー閲覧
 
 
     //ユーザータイムライン

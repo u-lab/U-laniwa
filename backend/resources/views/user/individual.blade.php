@@ -1,22 +1,23 @@
 @extends("layouts.main")
-@section("title", $user->name)
+@php
+$authUser=Auth::user();
+$name = $user->last_name." ".$user->first_name;
+@endphp
+@section("title", $name)
 
 @section('header')
 @parent
 @endsection
 @section('content')
-@php
-$authUser=Auth::user();
-@endphp
 {{--<h1 class="text-center my-8 text-3xl ">個別ユーザー情報</h1>--}}
-@include('components.forMembers.pageTitle', ['title'=>$user->name])
+@include('components.forMembers.pageTitle', ['title'=>$name])
 
 <div class="w-full text-center">
     <p>
         @if($gate->allows('level7~'))
-        あなたは本入部以上のため、すべての情報の閲覧が可能です
+        あなたは本入部以上のため、すべての情報の閲覧が可能です。
         @else
-        あなたは本入部以下のため、一部の情報は閲覧できません
+        あなたは本入部以下のため、一部の情報は閲覧できません。
         @endif
     </p>
 
@@ -32,27 +33,25 @@ $authUser=Auth::user();
         </div>
         <div class="px-4 text-left w-1/2">
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
-            <p class="xl:text-lg pl-2 mb-2">{{$name->last_name}} {{$name->first_name}} ({{$user->name}})
+            <p class="xl:text-lg pl-2 mb-2">{{$name}} ({{$user->name}})
             </p>
             @empty($user->status)
             @else
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">一言コメント</p>
             <p class="xl:text-lg pl-2 mb-2">{{$user->status}}</p>
             @endempty
-            {{--@if($grade == '社会人' || $grade == 'その他' )--}}
+            @if($user->grade == '社会人' || $user->grade == 'その他' )
             <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">所属</p>
-            {{--@else--}}
-            {{--<p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">学部/学科</p>--}}
-            {{--@endif--}}
+            @else
+            <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">学部/学科</p>
+            @endif
             <p class="xl:text-lg pl-2 mb-2">{{$user->profession}}</p>
-            {{--<p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">せつめい</p>
-            <p class="xl:text-lg pl-2 mb-2">{{$user->description}}</p>--}}
         </div>
     </div>
 
     <div class="basicInformation infoFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">基本情報</h2>
-        <table class="mt-6 mx-auto">
+        <table class="mt-4 mx-auto">
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">学年</td>
                 <td class="w-1/2 pl-5">{{$user->grade}}</td>
@@ -63,34 +62,36 @@ $authUser=Auth::user();
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">権限レベル</td>
-                <td class="w-1/2 pl-5"></td>
+                <td class="w-1/2 pl-5">{{$user->user_role_id}}</td>
             </tr>
             <tr>
-                <td class="text-right font-bold w-1/2 pr-5">学部</td>
-                <td class="w-1/2 pl-5"></td>
+                <td class="text-right font-bold w-1/2 pr-5">学部・学科</td>
+                <td class="w-1/2 pl-5">{{$user->profession}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">出身</td>
-                <td class="w-1/2 pl-5"></td>
+                <td class="w-1/2 pl-5">{{$user->birth_area}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">現住所</td>
-                <td class="w-1/2 pl-5"></td>
+                <td class="w-1/2 pl-5">{{$user->live_area}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">兼部・サークル</td>
-                <td class="w-1/2 pl-5"></td>
+                <td class="w-1/2 pl-5">{{$user->group_affiliation}}</td>
             </tr>
         </table>
     </div>
 
     <div class="basicInformation infoFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">パーソナルデータ</h2>
-        <table class="mt-6 mx-auto">
+        <table class="mt-4 mx-auto">
+            @if ($user->is_publish_birth_day)
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">誕生日</td>
-                <td class="w-1/2 pl-5"></td>
+                <td class="w-1/2 pl-5">{{$user->birth_day}}</td>
             </tr>
+            @endif
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">趣味</td>
                 <td class="w-1/2 pl-5">{{$user->hobbies}}</td>
@@ -108,7 +109,7 @@ $authUser=Auth::user();
 
     <div class="basicInformation infoFrame h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">情報</h2>
-        <table class="mt-6 mx-auto">
+        <table class="mt-4 mx-auto">
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">Slack名</td>
                 <td class="w-1/2 pl-5">{{$user->slack_name}}</td>
@@ -136,55 +137,45 @@ $authUser=Auth::user();
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
         <div class="flex flex-wrap gap-x-12 my-8">
-            {{--@foreach ($collection as $item)--}}
-            <a href="https://hogehoge.com" target="_blank" rel="noopener"
-                class="flex bg-bg-sub rounded-2xl p-6 hover:opacity-80 userFrame" style="transition: .2s; width: 500px">
-                <div class="flex items-center w-1/2">
-                    <img src="path" alt="" class="object-fit-cover">
-                    <p>sitename</p>
+            @foreach ($links as $link)
+            <a href="{{$link->url}}" target="_blank" rel="noopener"
+                class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame"
+                style="transition: .2s; width: 500px">
+                <div class="flex items-center w-full mb-4">
+                    <img src="{{'http://www.google.com/s2/favicons?sz=64&domain=' . $link->url}}" class="w-12 h-12"
+                        alt="">
+                    <h3 class="ml-4 text-xl">{{$link->name}}</h3>
                 </div>
-                <p>description</p>
+                @if ($link->description)
+                <p class="text-center">{{$link->description}}</p>
+                @endif
             </a>
-            <a href="https://hogehoge.com" target="_blank" rel="noopener"
-                class="flex bg-bg-sub rounded-2xl p-6 hover:opacity-80 userFrame" style="transition: .2s; width: 500px">
-                <div class="flex items-center w-1/2">
-                    <img src="path" alt="" class="object-fit-cover">
-                    <p>sitename</p>
-                </div>
-                <p>description</p>
-            </a>
-            {{--@endforeach--}}
+            @endforeach
         </div>
     </div>
 
     <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクト
         </h2>
-        <div class="flex flex-wrap gap-x-12 my-8">
-            {{--@foreach ($collection as $item)--}}
-            <a href="https://hogehoge.com" target="_blank" rel="noopener"
-                class="flex bg-bg-sub rounded-2xl p-6 hover:opacity-80 userFrame" style="transition: .2s; width: 500px">
-                <div class="flex items-center w-1/2">
-                    <img src="path" alt="" class="object-fit-cover">
-                    <p>sitename</p>
-                </div>
-                <p>description</p>
+        @if($projects->isEmpty())
+        <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">所属しているプロジェクトはありません。</p>
+        @endif
+        <div class=" flex flex-wrap gap-x-12 my-8">
+            @foreach ($projects as $project) <a href="{{url('/project/' . $project->project_id)}}" target="_blank"
+                rel="noopener" class="bg-bg-sub text-center rounded-2xl p-6 hover:opacity-80 userFrame"
+                style="transition: .2s; width: 500px">
+                <img src="{{url('/' . $project->thumbnail)}}" alt="" class="rounded mb-8">
+                <h3 class="ml-4 text-xl font-bold mb-2">{{$project->title}}</h3>
+                <p class="mb-2">{{$project->subtitle}}</p>
+                <p class="text-sm mb-4">{{$project->start_date}} 〜 {{$project->end_date}}</p>
             </a>
-            <a href="https://hogehoge.com" target="_blank" rel="noopener"
-                class="flex bg-bg-sub rounded-2xl p-6 hover:opacity-80 userFrame" style="transition: .2s; width: 500px">
-                <div class="flex items-center w-1/2">
-                    <img src="path" alt="" class="object-fit-cover">
-                    <p>sitename</p>
-                </div>
-                <p>description</p>
-            </a>
-            {{--@endforeach--}}
+            @endforeach
         </div>
     </div>
 </div>
 
 
-<h2>名前</h2>
+{{--<h2>名前</h2>
 <p>{{$user->name}}</p>
 <h2>プロフィール画像</h2>
 <img src="{{url('/' . $user->profile_photo_path)}}" alt="">
@@ -259,7 +250,7 @@ $authUser=Auth::user();
     <h3>{{$project->subtitle}}</h3>
     <p>{{$project->start_date}} ~ {{$project->end_date}}</p>
 </a>
-@endforeach
+@endforeach--}}
 
 
 <h1>タイムライン</h1>

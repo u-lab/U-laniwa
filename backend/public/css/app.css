@@ -954,14 +954,14 @@ select {
 .top-8 {
   top: 2rem;
 }
-.top-0 {
-  top: 0px;
-}
 .top-1\/2 {
   top: 50%;
 }
 .left-1\/2 {
   left: 50%;
+}
+.top-0 {
+  top: 0px;
 }
 .z-0 {
   z-index: 0;
@@ -971,9 +971,6 @@ select {
 }
 .col-span-6 {
   grid-column: span 6 / span 6;
-}
-.m-auto {
-  margin: auto;
 }
 .mx-auto {
   margin-left: auto;
@@ -1158,14 +1155,14 @@ select {
   height: -moz-fit-content;
   height: fit-content;
 }
+.h-auto {
+  height: auto;
+}
 .h-48 {
   height: 12rem;
 }
 .h-96 {
   height: 24rem;
-}
-.h-auto {
-  height: auto;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1262,10 +1259,6 @@ select {
 }
 .translate-y-0 {
   --tw-translate-y: 0px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-y-1\/2 {
-  --tw-translate-y: 50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .scale-95 {
@@ -1554,11 +1547,11 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-5 {
-  padding: 1.25rem;
-}
 .p-8 {
   padding: 2rem;
+}
+.p-5 {
+  padding: 1.25rem;
 }
 .p-4 {
   padding: 1rem;
@@ -1816,6 +1809,10 @@ select {
 .text-green-500 {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .text-gray-200 {
   --tw-text-opacity: 1;

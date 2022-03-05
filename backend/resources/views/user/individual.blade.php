@@ -161,15 +161,25 @@ $name = $user->last_name." ".$user->first_name;
         <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">所属しているプロジェクトはありません。</p>
         @endif
         <div class=" flex flex-wrap gap-x-12 my-8">
-            @foreach ($projects as $project) <a href="{{url('/project/' . $project->project_id)}}" target="_blank"
-                rel="noopener" class="bg-bg-sub text-center rounded-2xl p-6 hover:opacity-80 userFrame"
-                style="transition: .2s; width: 500px">
-                <img src="{{url('/' . $project->thumbnail)}}" alt="" class="rounded mb-8">
-                <h3 class="ml-4 text-xl font-bold mb-2">{{$project->title}}</h3>
-                <p class="mb-2">{{$project->subtitle}}</p>
-                <p class="text-sm mb-4">{{$project->start_date}} 〜 {{$project->end_date}}</p>
-            </a>
+            @foreach ($projects as $project)
+            @include('components.forMembers.projectFrame')
             @endforeach
+        </div>
+    </div>
+
+    <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
+        <h2 class="text-xl">タイムライン</h2>
+        <div class="tree">
+
+            @foreach ($events as $event)
+            @include('components.forMembers.userTimeline',[
+            'start_date'=>$event->start_date,
+            'end_date'=>$event->end_date,
+            'genre'=>$event->genre->label(),
+            'title'=>$event->title,
+            'text'=>$event->description])
+            @endforeach
+
         </div>
     </div>
 </div>

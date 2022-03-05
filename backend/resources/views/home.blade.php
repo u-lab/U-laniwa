@@ -7,9 +7,6 @@
 @section('content')
 @include('components.forMembers.pageTitle', ['title'=>'ホーム'])
 
-
-<div class='w-96'></div>
-
 <div class="belongsProject">
     <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>

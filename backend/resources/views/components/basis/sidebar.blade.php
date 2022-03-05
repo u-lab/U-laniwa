@@ -12,6 +12,8 @@
                 @include('components.buttons.navButton', ['link'=>'/project', 'title'=>'プロジェクト'])
                 @include('components.buttons.navButton', ['link'=>'/groupRules', 'title'=>'U-labの決め事'])
                 @include('components.buttons.navButton', ['link'=>'/statistic/user', 'title'=>'統計情報'])
+                @include('components.buttons.navButton', ['link'=>'/procedure', 'title'=>'手続きページ'])
+                @include('components.buttons.navButton', ['link'=>'/security', 'title'=>'セキュリティ'])
             </nav>
         </div>
     </div>

@@ -9,9 +9,12 @@ use App\Enums\Gender;
 use App\Enums\Grade;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
+use App\Models\UserLink;
+use App\Models\UserTimeline;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class ShowEditUserController extends Controller
 {
@@ -22,7 +25,8 @@ class ShowEditUserController extends Controller
      */
     public function __invoke(): View|Factory
     {
-
+        /** @var User */
+        $userId = Auth::id();
         /**
          * DBに格納していないEnum型のデータを取得する
          */
@@ -54,12 +58,19 @@ class ShowEditUserController extends Controller
             'id' => $id, //学部id(学科の取得に用いる)
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
-        \Log::debug($grades);
+
+        //リンク
+        $links = UserLink::where('user_id', $userId)->get();
+        //タイムライン
+        $timelines = UserTimeline::where('user_id', $userId)->get();
+
         return view('user.edit', [
             'genders' => $genders,
             'grades' => $grades,
             'countries' => $countries,
             'uuFaculties' => $uuFaculties,
+            'links' => $links,
+            'timelines' => $timelines,
         ]);
     }
 }

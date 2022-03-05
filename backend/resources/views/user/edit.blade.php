@@ -282,6 +282,7 @@ $user=Auth::user();
                     <td>追加変更</td>
                     <td>削除</td>
                 </tr>
+                {{-- 初回分は登録フォームなのでループ外 --}}
                 <tr>
                     <td style="width: 40px">1</td>
                     <td style="width: 200px"><input style="width: 80%" type="url"></td>
@@ -298,16 +299,26 @@ $user=Auth::user();
                         <input type="submit" value="削除" style="background-color: red; color: #fff;">
                     </td>
                 </tr>
+                {{-- 登録済みデータ表示 --}}
+                @isset($timelines)
+                @php
+                $i=1;
+                @endphp
+                @foreach($timelines as $timeline)
+                @php
+                $i+=1;
+                @endphp
                 <tr>
-                    <td style="width: 40px">2</td>
+                    <td style="width: 40px"> {{$i}}</td>
                     <td style="width: 200px"><input style="width: 80%" type="url"></td>
                     <td style="width: 300px">
                         <textarea style="width: 80%; padding:.5rem;"></textarea>
                     </td>
                     <td style="width: 150px"><input style="width: 80%" type="text"></td>
                     <td style="width: 150px; font-size:.875rem; ">
-                        <div class="mb-1">開始日 : <input style="width:50%" type="date"></div>
-                        <div>終了日 : <input style="width:50%" type="date"></div>
+                        <div class="mb-1">開始日 : <input style="width:50%" type="date" value="{{$timeline->start_date}}">
+                        </div>
+                        <div>終了日 : <input style="width:50%" type="date" value={{$timeline->end_date ?? ""}}></div>
                     </td>
                     <td style="width: 80px"><input type="submit" value="更新"></td>
                     <td style="width: 80px">
@@ -319,6 +330,8 @@ $user=Auth::user();
                         例　けん玉15級を取得、卓球部に入部</p>
                 </td>
                 </tr>
+                @endforeach
+                @endisset
             </table>
         </div>
     </div>

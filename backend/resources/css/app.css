@@ -54,7 +54,7 @@ h2 {
 }
 
 .tree {
-    width: 400px;
+    max-width: 1200px;
     min-height: 400px;
     @apply mx-auto my-20 pl-20 relative;
 }

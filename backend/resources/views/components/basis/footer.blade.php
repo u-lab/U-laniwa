@@ -7,7 +7,7 @@
         <a href='/terms'>利用規約</a>
         <a href='/privacyPolicy'>プライバシーポリシー</a>
         <a href='/credit'>クレジット</a>
-        <a href='/contact'>お問い合わせ</a>
+        <a href='https://forms.gle/tShu2ho87U8ioB4U9'>お問い合わせ</a>
     </div>
     <a href='https://github.com/u-lab/U-laniwa' target="_blank" rel="noopener" class="mb-4">GitHub</a>
 

@@ -167,3 +167,18 @@ textarea:focus {
     --tw-ring-shadow: 0;
     @apply outline-offset-0;
 }
+
+/* チャート用 */
+.chartWrapper {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 600px;
+}
+.chartWrapper_small {
+    margin: 0 auto;
+    padding: 2em;
+    /* overflow-x: scroll; */
+    width: 300px;
+    height: 300px;
+}

@@ -131,10 +131,11 @@
     'title'=>'第 11 条（お問い合わせ窓口）',
     'text'=>'
     本ポリシーに関するお問い合わせは、U-laniwa お問合せフォームよりお願いたします。<br>
-    <a class="inline-block" href="https://forms.gle/tShu2ho87U8ioB4U9">https://forms.gle/tShu2ho87U8ioB4U9</a>'])
+    <a target="_blank" class="inline-block"
+        href="https://forms.gle/tShu2ho87U8ioB4U9">https://forms.gle/tShu2ho87U8ioB4U9</a>'])
 
-    <p>制定: 2022 年 3 月 5 日</p>
-    <p>改定: 2022 年 3 月 5 日</p>
+    <p>制定: 2022年3月5日</p>
+    <p>改定: 2022年3月5日</p>
 </div>
 
 @endsection

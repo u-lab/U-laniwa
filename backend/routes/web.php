@@ -143,7 +143,7 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     // Route::post('/timeline/project',  ShowProjectTimelineController::class)->name('timelineJoinedProject');
     // Route::post('/timeline/u-lab', Controller::class)->name('timelineJoinedU-lab');
 
-    // Route::get('/statistic', ShowAllStatisticController::class)->nam/proceduree('statistics'); //統計情報
+    // Route::get('/statistic', ShowAllStatisticController::class)->name('statistics'); //統計情報
     // Route::get('/statistic/user', ShowProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
     // Route::get('/statistic/project', ShowUserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
 

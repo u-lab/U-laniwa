@@ -143,7 +143,7 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     // Route::post('/timeline/project',  ShowProjectTimelineController::class)->name('timelineJoinedProject');
     // Route::post('/timeline/u-lab', Controller::class)->name('timelineJoinedU-lab');
 
-    // Route::get('/statistic', ShowAllStatisticController::class)->name('statistics'); //統計情報
+    // Route::get('/statistic', ShowAllStatisticController::class)->nam/proceduree('statistics'); //統計情報
     // Route::get('/statistic/user', ShowProjectStatisticController::class)->name('statisticsUsers'); //ユーザー統計情報
     // Route::get('/statistic/project', ShowUserStatisticController::class)->name('statisticsProjects'); //プロジェクト統計情報
 
@@ -164,6 +164,7 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
 
     //手続きページ
     Route::get('/procedure', ShowProcedureController::class)->name('procedure');
+    //下記は誤操作のリスクが高いため、リンクはセキュリティページに配置
     Route::post('/procedure/withdraw', DoWithDrawProcedureController::class)->name('withdraw'); //退部処理
     //level1権限権限では「引退」（OB・OGになる）ことはできないのでlevel3以降の権限対象で記載
 
@@ -221,7 +222,9 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
                  * 【SecurityClearance:level4】
                  * 本入部レベル
                  */
+                //下記は誤操作のリスクが高いため、リンクはセキュリティページに配置
                 Route::post('/procedure/retire', DoRetireProcedureController::class)->name('retire'); //引退処理
+                //下記は手続きページ
                 Route::post('/procedure/regenerateInviteCode', DoRegenerateInviteCodeController::class)->name('regenerateInviteCode'); //招待コード生成処理
 
                 //プロジェクト新規作成

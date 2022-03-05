@@ -10,7 +10,7 @@
         <div class="py-8">
             <img src="/img/ulaniwa_logo.svg" class='w-48 h-48 mx-auto'>
         </div>
-        <h1 class="text-center mb-6 ">U-laniwaへようこそ！</h1>
+        <h1 class="text-center mb-6 font-bold">U-laniwaへようこそ！</h1>
 
         <div class="flex justify-center gap-4 mb-8">
             <x-buttons.loginButton url='/login' name='ログイン' />

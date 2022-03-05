@@ -7,7 +7,7 @@
 @section('content')
 @include('components.noLogin.pageTitle', ['title'=>'リリースノート'])
 
-<div class="tree">
+<div class="tree release">
 
     @include('components.noLogin.treeContent',[
     'date'=>'2022年3月5日',

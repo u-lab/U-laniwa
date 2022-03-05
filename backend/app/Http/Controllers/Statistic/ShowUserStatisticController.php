@@ -108,6 +108,7 @@ class ShowUserStatisticController extends Controller
             $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $perUserInfo->birth_area_id);
             /** @var Area */
             $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $perUserInfo->live_area_id);
+            //三項演算子してるのはLarastanエラー回避のため
 
             $userLiveAreaPrefecture = $userBirthArea->prefecture_code == null ?  "-" : $userLiveArea->prefecture_code->label();
             $userBirthAreaPrefecture = $userLiveArea->prefecture_code == null ?  "-" : $userBirthArea->prefecture_code->label();

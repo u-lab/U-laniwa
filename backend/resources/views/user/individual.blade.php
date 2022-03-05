@@ -137,6 +137,9 @@ $name = $user->last_name." ".$user->first_name;
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
         <div class="flex flex-wrap gap-x-12 my-8">
+            @if($links->isEmpty())
+            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">MyLinkはありません。</p>
+            @endif
             @foreach ($links as $link)
             <a href="{{$link->url}}" target="_blank" rel="noopener"
                 class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame"
@@ -167,7 +170,7 @@ $name = $user->last_name." ".$user->first_name;
         </div>
     </div>
 
-    <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
+    <div class="individual bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>
         <div class="tree">
 

@@ -1989,6 +1989,7 @@ h2 {
     margin-bottom: 5rem;
     padding-left: 5rem;
 }
+.individual > .tree,
 .userTimeline > .tree {
     width: 80%;
 }
@@ -2026,7 +2027,7 @@ h2 {
   background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
 .belongsProject .tree-content::after,
-.userTimeline .tree-content::after,
+.individual .tree-content::after,
 .timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
@@ -2034,12 +2035,12 @@ h2 {
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
-.userTimeline .tree-content::after,
+.individual .tree-content::after,
 .timeline .tree-content::after {
     left: -5.5rem;
 }
 .belongsProject .tree-content::before,
-.userTimeline .tree-content::before,
+.individual .tree-content::before,
 .timeline .tree-content::before {
     content: "";
     height: 1rem;

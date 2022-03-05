@@ -65,6 +65,9 @@ use App\Http\Controllers\Security\ShowSecurityController;
 use App\Http\Controllers\Statistic\ShowAllStatisticController;
 use App\Http\Controllers\Statistic\ShowProjectStatisticController;
 use App\Http\Controllers\Statistic\ShowUserStatisticController;
+use App\Http\Controllers\User\UpdateUserInfoController;
+use App\Http\Controllers\User\UpdateUserLinkController;
+use App\Http\Controllers\User\UpdateUserTimelineController;
 
 /**
  * 【SecurityClearance:level0】
@@ -133,7 +136,9 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::get('/user/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
-    Route::post('/user/edit/update', UpdateUserController::class)->name('userEditUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/userInfo/update', UpdateUserInfoController::class)->name('userInfoUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/userTimeline/update', UpdateUserTimelineController::class)->name('userTimelineUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/userLink/update', UpdateUserLinkController::class)->name('userLinkUpdate'); //ユーザー閲覧
 
 
     //ユーザータイムライン
@@ -170,14 +175,14 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
 
 
     //プロジェクト周り
-    Route::get('/project', ShowAllProjectController::class)->name('project'); //プロジェクト一覧
-    Route::get('/project/{project_id}', ShowIndividualProjectController::class)->name('project');   //各プロジェクト情報
+    // Route::get('/project', ShowAllProjectController::class)->name('project'); //プロジェクト一覧
+    // Route::get('/project/{project_id}', ShowIndividualProjectController::class)->name('project');   //各プロジェクト情報
 
     //プロジェクト編集(編集はプロジェクトメンバーであれば可能なので、level1のコーナーで用意)
-    Route::get('/project/{project_id}/edit', ShowEditProjectController::class)->name('project');   //プロジェクト編集ページ
+    // Route::get('/project/{project_id}/edit', ShowEditProjectController::class)->name('project');   //プロジェクト編集ページ
     //createは一つ上の権限にあり
-    Route::post('/project/{project_id}/update', UpdateProjectController::class)->name('projectUpdate');   //プロジェクト更新
-    Route::post('/project/{project_id}/delete', DeleteProjectController::class)->name('projectDelete');   //プロジェクト削除
+    // Route::post('/project/{project_id}/update', UpdateProjectController::class)->name('projectUpdate');   //プロジェクト更新
+    // Route::post('/project/{project_id}/delete', DeleteProjectController::class)->name('projectDelete');   //プロジェクト削除
     //プロジェクトのお知らせ
     // Route::post('/project/{project_id}/notice/create', CreateProjectNoticeController::class)->name('noticeProject'); //新規←ここはプロジェクト編集に相乗りできるのでgetページ不要
     // Route::post('/project/{project_id}/notice/update', UpdateProjectNoticeController::class)->name('noticeProject'); //更新
@@ -228,8 +233,8 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
                 Route::post('/procedure/regenerateInviteCode', DoRegenerateInviteCodeController::class)->name('regenerateInviteCode'); //招待コード生成処理
 
                 //プロジェクト新規作成
-                Route::get('/project/create', ShowCreateProjectController::class)->name('projectCreate');
-                Route::post('/project/create', CreateProjectController::class)->name('projectCreatePost');
+                // Route::get('/project/create', ShowCreateProjectController::class)->name('projectCreate');
+                // Route::post('/project/create', CreateProjectController::class)->name('projectCreatePost');
 
 
 

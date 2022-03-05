@@ -310,7 +310,7 @@ $user=Auth::user();
                 @endphp
                 <tr>
                     <td style="width: 40px"> {{$i}}</td>
-                    <td style="width: 200px"><input style="width: 80%" type="url"></td>
+                    <td style="width: 200px"><input style="width: 80%" type="name"></td>
                     <td style="width: 300px">
                         <textarea style="width: 80%; padding:.5rem;"></textarea>
                     </td>
@@ -325,13 +325,13 @@ $user=Auth::user();
                         <input type="submit" value="削除" style="background-color: red; color: #fff;">
                     </td>
                 </tr>
+                @endforeach
+                @endisset
                 <td colspan="7">
                     <p>タイムラインでは、自分の学業、お仕事、資格、所属団体、大会などの結果や情報を時系列で表示できます。<br>
                         例　けん玉15級を取得、卓球部に入部</p>
                 </td>
                 </tr>
-                @endforeach
-                @endisset
             </table>
         </div>
     </div>

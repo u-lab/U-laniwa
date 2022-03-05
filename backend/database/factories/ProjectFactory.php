@@ -26,7 +26,7 @@ class ProjectFactory extends Factory
         $type = $this->faker->randomElement(["に建物", "のwebサイト", "の名産品", "の観光名所"]);
         $action = $this->faker->randomElement(["作る", "守る", "用意する", "宣伝する"]);
         return [
-            'representative_id' => $this->faker->numberBetween(1, 10),
+            'representative_id' => $this->faker->numberBetween(2, 10),
             'title' =>   $city . $type . "を" . $action,
             'subtitle' =>    $city . "協賛プロジェクト",
             'description' => $city . $type . "を" . $action . "プロジェクトです。" . $this->faker->realText(50) . "です。",

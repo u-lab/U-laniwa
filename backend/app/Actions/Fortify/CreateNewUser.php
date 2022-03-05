@@ -18,7 +18,7 @@ class CreateNewUser implements CreatesNewUsers
      *
      * @param  array  $input
      * @return \App\Models\User
-     */
+     */k
     public function create(array $input)
     {
         Validator::make($input, [

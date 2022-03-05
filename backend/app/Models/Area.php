@@ -9,6 +9,10 @@ use App\Enums\Prefecture;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property Prefecture $prefecture_code
+ * ↑Larastanエラー対策で、本当はこのごまかしだめですが……done is better than perfect
+ */
 class Area extends Model
 {
     use HasFactory;

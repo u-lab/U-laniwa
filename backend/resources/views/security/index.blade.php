@@ -44,16 +44,16 @@
 <p class="text-xl">登録日: {{$user->created_at->format('Y/n/j')}}</p>
 
 @include('components.forMembers.pageSubTitle', ['subTitle'=>'DangerZone'])
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-center mb-20">
 
-    <form method="POST" action="/procedure/retire">
+    <form method="POST" action="/procedure/retire" class="mx-2">
         @csrf
-        <input type="submit" class="text-black" style="border-radius:4px" value="退部する">
+        <input type="submit" class="text-white  py-2 px-2 " style="background-color: red!important" value="退部する">
     </form>
     @if($gate->allows('level4~'))
-    <form method="POST" action="/procedure/withdraw">
+    <form method="POST" action="/procedure/withdraw" class="mx-2">
         @csrf
-        <input type="submit" class="text-black" style="border-radius:4px" value="引退する">
+        <input type="submit" class="text-white py-2 px-2  " style="background-color: red!important" value="引退する">
     </form>
     @endif
 </div>

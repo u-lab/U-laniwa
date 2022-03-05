@@ -32,6 +32,6 @@ class ShowSecurityController extends Controller
         // usersテーブルからログインユーザーのレコードを取得
         $user = User::where('id', $userId)->first();
 
-        return view('security.index', ['user' => $user, 'gate' => $gate]);
+        return view('security.index', ['user' => $user, 'gate' => $this->gate]);
     }
 }

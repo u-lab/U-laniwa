@@ -24,7 +24,6 @@ class UserInfoTableSeeder extends Seeder
                 'first_name' => "秀一",
                 'description' => "自己紹介は省きます。",
                 'grade' => 2,
-                'is_udai' => true,
                 'u_u_major_id' => 3,
                 'gender' => 1,
                 'live_area_id' => 24,

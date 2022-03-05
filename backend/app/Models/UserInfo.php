@@ -20,7 +20,6 @@ class UserInfo extends Model
         'first_name',
         'description',
         'grade',
-        'is_udai',
         'university_meta',
         'company_meta',
         'faculty_id',

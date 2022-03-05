@@ -154,14 +154,18 @@ input[type="submit"] {
 input[type="text"],
 input[type="url"],
 input[type="date"],
+input[type="checkbox"],
+select,
 textarea {
     border: none;
-    @apply bg-bg-main rounded px-0;
+    @apply bg-bg-main rounded px-0 pl-4;
 }
 
 input[type="text"]:focus,
 input[type="url"]:focus,
 input[type="date"]:focus,
+input[type="checkbox"]:focus,
+select:focus,
 textarea:focus {
     outline: none;
     --tw-ring-shadow: 0;

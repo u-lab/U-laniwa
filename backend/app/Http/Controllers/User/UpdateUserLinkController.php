@@ -9,15 +9,17 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 
-class UpdateUserController extends Controller
+class UpdateUserLinkController extends Controller
 {
     /**
-     * ユーザー情報を更新するコントローラー
+     * ユーザーリンクを更新するコントローラー
      *
      * @return Redirector|RedirectResponse
      */
-    public function __invoke(): Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
+        $validateRule = [];
+        $this->validate($request, $validateRule);
         return redirect('/user/edit');
     }
 }

@@ -3,6 +3,7 @@
     <div class="flex gap-8 justify-center mb-2">
         <a href='/releaseNote'>リリースノート</a>
         <a href='/aboutThisSite'>このサイトについて</a>
+        <a href='/'>トップ</a>
         <a href='/terms'>利用規約</a>
         <a href='/privacyPolicy'>プライバシーポリシー</a>
         <a href='/credit'>クレジット</a>

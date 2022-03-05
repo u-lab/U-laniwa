@@ -94,6 +94,7 @@ h2 {
 }
 
 .belongsProject .tree-content::after,
+.userTimeline .tree-content::after,
 .timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
@@ -101,11 +102,13 @@ h2 {
     @apply bg-main-btn;
 }
 
+.userTimeline .tree-content::after,
 .timeline .tree-content::after {
     left: -5.5rem;
 }
 
 .belongsProject .tree-content::before,
+.userTimeline .tree-content::before,
 .timeline .tree-content::before {
     content: "";
     height: 1rem;

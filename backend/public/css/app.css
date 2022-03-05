@@ -980,13 +980,13 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 .mx-2 {
   margin-left: 0.5rem;
@@ -1224,11 +1224,11 @@ select {
 .w-96 {
   width: 24rem;
 }
-.w-24 {
-  width: 6rem;
-}
 .w-2\/3 {
   width: 66.666667%;
+}
+.w-24 {
+  width: 6rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -2026,6 +2026,7 @@ h2 {
   background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
 .belongsProject .tree-content::after,
+.userTimeline .tree-content::after,
 .timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
@@ -2033,10 +2034,12 @@ h2 {
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
+.userTimeline .tree-content::after,
 .timeline .tree-content::after {
     left: -5.5rem;
 }
 .belongsProject .tree-content::before,
+.userTimeline .tree-content::before,
 .timeline .tree-content::before {
     content: "";
     height: 1rem;

@@ -13,7 +13,19 @@ $user=Auth::user();
 
 <div class="mx-auto mb-80" style="max-width: 1000px">
     <div class="border-2 p-2 mb-20">
-        <form>
+        <form action="/user/edit/update/userInfo" method="post">
+            @php
+            $originImg = url('/'.$user->profile_photo_path);
+            $originName = $user->name;
+            $originLastName = $userInfo->last_name;
+            $originFirstName = $userInfo->first_name;
+            $originGender = $userInfo->gender;
+            $originBirthDay = $userInfo->birth_day;
+            $originGrade = $userInfo->grade;
+            $originCompany = $userInfo->company;
+            $originPosition = $userInfo->position;
+            @endphp
+            @csrf
             <div class="mx-auto mb-20" style="width: 600px">
                 <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4">プロフィール画像</h2>
                 <div class="rounded-3xl border-2 border-bg">
@@ -26,8 +38,7 @@ $user=Auth::user();
                             <td style="width: 250px"><img src="{{url('/'.$user->profile_photo_path)}}"
                                     class="w-48 inline-block">
                             </td>
-                            <td style="width: 250px"><input style="max-width: 250px" type="file" name="example"
-                                    accept="image/jpeg, image/png"></td>
+                            <td style="width: 250px"><input style="max-width: 250px" type="file" name="img"></td>
                         </tr>
                     </table>
                 </div>
@@ -83,27 +94,32 @@ $user=Auth::user();
                             @endforeach
                             こんな感じで！ --}}
                             <td>
-                                <select name='gender' style="width: 80%" required='true'>
+                                <select name='grade' style="width: 80%" required='true'>
+                                    <option name='gradeOption' value="0" selected>選択してください</option>
                                     @foreach ($grades as $grade)
-                                    <option value="{{$loop->iteration}}">{{$grade['name']}}</option>
+                                    <option name='gradeOption' value="{{$loop->iteration}}">{{$grade['name']}}</option>
                                     @endforeach
                                 </select>
                             </td>
                         </tr>
-                        <tr>
-                            <td style="width: 200px">会社名</td>
-                            <td><input required='true' style="width: 80%" type="text"></td>
+                        <tr name="company" class="hidden">
+                            <td style="width: 200px">会社名/役職名</td>
+                            <td>
+                                <input required='true' style="width: 38%; margin-right:4%;" type="text">
+                                <input required='true' style="width: 38%;" type="text">
+                            </td>
+
                         </tr>
-                        <tr>
+                        <tr name="university" class="hidden">
                             <td style="width: 200px">大学</td>
                             <td>
-                                <input type="radio" name="univ" value="宇都宮大学">
+                                <input type="radio" name="univRadio" value="宇都宮大学">
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
-                                <input type="radio" name="univ" value="他大学">
+                                <input type="radio" name="univRadio" value="他大学">
                                 <label for='他大学'>他大学</label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr name="university" id="UU", class="hidden">
                             <td style="width: 200px">学部/学科</td>
                             {{-- TODO: 学部はプルダウンメニューでお願いします
                             @foreach ($uuFaculties as $uuFacultie)
@@ -119,7 +135,7 @@ $user=Auth::user();
                                 <input required='true' style="width: 38%" type="text">
                             </td>
                         </tr>
-                        <tr>
+                        <tr name="university" id="other" class="hidden">
                             <td style="width: 200px">大学名/学部/学科</td>
                             <td>
                                 <input required='true' style="width: 24%; margin-right:4%;" type="text">
@@ -127,6 +143,60 @@ $user=Auth::user();
                                 <input required='true' style="width: 24%" type="text">
                             </td>
                         </tr>
+                        <script>
+                            // 学年のプルダウンメニューによる条件分岐
+                            document.querySelector('select[name="grade"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
+                                const options = document.querySelectorAll('option[name="gradeOption"]');  // プルダウンの選択肢のNodeList
+                                const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
+
+                                const company = document.querySelector('tr[name="company"]');  // 会社の項目
+                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の項目のNodeList
+                                if (selectedOption.value < 10) {  // 学生が選択されているとき
+                                    //会社を非表示, 学生ラジオボタンを表示
+                                    company.classList.add('hidden');
+                                    // [...universities].forEach(university => university.classList.remove('hidden'));
+                                    universities.item(0).classList.remove('hidden');
+                                } else {  //社会人・その他が選択されている時
+                                    //会社を表示, 学生全体を非表示
+                                    company.classList.remove('hidden');
+                                    [...universities].forEach(university => university.classList.add('hidden'));
+                                }
+                            });
+
+                            // 大学のラジオボタンによる条件分岐
+
+                            const UU = document.querySelector('#UU');
+                            const other = document.querySelector('#other');
+                            // UUBtn.addEventListener('change', () => {
+                            //     if (UUBtn.checked) {
+                            //         console.log('hoge');
+                            //         UU.classList.remove('hidden');
+                            //         other.classList.add('hidden');
+                            //     } else {
+                            //         console.log('fuga');
+                            //         UU.classList.add('hidden');
+                            //         other.classList.remove('hidden');
+                            //     }
+                            // });
+                            // window.onload = () => {
+                            //     const radioBtns = document.querySelectorAll('input[name="univRadio]"');
+                            //     [...radioBtns].forEach(radioBtn => {
+                            //         console.log(radioBtn);
+                            //     });
+                            // }
+                                // radioBtn.addEventListener('change', () => {
+                                //     if (radioBtn.checked && radioBtn.value === '宇都宮大学') {
+                                //         console.log('hoge');
+                                //         UU.classList.remove('hidden');
+                                //         other.classList.add('hidden');
+                                //     } else {
+                                //         console.log('fuga');
+                                //         UU.classList.add('hidden');
+                                //         other.classList.remove('hidden');
+                                //     }
+                                // });
+                            // });
+                        </script>
                         <tr>
                             <td style="width: 200px">兼部・サークル</td>
                             <td><input required='true' style="width: 80%" type="text"></td>

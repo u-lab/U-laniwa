@@ -18,7 +18,7 @@ class ProjectParticipationRequestFactory extends Factory
     {
         return [
             'project_id' => $this->faker->numberBetween(1, 20),
-            'user_id' => $this->faker->numberBetween(1, 40),
+            'user_id' => $this->faker->numberBetween(2, 40),
             'comment' => $this->faker->name() . "です。" . $this->faker->name('male') . "の紹介で興味を持ちました。よろしくお願いいたします。",
         ];
     }

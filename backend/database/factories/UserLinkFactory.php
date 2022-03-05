@@ -22,13 +22,13 @@ class UserLinkFactory extends Factory
         //説明ありとなしの2種類用意
         $userLink = [
             [
-                'user_id' => $this->faker->numberBetween(1, 40),
+                'user_id' => $this->faker->numberBetween(2, 40),
                 'url' =>  $this->faker->url(),
                 'name' => $this->faker->company() . "のサイト",
                 'description' => $this->faker->city() . "にある企業で" . $this->faker->randomElement(["インターン", "バイト"]) . "でお世話になりました。",
             ],
             [
-                'user_id' => $this->faker->numberBetween(1, 40),
+                'user_id' => $this->faker->numberBetween(2, 40),
                 'url' =>  $sns[1],
                 'name' => $sns[0],
                 // 'description' => $this->faker->realText(20),

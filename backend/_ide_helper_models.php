@@ -258,9 +258,7 @@ namespace App\Models{
  * @property string $birth_day 誕生日
  * @property string|null $last_name 姓
  * @property string $first_name 名
- * @property string|null $description 自己紹介
  * @property \App\Enums\Grade $grade enum学年
- * @property int $is_udai 宇大かそうでないか
  * @property int|null $u_u_major_id
  * @property mixed|null $university_meta 大学情報
  * @property mixed|null $company_meta 企業情報
@@ -269,8 +267,9 @@ namespace App\Models{
  * @property int $birth_area_id
  * @property int $is_dark_mode ダークモードにするか？
  * @property int $is_publish_birth_day 誕生日公開するか？
- * @property int $is_graduate 卒業したか？
- * @property string $status ひとこと(GitHubのstatusと同じ)
+ * @property string $description 自己紹介
+ * @property string|null $group_affiliation 所属団体
+ * @property string|null $status ひとこと(GitHubのstatusと同じ)
  * @property string|null $github_id GitHubのid
  * @property string|null $line_name LINEでのユーザー名
  * @property string|null $slack_name Slackでのユーザー名
@@ -298,13 +297,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereGithubId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereGrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereGroupAffiliation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereHobbies($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereInterests($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereIsDarkMode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereIsGraduate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereIsPublishBirthDay($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereIsUdai($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereLineName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo whereLiveAreaId($value)

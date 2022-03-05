@@ -11,13 +11,14 @@
 
             <div>
                 <x-jet-label for="name" value="{{ __('InviteCode') }}" />
-                <x-jet-input id="invite_code" class="block mt-1 w-full" type="text" name="invite_code"
+                <x-jet-input id="invite_code" class="block mt-1 w-full "
+                    style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" type="text" name="invite_code"
                     :value="old('invite_code')" required autofocus />
             </div>
             <div>
                 <p class="block font-medium text-sm text-gray-700">{{ __('HopeUserRole') }}</p>
                 <select
-                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
+                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full bg-bg"
                     name="user_role_id" name="{{ __('HopeUserRole') }}">
                     <option value="20">仮入部</option>
                     <option value="10">外部</option>
@@ -25,8 +26,9 @@
             </div>
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                    autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full "
+                    style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" ty type="text" name="name"
+                    :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
@@ -49,26 +51,22 @@
                     name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+
             <div class="mt-4">
                 <x-jet-label for="terms">
                     <div class="flex items-center">
                         <x-jet-checkbox name="terms" id="terms" />
-
                         <div class="ml-2">
                             {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                            'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'"
-                                class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of
-                                Service').'</a>',
-                            'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'"
-                                class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy
-                                Policy').'</a>',
+                            '利用規約' => '<a target="_blank" href="'.url('terms').'"
+                                class="underline text-sm text-gray-600 hover:text-gray-900">利用規約</a>',
+                            'プライバシーポリシー' => '<a target="_blank" href="'.url('privacyPolicy').'"
+                                class="underline text-sm text-gray-600 hover:text-gray-900">プライバシーポリシー</a>',
                             ]) !!}
                         </div>
                     </div>
                 </x-jet-label>
             </div>
-            @endif
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

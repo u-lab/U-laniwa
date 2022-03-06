@@ -67,7 +67,6 @@ class ShowEditUserController extends Controller
         //性別
         $genderEnum = Gender::cases();
         $genders = array_map(fn (Gender $genderCode): array => [
-            'gender_code' => $genderCode, //学年 名前がスネークケースなのはDBの都合
             'name' => $genderCode->label(), //名前
         ], $genderEnum);
 

@@ -34,6 +34,14 @@
     </div>
 </form>
 <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">パスワード</p>
+@if (count($errors) > 0)
+@error('password')
+<td>{{$message}}</td>
+@enderror
+@error('password_confirm')
+<td class="text-red-600">※パスワードが一致していません</td>
+@enderror
+@endif
 <form method="POST" action="/security/update/password">
     @csrf
     <div class="flex flex-wrap items-center mb-2">

@@ -10,7 +10,7 @@ $user=Auth::user();
 @endphp
 @include('components.forMembers.pageTitle', ['title'=>$user->name.'さんのユーザー情報編集'])
 
-<div class="mx-auto mb-80" style="max-width: 1200px">
+<div class="mx-auto md:mb-80 mb-20" style="max-width: 1200px">
     <div class="w-full text-center">
         <a href='/user/{{$user->id}}'
             class="inline-block px-10 py-2 bg-bg rounded-lg mt-8  text-lg font-bold">ユーザー詳細へ戻る</a>

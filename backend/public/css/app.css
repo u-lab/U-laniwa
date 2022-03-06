@@ -2718,6 +2718,10 @@ textarea:focus {
     margin-left: 1rem;
   }
 
+  .md\:mb-80 {
+    margin-bottom: 20rem;
+  }
+
   .md\:block {
     display: block;
   }

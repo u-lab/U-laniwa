@@ -31,7 +31,7 @@ return new class extends Migration
             /**フラグ群 デフォルト値付き */
             $table->boolean('is_dark_mode')->default(false)->comment('ダークモードにするか？');
             $table->boolean('is_publish_birth_day')->default(true)->comment('誕生日公開するか？');
-            $table->text('description')->comment('自己紹介');
+            $table->text('description')->nullable()->comment('自己紹介');
             /**nullable群 */
             $table->string('group_affiliation')->nullable()->comment('所属団体');
             $table->string('status')->nullable()->comment('ひとこと(GitHubのstatusと同じ)');

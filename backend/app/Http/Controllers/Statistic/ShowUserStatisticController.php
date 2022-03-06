@@ -30,6 +30,7 @@ class ShowUserStatisticController extends Controller
          * ユーザーランクごとの情報取得
          * @var User
          */
+        $userValue = User::count();
         $perUserRoles = User::groupBy('user_role_id')->select('user_role_id', DB::raw('count(*) as user_role_count'))->get();
         /** @var UserRole */
         $userRoles = UserRole::all();
@@ -134,6 +135,6 @@ class ShowUserStatisticController extends Controller
         }
 
 
-        return view('statistic.user', ["userRoleCounter" => $userRoleCounter, "userGradeCounter" => $userGradeCounter, "userGenderCounter" => $userGenderCounter, "userFacultyCounter" => $userFacultyCounter, "userMajorCounter" => $userMajorCounter, "userLiveAreaCounter" => $userLiveAreaCounter, "userBirthAreaCounter" => $userBirthAreaCounter]);
+        return view('statistic.user', ["userValue" => $userValue, "userRoleCounter" => $userRoleCounter, "userGradeCounter" => $userGradeCounter, "userGenderCounter" => $userGenderCounter, "userFacultyCounter" => $userFacultyCounter, "userMajorCounter" => $userMajorCounter, "userLiveAreaCounter" => $userLiveAreaCounter, "userBirthAreaCounter" => $userBirthAreaCounter]);
     }
 }

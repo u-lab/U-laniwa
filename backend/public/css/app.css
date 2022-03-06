@@ -982,13 +982,13 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .my-10 {
   margin-top: 2.5rem;
@@ -1224,20 +1224,17 @@ select {
   width: -moz-fit-content;
   width: fit-content;
 }
-.w-1\/2 {
-  width: 50%;
-}
 .w-96 {
   width: 24rem;
+}
+.w-1\/2 {
+  width: 50%;
 }
 .w-2\/3 {
   width: 66.666667%;
 }
 .w-24 {
   width: 6rem;
-}
-.w-80 {
-  width: 20rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1529,6 +1526,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 243 243 / var(--tw-bg-opacity));
 }
+.\!bg-bg-sub {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 243 243 / var(--tw-bg-opacity)) !important;
+}
 .bg-bg-main {
   --tw-bg-opacity: 1;
   background-color: rgb(241 241 241 / var(--tw-bg-opacity));
@@ -1540,10 +1541,6 @@ select {
 .bg-main-btn {
   --tw-bg-opacity: 1;
   background-color: rgb(255 254 254 / var(--tw-bg-opacity));
-}
-.\!bg-bg-sub {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(255 243 243 / var(--tw-bg-opacity)) !important;
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
@@ -2006,7 +2003,7 @@ h2 {
     .timeline-p > .tree,
     .individual > .tree,
     .userTimeline > .tree {
-        width: 80%;
+        width: 80% !important;
     }
 
     .userpage {

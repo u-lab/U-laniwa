@@ -29,7 +29,7 @@ $user=Auth::user();
     <div class="mb-12">
         <h2 class="mb-2">招待コード</h2>
         @empty($inviteCode)
-        <p class="ml-4">招待コードはありません</p>
+        <p class="ml-4">招待コードはありません。</p>
         @else
         <input type="text" readonly='true' class="ml-4 w-96" value='{{$inviteCode->code}}'>
         @endempty

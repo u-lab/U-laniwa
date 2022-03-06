@@ -68,7 +68,7 @@ h2 {
     .timeline-p > .tree,
     .individual > .tree,
     .userTimeline > .tree {
-        width: 80%;
+        width: 80% !important;
     }
 
     .userpage {

@@ -10,8 +10,10 @@
 <div class="belongsProject">
     <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>
+        @if($timelines)
+        <p class="py-6 text-center">タイムラインはありません。</p>
+        @else
         <div class="tree">
-
             @foreach ($timelines as $timeline)
             @include('components.forMembers.timelineItem',[
             'start_date'=>$timeline->start_date,
@@ -23,6 +25,7 @@
             @endforeach
 
         </div>
+        @endif
     </div>
 
     <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative mb-16">

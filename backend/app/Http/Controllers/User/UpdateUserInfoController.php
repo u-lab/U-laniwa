@@ -103,12 +103,13 @@ class UpdateUserInfoController extends Controller
         /**
          * 宇大の学部学科or大学名学部学科or会社名役職の条件分岐
          */
+        \Log::debug($request->company);
         if ($request->company != null && $request->grade >= 10) {
             $userInfoData = array_merge($userInfoData, [
                 'company_meta' => json_encode(
                     [
-                        'company_name' => $request->company ?? "",
-                        'position' => $request->position ?? "",
+                        'company_name' => $request->company_for_meta ?? "",
+                        'position' => $request->position_for_meta ?? "",
                     ]
                 )
             ]);
@@ -116,9 +117,9 @@ class UpdateUserInfoController extends Controller
             $userInfoData = array_merge($userInfoData, [
                 'university_meta' => json_encode(
                     [
-                        'university' => $request->originUniversity ?? "",
-                        'faculty' => $request->originFaculty ?? "",
-                        'major' => $request->originMajor ?? "",
+                        'university' => $request->university_for_meta ?? "",
+                        'faculty' => $request->faculty_for_meta ?? "",
+                        'major' => $request->major_for_meta ?? "",
                     ]
                 )
             ]);

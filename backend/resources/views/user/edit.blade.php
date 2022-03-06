@@ -338,9 +338,9 @@ $user=Auth::user();
                         <tr name="company">
                             <td class="edit-base">会社名/役職名</td>
                             <td>
-                                <input class="edit-2 md:mb-0 mb-2" style="margin-right:4%;" type="text" name="company"
-                                    value="{{$originCompany}}">
-                                <input class="edit-2" type="text" name="position" value="{{$originPosition}}">
+                                <input class="edit-2 md:mb-0 mb-2" style="margin-right:4%;" type="text"
+                                    name="company_for_meta" value="{{$originCompany}}">
+                                <input class="edit-2" type="text" name="position_for_meta" value="{{$originPosition}}">
                             </td>
 
                         </tr>
@@ -382,10 +382,11 @@ $user=Auth::user();
                             <td class="edit-base">大学名/学部/学科</td>
                             <td>
                                 <input class="edit-3 md:mb-0 mb-2" style="margin-right:4%;" type="text"
-                                    name="university" value={{$originUniversity}}>
-                                <input class="edit-3 md:mb-0 mb-2" style="margin-right:4%;" type="text" name="faculty"
-                                    value={{$originFaculty}}>
-                                <input class="edit-3 md:mb-0 mb-2" type="text" name="major" value={{$originMajor}}>
+                                    name="university_for_meta" value={{$originUniversity}}>
+                                <input class="edit-3 md:mb-0 mb-2" style="margin-right:4%;" type="text"
+                                    name="faculty_for_meta" value={{$originFaculty}}>
+                                <input class="edit-3 md:mb-0 mb-2" type="text" name="major_for_meta"
+                                    value={{$originMajor}}>
                             </td>
                         </tr>
                         <tr>
@@ -400,8 +401,8 @@ $user=Auth::user();
                                     required>
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
-                                    <option value="{{$country['country_code']}}"
-                                        @if($userBirthArea && $userBirthArea->country_code && $country['country_code']==$userBirthArea->country_code->value())
+                                    <option value="{{$country['country_code']}}" @if($userBirthArea && $userBirthArea->
+                                        country_code && $country['country_code']==$userBirthArea->country_code->value())
                                         selected
                                         @endif
                                         >{{$country['name']}}</option>
@@ -411,8 +412,9 @@ $user=Auth::user();
                                     required>
                                     @if($preBirthPrefectures)
                                     @foreach($preBirthPrefectures as $preBirthPrefecture)
-                                    <option value="{{$preBirthPrefecture['prefecture_code']}}"
-                                        @if($userBirthArea && $userBirthArea->prefecture_code && $preBirthPrefecture['prefecture_code']==$userBirthArea->
+                                    <option value="{{$preBirthPrefecture['prefecture_code']}}" @if($userBirthArea &&
+                                        $userBirthArea->prefecture_code &&
+                                        $preBirthPrefecture['prefecture_code']==$userBirthArea->
                                         prefecture_code->value())
                                         selected
                                         @endif>
@@ -440,8 +442,8 @@ $user=Auth::user();
                                     required>
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
-                                    <option value="{{$country['country_code']}}"
-                                        @if($userLiveArea && $userLiveArea->country_code && $country['country_code']==$userLiveArea->country_code->value())
+                                    <option value="{{$country['country_code']}}" @if($userLiveArea && $userLiveArea->
+                                        country_code && $country['country_code']==$userLiveArea->country_code->value())
                                         selected
                                         @endif
                                         >{{$country['name']}}</option>
@@ -451,8 +453,9 @@ $user=Auth::user();
                                     required>
                                     @if($preLivePrefectures)
                                     @foreach($preLivePrefectures as $preLivePrefecture)
-                                    <option value="{{$preLivePrefecture['prefecture_code']}}"
-                                        @if($userLiveArea && $userLiveArea->prefecture_code && $preLivePrefecture['prefecture_code']==$userLiveArea->
+                                    <option value="{{$preLivePrefecture['prefecture_code']}}" @if($userLiveArea &&
+                                        $userLiveArea->prefecture_code &&
+                                        $preLivePrefecture['prefecture_code']==$userLiveArea->
                                         prefecture_code->value())
                                         selected
                                         @endif>

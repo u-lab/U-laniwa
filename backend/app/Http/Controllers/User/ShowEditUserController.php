@@ -132,8 +132,8 @@ class ShowEditUserController extends Controller
          */
         if ($userInfo->company_meta) {
             $decodedArray = json_decode($userInfo->company_meta);
-            $userInfo->company = $decodedArray['company_name'];
-            $userInfo->position = $decodedArray['position'];
+            $userInfo->company = $decodedArray->company_name;
+            $userInfo->position = $decodedArray->position;
         } else {
             $userInfo->company = '';
             $userInfo->position = '';
@@ -158,7 +158,7 @@ class ShowEditUserController extends Controller
          */
         //学科
         /** @var UUMajor */
-        if ($userInfo->u_u_faculty_id) {
+        if ($userInfo->u_u_major_id) {
             $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
             $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
         }
@@ -256,10 +256,6 @@ class ShowEditUserController extends Controller
                 $preUUMajors = UUMajor::where('faculty_id', $prePreUUMajor->faculty_id->value())->get();
             }
         }
-
-        \Log::debug($userLiveArea->prefecture_code->value());
-        \Log::debug($preBirthMunicipalities);
-
 
 
         return view('user.edit', [

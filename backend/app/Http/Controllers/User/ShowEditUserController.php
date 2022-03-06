@@ -36,7 +36,6 @@ class ShowEditUserController extends Controller
          */
         $user = Auth::user();
         $userId = $user->id;
-
         /**
          * @var mixed $userInfo
          * @property string $company
@@ -79,34 +78,6 @@ class ShowEditUserController extends Controller
         $userInfo = UserInfo::where('user_id', $userId)->first();
 
         /**
-         * company_metaをデコード
-         */
-        if ($userInfo->company_meta) {
-            $decodedArray = json_decode($userInfo->company_meta);
-            $userInfo->company = $decodedArray['company_name'];
-            $userInfo->position = $decodedArray['position'];
-        } else {
-            $userInfo->company = '';
-            $userInfo->position = '';
-        }
-
-        /**
-         * university_metaをデコード
-         */
-        if ($userInfo->university_meta) {
-            $decodedArray = json_decode($userInfo->university_meta);
-            $userInfo->university = $decodedArray['university'];
-            $userInfo->faculty = $decodedArray['faculty'];
-            $userInfo->major = $decodedArray['major'];
-        } else {
-            $userInfo->university = '';
-            $userInfo->faculty = '';
-            $userInfo->major = '';
-        }
-
-
-
-        /**
          * DBに格納していないEnum型のデータを取得する
          */
         //性別
@@ -136,6 +107,53 @@ class ShowEditUserController extends Controller
             'id' => $id->value(), //学部id(学科の取得に用いる)
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
+
+        if ($userInfo === null) {
+            return view('user.edit', [
+                'user' => $user,
+                'userInfo' => $userInfo,
+                'genders' => $genders,
+                'grades' => $grades,
+                'countries' => $countries,
+                'uuFaculties' => $uuFaculties,
+                'links' => [],
+                'timelines' => [],
+                'timelineGenres' => [],
+                'preBirthMunicipalities' => [],
+                'preBirthPrefectures' => [],
+                'preLivePrefectures' => [],
+                'preLiveMunicipalities' => [],
+                'userBirthArea' => [],
+                'userLiveArea' => [],
+                'preUUMajors' => [],
+            ]);
+        }
+
+        /**
+         * company_metaをデコード
+         */
+        if ($userInfo->company_meta) {
+            $decodedArray = json_decode($userInfo->company_meta);
+            $userInfo->company = $decodedArray['company_name'];
+            $userInfo->position = $decodedArray['position'];
+        } else {
+            $userInfo->company = '';
+            $userInfo->position = '';
+        }
+
+        /**
+         * university_metaをデコード
+         */
+        if ($userInfo->university_meta) {
+            $decodedArray = json_decode($userInfo->university_meta);
+            $userInfo->university = $decodedArray['university'];
+            $userInfo->faculty = $decodedArray['faculty'];
+            $userInfo->major = $decodedArray['major'];
+        } else {
+            $userInfo->university = '';
+            $userInfo->faculty = '';
+            $userInfo->major = '';
+        }
 
         /**
          * ユーザー情報追加取得

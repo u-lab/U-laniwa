@@ -32,16 +32,16 @@ class UpdateUserInfoController extends Controller
             'gender' => 'required | integer | not_in:0',
             'grade' => 'required | integer | digits_between:1,2 | not_in:0',
 
-            'company' => 'nullable | string | max:255',
-            'position' => 'nullable | string | max:255',
+            'company_for_meta' => 'nullable | string | max:255',
+            'position_for_meta' => 'nullable | string | max:255',
 
             'univRadio' => ['string', 'regex:/(uu|else)/'], //正規表現のパイプ使えないので配列に
 
             'uuMajorId' => 'integer | digits_between:1,2 | not_in:0',
 
-            'university' => 'nullable | string | max:255',
-            'faculty' => 'nullable | string | max:255',
-            'major' => 'nullable | string | max:255',
+            'university_for_meta' => 'nullable | string | max:255',
+            'faculty_for_meta' => 'nullable | string | max:255',
+            'major_for_meta' => 'nullable | string | max:255',
 
             'groupAffiliation' => 'nullable | string | max:255',
             'birthMunicipalityId' => 'required | integer',
@@ -103,22 +103,22 @@ class UpdateUserInfoController extends Controller
         /**
          * 宇大の学部学科or大学名学部学科or会社名役職の条件分岐
          */
-        if ($request->company != null && $request->grade >= 10) {
+        if ($request->company_for_meta != null && $request->grade >= 10) {
             $userInfoData = array_merge($userInfoData, [
                 'company_meta' => json_encode(
                     [
-                        'company_name' => $request->company ?? "",
-                        'position' => $request->position ?? "",
+                        'company_name' => $request->company_for_meta ?? "",
+                        'position' => $request->position_for_meta ?? "",
                     ]
                 )
             ]);
-        } else if ($request->university != "" && $request->univRadio == "else") {
+        } else if ($request->university_for_meta != "" && $request->univRadio == "else") {
             $userInfoData = array_merge($userInfoData, [
                 'university_meta' => json_encode(
                     [
-                        'university' => $request->originUniversity ?? "",
-                        'faculty' => $request->originFaculty ?? "",
-                        'major' => $request->originMajor ?? "",
+                        'university' => $request->university_for_meta ?? "",
+                        'faculty' => $request->faculty_for_meta ?? "",
+                        'major' => $request->major_for_meta ?? "",
                     ]
                 )
             ]);

@@ -365,6 +365,7 @@ $user=Auth::user();
                                     @endforeach
                                 </select>
                                 <select name='uuMajorId' style="width: 38%; margin-right:4%;">
+                                    @if($preUUMajors)
                                     @foreach ($preUUMajors as $preUUMajor)
                                     <option value="{{$preUUMajor->id}}" @if ($preUUMajor->id==$originUUMajor)
 
@@ -372,6 +373,7 @@ $user=Auth::user();
                                         @endif>{{$preUUMajor->name}}
                                     </option>
                                     @endforeach
+                                    @endif
                                 </select>
                             </td>
                         </tr>

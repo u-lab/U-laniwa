@@ -16,7 +16,6 @@ class SaveProfilePhotoController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        \Log::debug($request);
         $validateRule = ['file' => 'required | mimes:jpeg,png,bmp,gif',];
         $this->validate($request, $validateRule);
         $path = $request->file->store('public/images/user'); // storage/app/imagesフォルダに保存

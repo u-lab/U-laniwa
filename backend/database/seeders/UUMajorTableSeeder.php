@@ -127,7 +127,7 @@ class UUMajorTableSeeder extends Seeder
                 'name' => "森林科学科",
             ],
             /**
-             * 地域創生科学研究科
+             * 地域創生科学研究科(修士)
              */
             [
                 'faculty_id' => 6,
@@ -201,7 +201,7 @@ class UUMajorTableSeeder extends Seeder
                 'name' => "教育実践高度化専攻",
             ],
             /**
-             * 地域創生科学研究科
+             * 地域創生科学研究科(博士)
              */
             [
                 'faculty_id' => 8,

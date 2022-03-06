@@ -14,10 +14,7 @@
         <a href='https://forms.gle/tShu2ho87U8ioB4U9' class="inline-block p-2 border-2 border-bg">お問い合わせ</a>
     </div>
 
-    <div class="inline-block rounded-xl bg-bg-sub p-12 mx-auto">
-        <p class="text-lg font-bold mb-2">澤井知樹の秘密②</p>
-        <p>好きな人は落合陽一</p>
-    </div>
+    @include('components.messages.developer')
 
 </div>
 

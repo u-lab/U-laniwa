@@ -8,52 +8,253 @@
 @php
 $user=Auth::user();
 @endphp
-@include('components.forMembers.pageTitle', ['title'=>'ユーザー情報編集'])
-<p class="text-center mb-12">{{$user->name}} さん</p>
+@include('components.forMembers.pageTitle', ['title'=>$user->name.'さんのユーザー情報編集'])
 
 <div class="mx-auto mb-80" style="max-width: 1200px">
-    <div class="border-2 p-2 mb-20">
-        <form action="/user/edit/update/userInfo" method="post">
-            @php
-            $originName = $user->name;
-            $originImg = $user->profile_photo_path ?? "";
-            $originLastName = $userInfo->last_name?? "";
-            $originFirstName = $userInfo->first_name?? "";
-            $originGender = $userInfo->gender->value()?? "";
-            $originBirthDay = $userInfo->birth_day?? "";
-            $originIsPublishBirthDay = $userInfo->is_publish_birth_day?? "";
-            $originGrade = $userInfo->grade->value()?? "";
-            //会社
-            $originCompany = $userInfo->company?? "";
-            $originPosition = $userInfo->position?? "";
-            //大学
-            $originUniversity = $userInfo->university?? "";
-            $originFaculty= $userInfo->faculty?? "";
-            $originMajor = $userInfo->major?? "";
-            $originUUMajor = $userInfo->u_u_major_id?? "";
-            $originUUFaculty = $userInfo->u_u_faculty_id?? "";
-            //趣味
-            $originGroupAffiliation= $userInfo->group_affiliation?? "";
-            $originGithubId = $userInfo->github_id?? "";
-            $originLineName = $userInfo->line_name?? "";
-            $originSlackName = $userInfo->slack_name?? "";
-            $originDiscordName = $userInfo->discord_name?? "";
-            $originHobby = $userInfo->hobby?? "";
-            $originInterests = $userInfo->interests?? "";
-            $originMotto = $userInfo->motto?? "";
-            $originStatus= $userInfo->status?? "";
-            //出身
-            $originBirthCountry= $userInfo->birth_country_id?? "";
-            $originBirthPrefecture= $userInfo->birth_prefecture_id?? "";
-            $originBirthMunicipality= $userInfo->birth_area_id?? "";
-            //現住
-            $originLiveCountry= $userInfo->live_country_id?? "";
-            $originLivePrefecture= $userInfo->live_prefecture_id?? "";
-            $originLiveMunicipality= $userInfo->live_area_id?? "";
-            @endphp
+    <div class="w-full text-center">
+        <a href='/user/{{$user->id}}'
+            class="inline-block px-10 py-2 bg-bg rounded-lg mt-8  text-lg font-bold">ユーザー詳細へ戻る</a>
+        <p class="text-center mb-8 text-xs mt-2">※必ず「更新」ボタンで保存の上、お戻りください</p>
+
+    </div>
+    <div class="border-4 p-2 mb-20 rounded-2xl border-dotted border-bg">
+        @php
+        $originProfilePhotoPath = $user->profile_photo_path;
+        $originName = $user->name;
+        $originImg = $user->profile_photo_path ?? "";
+        $originLastName = $userInfo->last_name?? "";
+        $originFirstName = $userInfo->first_name?? "";
+        $originGender = $userInfo->gender->value()?? "";
+        $originBirthDay = $userInfo->birth_day?? "";
+        $originIsPublishBirthDay = $userInfo->is_publish_birth_day?? "";
+        $originGrade = $userInfo->grade->value()?? "";
+        //会社
+        $originCompany = $userInfo->company?? "";
+        $originPosition = $userInfo->position?? "";
+        //大学
+        $originUniversity = $userInfo->university?? "";
+        $originFaculty= $userInfo->faculty?? "";
+        $originMajor = $userInfo->major?? "";
+        $originUUMajor = $userInfo->u_u_major_id?? "";
+        $originUUFaculty = $userInfo->u_u_faculty_id?? "";
+        //趣味
+        $originGroupAffiliation= $userInfo->group_affiliation?? "";
+        $originGithubId = $userInfo->github_id?? "";
+        $originLineName = $userInfo->line_name?? "";
+        $originSlackName = $userInfo->slack_name?? "";
+        $originDiscordName = $userInfo->discord_name?? "";
+        $originHobbies = $userInfo->hobbies?? "";
+        $originInterests = $userInfo->interests?? "";
+        $originMotto = $userInfo->motto?? "";
+        $originStatus= $userInfo->status?? "";
+        //出身
+        $originBirthCountry= $userInfo->birth_country_id?? "";
+        $originBirthPrefecture= $userInfo->birth_prefecture_id?? "";
+        $originBirthMunicipality= $userInfo->birth_area_id?? "";
+        //現住
+        $originLiveCountry= $userInfo->live_country_id?? "";
+        $originLivePrefecture= $userInfo->live_prefecture_id?? "";
+        $originLiveMunicipality= $userInfo->live_area_id?? "";
+        @endphp
+        @if(count($errors)>0)
+        {{-- バリデーションエラーのとき --}}
+        @php
+        $originProfilePhotoPath =old('profilePhotoPath');
+        $originName =old('userName');
+        $originImg = $originProfilePhotoPath ?? "";//ここは別ロジックなので画像とってこれないから古い画像を付与
+        $originLastName =old('lastName');
+        $originFirstName =old('firstName');
+        $originGender = old('gender');
+        $originBirthDay = old('birthDay');
+        $originIsPublishBirthDay =old('isPublishBirthDay');
+        $originGrade =old('grade');
+        //会社
+        $originCompany = old('company');
+        $originPosition =old('position');
+        //大学
+        $originUniversity =old('university');
+        $originFaculty= old('faculty');
+        $originMajor = old('major');
+        $originUUMajor = old('uuMajorId');
+        $originUUFaculty = old('uuFacultyId');
+        //趣味
+        $originGroupAffiliation=old('groupAffiliation');
+        $originGithubId = old('githubId');
+        $originLineName = old('lineName');
+        $originSlackName = old('slackName');
+        $originDiscordName = old('discordName');
+        $originHobbies = old('hobbies');
+        $originInterests = old('interests');
+        $originMotto =old('motto');
+        $originStatus= old('status');
+        //出身
+        $originBirthCountry= old('birthCountryId');
+        $originBirthPrefecture=old('birthPrefectureId');
+        $originBirthMunicipality=old('birthMunicipalityId');
+        //現住
+        $originLiveCountry=old('liveCountryId');
+        $originLivePrefecture= old('livePrefectureId');
+        $originLiveMunicipality=old('liveMunicipalityId');
+        @endphp
+        {{-- エラーの表示 --}}
+        <ul class="text-red-500 text-center">
+            @if($errors->has('profilePhotoPath'))
+            <li class="text-red-500">
+                {{$errors->first('profilePhotoPath')}}
+            </li>
+            @endif
+            @if($errors->has('userName'))
+            <li class="text-red-500">
+                {{$errors->first('userName')}}
+            </li>
+            @endif
+            @if($errors->has('lastName'))
+            <li class="text-red-500">
+                {{$errors->first('lastName')}}
+            </li>
+            @endif
+            @if($errors->has('firstName'))
+            <li class="text-red-500">
+                {{$errors->first('firstName')}}
+            </li>
+            @endif
+            @if($errors->has('gender'))
+            <li class="text-red-500">
+                {{$errors->first('gender')}}
+            </li>
+            @endif
+            @if($errors->has('birthDay'))
+            <li class="text-red-500">
+                {{$errors->first('birthDay')}}
+            </li>
+            @endif
+            @if($errors->has('isPublishBirthDay'))
+            <li class="text-red-500">
+                {{$errors->first('isPublishBirthDay')}}
+            </li>
+            @endif
+            @if($errors->has('grade'))
+            <li class="text-red-500">
+                {{$errors->first('grade')}}
+            </li>
+            @endif
+            @if($errors->has('company'))
+            <li class="text-red-500">
+                {{$errors->first('company')}}
+            </li>
+            @endif
+            @if($errors->has('position'))
+            <li class="text-red-500">
+                {{$errors->first('position')}}
+            </li>
+            @endif
+            @if($errors->has('university'))
+            <li class="text-red-500">
+                {{$errors->first('university')}}
+            </li>
+            @endif
+            @if($errors->has('faculty'))
+            <li class="text-red-500">
+                {{$errors->first('faculty')}}
+            </li>
+            @endif
+            @if($errors->has('major'))
+            <li class="text-red-500">
+                {{$errors->first('major')}}
+            </li>
+            @endif
+            @if($errors->has('uuMajorId'))
+            <li class="text-red-500">
+                {{$errors->first('uuMajorId')}}
+            </li>
+            @endif
+            @if($errors->has('uuFacultyId'))
+            <li class="text-red-500">
+                {{$errors->first('uuFacultyId')}}
+            </li>
+            @endif
+            @if($errors->has('groupAffiliation'))
+            <li class="text-red-500">
+                {{$errors->first('groupAffiliation')}}
+            </li>
+            @endif
+            @if($errors->has('githubId'))
+            <li class="text-red-500">
+                {{$errors->first('githubId')}}
+            </li>
+            @endif
+            @if($errors->has('lineName'))
+            <li class="text-red-500">
+                {{$errors->first('lineName')}}
+            </li>
+            @endif
+            @if($errors->has('slackName'))
+            <li class="text-red-500">
+                {{$errors->first('slackName')}}
+            </li>
+            @endif
+            @if($errors->has('discordName'))
+            <li class="text-red-500">
+                {{$errors->first('discordName')}}
+            </li>
+            @endif
+            @if($errors->has('hobbies'))
+            <li class="text-red-500">
+                {{$errors->first('hobbies')}}
+            </li>
+            @endif
+            @if($errors->has('interests'))
+            <li class="text-red-500">
+                {{$errors->first('interests')}}
+            </li>
+            @endif
+            @if($errors->has('motto'))
+            <li class="text-red-500">
+                {{$errors->first('motto')}}
+            </li>
+            @endif
+            @if($errors->has('status'))
+            <li class="text-red-500">
+                {{$errors->first('status')}}
+            </li>
+            @endif
+            @if($errors->has('birthCountryId'))
+            <li class="text-red-500">
+                {{$errors->first('birthCountryId')}}
+            </li>
+            @endif
+            @if($errors->has('birthPrefectureId'))
+            <li class="text-red-500">
+                {{$errors->first('birthPrefectureId')}}
+            </li>
+            @endif
+            @if($errors->has('birthMunicipalityId'))
+            <li class="text-red-500">
+                {{$errors->first('birthMunicipalityId')}}
+            </li>
+            @endif
+            @if($errors->has('liveCountryId'))
+            <li class="text-red-500">
+                {{$errors->first('liveCountryId')}}
+            </li>
+            @endif
+            @if($errors->has('livePrefectureId'))
+            <li class="text-red-500">
+                {{$errors->first('livePrefectureId')}}
+            </li>
+            @endif
+            @if($errors->has('liveMunicipalityId'))
+            <li class="text-red-500">
+                {{$errors->first('liveMunicipalityId')}}
+            </li>
+            @endif
+
+        </ul>
+        @endif
+        <form action="/user/edit/update/userInfo" method="post" id="userInfoTable">
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20">プロフィール画像</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10">プロフィール画像</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -66,14 +267,15 @@ $user=Auth::user();
                             </td>
                             <td style="width: 250px"><input style="max-width: 250px" id="forCompress" type="file"
                                     name="img"></td>
-                            <input type="hidden" id="profilePhotoPath" name="profilePhotoPath">
+                            <input type="hidden" id="profilePhotoPath" name="profilePhotoPath"
+                                value="{{$originProfilePhotoPath}}">
                         </tr>
                     </table>
                 </div>
             </div>
 
             <div class="mx-auto mb-20 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">基本情報</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">基本情報</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -98,7 +300,8 @@ $user=Auth::user();
                             <td style=" width: 200px">誕生日
                             </td>
                             <td>
-                                <input style="width: 50%; margin-right:5%;" type="date" value={{$originBirthDay}}>
+                                <input style="width: 50%; margin-right:5%;" type="date" name="birthDay"
+                                    value={{$originBirthDay}}>
                                 <p class="inline-block text-right" style="width: 20%">公開する</p>
                                 <input type="checkbox" name="isPublishBirthDay" {{$originIsPublishBirthDay==1
                                     ? "checked" :""}}>
@@ -143,13 +346,10 @@ $user=Auth::user();
                         <tr name="university">
                             <td style="width: 200px">大学</td>
                             <td>
-                                <input type="radio" name="univRadio" value="宇都宮大学" @if ($originUUMajor)
-                                checked
-                                @endif>
+                                <input type="radio" name="univRadio" value="uu" @if ($originUUMajor) checked @endif>
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
-                                <input type="radio" name="univRadio" value="他大学" @if ($originUniversity)
-                                checked
-                                @endif>
+                                <input type="radio" name="univRadio" value="else" @if ($originUniversity) checked
+                                    @endif>
                                 <label for='他大学'>他大学</label>
                             </td>
                         </tr>
@@ -164,9 +364,9 @@ $user=Auth::user();
                                     </option>
                                     @endforeach
                                 </select>
-                                <select name='uuMajor' style="width: 38%; margin-right:4%;">
+                                <select name='uuMajorId' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
-                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUMajor)
+                                    <option value="1" @if ($loop->iteration==$originUUMajor)
                                         selected
                                         @endif>{{$uuFacultie['name']}}
                                     </option>
@@ -238,19 +438,19 @@ $user=Auth::user();
                         <tr>
                             <td style="width: 200px">出身地</td>
                             <td>
-                                <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthCountryId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthPrefectureId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthMunicipality' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthMunicipalityId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
-                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    <option value="2">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -259,19 +459,19 @@ $user=Auth::user();
                             <td style="width: 200px">現住地</td>
                             <td>
                                 {{-- TODO: 同上 --}}
-                                <select name='liveCountry' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveCountryId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required>
+                                <select name='livePrefectureId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='liveMunicipality' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveMunicipalityId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
-                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    <option value="2">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -279,7 +479,7 @@ $user=Auth::user();
                         <tr>
                             <td colspan="2">
                                 <p>
-                                    ユーザー名、一言コメント、学部学科はメンバー一覧で表示されます<br>
+                                    ユーザー名、ひとことコメント、学部学科はメンバー一覧で表示されます<br>
                                     兼部・サークルがある場合は「卓球、写真サークル」のように部とサークルの間を“、”で分割してお書き下さい
                                 </p>
                             </td>
@@ -289,7 +489,7 @@ $user=Auth::user();
             </div>
 
             <div class="mx-auto mb-12 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">パーソナルデータ
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">パーソナルデータ
                 </h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
@@ -299,40 +499,40 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td style="width: 200px">趣味</td>
-                            <td><input style="width: 80%" type="text" value="hobby" value="{{$originHobby}}"></td>
+                            <td><input style="width: 80%" type="text" name="hobbies" value="{{$originHobbies}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">興味</td>
-                            <td><input style="width: 80%" type="text" value="interests " value="{{$originInterests }}">
+                            <td><input style="width: 80%" type="text" name="interests" value="{{$originInterests }}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">座右の銘</td>
-                            <td><input style="width: 80%" type="text" value="motto " value="{{$originMotto }}"></td>
+                            <td><input style="width: 80%" type="text" name="motto" value="{{$originMotto}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">GitHub ID</td>
-                            <td><input style="width: 80%" type="text" value="githubId " value="{{$originGithubId}}">
+                            <td><input style="width: 80%" type="text" name="githubId" value="{{$originGithubId}}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">LINEでのお名前</td>
-                            <td><input style="width: 80%" type="text" value="lineName " value="{{$originLineName }}">
+                            <td><input style="width: 80%" type="text" name="lineName" value="{{$originLineName}}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">Slackでのお名前</td>
-                            <td><input style="width: 80%" type="text" value="slackName " value="{{$originSlackName  }}">
+                            <td><input style="width: 80%" type="text" name="slackName" value="{{$originSlackName }}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">Discordでのお名前</td>
-                            <td><input style="width: 80%" type="text" value="discordName "
-                                    value="{{$originDiscordName }}"></td>
+                            <td><input style="width: 80%" type="text" name="discordName" value="{{$originDiscordName}}">
+                            </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">一言コメント</td>
-                            <td><input style="width: 80%" type="text" value="status " value="{{$originStatus }}"></td>
+                            <td style="width: 200px">ひとことコメント</td>
+                            <td><input style="width: 80%" type="text" name="status" value="{{$originStatus}}"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -352,7 +552,8 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">MYLINK</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">MYLINK</h2>
+
         @php
         $linkTitle="";
         $linkDescription="";
@@ -440,9 +641,10 @@ $user=Auth::user();
                 </tr>
                 @endforeach
                 @endisset
-                <td colspan="6">
+                <td colspan="6" class="text-left pl-4">
                     <p>使い方の例1：Twitterや自身のSNSのリンクを貼る　リンクの説明欄にフォローよろしくなどのコメントを書く。</p>
                     <p>使い方の例2：YouTubeのリンクを張る　リンクの説明欄にこれおすすめ！！って書く</p>
+                    <p>※まとめての更新ではできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>
@@ -450,11 +652,11 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">タイムライン登録</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">タイムライン登録</h2>
         @php
         $timelineTitle="";
         $timelineDescription="";
-        $timelineGenre="";
+        $timelineGenreId="";
         $timelineStartDate="";
         $timelineEndDate="";
         @endphp
@@ -463,9 +665,10 @@ $user=Auth::user();
         @php
         $timelineTitle=old("timelineTitle");
         $timelineDescription=old("timelineDescription");
-        $timelineGenre=old("timelineGenre");
+        $timelineGenreId=old("timelineGenreId");
         $timelineStartDate=old("timelineStartDate");
         $timelineEndDate=old("timelineEndDate");
+        var_dump($errors);
         @endphp
 
         {{-- エラーの表示 --}}
@@ -498,7 +701,7 @@ $user=Auth::user();
         </ul>
         @endif
         <div class="rounded-3xl border-2 border-bg">
-            <table class="w-full text-center edit rounded-3xl overflow-hidden">
+            <table class="w-full text-center edit rounded-3xl overflow-hidden" id="timelineTable">
                 <tr class="bg-bg-sub">
                     <td>番号</td>
                     <td>タイトル</td>
@@ -509,7 +712,7 @@ $user=Auth::user();
                     <td>削除</td>
                 </tr>
                 {{-- 初回分は登録フォームなのでループ外 --}}
-                <form method="POST" action="/user/edit/update/userTimeline" id="timelineTable">
+                <form method="POST" action="/user/edit/update/userTimeline">
                     @csrf
                     <tr>
                         <td style="width: 40px">1</td>
@@ -528,7 +731,7 @@ $user=Auth::user();
                                 @php
                                 $id+=1;
                                 @endphp
-                                <option value="{{$timelineGenre['id']}}" @if($timelineGenre==$timelineGenre['id'])
+                                <option value="{{$timelineGenre['id']}}" @if($timelineGenreId==$timelineGenre['id'])
                                     selected @endif>{{$timelineGenre['name']}}</option>
                                 @endforeach
                             </select>
@@ -603,9 +806,10 @@ $user=Auth::user();
                 </tr>
                 @endforeach
                 @endisset
-                <td colspan="7">
+                <td colspan="7" class="text-left pl-4">
                     <p>タイムラインでは、自分の学業、お仕事、資格、所属団体、大会などの結果や情報を時系列で表示できます。<br>
                         例　けん玉15級を取得、卓球部に入部</p>
+                    <p>※まとめての更新ではできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>

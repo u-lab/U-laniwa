@@ -33,7 +33,7 @@ class UserInfoFactory extends Factory
             if ($udai) {
                 $universityInfo = [
                     'grade' => $grade,
-                    'u_u_major_id' => $this->faker->numberBetween(1, 21),
+                    'u_u_major_id' => $this->faker->numberBetween(1, 47),
                 ];
             } else {
                 $universityInfo = [

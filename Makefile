@@ -130,7 +130,7 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
 stan:
-	docker compose exec app ./vendor/bin/phpstan analyse
+	docker compose exec app composer analyse
 barth:
 	docker-compose down --rmi all --volumes --remove-orphans
 777:

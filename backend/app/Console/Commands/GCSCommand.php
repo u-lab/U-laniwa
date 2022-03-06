@@ -62,7 +62,6 @@ class GCSCommand extends Command
         foreach ($fileList as $newFile) {
             $dateFromName = substr($newFile, 0, -4); //時刻抽出(ファイル名から)
             $timeDate = date_create_from_format("Y-m-d-H-i-s", $dateFromName); //ファイルの更新日時を取得
-            // var_dump($timeDate);
             if ($timeDate > $timer) {
                 $recentFile = $newFile; //最新のCSVファイル
                 $timer = $timeDate; //最新の更新日時

@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap">
 {{--マテリアルアイコン --}}
-{{--
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {{-- CSS読み込み --}}
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">

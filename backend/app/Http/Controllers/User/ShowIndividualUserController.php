@@ -12,8 +12,11 @@ use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
+use App\Models\Project;
 use App\Models\User;
 use App\Models\UserInfo;
+use App\Models\UserLink;
+use App\Models\UserRole;
 use App\Models\UserTimeline;
 use App\Models\UUMajor;
 use Auth;
@@ -71,6 +74,7 @@ class ShowIndividualUserController extends Controller
          * @property string $live_area
          * @property string $live_area
          * @property string $profession
+         * @property string $user_role
          */
         $user = DB::table('user_infos')
             ->where('user_id', $user_id)
@@ -89,10 +93,17 @@ class ShowIndividualUserController extends Controller
         $user->birth_area = $userBirthArea->prefecture_code == null ?  "-" : $userBirthArea->prefecture_code->label()  . $userBirthArea->municipality;
         $user->live_area = $userLiveArea->prefecture_code == null ?  "-" : $userLiveArea->prefecture_code->label() . $userLiveArea->municipality;
 
-        $links = DB::table('user_links')
-            ->where('user_id', $user_id)
-            ->get();
+        /**
+         * ユーザーロール取得
+         * @var UserRole
+         */
+        $userRole = UserRole::where('id', $user->user_role_id)->first();
+        $user->user_role = $userRole->name;
+        /** @var UserLink */
+        $links = UserLink::where('user_id', $user_id)->get();
 
+
+        /** @var Project */
         $projects = DB::table('project_belongeds')
             ->where('user_id', $user_id)
             ->join('projects', 'project_belongeds.project_id', '=', 'projects.id')

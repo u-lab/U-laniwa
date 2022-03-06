@@ -27,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'user_role_id' => ['required', 'integer', 'between:1,29', 'exists:user_roles,id'], //初回登録では最高でも仮入部権限までなので
             'invite_code' => ['exists:user_invite_codes,code'],
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+            'terms' => ['required', 'accepted'],
         ])->validate();
         /** @var UserInviteCode */
         $user_invite_code = UserInviteCode::where('code', $input['invite_code'],)->first();

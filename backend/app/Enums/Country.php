@@ -20,4 +20,11 @@ enum Country: int
             self::jp => "日本",
         };
     }
+    public function value(): int
+    {
+        return match ($this) {
+            self::ot => 0,
+            self::jp => 81,
+        };
+    }
 }

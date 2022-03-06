@@ -24,32 +24,26 @@ class UpdateUserTimelineController extends Controller
          * バリデーション
          */
         $validateRule = [
-            'timelineId' => 'int',
+            'timelineId' => 'nullable|int',
             'timelineTitle' => 'required|string|max:255',
-            'timelineDescription' => 'max:1000',
+            'timelineDescription' => 'nullable| string |max:1000',
             'timelineGenreId' => 'required|integer',
             'timelineStartDate' => 'required|date',
+            'timelineEndDate' => 'nullable|date',
         ];
         $this->validate($request, $validateRule);
-        /**
-         * 必須のデータ
-         * @var array<string,mixed>
-         */
-        $timelineDate = [
-            'title' => $request->timelineTitle,
-            'genre' => $request->timelineGenreId,
-            'start_date' => $request->timelineStartDate,
-            'user_id' => Auth::id(),
-        ];
-        /**
-         * 必須じゃない項目の処理
-         */
-        $request->timelineDescription != null ? $timelineDate = array_merge($timelineDate, ['description' => $request->timelineDescription,]) : "";
-        $request->timelineEndDate != null ? $timelineDate = array_merge($timelineDate, ['end_date' => $request->timelineEndDate,]) : "";
+
         /**無かったら作る、あったら更新する方式 */
         UserTimeline::updateOrCreate(
             ['id' => $request->timelineId],
-            $timelineDate
+            [
+                'title' => $request->timelineTitle,
+                'genre' => $request->timelineGenreId,
+                'start_date' => $request->timelineStartDate,
+                'end_date' => $request->timelineEndDate ?? null,
+                'user_id' => Auth::id(),
+                'description' => $request->timelineDescription ?? null,
+            ],
         );
         return redirect('/user/edit#timelineTable');
     }

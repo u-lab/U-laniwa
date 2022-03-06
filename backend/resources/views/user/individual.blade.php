@@ -14,7 +14,7 @@ $name = $user->last_name." ".$user->first_name;
 
 <div class="w-full text-center">
     @if ($user->id == $authUser->id)
-    <a href='/user/edit' class="inline-block px-10 py-2 bg-bg rounded-lg my-8 text-lg font-bold">edit</a>
+    <a href='/user/edit' class="inline-block px-10 py-2 bg-bg rounded-lg my-8 text-lg font-bold">編集する</a>
     @endif
 </div>
 

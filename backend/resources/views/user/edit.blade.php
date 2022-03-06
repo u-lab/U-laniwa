@@ -13,7 +13,9 @@ $user=Auth::user();
 <div class="mx-auto mb-80" style="max-width: 1200px">
     <div class="w-full text-center">
         <a href='/user/{{$user->id}}'
-            class="inline-block px-10 py-2 bg-bg rounded-lg my-8 text-lg font-bold">ユーザー詳細へ戻る</a>
+            class="inline-block px-10 py-2 bg-bg rounded-lg mt-8  text-lg font-bold">ユーザー詳細へ戻る</a>
+        <p class="text-center mb-8 text-xs mt-2">※必ず「更新」ボタンで保存の上、お戻りください</p>
+
     </div>
     <div class="border-4 p-2 mb-20 rounded-2xl border-dotted border-bg">
         @php
@@ -551,6 +553,7 @@ $user=Auth::user();
 
     <div class="mx-auto mb-20 w-full">
         <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">MYLINK</h2>
+
         @php
         $linkTitle="";
         $linkDescription="";
@@ -562,7 +565,6 @@ $user=Auth::user();
         $linkTitle=old("linkTitle");
         $linkDescription=old("linkDescription");
         $linkUrl=old("linkUrl");
-        var_dump($errors);
         @endphp
         {{-- エラーの表示 --}}
         <ul class="text-red-500 text-center">
@@ -639,9 +641,10 @@ $user=Auth::user();
                 </tr>
                 @endforeach
                 @endisset
-                <td colspan="6">
+                <td colspan="6" class="text-left pl-4">
                     <p>使い方の例1：Twitterや自身のSNSのリンクを貼る　リンクの説明欄にフォローよろしくなどのコメントを書く。</p>
                     <p>使い方の例2：YouTubeのリンクを張る　リンクの説明欄にこれおすすめ！！って書く</p>
+                    <p>※まとめての更新ではできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>
@@ -665,6 +668,7 @@ $user=Auth::user();
         $timelineGenreId=old("timelineGenreId");
         $timelineStartDate=old("timelineStartDate");
         $timelineEndDate=old("timelineEndDate");
+        var_dump($errors);
         @endphp
 
         {{-- エラーの表示 --}}
@@ -802,9 +806,10 @@ $user=Auth::user();
                 </tr>
                 @endforeach
                 @endisset
-                <td colspan="7">
+                <td colspan="7" class="text-left pl-4">
                     <p>タイムラインでは、自分の学業、お仕事、資格、所属団体、大会などの結果や情報を時系列で表示できます。<br>
                         例　けん玉15級を取得、卓球部に入部</p>
+                    <p>※まとめての更新ではできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>

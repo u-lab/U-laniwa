@@ -1073,9 +1073,6 @@ select {
 .mb-20 {
   margin-bottom: 5rem;
 }
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
 .mt-36 {
   margin-top: 9rem;
 }
@@ -1087,6 +1084,9 @@ select {
 }
 .mt-20 {
   margin-top: 5rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .mt-12 {
   margin-top: 3rem;
@@ -1439,9 +1439,6 @@ select {
 .border-4 {
   border-width: 4px;
 }
-.border-8 {
-  border-width: 8px;
-}
 .border-b-2 {
   border-bottom-width: 2px;
 }
@@ -1570,11 +1567,11 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-12 {
-  padding: 3rem;
-}
 .p-8 {
   padding: 2rem;
+}
+.p-12 {
+  padding: 3rem;
 }
 .p-5 {
   padding: 1.25rem;
@@ -1951,6 +1948,7 @@ body {
     font-weight: 500;
     --tw-text-opacity: 1;
     color: rgb(38 37 31 / var(--tw-text-opacity));
+    scroll-behavior: smooth;
 }
 ol {
     list-style-type: decimal;
@@ -2207,6 +2205,15 @@ textarea:focus {
     /* overflow-x: scroll; */
     width: 300px;
     height: 300px;
+}
+/* カレンダーグレースケール化 */
+.calender iframe,
+.calender object,
+.calender embed {
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

@@ -6,6 +6,7 @@ body {
     font-family: "Zen Kaku Gothic New", sans-serif;
     font-weight: 500;
     @apply text-main;
+    scroll-behavior: smooth;
 }
 
 ol {
@@ -263,4 +264,15 @@ textarea:focus {
     /* overflow-x: scroll; */
     width: 300px;
     height: 300px;
+}
+
+/* カレンダーグレースケール化 */
+.calender iframe,
+.calender object,
+.calender embed {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
 }

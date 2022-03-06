@@ -9,6 +9,9 @@ use App\Enums\Gender;
 use App\Enums\Grade;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\UserInfo;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -22,6 +25,38 @@ class ShowEditUserController extends Controller
      */
     public function __invoke(): View|Factory
     {
+        $userId = Auth::id();
+
+        $user = User::where('id', $userId)->first();
+
+        $userInfo = UserInfo::where('user_id', $userId)->first();
+
+        /**
+         * company_metaをデコード
+         */
+        if ($userInfo->company_meta) {
+            $decodedArray = json_decode($userInfo->company_meta);
+            $userInfo->company = $decodedArray['company_name'];
+            $userInfo->position = $decodedArray['position'];
+        } else {
+            $userInfo->company = '';
+            $userInfo->position = '';
+        }
+
+        /**
+         * university_metaをデコード
+         */
+        if ($userInfo->university_meta) {
+            $decodedArray = json_decode($userInfo->university_meta);
+            $userInfo->university = $decodedArray['university'];
+            $userInfo->faculty = $decodedArray['faculty'];
+            $userInfo->major = $decodedArray['major'];
+        } else {
+            $userInfo->university = '';
+            $userInfo->faculty = '';
+            $userInfo->major = '';
+        }
+
 
         /**
          * DBに格納していないEnum型のデータを取得する
@@ -56,6 +91,8 @@ class ShowEditUserController extends Controller
         ], $uuFacultyEnum);
         \Log::debug($grades);
         return view('user.edit', [
+            'user' => $user,
+            'userInfo' => $userInfo,
             'genders' => $genders,
             'grades' => $grades,
             'countries' => $countries,

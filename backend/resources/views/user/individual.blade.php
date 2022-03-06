@@ -22,7 +22,7 @@ $name = $user->last_name." ".$user->first_name;
     </p>
 
     @if ($user->id == $authUser->id)
-    <a href='/user/edit' class="inline-block px-10 bg-bg rounded-lg">edit</a>
+    <a href='/user/edit' class="inline-block px-10 py-2 bg-bg rounded-lg my-8 text-lg font-bold">edit</a>
     @endif
 </div>
 
@@ -32,7 +32,7 @@ $name = $user->last_name." ".$user->first_name;
             <img src="{{url('/'.$user->profile_photo_path)}}" alt="" class="object-fit-cover">
         </div>
         <div class="px-4 text-left w-1/2">
-            <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
+            <h3 class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</h3>
             <p class="xl:text-lg pl-2 mb-2">{{$name}} ({{$user->name}})
             </p>
             @empty($user->status)
@@ -133,7 +133,7 @@ $name = $user->last_name." ".$user->first_name;
     </div>
 </div>
 
-<div class="mx-auto mb-32" style='max-width: 1000px'>
+<div class="mx-auto mb-32" style='max-width: 1200px'>
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
         <div class="flex flex-wrap gap-x-12 my-8">
@@ -144,7 +144,7 @@ $name = $user->last_name." ".$user->first_name;
                 <div class="flex items-center w-full mb-4">
                     <img src="{{'http://www.google.com/s2/favicons?sz=64&domain=' . $link->url}}" class="w-12 h-12"
                         alt="">
-                    <h3 class="ml-4 text-xl">{{$link->name}}</h3>
+                    <h3 class="ml-4 text-xl">{{$link->title}}</h3>
                 </div>
                 @if ($link->description)
                 <p class="text-center">{{$link->description}}</p>
@@ -154,7 +154,7 @@ $name = $user->last_name." ".$user->first_name;
         </div>
     </div>
 
-    <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative">
+    <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative mb-16">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクト
         </h2>
         @if($projects->isEmpty())
@@ -182,101 +182,31 @@ $name = $user->last_name." ".$user->first_name;
 
         </div>
     </div>
+
+    <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
+        <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>
+        <div class="flex flex-wrap gap-x-12 my-8">
+            @foreach ($relatedUsers as $relatedUser)
+            <a href="{{url('/user/' . $relatedUser->user_id)}}"
+                class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame flex"
+                style="transition: .2s; width: 500px">
+                <div class="flex items-center w-1/2">
+                    <img src="{{url('/' . $relatedUser->profile_photo_path)}}" alt="" class="object-fit-cover">
+                </div>
+                <div class="w-1/2 px-4">
+                    <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
+                    <h3 class="ml-2 text-xl mb-2">{{$relatedUser->name}}</h3>
+                    @if($relatedUser->grade == '社会人' || $relatedUser->grade == 'その他' )
+                    <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">所属</p>
+                    @else
+                    <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">学部/学科</p>
+                    @endif
+                    <p class="ml-2">{{$relatedUser->profession}}</p>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
 </div>
 
-
-{{--<h2>名前</h2>
-<p>{{$user->name}}</p>
-<h2>プロフィール画像</h2>
-<img src="{{url('/' . $user->profile_photo_path)}}" alt="">
-<h2>一言コメント</h2>
-<p>{{$user->status}}</p>
-<h2>学部/学科</h2>
-<p>{{$user->uu_faculty}}/{{$user->uu_major}}</p>
-
-
-<h1>基本情報</h1>
-<h2>学年</h2>
-<p>{{$user->grade}}</p>
-<h2>性別</h2>
-<p>{{$user->gender}}</p>
-<h2>権限レベル</h2>
-<p>{{$user->user_role_id}}</p>
-@if ($user->grade == '社会人' || $user->grade == 'その他')
-<h2>所属</h2>
-@else
-<h2>学部</h2>
-@endif
-<p>{{$user->profession}}</p>
-<h2>出身</h2>
-<p>{{$user->birth_area}}</p>
-<h2>現住所</h2>
-<p>{{$user->live_area}}</p>
-<h2>兼部・サークル</h2>
-<p>{{$user->group_affiliation}}</p>
-
-
-<h1>パーソナルデータ</h1>
-@if ($user->is_publish_birth_day)
-<h2>誕生日</h2>
-<p>{{$user->birth_day}}</p>
-@endif
-<h2>趣味</h2>
-<p>{{$user->hobbies}}</p>
-<h2>興味</h2>
-<p>{{$user->interests}}</p>
-<h2>座右の銘</h2>
-<p>{{$user->motto}}</p>
-
-
-<h1>情報</h1>
-<h2>slack名</h2>
-<p>{{$user->slack_name}}</p>
-<h2>Discord名</h2>
-<p>{{$user->discord_name}}</p>
-<h2>LINE名</h2>
-<p>{{$user->line_name}}</p>
-<h2>GitHubID</h2>
-<p>{{$user->github_id}}</p>
-
-
-<h1>Mylink</h1>
-@foreach ($links as $link)
-<a href="{{$link->url}}">
-    <img src="{{'http://www.google.com/s2/favicons?sz=64&domain=' . $link->url}}" alt="">
-    <h2>{{$link->name}}</h2>
-    @if ($link->description)
-    <p>{{$link->description}}</p>
-    @endif
-</a>
-@endforeach
-
-
-<h1>所属プロジェクト</h1>
-@foreach ($projects as $project)
-<a href="{{url('/project/' . $project->project_id)}}">
-    <img src="{{url('/' . $project->thumbnail)}}" alt="">
-    <h2>{{$project->title}}</h2>
-    <h3>{{$project->subtitle}}</h3>
-    <p>{{$project->start_date}} ~ {{$project->end_date}}</p>
-</a>
-@endforeach--}}
-
-
-<h1>タイムライン</h1>
-@foreach ($events as $event)
-<p>{{$event->start_date}} ~ {{$event->end_date}}</p>
-<h2>{{$event->title}}</h2>
-<p>{{$event->description}}</p>
-@endforeach
-
-
-<h1>関連ユーザ</h1>
-@foreach ($relatedUsers as $relatedUser)
-<a href="{{url('/user/' . $relatedUser->user_id)}}">
-    <img src="{{url('/' . $relatedUser->profile_photo_path)}}" alt="">
-    <p>{{$relatedUser->name}}</p>
-    <p>{{$relatedUser->profession}}</p>
-</a>
-@endforeach
 @endsection

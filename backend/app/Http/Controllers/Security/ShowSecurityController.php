@@ -10,9 +10,16 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Auth\Access\Gate;
 
 class ShowSecurityController extends Controller
 {
+    /** @var Gate*/
+    private $gate;
+    public function __construct(Gate $gate)
+    {
+        $this->gate = $gate;
+    }
     /**
      * セキュリティページを表示するコントローラー
      *
@@ -25,6 +32,6 @@ class ShowSecurityController extends Controller
         // usersテーブルからログインユーザーのレコードを取得
         $user = User::where('id', $userId)->first();
 
-        return view('security.index', ['user' => $user]);
+        return view('security.index', ['user' => $user, 'gate' => $this->gate]);
     }
 }

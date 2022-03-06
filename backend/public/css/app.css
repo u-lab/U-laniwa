@@ -980,6 +980,10 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -1066,8 +1070,11 @@ select {
 .mb-8 {
   margin-bottom: 2rem;
 }
-.mb-20 {
-  margin-bottom: 5rem;
+.mt-20 {
+  margin-top: 5rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .mt-12 {
   margin-top: 3rem;
@@ -1075,17 +1082,11 @@ select {
 .mb-28 {
   margin-bottom: 7rem;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-.mt-20 {
-  margin-top: 5rem;
 }
 .mb-16 {
   margin-bottom: 4rem;
@@ -1099,8 +1100,14 @@ select {
 .mb-80 {
   margin-bottom: 20rem;
 }
+.ml-20 {
+  margin-left: 5rem;
+}
 .-mt-px {
   margin-top: -1px;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 .block {
   display: block;
@@ -1666,12 +1673,6 @@ select {
 .pr-2 {
   padding-right: 0.5rem;
 }
-.pr-5 {
-  padding-right: 1.25rem;
-}
-.pl-5 {
-  padding-left: 1.25rem;
-}
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1680,6 +1681,12 @@ select {
 }
 .pb-16 {
   padding-bottom: 4rem;
+}
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -1952,7 +1959,7 @@ h2 {
 .wrapper {
   margin-left: auto;
   margin-right: auto;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 .deco {
   width: -webkit-fit-content;
@@ -1994,7 +2001,7 @@ h2 {
     position: absolute;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(196 196 196 / var(--tw-bg-opacity));
+    background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
 .tree-content {
   position: relative;
@@ -2008,7 +2015,7 @@ h2 {
     position: absolute;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(196 196 196 / var(--tw-bg-opacity));
+    background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
 .belongsProject .tree {
   margin-top: 3rem;
@@ -2018,14 +2025,22 @@ h2 {
   --tw-bg-opacity: 1;
   background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
-.belongsProject .tree-content::after {
+.belongsProject .tree-content::after,
+.userTimeline .tree-content::after,
+.timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
     transform: translateY(-50%);
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
 }
-.belongsProject .tree-content::before {
+.userTimeline .tree-content::after,
+.timeline .tree-content::after {
+    left: -5.5rem;
+}
+.belongsProject .tree-content::before,
+.userTimeline .tree-content::before,
+.timeline .tree-content::before {
     content: "";
     height: 1rem;
     width: 5rem;
@@ -2036,6 +2051,10 @@ h2 {
     border-radius: 9999px;
     --tw-bg-opacity: 1;
     background-color: rgb(255 254 254 / var(--tw-bg-opacity));
+}
+.release.tree::before, .release.tree .tree-content::before, .release.tree .tree-content::after {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 196 196 / var(--tw-bg-opacity));
 }
 .main-wrapper {
     width: 100%;
@@ -2078,20 +2097,29 @@ input[type="submit"] {
   padding-right: 0.75rem;
 }
 input[type="text"],
+input[type="email"],
+input[type="password"],
 input[type="url"],
 input[type="date"],
 input[type="checkbox"],
 select,
 textarea {
+    resize: none;
     border: none;
     border-radius: 0.25rem;
     --tw-bg-opacity: 1;
     background-color: rgb(241 241 241 / var(--tw-bg-opacity));
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+select {
+    width: 110%;
 }
 input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
 input[type="url"]:focus,
 input[type="date"]:focus,
 input[type="checkbox"]:focus,
@@ -2101,9 +2129,20 @@ textarea:focus {
     --tw-ring-shadow: 0;
     outline-offset: 0px;
 }
-/*input[type="checkbox"] {
-    @apply p-0;
-}*/
+/* チャート用 */
+.chartWrapper {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 600px;
+}
+.chartWrapper_small {
+    margin: 0 auto;
+    padding: 2em;
+    /* overflow-x: scroll; */
+    width: 300px;
+    height: 300px;
+}
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -2552,6 +2591,10 @@ textarea:focus {
 
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }
+
+  .lg\:w-64 {
+    width: 16rem;
   }
 
   .lg\:px-8 {

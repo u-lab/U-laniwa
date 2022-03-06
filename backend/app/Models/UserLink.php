@@ -11,7 +11,7 @@ class UserLink extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "user_id", "url", "name", "description",
+        "user_id", "url", "title", "description",
     ];
 
     /**

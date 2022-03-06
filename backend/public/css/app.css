@@ -2012,6 +2012,15 @@ h2 {
 .edit-base {
     width: 100px;
 }
+.required {
+  position: relative;
+}
+.required::after {
+    content: "*";
+    padding-left: 2px;
+    color: red;
+    position: absolute;
+}
 .edit-1,
 .edit-2,
 .edit-3 {
@@ -3097,5 +3106,4 @@ textarea:focus {
     line-height: 1.75rem;
   }
 }
-
 

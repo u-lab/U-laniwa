@@ -65,7 +65,7 @@ $user=Auth::user();
                             </td>
                             <td style="width: 250px"><input style="max-width: 250px" id="forCompress" type="file"
                                     name="img"></td>
-                            <input type="file" id="file">
+                            <input type="hidden" id="profilePhotoPath" name="profilePhotoPath">
                         </tr>
                     </table>
                 </div>
@@ -224,26 +224,7 @@ $user=Auth::user();
                                 }
                             });
 
-                            /* 学科条件分岐 */
-                            document.querySelector('select[name="UUFaculty"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
-                                /* プルダウン */
-                                const options = document.querySelectorAll('option[name="gradeOption"]');
-                                const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
 
-                                /* プルダウンで制御する項目 */
-                                const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
-                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
-                                if (selectedOption.value < 10) {  // 学生が選択されているとき
-                                    //会社の入力項目を非表示, 学生ラジオボタンを表示
-                                    company.classList.add('hidden');
-                                    universities.item(0).classList.remove('hidden');
-                                } else {  //社会人・その他が選択されている時
-                                    //会社の入力項目を表示, 学生の入力項目全体をを非表示, 大学ラジオボタンのチェックを外す
-                                    company.classList.remove('hidden');
-                                    [...universities].forEach(university => university.classList.add('hidden'));
-                                    [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
-                                }
-                            });
                         </script>
                         <tr>
                             <td style="width: 200px">兼部・サークル</td>
@@ -628,4 +609,5 @@ $user=Auth::user();
     </div>
 </div>
 
+<script src="{{ mix('js/imageCompress.js') }}"></script>
 @endsection

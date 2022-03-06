@@ -150,7 +150,6 @@ class ShowEditUserController extends Controller
         /** @var Area */
         $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
         // userにbirthとliveプロパティを追加
-        \Log::debug($userAreas);
         $userInfo->live_prefecture_id = $userLiveArea->prefecture_code;
         $userInfo->live_country_id =  $userLiveArea->country_code;
         $userInfo->birth_prefecture_id = $userBirthArea->prefecture_code;

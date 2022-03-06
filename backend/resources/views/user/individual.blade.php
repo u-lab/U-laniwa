@@ -177,7 +177,7 @@ $name = $user->last_name." ".$user->first_name;
         @endif
     </div>
 
-    @if($projects->isEmpty())
+    @if($events->isEmpty())
     @else
     <div class="individual bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>

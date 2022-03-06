@@ -1,4 +1,4 @@
-<div class="fixed left-0 w-60">
+<div class="fixed left-0 w-60 md:block hidden">
     <div class="my-10 w-full">
         <div class="px-8">
             <a href="/" class="inline-block w-full mb-10 hover:opacity-80" style="transition: .2s"><img

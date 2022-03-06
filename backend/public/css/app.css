@@ -982,13 +982,13 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .mx-2 {
   margin-left: 0.5rem;
@@ -1071,15 +1071,6 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.mb-12 {
-  margin-bottom: 3rem;
-}
-.mb-20 {
-  margin-bottom: 5rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
 .mt-36 {
   margin-top: 9rem;
 }
@@ -1092,11 +1083,20 @@ select {
 .mt-20 {
   margin-top: 5rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-12 {
+  margin-bottom: 3rem;
+}
 .mt-12 {
   margin-top: 3rem;
 }
 .mb-28 {
   margin-bottom: 7rem;
+}
+.mb-20 {
+  margin-bottom: 5rem;
 }
 .mb-1 {
   margin-bottom: 0.25rem;
@@ -1579,9 +1579,6 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-12 {
-  padding: 3rem;
-}
 .p-8 {
   padding: 2rem;
 }
@@ -1590,6 +1587,9 @@ select {
 }
 .p-4 {
   padding: 1rem;
+}
+.p-12 {
+  padding: 3rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -2023,9 +2023,28 @@ h2 {
 .edit-birth-p {
     width: 80%;
 }
+@media screen and (max-width: 1280px) {
+    .userpage {
+        width: 660px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .userpage {
+        width: 560px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .userpage {
+        width: 460px;
+    }
+}
 @media screen and (max-width: 768px) {
     #forCompress {
         max-width: 150px !important;
+    }
+
+    .userpage {
+        width: 96%;
     }
 }
 @media screen and (min-width: 768px) {
@@ -2052,13 +2071,9 @@ h2 {
         width: 80% !important;
     }
 
-    .userpage {
-        width: 1200px;
-    }
-
-    .userpage-item {
-        width: 500px;
-    }
+    /*.userpage-item {
+        width: calc(50% - 1.5rem) !important;
+    }*/
 
     .edit-item {
         margin-left: 200px;
@@ -2997,6 +3012,10 @@ textarea:focus {
   }
 }
 @media (min-width: 1280px) {
+
+  .xl\:flex-row {
+    flex-direction: row;
+  }
 
   .xl\:flex-wrap {
     flex-wrap: wrap;

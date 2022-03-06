@@ -18,7 +18,7 @@ $name = $user->last_name." ".$user->first_name;
     @endif
 </div>
 
-<div class="mx-auto mt-8 mb-16 flex md:flex-row flex-col flex-wrap gap-x-3 gap-y-16 justify-between userpage">
+<div class="mx-auto mt-8 mb-16 flex xl:flex-row flex-col flex-wrap gap-x-3 gap-y-16 justify-between userpage">
     <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit userpage-item">
         <div class="flex items-center w-1/2">
             <img src="{{asset('storage/'. $user->profile_photo_path)}}" alt="" class="object-fit-cover">

@@ -15,16 +15,41 @@ $user=Auth::user();
     <div class="border-2 p-2 mb-20">
         <form action="/user/edit/update/userInfo" method="post">
             @php
-            $originImg = url('/'.$user->profile_photo_path);
             $originName = $user->name;
-            $originLastName = $userInfo->last_name;
-            $originFirstName = $userInfo->first_name;
-            $originGender = $userInfo->gender;
-            $originBirthDay = $userInfo->birth_day;
-            $originGrade = $userInfo->grade;
-            $originCompany = $userInfo->company;
-            $originPosition = $userInfo->position;
-            $originUUfacalty = "";
+            $originImg = $user->profile_photo_path ?? "";
+            $originLastName = $userInfo->last_name?? "";
+            $originFirstName = $userInfo->first_name?? "";
+            $originGender = $userInfo->gender->value()?? "";
+            $originBirthDay = $userInfo->birth_day?? "";
+            $originIsPublishBirthDay = $userInfo->is_publish_birth_day?? "";
+            $originGrade = $userInfo->grade->value()?? "";
+            //会社
+            $originCompany = $userInfo->company?? "";
+            $originPosition = $userInfo->position?? "";
+            //大学
+            $originUniversity = $userInfo->university?? "";
+            $originFaculty= $userInfo->faculty?? "";
+            $originMajor = $userInfo->major?? "";
+            $originUUMajor = $userInfo->u_u_major_id?? "";
+            $originUUFaculty = $userInfo->u_u_faculty_id?? "";
+            //趣味
+            $originGroupAffiliation= $userInfo->group_affiliation?? "";
+            $originGithubId = $userInfo->github_id?? "";
+            $originLineName = $userInfo->line_name?? "";
+            $originSlackName = $userInfo->slack_name?? "";
+            $originDiscordName = $userInfo->discord_name?? "";
+            $originHobby = $userInfo->hobby?? "";
+            $originInterests = $userInfo->interests?? "";
+            $originMotto = $userInfo->motto?? "";
+            $originStatus= $userInfo->status?? "";
+            //出身
+            $originBirthCountry= $userInfo->birth_country_id?? "";
+            $originBirthPrefecture= $userInfo->birth_prefecture_id?? "";
+            $originBirthMunicipality= $userInfo->birth_area_id?? "";
+            //現住
+            $originLiveCountry= $userInfo->live_country_id?? "";
+            $originLivePrefecture= $userInfo->live_prefecture_id?? "";
+            $originLiveMunicipality= $userInfo->live_area_id?? "";
             @endphp
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
@@ -36,8 +61,7 @@ $user=Auth::user();
                             <td>画像を追加</td>
                         </tr>
                         <tr>
-                            <td style="width: 250px"><img src="{{url('/'.$user->profile_photo_path)}}"
-                                    class="w-48 inline-block">
+                            <td style="width: 250px"><img src="{{url('/'. $originImg)}}" class="w-48 inline-block">
                             </td>
                             <td style="width: 250px"><input style="max-width: 250px" type="file" name="img"></td>
                         </tr>
@@ -55,51 +79,51 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td style="width: 200px">ユーザー名</td>
-                            <td><input required='true' style="width: 80%" type="text"></td>
+                            <td><input required style="width: 80%" type="text" name="userName" value="{{$originName}}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">姓/名</td>
                             <td>
-                                <input required='true' style="width: 38%; margin-right:4%;" type="text">
-                                <input required='true' style="width: 38%" type="text">
+                                <input required style="width: 38%; margin-right:4%;" type="text" name="lastName"
+                                    value="{{$originLastName}}">
+                                <input required style="width: 38%" type="text" name="firstName"
+                                    value="{{$originFirstName}}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">誕生日</td>
+                            <td style=" width: 200px">誕生日
+                            </td>
                             <td>
-                                <input style="width: 50%; margin-right:5%;" type="date">
-                                <p class="inline-block text-right" style="width: 20%">公開しない</p>
-                                <input type="checkbox">
+                                <input style="width: 50%; margin-right:5%;" type="date" value={{$originBirthDay}}>
+                                <p class="inline-block text-right" style="width: 20%">公開する</p>
+                                <input type="checkbox" name="isPublishBirthDay" {{$originIsPublishBirthDay==1
+                                    ? "checked" :""}}>
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">性別</td>
-                            {{-- TODO: 性別はプルダウンメニューでお願いします
-                            @foreach ($genders as $gender)
-                            <option value="{{$loop->iteration}}">{{$gender['name']}}</option>
-                            @endforeach
-                            こんな感じで！ --}}
                             <td>
-                                <select name='gender' style="width: 80%" required='true'>
+                                <select name='gender' style="width: 80%" required>
                                     <option value="0">選択してください</option>
                                     @foreach ($genders as $gender)
-                                    <option value="{{$loop->iteration}}">{{$gender['name']}}</option>
+                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originGender)
+                                        selected
+                                        @endif>{{$gender['name']}}</option>
                                     @endforeach
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">学年</td>
-                            {{-- TODO: 学年はプルダウンメニューでお願いします
-                            @foreach ($grades as $grade)
-                            <option value="{{$loop->iteration}}">{{$grade['name']}}</option>
-                            @endforeach
-                            こんな感じで！ --}}
                             <td>
-                                <select name='grade' style="width: 80%" required='true'>
+                                <select name='grade' style="width: 80%" required>
                                     <option name='gradeOption' value="0" selected>選択してください</option>
                                     @foreach ($grades as $grade)
-                                    <option name='gradeOption' value="{{$loop->iteration}}">{{$grade['name']}}</option>
+                                    <option name='gradeOption' value="{{$loop->iteration}}" @if ($loop->
+                                        iteration==$originGrade)
+                                        selected
+                                        @endif>{{$grade['name']}}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -107,8 +131,9 @@ $user=Auth::user();
                         <tr name="company" class="hidden">
                             <td style="width: 200px">会社名/役職名</td>
                             <td>
-                                <input required='true' style="width: 38%; margin-right:4%;" type="text">
-                                <input required='true' style="width: 38%;" type="text">
+                                <input style="width: 38%; margin-right:4%;" type="text" name="company"
+                                    value="{{$originCompany}}">
+                                <input style="width: 38%;" type="text" name="position" value="{{$originPosition}}">
                             </td>
 
                         </tr>
@@ -123,26 +148,33 @@ $user=Auth::user();
                         </tr>
                         <tr name="university" id="UU" , class="hidden">
                             <td style="width: 200px">学部/学科</td>
-                            {{-- TODO: 学部はプルダウンメニューでお願いします
-                            @foreach ($uuFaculties as $uuFacultie)
-                            <option value="{{$loop->iteration}}">{{$uuFacultie['name']}}</option>
-                            @endforeach
-                            こんな感じで！ --}}
                             <td>
-                                <select name='faculty' style="width: 38%; margin-right:4%;" required='true'>
+                                <select name='uuFactory' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
-                                    <option value="{{$loop->iteration}}">{{$uuFacultie['name']}}</option>
+                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUFaculty)
+                                        selected
+                                        @endif>{{$uuFacultie['name']}}
+                                    </option>
                                     @endforeach
                                 </select>
-                                <input required='true' style="width: 38%" type="text">
+                                <select name='uuMajor' style="width: 38%; margin-right:4%;">
+                                    @foreach ($uuFaculties as $uuFacultie)
+                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUMajor)
+                                        selected
+                                        @endif>{{$uuFacultie['name']}}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </td>
                         </tr>
                         <tr name="university" id="other" class="hidden">
                             <td style="width: 200px">大学名/学部/学科</td>
                             <td>
-                                <input required='true' style="width: 24%; margin-right:4%;" type="text">
-                                <input required='true' style="width: 24%; margin-right:4%;" type="text">
-                                <input required='true' style="width: 24%" type="text">
+                                <input style="width: 24%; margin-right:4%;" type="text" name="university"
+                                    value={{$originUniversity}}>
+                                <input style="width: 24%; margin-right:4%;" type="text" name="faculty"
+                                    value={{$originFaculty}}>
+                                <input style="width: 24%" type="text" name="major" value={{$originMajor}}>
                             </td>
                         </tr>
                         <script>
@@ -152,6 +184,8 @@ $user=Auth::user();
                             /* ラジオボタンで制御する項目 */
                             const UU = document.querySelector('#UU');  // 宇大の入力項目
                             const other = document.querySelector('#other');  // 他大の入力項目
+
+
 
                             /* 大学のラジオボタンによる条件分岐 */
                             [...radioBtns].forEach(radioBtn => {
@@ -187,39 +221,72 @@ $user=Auth::user();
                                     [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
                                 }
                             });
+
+                            /* 学科条件分岐 */
+                            document.querySelector('select[name="UUFaculty"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
+                                /* プルダウン */
+                                const options = document.querySelectorAll('option[name="gradeOption"]');
+                                const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
+
+                                /* プルダウンで制御する項目 */
+                                const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
+                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
+                                if (selectedOption.value < 10) {  // 学生が選択されているとき
+                                    //会社の入力項目を非表示, 学生ラジオボタンを表示
+                                    company.classList.add('hidden');
+                                    universities.item(0).classList.remove('hidden');
+                                } else {  //社会人・その他が選択されている時
+                                    //会社の入力項目を表示, 学生の入力項目全体をを非表示, 大学ラジオボタンのチェックを外す
+                                    company.classList.remove('hidden');
+                                    [...universities].forEach(university => university.classList.add('hidden'));
+                                    [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
+                                }
+                            });
                         </script>
                         <tr>
                             <td style="width: 200px">兼部・サークル</td>
-                            <td><input required='true' style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" name="groupAffiliation"
+                                    value="{{$originGroupAffiliation}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">出身地</td>
                             <td>
-                                {{-- TODO: 出身地・現在地の国はプルダウンメニューでお願いします
-                                @foreach ($countries as $country)
-                                <option value="{{$loop->index}}">{{$country['name']}}</option>
-                                @endforeach
-                                こんな感じで！ --}}
-                                <select name='country' style="width: 24%; margin-right:4%;" required='true'>
+                                <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <input required='true' style="width: 24%; margin-right:4%;" type="text">
-                                <input required='true' style="width: 24%" type="text">
+                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required>
+                                    @foreach ($countries as $country)
+                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    @endforeach
+                                </select>
+                                <select name='birthMunicipality' style="width: 24%; margin-right:4%;" required>
+                                    @foreach ($countries as $country)
+                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    @endforeach
+                                </select>
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">現住地</td>
                             <td>
                                 {{-- TODO: 同上 --}}
-                                <select name='country_now' style="width: 24%; margin-right:4%;" required='true'>
+                                <select name='liveCountry' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <input required='true' style="width: 24%; margin-right:4%;" type="text">
-                                <input required='true' style="width: 24%" type="text">
+                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required>
+                                    @foreach ($countries as $country)
+                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    @endforeach
+                                </select>
+                                <select name='liveMunicipality' style="width: 24%; margin-right:4%;" required>
+                                    @foreach ($countries as $country)
+                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    @endforeach
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -245,35 +312,40 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td style="width: 200px">趣味</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="hobby" value="{{$originHobby}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">興味</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="interests " value="{{$originInterests }}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">座右の銘</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="motto " value="{{$originMotto }}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">GitHub ID</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="githubId " value="{{$originGithubId}}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">LINEでのお名前</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="lineName " value="{{$originLineName }}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">Slackでのお名前</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="slackName " value="{{$originSlackName  }}">
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">Discordでのお名前</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="discordName "
+                                    value="{{$originDiscordName }}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">一言コメント</td>
-                            <td><input style="width: 80%" type="text"></td>
+                            <td><input style="width: 80%" type="text" value="status " value="{{$originStatus }}"></td>
                         </tr>
                         <tr>
                             <td colspan="2">

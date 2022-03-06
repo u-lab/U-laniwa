@@ -490,7 +490,7 @@ $user=Auth::user();
 
                 [...radioBtns].forEach(radioBtn => {
                     radioBtn.addEventListener('change', () => {  // ラジオボタンの各選択肢が更新されたとき
-                        if (radioBtn.checked && radioBtn.value === '宇都宮大学') {  // 宇大がcheckedのとき
+                        if (radioBtn.checked && radioBtn.value === 'uu') {  // 宇大がcheckedのとき
                             // 宇大の入力項目を表示・他大の入力項目を非表示
                             UU.classList.remove('hidden');
                             other.classList.add('hidden');
@@ -619,8 +619,8 @@ $user=Auth::user();
 
 
                     /* ラジオボタン */
-                    const UUBtn = document.querySelector('input[value="宇都宮大学"]');
-                    const otherBtn = document.querySelector('input[value="他大学"]');
+                    const UUBtn = document.querySelector('input[value="uu"]');
+                    const otherBtn = document.querySelector('input[value="else"]');
 
                     /* ラジオボタンで制御する項目 */
                     const UU = document.querySelector('#UU');  // 宇大の入力項目

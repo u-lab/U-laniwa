@@ -26,6 +26,6 @@ class DeleteUserLinkController extends Controller
         ]);
         //無駄なuser_idを付けているのは、万が一悪意あるユーザーが他のユーザーのtimeline idに偽装した時を防ぐため
         UserLink::where('id', $request->userLinkId)->where('user_id', Auth::id())->delete();
-        return redirect('/user/edit');
+        return redirect('/user/edit#linkTable');
     }
 }

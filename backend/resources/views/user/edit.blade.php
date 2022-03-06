@@ -623,7 +623,10 @@ $user=Auth::user();
 
                     if (selectedOption.value < 10) {  // 学生が選択されているとき
                         company.classList.add('hidden');  // 会社の入力項目を非表示
-                    } else {  //社会人・その他が選択されている時
+                    } else if (selectedOption.value) {  //社会人・その他が選択されている時
+                        [...universities].forEach(university => university.classList.add('hidden')); // 学生の入力項目全体をを非表示
+                    } else {
+                        company.classList.add('hidden');  // 会社の入力項目を非表示
                         [...universities].forEach(university => university.classList.add('hidden')); // 学生の入力項目全体をを非表示
                     }
 

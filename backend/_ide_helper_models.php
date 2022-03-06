@@ -14,9 +14,10 @@ namespace App\Models{
 /**
  * App\Models\Area
  *
+ * @property Prefecture $prefecture_code
+ * ↑Larastanエラー対策で、本当はこのごまかしだめですが……done is better than perfect
  * @property int $id
  * @property \App\Enums\Country $country_code 国コード
- * @property \App\Enums\Prefecture|null $prefecture_code 都道府県コード
  * @property string|null $municipality_code 市区町村コード
  * @property string|null $municipality 市区町村名
  * @method static \Illuminate\Database\Eloquent\Builder|Area newModelQuery()
@@ -37,7 +38,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property \App\Enums\NoticeGenre $genre お知らせジャンル
- * @property string $date 日付
+ * @property \Illuminate\Support\Carbon $date 日付
  * @property string $title タイトル
  * @property string $description 説明
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -68,8 +69,8 @@ namespace App\Models{
  * @property string $description 説明(活動内容)
  * @property string $thumbnail サムネイル用画像のパス
  * @property string $place_of_activity 活動場所
- * @property string $start_date プロジェクト期間(開始)
- * @property string|null $end_date プロジェクト期間(終了)
+ * @property \Illuminate\Support\Carbon $start_date プロジェクト期間(開始)
+ * @property \Illuminate\Support\Carbon|null $end_date プロジェクト期間(終了)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Project $project
@@ -154,7 +155,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $project_id
- * @property string $date 日付
+ * @property \Illuminate\Support\Carbon $date 日付
  * @property string $title タイトル
  * @property string $description 説明
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -208,7 +209,7 @@ namespace App\Models{
  * @property string $profile_photo_path
  * @property int $user_role_id
  * @property int|null $invited_id
- * @property string|null $retired_at 退部した日
+ * @property \Illuminate\Support\Carbon|null $retired_at 退部した日
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -255,7 +256,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
- * @property string $birth_day 誕生日
+ * @property \Illuminate\Support\Carbon $birth_day 誕生日
  * @property string|null $last_name 姓
  * @property string $first_name 名
  * @property \App\Enums\Grade $grade enum学年
@@ -345,7 +346,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property string $url url
- * @property string $name タイトル
+ * @property string $title タイトル
  * @property string|null $description 説明
  * @method static \Database\Factories\UserLinkFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UserLink newModelQuery()
@@ -353,7 +354,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UserLink query()
  * @method static \Illuminate\Database\Eloquent\Builder|UserLink whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserLink whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserLink whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserLink whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserLink whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserLink whereUserId($value)
  */
@@ -386,8 +387,8 @@ namespace App\Models{
  * @property string $title タイトル
  * @property string|null $description 説明
  * @property \App\Enums\UserTimelineGenre $genre Enumジャンル
- * @property string $start_date 開始日(必須)
- * @property string|null $end_date 終了日(必須でない)
+ * @property \Illuminate\Support\Carbon $start_date 開始日(必須)
+ * @property \Illuminate\Support\Carbon|null $end_date 終了日(必須でない)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $user

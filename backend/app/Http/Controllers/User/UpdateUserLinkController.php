@@ -24,29 +24,23 @@ class UpdateUserLinkController extends Controller
          * バリデーション
          */
         $validateRule = [
-            'linkId' => 'int',
+            'linkId' => 'required | int',
             'linkTitle' => 'required|string|max:255',
-            'linkDescription' => 'max:1000',
-            'linkUrl' => 'required|url',
+            'linkDescription' => 'nullable | string | max:1000',
+            'linkUrl' => 'required | url',
         ];
         $this->validate($request, $validateRule);
-        /**
-         * 必須のデータ
-         * @var array<string,mixed>
-         */
-        $linkDate = [
-            'title' => $request->linkTitle,
-            'url' => $request->linkUrl,
-            'user_id' => Auth::id(),
-        ];
-        /**
-         * 必須じゃない項目の処理
-         */
-        $request->linkDescription != null ? $linkDate = array_merge($linkDate, ['description' => $request->linkDescription,]) : "";
+
+
         /**無かったら作る、あったら更新する方式 */
         UserLink::updateOrCreate(
             ['id' => $request->linkId],
-            $linkDate
+            [
+                'title' => $request->linkTitle,
+                'url' => $request->linkUrl,
+                'user_id' => Auth::id(),
+                'description' => $request->linkDescription ?? null,
+            ],
         );
         return redirect('/user/edit#linkTable');
     }

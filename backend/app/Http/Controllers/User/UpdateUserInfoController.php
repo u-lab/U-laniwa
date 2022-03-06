@@ -88,17 +88,17 @@ class UpdateUserInfoController extends Controller
             'live_area_id' => $request->liveMunicipalityId,
             /**
              * 下記より必須でない項目
-             * そもそも値を入れなければいいと考えていたが、存在する→存在しないの処理が大変なので下記のようにした
+             * そもそも値を入れなければいいと考えていたが、存在する→存在しないの変更処理が大変なので下記のようにした
              */
-            'group_affiliation' => $request->groupAffiliation ?? "",
-            'hobbies' => $request->hobbies ?? "",
-            'interests' => $request->interests ?? "",
-            'motto' => $request->motto ?? "",
-            'github_id' => $request->githubId ?? "",
-            'line_name' => $request->lineName ?? "",
-            'slack_name' => $request->slackName ?? "",
-            'discord_name' => $request->discordName ?? "",
-            'status' => $request->status ?? "",
+            'group_affiliation' => $request->groupAffiliation ?? null,
+            'hobbies' => $request->hobbies ?? null,
+            'interests' => $request->interests ?? null,
+            'motto' => $request->motto ?? null,
+            'github_id' => $request->githubId ?? null,
+            'line_name' => $request->lineName ?? null,
+            'slack_name' => $request->slackName ?? null,
+            'discord_name' => $request->discordName ?? null,
+            'status' => $request->status ?? null,
         ];
 
         /**
@@ -144,6 +144,6 @@ class UpdateUserInfoController extends Controller
             Storage::delete('public/' . $user->profile_photo_path);
         }
 
-        return redirect('/user/edit');
+        return redirect('/user/edit#userInfoTable');
     }
 }

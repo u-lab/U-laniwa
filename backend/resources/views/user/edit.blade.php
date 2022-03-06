@@ -12,7 +12,7 @@ $user=Auth::user();
 <p class="text-center mb-12">{{$user->name}} さん</p>
 
 <div class="mx-auto mb-80" style="max-width: 1200px">
-    <div class="border-2 p-2 mb-20">
+    <div class="border-4 p-2 mb-20 rounded-2xl border-dotted border-bg">
         @php
         $originProfilePhotoPath = $user->profile_photo_path;
         $originName = $user->name;
@@ -246,7 +246,7 @@ $user=Auth::user();
 
         </ul>
         @endif
-        <form action="/user/edit/update/userInfo" method="post">
+        <form action="/user/edit/update/userInfo" method="post" id="userInfoTable">
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
                 <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20">プロフィール画像</h2>
@@ -649,7 +649,7 @@ $user=Auth::user();
         @php
         $timelineTitle="";
         $timelineDescription="";
-        $timelineGenre="";
+        $timelineGenreId="";
         $timelineStartDate="";
         $timelineEndDate="";
         @endphp
@@ -658,7 +658,7 @@ $user=Auth::user();
         @php
         $timelineTitle=old("timelineTitle");
         $timelineDescription=old("timelineDescription");
-        $timelineGenre=old("timelineGenre");
+        $timelineGenreId=old("timelineGenreId");
         $timelineStartDate=old("timelineStartDate");
         $timelineEndDate=old("timelineEndDate");
         @endphp
@@ -693,7 +693,7 @@ $user=Auth::user();
         </ul>
         @endif
         <div class="rounded-3xl border-2 border-bg">
-            <table class="w-full text-center edit rounded-3xl overflow-hidden">
+            <table class="w-full text-center edit rounded-3xl overflow-hidden" id="timelineTable">
                 <tr class="bg-bg-sub">
                     <td>番号</td>
                     <td>タイトル</td>
@@ -704,7 +704,7 @@ $user=Auth::user();
                     <td>削除</td>
                 </tr>
                 {{-- 初回分は登録フォームなのでループ外 --}}
-                <form method="POST" action="/user/edit/update/userTimeline" id="timelineTable">
+                <form method="POST" action="/user/edit/update/userTimeline">
                     @csrf
                     <tr>
                         <td style="width: 40px">1</td>
@@ -723,7 +723,7 @@ $user=Auth::user();
                                 @php
                                 $id+=1;
                                 @endphp
-                                <option value="{{$timelineGenre['id']}}" @if($timelineGenre==$timelineGenre['id'])
+                                <option value="{{$timelineGenre['id']}}" @if($timelineGenreId==$timelineGenre['id'])
                                     selected @endif>{{$timelineGenre['name']}}</option>
                                 @endforeach
                             </select>

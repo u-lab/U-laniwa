@@ -327,6 +327,34 @@ textarea:focus {
     height: 300px;
 }
 
+@media screen and (max-width: 640px) {
+    .chart {
+        width: 400px !important;
+        height: 400px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .chart {
+        width: 360px !important;
+        height: 360px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 360px;
+        height: 360px;
+    }
+}
+
 /* カレンダーグレースケール化 */
 .calender iframe,
 .calender object,

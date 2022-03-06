@@ -990,6 +990,10 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -997,10 +1001,6 @@ select {
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
-}
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1109,9 +1109,6 @@ select {
 }
 .mb-32 {
   margin-bottom: 8rem;
-}
-.mb-80 {
-  margin-bottom: 20rem;
 }
 .ml-20 {
   margin-left: 5rem;
@@ -1379,9 +1376,6 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
-}
-.overflow-x-auto {
-  overflow-x: auto;
 }
 .overflow-y-auto {
   overflow-y: auto;
@@ -2272,6 +2266,32 @@ textarea:focus {
     width: 300px;
     height: 300px;
 }
+@media screen and (max-width: 640px) {
+    .chart {
+        width: 400px !important;
+        height: 400px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 400px;
+        height: 400px;
+    }
+}
+@media screen and (max-width: 460px) {
+    .chart {
+        width: 360px !important;
+        height: 360px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 360px;
+        height: 360px;
+    }
+}
 /* カレンダーグレースケール化 */
 .calender iframe,
 .calender object,
@@ -2706,20 +2726,16 @@ textarea:focus {
     margin-top: 0px;
   }
 
+  .md\:mb-80 {
+    margin-bottom: 20rem;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
 
   .md\:mb-2 {
     margin-bottom: 0.5rem;
-  }
-
-  .md\:ml-4 {
-    margin-left: 1rem;
-  }
-
-  .md\:mb-80 {
-    margin-bottom: 20rem;
   }
 
   .md\:block {
@@ -2762,14 +2778,6 @@ textarea:focus {
     gap: 2rem;
   }
 
-  .md\:overflow-hidden {
-    overflow: hidden;
-  }
-
-  .md\:overflow-x-hidden {
-    overflow-x: hidden;
-  }
-
   .md\:border-t-0 {
     border-top-width: 0px;
   }
@@ -2799,6 +2807,11 @@ textarea:focus {
 
   .md\:pb-16 {
     padding-bottom: 4rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:text-base {

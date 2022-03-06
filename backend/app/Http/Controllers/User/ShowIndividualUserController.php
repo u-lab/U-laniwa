@@ -93,7 +93,10 @@ class ShowIndividualUserController extends Controller
         $user->birth_area = $userBirthArea->prefecture_code == null ?  "-" : $userBirthArea->prefecture_code->label()  . $userBirthArea->municipality;
         $user->live_area = $userLiveArea->prefecture_code == null ?  "-" : $userLiveArea->prefecture_code->label() . $userLiveArea->municipality;
 
-        // ユーザーロール取得
+        /**
+         * ユーザーロール取得
+         * @var UserRole
+         */
         $userRole = UserRole::where('id', $user->user_role_id)->first();
         $user->user_role = $userRole->name;
         /** @var UserLink */

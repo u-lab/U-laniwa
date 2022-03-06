@@ -1236,6 +1236,9 @@ select {
 .w-24 {
   width: 6rem;
 }
+.w-80 {
+  width: 20rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1537,6 +1540,10 @@ select {
 .bg-main-btn {
   --tw-bg-opacity: 1;
   background-color: rgb(255 254 254 / var(--tw-bg-opacity));
+}
+.\!bg-bg-sub {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 243 243 / var(--tw-bg-opacity)) !important;
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;

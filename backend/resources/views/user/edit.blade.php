@@ -98,7 +98,8 @@ $user=Auth::user();
                             <td style=" width: 200px">誕生日
                             </td>
                             <td>
-                                <input style="width: 50%; margin-right:5%;" type="date" value={{$originBirthDay}}>
+                                <input style="width: 50%; margin-right:5%;" type="date" name="birthDay"
+                                    value={{$originBirthDay}}>
                                 <p class="inline-block text-right" style="width: 20%">公開する</p>
                                 <input type="checkbox" name="isPublishBirthDay" {{$originIsPublishBirthDay==1
                                     ? "checked" :""}}>
@@ -143,13 +144,9 @@ $user=Auth::user();
                         <tr name="university">
                             <td style="width: 200px">大学</td>
                             <td>
-                                <input type="radio" name="univRadio" value="宇都宮大学" @if ($originUUMajor)
-                                checked
-                                @endif>
+                                <input type="radio" name="univRadio" value="宇都宮大学" @if ($originUUMajor) checked @endif>
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
-                                <input type="radio" name="univRadio" value="他大学" @if ($originUniversity)
-                                checked
-                                @endif>
+                                <input type="radio" name="univRadio" value="他大学" @if ($originUniversity) checked @endif>
                                 <label for='他大学'>他大学</label>
                             </td>
                         </tr>
@@ -238,17 +235,17 @@ $user=Auth::user();
                         <tr>
                             <td style="width: 200px">出身地</td>
                             <td>
-                                <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthCountryId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthPrefectureId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthMunicipality' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthMunicipalityId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
@@ -259,17 +256,17 @@ $user=Auth::user();
                             <td style="width: 200px">現住地</td>
                             <td>
                                 {{-- TODO: 同上 --}}
-                                <select name='liveCountry' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveCountryId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required>
+                                <select name='livePrefectureId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='liveMunicipality' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveMunicipalityId' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>
                                     @endforeach
@@ -299,40 +296,40 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td style="width: 200px">趣味</td>
-                            <td><input style="width: 80%" type="text" value="hobby" value="{{$originHobby}}"></td>
+                            <td><input style="width: 80%" type="text" name="hobbies" value="{{$originHobby}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">興味</td>
-                            <td><input style="width: 80%" type="text" value="interests " value="{{$originInterests }}">
+                            <td><input style="width: 80%" type="text" name="interests" value="{{$originInterests }}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">座右の銘</td>
-                            <td><input style="width: 80%" type="text" value="motto " value="{{$originMotto }}"></td>
+                            <td><input style="width: 80%" type="text" name="motto" value="{{$originMotto}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">GitHub ID</td>
-                            <td><input style="width: 80%" type="text" value="githubId " value="{{$originGithubId}}">
+                            <td><input style="width: 80%" type="text" name="githubId" value="{{$originGithubId}}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">LINEでのお名前</td>
-                            <td><input style="width: 80%" type="text" value="lineName " value="{{$originLineName }}">
+                            <td><input style="width: 80%" type="text" name="lineName" value="{{$originLineName}}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">Slackでのお名前</td>
-                            <td><input style="width: 80%" type="text" value="slackName " value="{{$originSlackName  }}">
+                            <td><input style="width: 80%" type="text" name="slackName" value="{{$originSlackName }}">
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">Discordでのお名前</td>
-                            <td><input style="width: 80%" type="text" value="discordName "
-                                    value="{{$originDiscordName }}"></td>
+                            <td><input style="width: 80%" type="text" value="discordName"
+                                    value="{{$originDiscordName}}"></td>
                         </tr>
                         <tr>
                             <td style="width: 200px">一言コメント</td>
-                            <td><input style="width: 80%" type="text" value="status " value="{{$originStatus }}"></td>
+                            <td><input style="width: 80%" type="text" value="status" value="{{$originStatus}}"></td>
                         </tr>
                         <tr>
                             <td colspan="2">

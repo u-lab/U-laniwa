@@ -8,7 +8,7 @@
 @include('components.forMembers.pageTitle', ['title'=>'タイムライン'])
 
 <div class="bg-bg-sub p-8 rounded-3xl mx-auto mb-20 timeline-p" style="max-width: 1000px">
-    @if($timelines)
+    @if($timelines->isEmpty())
     <p class="py-6 text-center">タイムラインはまだありません。</p>
     @else
     <div class="tree timeline">
@@ -21,8 +21,6 @@
         'genre'=>$timeline->genre->label(),
         'title'=>$timeline->title,
         'text'=>$timeline->description])
-        {{-- この値でタイムラインの表示件数を変更(1件~20件) --}}
-        @break ($loop->iteration == 10)
         @endforeach
 
     </div>

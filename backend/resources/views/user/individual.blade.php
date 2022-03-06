@@ -173,26 +173,26 @@ $name = $user->last_name." ".$user->first_name;
             @foreach ($projects as $project)
             @include('components.forMembers.projectFrame')
             @endforeach
+            @endif
         </div>
-        @endif
     </div>
 
-    @if($projects->isEmpty())
+    @if($events->isEmpty())
     @else
     <div class="individual bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>
         <div class="tree">
             @foreach ($events as $event)
             @include('components.forMembers.userTimeline',[
-            'start_date'=>$event->start_date,
+            'start_date'=>$event->start_date->format('Y/n/j'),
             'end_date'=>$event->end_date,
             'genre'=>$event->genre->label(),
             'title'=>$event->title,
             'text'=>$event->description])
             @endforeach
         </div>
-        @endif
     </div>
+    @endif
 
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>

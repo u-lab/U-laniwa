@@ -10,7 +10,7 @@
 <div class="belongsProject">
     <div class="userTimeline bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>
-        @if($timelines)
+        @if($timelines->isEmpty())
         <p class="py-6 text-center">タイムラインはありません。</p>
         @else
         <div class="tree">

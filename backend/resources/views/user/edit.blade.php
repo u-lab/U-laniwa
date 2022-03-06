@@ -264,7 +264,8 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td style="width: 250px">
-                                <img id="userImage" src="{{asset('storage/'.$originImg)}}" class="w-48 inline-block">
+                                <img id="userImage" src="{{asset('storage/'.$originImg)}}"
+                                    class="user-img inline-block object-cover">
                             </td>
                             <td style="width: 250px">
                                 <input style="max-width: 250px" id="forCompress" type="file" name="img">
@@ -285,12 +286,12 @@ $user=Auth::user();
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="edit-base">ユーザー名</td>
+                            <td class="edit-base required">ユーザー名</td>
                             <td><input required class="edit-1" type="text" name="userName" value="{{$originName}}">
                             </td>
                         </tr>
                         <tr>
-                            <td class="edit-base">姓/名</td>
+                            <td class="edit-base required">姓/名</td>
                             <td>
                                 <input required class="edit-2 md:mb-0 mb-2" style="margin-right:4%;" type="text"
                                     name="lastName" value="{{$originLastName}}">
@@ -299,7 +300,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td class="edit-base">誕生日
+                            <td class="edit-base required">誕生日
                             </td>
                             <td>
                                 <input class="edit-birth" type="date" name="birthDay" value={{$originBirthDay}}>
@@ -309,7 +310,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td class="edit-base">性別</td>
+                            <td class="edit-base required">性別</td>
                             <td>
                                 <select name='gender' class="edit-1" required>
                                     <option hidden>選択してください</option>
@@ -322,7 +323,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td class="edit-base">学年</td>
+                            <td class="edit-base required">学年</td>
                             <td>
                                 <select name='grade' class="edit-1" required>
                                     <option name='gradeOption' hidden>選択してください</option>
@@ -336,7 +337,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr name="company">
-                            <td class="edit-base">会社名/役職名</td>
+                            <td class="edit-base required">会社名/役職名</td>
                             <td>
                                 <input class="edit-2 md:mb-0 mb-2" style="margin-right:4%;" type="text"
                                     name="company_for_meta" value="{{$originCompany}}">
@@ -345,7 +346,7 @@ $user=Auth::user();
 
                         </tr>
                         <tr name="university">
-                            <td class="edit-base">大学</td>
+                            <td class="edit-base required">大学</td>
                             <td>
                                 <input type="radio" name="univRadio" value="uu" @if ($originUUMajor) checked @endif>
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
@@ -355,7 +356,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr name="university" id="UU">
-                            <td class="edit-base">学部/学科</td>
+                            <td class="edit-base required">学部/学科</td>
                             <td>
                                 <select name='uuFaculty' class="edit-2 md:mb-0 mb-2" style="margin-right:4%;">
                                     <option hidden>選択してください</option>
@@ -379,7 +380,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr name="university" id="other">
-                            <td class="edit-base">大学名/学部/学科</td>
+                            <td class="edit-base required">大学名/学部/学科</td>
                             <td>
                                 <input class="edit-3 md:mb-0 mb-2" style="margin-right:4%;" type="text"
                                     name="university_for_meta" value={{$originUniversity}}>
@@ -395,7 +396,7 @@ $user=Auth::user();
                                     value="{{$originGroupAffiliation}}"></td>
                         </tr>
                         <tr>
-                            <td class="edit-base">出身地</td>
+                            <td class="edit-base required">出身地</td>
                             <td>
                                 <select name='birthCountry' class="edit-3 md:mb-0 mb-2" style="margin-right:4%;"
                                     required>
@@ -436,7 +437,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td class="edit-base">現住地</td>
+                            <td class="edit-base required">現住地</td>
                             <td>
                                 <select name='liveCountry' class="edit-3 md:mb-0 mb-2" style="margin-right:4%;"
                                     required>
@@ -758,8 +759,8 @@ $user=Auth::user();
             <table class="w-full text-center edit rounded-3xl overflow-hidden" id="linkTable">
                 <tr class="bg-bg-sub md:!table-row !hidden">
                     <td style="width: 40px !important">番号</td>
-                    <td style="width: 250px !important">URL</td>
-                    <td style="width: 250px !important">名称</td>
+                    <td class="required" style="width: 250px !important">URL</td>
+                    <td class="required" style="width: 250px !important">名称</td>
                     <td style="width: 300px !important">説明</td>
                     <td style="width: 80px !important">追加<br class="block md:hidden">変更</td>
                     <td style="width: 80px !important">削除</td>
@@ -768,13 +769,21 @@ $user=Auth::user();
                     <form method="POST" action="/user/edit/update/userLink">
                         @csrf
                         <td style="width: 40px">1</td>
-                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl"
-                                placeholder="リンクを入力" required></td>
-                        <td style="width: 250px"><input style="width: 80%" type="text" name="linkTitle"
-                                placeholder="名称を入力" required></td>
-                        <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;" name="linkDescription"
-                                placeholder="説明を入力"></textarea></td>
-                        <td style="width: 80px"><input type="submit" value="作成"></td>
+                        <td style="width: 250px">
+                            <input class="required" style="width: 80%" type="url" name="linkUrl"
+                                placeholder="リンクを入力(必須)" required>
+                        </td>
+                        <td style="width: 250px">
+                            <input class="required" style="width: 80%" type="text" name="linkTitle"
+                                placeholder="名称を入力(必須)" required>
+                        </td>
+                        <td style="width: 300px">
+                            <textarea style="width: 80%; padding:.5rem;" name="linkDescription"
+                                placeholder="説明を入力"></textarea>
+                        </td>
+                        <td style="width: 80px">
+                            <input type="submit" value="作成">
+                        </td>
                     </form>
                 </tr>
                 {{-- 登録済みデータ表示 --}}
@@ -873,9 +882,9 @@ $user=Auth::user();
             <table class="w-full text-center edit rounded-3xl overflow-hidden" id="timelineTable">
                 <tr class="bg-bg-sub md:!table-row !hidden">
                     <td>番号</td>
-                    <td>タイトル</td>
+                    <td class="required">タイトル</td>
                     <td>説明</td>
-                    <td>ジャンル</td>
+                    <td class="required">ジャンル</td>
                     <td>開始日/終了日</td>
                     <td>追加<br class="block md:hidden">変更</td>
                     <td>削除</td>
@@ -885,11 +894,13 @@ $user=Auth::user();
                     @csrf
                     <tr>
                         <td style="width: 40px">1</td>
-                        <td style=""><input style="width: 80%" type="text" name="timelineTitle"
-                                value="{{$timelineTitle}}" required></td>
+                        <td style="">
+                            <input style="width: 80%" type="text" name="timelineTitle" value="{{$timelineTitle}}"
+                                placeholder="タイトルを入力(必須)" required>
+                        </td>
                         <td style="width: 300px">
-                            <textarea name="timelineDescription"
-                                style="width: 80%; padding:.5rem;">{{$timelineDescription}}</textarea>
+                            <textarea name="timelineDescription" style="width: 80%; padding:.5rem;"
+                                placeholder="説明を入力">{{$timelineDescription}}</textarea>
                         </td>
                         <td class="timeline-genre">
                             <select name="timelineGenreId">
@@ -906,8 +917,9 @@ $user=Auth::user();
                             </select>
                         </td>
                         <td style=" font-size:.875rem; ">
-                            <div class="mb-1">開始日 : <input type="date" name="timelineStartDate"
-                                    value="{{$timelineStartDate}}" required>
+                            <div class="mb-1">
+                                <p class="inline-block required">開始日 : </p>
+                                <input type="date" name="timelineStartDate" value="{{$timelineStartDate}}" required>
                             </div>
                             <div>終了日 : <input type="date" name="timelineEndDate" value={{$timelineEndDate ?? "" }}>
                             </div>
@@ -935,8 +947,8 @@ $user=Auth::user();
                         <td style=""><input style="width: 80%" type="text" name="timelineTitle"
                                 value="{{$timeline->title}}" required></td>
                         <td style=" width: 200px">
-                            <textarea name="timelineDescription"
-                                style="width: 80%; padding:.5rem;">{{$timeline->description ?? ""}}</textarea>
+                            <textarea name="timelineDescription" style="width: 80%; padding:.5rem;"
+                                placeholder="説明を入力">{{$timeline->description ?? ""}}</textarea>
                         </td>
                         <td class="timeline-genre">
                             <select name="timelineGenreId">
@@ -956,7 +968,9 @@ $user=Auth::user();
                             </select>
                         </td>
                         <td style=" font-size:.875rem; ">
-                            <div class="mb-1">開始日 : <input type="date" name="timelineStartDate"
+                            <div class="mb-1">
+                                <p class="inline-block required">開始日 : </p>
+                                <input type="date" name="timelineStartDate"
                                     value="{{$timeline->start_date->format('Y-m-d')}}" required>
                             </div>
                             <div>終了日 : <input type="date" name="timelineEndDate" value={{$timeline->end_date ?

@@ -111,7 +111,7 @@ class ShowIndividualUserController extends Controller
 
         /** @var UserTimeline */
         $events = UserTimeline::where('user_id', $user_id)
-            ->orderBy('start_date', 'asc')
+            ->orderBy('start_date', 'desc')
             ->get();
 
         /** @var UserInfo */

@@ -42,10 +42,13 @@ $user=Auth::user();
         <div class="flex flex-col gap-2 ml-4">
             @foreach ($invitedUsers as $invitedUser)
             <div>
-                <img src="{{asset('storage/'. $invitedUser->profile_photo_path)}}" alt=""
-                    class="w-12 h-12 rounded-full inline-block">
-                <p class="inline-block pl-4">{{$invitedUser->name}}</p>
-                {{-- この値で表示数を変更(1件~20件) --}}
+                <a href="{{url('/user/'. $invitedUser->id)}}">
+
+                    <img src="{{asset('storage/'. $invitedUser->profile_photo_path)}}" alt=""
+                        class="w-12 h-12 rounded-full inline-block">
+                    <p class="inline-block pl-4">{{$invitedUser->name}}</p>
+                    {{-- この値で表示数を変更(1件~20件) --}}
+                </a>
             </div>
             @break ($loop->iteration == 3)
             @endforeach

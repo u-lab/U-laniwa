@@ -15,7 +15,7 @@ $user=Auth::user();
     <div class="border-2 p-2 mb-20">
         <form>
             <div class="mx-auto mb-20" style="width: 600px">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4">プロフィール画像</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20">プロフィール画像</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -34,7 +34,7 @@ $user=Auth::user();
             </div>
 
             <div class="mx-auto mb-20 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4" style="margin-left: 200px">基本情報</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">基本情報</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -174,7 +174,8 @@ $user=Auth::user();
             </div>
 
             <div class="mx-auto mb-12 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4" style="margin-left: 200px">パーソナルデータ</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">パーソナルデータ
+                </h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -231,7 +232,52 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4" style="margin-left: 200px">MYLINK</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">MYLINK</h2>
+        @php
+        $timelineTitle="";
+        $timelineDescription="";
+        $timelineGenre="";
+        $timelineStartDate="";
+        $timelineEndDate="";
+        @endphp
+        @if(count($errors)>0)
+        {{-- バリデーションエラーのとき --}}
+        @php
+        $timelineTitle=old("timelineTitle");
+        $timelineDescription=old("timelineDescription");
+        $timelineGenre=old("timelineGenre");
+        $timelineStartDate=old("timelineStartDate");
+        $timelineEndDate=old("timelineEndDate");
+        @endphp
+        {{-- エラーの表示 --}}
+        <ul class="text-red-500 kiwi-maru text-center">
+            @if($errors->has('timelineTitle'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('timelineTitle')}}
+            </li>
+            @endif
+            @if($errors->has('timelineDescription'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('timelineDescription')}}
+            </li>
+            @endif
+            @if($errors->has('timelineGenreId'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('timelineGenreId')}}
+            </li>
+            @endif
+            @if($errors->has('timelineStartDate'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('timelineStartDate')}}
+            </li>
+            @endif
+            @if($errors->has('timelineEndDate'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('timelineEndDate')}}
+            </li>
+            @endif
+        </ul>
+        @endif
         <div class="rounded-3xl border-2 border-bg">
             <table class="w-full text-center edit rounded-3xl overflow-hidden">
                 <tr class="bg-bg-sub">
@@ -243,23 +289,49 @@ $user=Auth::user();
                     <td>削除</td>
                 </tr>
                 <tr>
-                    <td style="width: 40px">1</td>
-                    <td style="width: 250px"><input style="width: 80%" type="url"></td>
-                    <td style="width: 250px"><input style="width: 80%" type="text"></td>
-                    <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;"></textarea></td>
-                    <td style="width: 80px"><input type="submit" value="更新"></td>
-                    <td style="width: 80px"><input type="submit" value="削除" style="background-color: red; color: #fff;">
-                    </td>
+                    <form method="POST" action="/user/edit/update/userLink">
+                        <td style="width: 40px">1</td>
+                        <td style="width: 250px"><input style="width: 80%" type="url" name="timelineUrl"></td>
+                        <td style="width: 250px"><input style="width: 80%" type="text" name="timelineTitle"></td>
+                        <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;"
+                                name="timelineDescription"></textarea></td>
+                        <td style="width: 80px"><input type="submit" value="作成"></td>
+                    </form>
                 </tr>
-                <tr>
-                    <td style="width: 40px">2</td>
-                    <td style="width: 250px"><input style="width: 80%" type="url"></td>
-                    <td style="width: 250px"><input style="width: 80%" type="text"></td>
-                    <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;"></textarea></td>
-                    <td style="width: 80px"><input type="submit" value="更新"></td>
-                    <td style="width: 80px"><input type="submit" value="削除" style="background-color: red; color: #fff;">
-                    </td>
+                {{-- 登録済みデータ表示 --}}
+                @isset($links)
+                @php
+                $i=1;
+                @endphp
+                @foreach($links as $link)
+                @php
+                $i+=1;
+                @endphp
+                <form method="POST" action="/user/edit/update/userLink">
+                    @csrf
+                    <input type="hidden" name="linkId" value="{{$link->id}}">
+                    <tr>
+                        <td style="width: 40px"> {{$i}}</td>
+                        <td style="width: 250px"><input style="width: 80%" type="url" name="timelineUrl"
+                                value="{{$link->url}}"></td>
+                        <td style=""><input style=" width: 80%" type="text" name="linkTitle" value="{{$link->title}}"
+                                required></td>
+                        <td style=" width: 200px">
+                            <textarea name="linkDescription"
+                                style="width: 80%; padding:.5rem;">{{$link->description ?? ""}}</textarea>
+                        </td>
+                        <td style="width: 80px"><input type="submit" value="更新"></td>
+                </form>
+                <td style="width: 80px">
+                    <form method="POST" action="/user/edit/delete/userLink">
+                        @csrf
+                        <input type="hidden" name="userlinkId" value="{{$link->id}}">
+                        <input type="submit" value="削除" style="background-color: red; color: #fff;">
+                    </form>
+                </td>
                 </tr>
+                @endforeach
+                @endisset
                 <td colspan="6">
                     <p>使い方の例1：Twitterや自身のSNSのリンクを貼る　リンクの説明欄にフォローよろしくなどのコメントを書く。</p>
                     <p>使い方の例2：YouTubeのリンクを張る　リンクの説明欄にこれおすすめ！！って書く</p>
@@ -270,7 +342,7 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4" style="margin-left: 200px">タイムライン登録</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">タイムライン登録</h2>
         @php
         $timelineTitle="";
         $timelineDescription="";

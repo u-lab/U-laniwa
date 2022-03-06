@@ -20,7 +20,6 @@ class UpdateUserTimelineController extends Controller
      */
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
-        \Log::debug($request);
         /**
          * バリデーション
          */

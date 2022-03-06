@@ -135,7 +135,7 @@ $name = $user->last_name." ".$user->first_name;
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
         <div class="flex flex-wrap gap-x-12 gap-y-8  my-8">
             @if($links->isEmpty())
-            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">MyLinkはありません。</p>
+            <p class="absolute top-1/2 left-0 w-full text-center">MyLinkはありません。</p>
             @else
             @foreach ($links as $link)
             <a href="{{$link->url}}" target="_blank" rel="noopener"
@@ -160,7 +160,7 @@ $name = $user->last_name." ".$user->first_name;
         </h2>
         <div class=" flex flex-wrap gap-x-12 gap-y-8 my-8">
             @if($projects->isEmpty())
-            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">所属しているプロジェクトはありません。</p>
+            <p class="absolute top-1/2 left-0 w-full text-center">所属しているプロジェクトはありません。</p>
             @else
             @foreach ($projects as $project)
             @include('components.forMembers.projectFrame')

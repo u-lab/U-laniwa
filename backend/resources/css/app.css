@@ -53,6 +53,30 @@ h2 {
     width: 100%;
 }
 
+.edit-base {
+    width: 100px;
+}
+
+.edit-1,
+.edit-2,
+.edit-3 {
+    width: 100%;
+}
+
+.edit-birth {
+    width: 100%;
+}
+
+.edit-birth-p {
+    width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    #forCompress {
+        max-width: 150px !important;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .home {
         width: 800px !important;
@@ -78,6 +102,43 @@ h2 {
 
     .userpage-item {
         width: 500px;
+    }
+
+    .edit-item {
+        margin-left: 200px;
+    }
+
+    .edit-pic {
+        width: 600px;
+    }
+
+    .useritem {
+        width: 300px;
+    }
+
+    .edit-base {
+        width: 200px;
+    }
+
+    .edit-1 {
+        width: 80%;
+    }
+
+    .edit-2 {
+        width: 38%;
+    }
+
+    .edit-3 {
+        width: 24%;
+    }
+
+    .edit-birth {
+        width: 50%;
+        margin-right: 5%;
+    }
+
+    .edit-birth-p {
+        width: 20%;
     }
 }
 
@@ -184,7 +245,7 @@ h2 {
     margin: 0 auto;
     min-height: calc(100vh - 110px);
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     .main-wrapper {
         max-width: 96%;
         margin: 0 2%;

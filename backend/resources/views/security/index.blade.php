@@ -15,7 +15,8 @@
 @enderror
 @error('email_confirm')
 {{-- TODO:エラーメッセージなぜか赤色にならない 機能的には問題なし--}}
-<td class="text-red-600">※メールアドレスが一致していません</td>
+{{--修正しましたばいてつ--}}
+<p class="text-red-600 inline-block">※メールアドレスが一致していません</p>
 @enderror
 @endif
 <form method="POST" action="/security/update/email">
@@ -39,7 +40,7 @@
 <td>{{$message}}</td>
 @enderror
 @error('password_confirm')
-<td class="text-red-600">※パスワードが一致していません</td>
+<p class="text-red-600 inline-block">※パスワードが一致していません</p>
 @enderror
 @endif
 <form method="POST" action="/security/update/password">
@@ -79,11 +80,11 @@
 </div>
 
 <script>
-    function withdrawEvent() {
-        alert('本当に実行しますか？\n{{$user->id}}はU-laniwaへのログインできなくなります。\n(この操作は取り消せません。)')
-    }
     function retireEvent() {
-        alert('本当に実行しますか？\n{{$user->id}}さんはOB・OG権限になります。\n(この操作は取り消せません。)')
+        alert('本当に実行しますか？\n{{$user->name}}さんはOB・OG権限になります。\n(この操作は取り消せません。)')
+    }
+    function withdrawEvent() {
+        alert('本当に実行しますか？\n{{$user->name}}さんはU-laniwaへログインができなくなります。\n(この操作は取り消せません。)')
     }
 </script>
 @endsection

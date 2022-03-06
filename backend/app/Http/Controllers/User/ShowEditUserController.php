@@ -10,6 +10,9 @@ use App\Enums\Grade;
 use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\UserInfo;
+use Auth;
 use App\Models\UserLink;
 use App\Models\UserTimeline;
 use Illuminate\Http\Request;
@@ -27,6 +30,38 @@ class ShowEditUserController extends Controller
     public function __invoke(): View|Factory
     {
         $userId = Auth::id();
+
+        $user = User::where('id', $userId)->first();
+
+        $userInfo = UserInfo::where('user_id', $userId)->first();
+
+        /**
+         * company_metaをデコード
+         */
+        if ($userInfo->company_meta) {
+            $decodedArray = json_decode($userInfo->company_meta);
+            $userInfo->company = $decodedArray['company_name'];
+            $userInfo->position = $decodedArray['position'];
+        } else {
+            $userInfo->company = '';
+            $userInfo->position = '';
+        }
+
+        /**
+         * university_metaをデコード
+         */
+        if ($userInfo->university_meta) {
+            $decodedArray = json_decode($userInfo->university_meta);
+            $userInfo->university = $decodedArray['university'];
+            $userInfo->faculty = $decodedArray['faculty'];
+            $userInfo->major = $decodedArray['major'];
+        } else {
+            $userInfo->university = '';
+            $userInfo->faculty = '';
+            $userInfo->major = '';
+        }
+
+
         /**
          * DBに格納していないEnum型のデータを取得する
          */
@@ -70,6 +105,8 @@ class ShowEditUserController extends Controller
             'name' => $timelineGenre->label(), //名前
         ], $timelineGenreEnum);
         return view('user.edit', [
+            'user' => $user,
+            'userInfo' => $userInfo,
             'genders' => $genders,
             'grades' => $grades,
             'countries' => $countries,

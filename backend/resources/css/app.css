@@ -71,9 +71,31 @@ h2 {
     width: 80%;
 }
 
+@media screen and (max-width: 1280px) {
+    .userpage {
+        width: 660px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .userpage {
+        width: 560px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .userpage {
+        width: 460px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     #forCompress {
         max-width: 150px !important;
+    }
+
+    .userpage {
+        width: 96%;
     }
 }
 
@@ -100,13 +122,9 @@ h2 {
         width: 80% !important;
     }
 
-    .userpage {
-        width: 1200px;
-    }
-
-    .userpage-item {
-        width: 500px;
-    }
+    /*.userpage-item {
+        width: calc(50% - 1.5rem) !important;
+    }*/
 
     .edit-item {
         margin-left: 200px;

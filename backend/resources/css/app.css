@@ -43,6 +43,15 @@ h2 {
     width: 100%;
 }
 
+.useritem {
+    width: 300px;
+}
+
+.userpage,
+.userpage-item {
+    width: 100%;
+}
+
 @media screen and (min-width: 768px) {
     .home {
         width: 800px !important;
@@ -50,6 +59,24 @@ h2 {
 
     .side {
         width: 330px !important;
+    }
+
+    .useritem {
+        width: 500px;
+    }
+
+    .timeline-p > .tree,
+    .individual > .tree,
+    .userTimeline > .tree {
+        width: 80%;
+    }
+
+    .userpage {
+        width: 1200px;
+    }
+
+    .userpage-item {
+        width: 500px;
     }
 }
 
@@ -82,9 +109,10 @@ h2 {
     @apply mx-auto my-20 pl-20 relative;
 }
 
+.timeline-p > .tree,
 .individual > .tree,
 .userTimeline > .tree {
-    width: 80%;
+    width: 100%;
 }
 
 .tree::before {

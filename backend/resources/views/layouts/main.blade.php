@@ -14,14 +14,16 @@
 
 <body>
 
+    @include('components.basis.mobileHeader')
+
     <!---コンテンツここから--->
-    <div class="flex relative mf:pl-60 md:flex-row flex-col">
+    <div class="flex relative md:pl-60 md:flex-row flex-col">
         <!---サイドバーここから--->
         @component('components.basis.sidebar')
         <!---サイドバーここまで--->
         @endcomponent
         <div class="main-wrapper overflow-x-hidden pr-2 relative">
-            <div class="absolute right-12 top-8">
+            <div class="absolute right-12 top-8 md:block hidden">
                 @include('components.forMembers.userIcon')
             </div>
             @yield('content')

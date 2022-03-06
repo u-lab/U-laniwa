@@ -1673,9 +1673,6 @@ select {
 .pl-4 {
   padding-left: 1rem;
 }
-.pl-80 {
-  padding-left: 20rem;
-}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -1690,6 +1687,12 @@ select {
 }
 .pt-12 {
   padding-top: 3rem;
+}
+.pb-12 {
+  padding-bottom: 3rem;
+}
+.pl-80 {
+  padding-left: 20rem;
 }
 .pb-16 {
   padding-bottom: 4rem;
@@ -1973,6 +1976,13 @@ h2 {
 .side {
     width: 100%;
 }
+.useritem {
+    width: 300px;
+}
+.userpage,
+.userpage-item {
+    width: 100%;
+}
 @media screen and (min-width: 768px) {
     .home {
         width: 800px !important;
@@ -1980,6 +1990,24 @@ h2 {
 
     .side {
         width: 330px !important;
+    }
+
+    .useritem {
+        width: 500px;
+    }
+
+    .timeline-p > .tree,
+    .individual > .tree,
+    .userTimeline > .tree {
+        width: 80%;
+    }
+
+    .userpage {
+        width: 1200px;
+    }
+
+    .userpage-item {
+        width: 500px;
     }
 }
 #nav.in {
@@ -2014,9 +2042,10 @@ h2 {
     margin-bottom: 5rem;
     padding-left: 5rem;
 }
+.timeline-p > .tree,
 .individual > .tree,
 .userTimeline > .tree {
-    width: 80%;
+    width: 100%;
 }
 .tree::before {
     content: "";
@@ -2612,6 +2641,10 @@ textarea:focus {
     height: 7rem;
   }
 
+  .md\:w-full {
+    width: 100%;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2645,8 +2678,27 @@ textarea:focus {
     padding-bottom: 0.75rem;
   }
 
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .md\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
   .md\:pl-60 {
     padding-left: 15rem;
+  }
+
+  .md\:pb-16 {
+    padding-bottom: 4rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 @media (min-width: 1024px) {

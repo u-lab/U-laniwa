@@ -10,6 +10,6 @@
         <p>{{$text}}</p>
     </div>
     <div>
-        <p class="px-4 py-1 border-2 border-bg inline-block">{{$genre}}</p>
+        <p class="md:px-4 px-2 md:py-1 md:text-base text-sm border-2 border-bg inline-block">{{$genre}}</p>
     </div>
 </div>

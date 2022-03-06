@@ -26,7 +26,9 @@
         </div>
     </div>
 
-    <img src="/img/ulaniwa_logo.svg" class="w-16 h-16 inline-block" alt="U-laniwa">
+    <a href="/">
+        <img src="/img/ulaniwa_logo.svg" class="w-16 h-16 inline-block" alt="U-laniwa">
+    </a>
 
     @php
     $user=Auth::user();

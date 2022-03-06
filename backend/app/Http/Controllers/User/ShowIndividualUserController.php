@@ -100,7 +100,6 @@ class ShowIndividualUserController extends Controller
             ->where('user_id', $user_id)
             ->join('projects', 'project_belongeds.project_id', '=', 'projects.id')
             ->get();
-        \Log::debug($projects);
 
         /** @var UserTimeline */
         $events = UserTimeline::where('user_id', $user_id)

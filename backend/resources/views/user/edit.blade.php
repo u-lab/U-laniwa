@@ -248,36 +248,27 @@ $user=Auth::user();
         $linkUrl=old("linkUrl");
         @endphp
         {{-- エラーの表示 --}}
-        <ul class="text-red-500 kiwi-maru text-center">
-            @if($errors->has('timelineTitle'))
-            <li class="text-red-500 kiwi-maru">
-                {{$errors->first('timelineTitle')}}
+        <ul class="text-red-500 text-center">
+            @if($errors->has('linkUrl'))
+            <li class="text-red-500">
+                {{$errors->first('linkUrl')}}
             </li>
             @endif
-            @if($errors->has('timelineDescription'))
-            <li class="text-red-500 kiwi-maru">
-                {{$errors->first('timelineDescription')}}
+            @if($errors->has('linkTitle'))
+            <li class="text-red-500">
+                {{$errors->first('linkTitle')}}
             </li>
             @endif
-            @if($errors->has('timelineGenreId'))
-            <li class="text-red-500 kiwi-maru">
-                {{$errors->first('timelineGenreId')}}
+            @if($errors->has('linkDescription'))
+            <li class="text-red-500">
+                {{$errors->first('linkDescription')}}
             </li>
             @endif
-            @if($errors->has('timelineStartDate'))
-            <li class="text-red-500 kiwi-maru">
-                {{$errors->first('timelineStartDate')}}
-            </li>
-            @endif
-            @if($errors->has('timelineEndDate'))
-            <li class="text-red-500 kiwi-maru">
-                {{$errors->first('timelineEndDate')}}
-            </li>
-            @endif
+
         </ul>
         @endif
         <div class="rounded-3xl border-2 border-bg">
-            <table class="w-full text-center edit rounded-3xl overflow-hidden">
+            <table class="w-full text-center edit rounded-3xl overflow-hidden" id="linkTable">
                 <tr class="bg-bg-sub">
                     <td>番号</td>
                     <td>URL</td>
@@ -289,10 +280,10 @@ $user=Auth::user();
                 <tr>
                     <form method="POST" action="/user/edit/update/userLink">
                         <td style="width: 40px">1</td>
-                        <td style="width: 250px"><input style="width: 80%" type="url" name="timelineUrl"></td>
-                        <td style="width: 250px"><input style="width: 80%" type="text" name="timelineTitle"></td>
+                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl"></td>
+                        <td style="width: 250px"><input style="width: 80%" type="text" name="linkTitle"></td>
                         <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;"
-                                name="timelineDescription"></textarea></td>
+                                name="linkDescription"></textarea></td>
                         <td style="width: 80px"><input type="submit" value="作成"></td>
                     </form>
                 </tr>
@@ -310,7 +301,7 @@ $user=Auth::user();
                     <input type="hidden" name="linkId" value="{{$link->id}}">
                     <tr>
                         <td style="width: 40px"> {{$i}}</td>
-                        <td style="width: 250px"><input style="width: 80%" type="url" name="timelineUrl"
+                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl"
                                 value="{{$link->url}}"></td>
                         <td style=""><input style=" width: 80%" type="text" name="linkTitle" value="{{$link->title}}"
                                 required></td>
@@ -359,29 +350,29 @@ $user=Auth::user();
         @endphp
 
         {{-- エラーの表示 --}}
-        <ul class="text-red-500 kiwi-maru text-center">
+        <ul class="text-red-500 text-center">
             @if($errors->has('timelineTitle'))
-            <li class="text-red-500 kiwi-maru">
+            <li class="text-red-500">
                 {{$errors->first('timelineTitle')}}
             </li>
             @endif
             @if($errors->has('timelineDescription'))
-            <li class="text-red-500 kiwi-maru">
+            <li class="text-red-500">
                 {{$errors->first('timelineDescription')}}
             </li>
             @endif
             @if($errors->has('timelineGenreId'))
-            <li class="text-red-500 kiwi-maru">
+            <li class="text-red-500">
                 {{$errors->first('timelineGenreId')}}
             </li>
             @endif
             @if($errors->has('timelineStartDate'))
-            <li class="text-red-500 kiwi-maru">
+            <li class="text-red-500">
                 {{$errors->first('timelineStartDate')}}
             </li>
             @endif
             @if($errors->has('timelineEndDate'))
-            <li class="text-red-500 kiwi-maru">
+            <li class="text-red-500">
                 {{$errors->first('timelineEndDate')}}
             </li>
             @endif

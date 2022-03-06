@@ -46,10 +46,6 @@
 
 @include('components.forMembers.pageSubTitle', ['subTitle'=>'DangerZone'])
 <div class="flex items-center justify-center mb-12">
-    <form class="mx-2" method="POST" action="/logout">
-        @csrf
-        <input type="submit" class="text-white  py-2 px-2" value="ログアウト">
-    </form>
     <form method="POST" action="/procedure/retire" class="mx-2">
         @csrf
         <input type="submit" class="text-white  py-2 px-2 " style="background-color: red!important" value="退部する"

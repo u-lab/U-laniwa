@@ -184,7 +184,7 @@ $name = $user->last_name." ".$user->first_name;
         <div class="tree">
             @foreach ($events as $event)
             @include('components.forMembers.userTimeline',[
-            'start_date'=>$event->start_date,
+            'start_date'=>$event->start_date->format('Y/n/j'),
             'end_date'=>$event->end_date,
             'genre'=>$event->genre->label(),
             'title'=>$event->title,

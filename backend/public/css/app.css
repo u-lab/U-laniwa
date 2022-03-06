@@ -1333,6 +1333,9 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.justify-around {
+  justify-content: space-around;
+}
 .justify-items-center {
   justify-items: center;
 }
@@ -3019,6 +3022,10 @@ textarea:focus {
 
   .xl\:flex-wrap {
     flex-wrap: wrap;
+  }
+
+  .xl\:justify-start {
+    justify-content: flex-start;
   }
 
   .xl\:overflow-x-hidden {

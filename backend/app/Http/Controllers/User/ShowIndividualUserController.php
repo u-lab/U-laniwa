@@ -117,6 +117,7 @@ class ShowIndividualUserController extends Controller
         /** @var UserInfo */
         $relatedUsers = DB::table('user_infos')
             ->where('grade', $user->grade)
+            ->Where('user_id', '!=', $user_id)
             ->join('users', 'user_infos.user_id', '=', 'users.id')
             ->leftJoin('u_u_majors', 'user_infos.u_u_major_id', '=', 'u_u_majors.id')
             ->select('users.name', 'users.profile_photo_path', 'user_infos.first_name', 'user_infos.last_name', 'user_infos.user_id', 'user_infos.grade', 'user_infos.u_u_major_id', 'user_infos.university_meta', 'user_infos.company_meta', 'u_u_majors.name as uu_major', 'u_u_majors.faculty_id as uu_faculty')

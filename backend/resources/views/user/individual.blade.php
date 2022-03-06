@@ -198,7 +198,7 @@ $name = $user->last_name." ".$user->first_name;
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>
         <div class="flex flex-wrap gap-x-12 gap-y-8 my-8">
             @if($relatedUsers->isEmpty())
-            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">関連ユーザーはいません</p>
+            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">関連ユーザーはいません。</p>
 
             @else
             @foreach ($relatedUsers as $relatedUser)

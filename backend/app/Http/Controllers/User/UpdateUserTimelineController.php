@@ -19,18 +19,9 @@ class UpdateUserTimelineController extends Controller
      */
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
-        // // バリデーション
-        // $this->validate($request, Osirase::$rules);
-
-        // $updateContent = [
-        //     "title" => $request->title,
-        //     "genre_id" => $request->osirase_genre_id,
-        //     "description" => $request->description,
-        //     "date" => $request->date,
-        // ];
-
-        // Osirase::create('id', $request->osirase_id)->update($updateContent);
-
+        /**
+         * バリデーション
+         */
         $validateRule = [
             'timelineId' => 'int',
             'timelineTitle' => 'required|string|max:255',
@@ -40,15 +31,25 @@ class UpdateUserTimelineController extends Controller
             'timelineEndDate' => 'date',
         ];
         $this->validate($request, $validateRule);
+        /**
+         * 必須のデータ
+         * @var array<string,mixed>
+         */
+        $timelineDate = [
+            'title' => $request->timelineTitle,
+            'genre_id' => $request->timelineGenreId,
+            'start_date' => $request->timelineStartDate,
+        ];
+        /**
+         * 必須じゃない項目の処理
+         */
+        $request->timelineDescription != null ? array_merge($timelineDate, ['description' => $request->timelineDescription,]) : "";
+        $request->timelineEndDate != null ? array_merge($timelineDate, ['end_date' => $request->timelineEndDate,]) : "";
+
+        /**無かったら作る、あったら更新する方式 */
         UserTimeline::updateOrCreate(
             ['id' => $request->timelineId],
-            [
-                'title' => $request->timelineTitle,
-                'description' => $request->timelineDescription,
-                'genre_id' => $request->timelineGenreId,
-                'start_date' => $request->timelineStartDate,
-                'end_date' => $request->timelineEndDate,
-            ]
+            $timelineDate
         );
         return redirect('/user/edit');
     }

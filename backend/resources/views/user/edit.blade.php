@@ -11,7 +11,7 @@ $user=Auth::user();
 @include('components.forMembers.pageTitle', ['title'=>'ユーザー情報編集'])
 <p class="text-center mb-12">{{$user->name}} さん</p>
 
-<div class="mx-auto mb-80" style="max-width: 1000px">
+<div class="mx-auto mb-80" style="max-width: 1200px">
     <div class="border-2 p-2 mb-20">
         <form>
             <div class="mx-auto mb-20" style="width: 600px">
@@ -333,7 +333,7 @@ $user=Auth::user();
                     @csrf
                     <tr>
                         <td style="width: 40px">1</td>
-                        <td style="width: 200px"><input style="width: 80%" type="name" name="timelineTitle"
+                        <td style="width: 200px"><input style="width: 80%" type="text" name="timelineTitle"
                                 value="{{$timelineTitle}}" required></td>
                         <td style=" width: 300px">
                             <textarea name="timelineDescription" style="width: 80%; padding:.5rem;"
@@ -353,7 +353,7 @@ $user=Auth::user();
                                 @endforeach
                             </select>
                         </td>
-                        <td style="width: 150px; font-size:.875rem; ">
+                        <td style="width: 300px; font-size:.875rem; ">
                             <div class="mb-1">開始日 : <input style="width:50%" type="date" name="timelineStartDate"
                                     value="{{$timelineStartDate}}" required>
                             </div>
@@ -380,9 +380,9 @@ $user=Auth::user();
                     <input type="hidden" name="timelineId" value="{{$timeline->id}}">
                     <tr>
                         <td style="width: 40px"> {{$i}}</td>
-                        <td style="width: 200px"><input style="width: 80%" type="name" name="timelineTitle"
+                        <td style="width: 200px"><input style="width: 80%" type="text" name="timelineTitle"
                                 value="{{$timeline->title}}" required></td>
-                        <td style=" width: 300px">
+                        <td style=" width: 200px">
                             <textarea name="timelineDescription" style="width: 80%; padding:.5rem;"
                                 required>{{$timeline->description ?? ""}}</textarea>
                         </td>
@@ -403,18 +403,22 @@ $user=Auth::user();
                                 @endforeach
                             </select>
                         </td>
-                        <td style="width: 150px; font-size:.875rem; ">
+                        <td style="width: 200px; font-size:.875rem; ">
                             <div class="mb-1">開始日 : <input style="width:50%" type="timelineStartDate" name="startDate"
-                                    value="{{$timeline->start_date}}" required>
+                                    value="{{$timeline->start_date->format('Y-m-d')}}" required>
                             </div>
                             <div>終了日 : <input style="width:50%" type="date" name="timelineEndDate"
-                                    value={{$timeline->end_date
+                                    value={{$timeline->end_date->format('Y-m-d')
                                 ??
                                 ""}}></div>
                         </td>
                         <td style="width: 80px"><input type="submit" value="更新"></td>
                         <td style="width: 80px">
-                            <input type="submit" value="削除" style="background-color: red; color: #fff;">
+                            <form method="POST" action="/user/edit/delete/userTimeline">
+                                @csrf
+                                <input type="hidden" name="userTimelineId" value="{{$timeline->id}}">
+                                <input type="submit" value="削除" style="background-color: red; color: #fff;">
+                            </form>
                         </td>
                     </tr>
                 </form>

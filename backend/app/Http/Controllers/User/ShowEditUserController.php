@@ -69,7 +69,7 @@ class ShowEditUserController extends Controller
             'id' => $timelineGenre->value,
             'name' => $timelineGenre->label(), //名前
         ], $timelineGenreEnum);
-        \Log::debug($timelineGenres);
+        \Log::debug($timelines);
         return view('user.edit', [
             'genders' => $genders,
             'grades' => $grades,

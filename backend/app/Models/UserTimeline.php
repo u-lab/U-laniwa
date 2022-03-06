@@ -23,7 +23,12 @@ class UserTimeline extends Model
      * @var array
      */
     public static $rules = array();
-
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['start_date', 'end_date'];
     /**
      * ユーザーをつなぐ
      *

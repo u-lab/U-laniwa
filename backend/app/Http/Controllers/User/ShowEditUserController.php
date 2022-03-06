@@ -18,7 +18,6 @@ use App\Models\UserTimeline;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 
 class ShowEditUserController extends Controller
 {
@@ -33,6 +32,16 @@ class ShowEditUserController extends Controller
 
         $user = User::where('id', $userId)->first();
 
+        /**
+         * @var UserInfo
+         * @property string $company_meta
+         * @property string $company
+         * @property string $position
+         * @property string $university_meta
+         * @property string $university
+         * @property string $faculty
+         * @property string $major
+         */
         $userInfo = UserInfo::where('user_id', $userId)->first();
 
         /**

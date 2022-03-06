@@ -9,6 +9,15 @@
 {{-- inputタグのvalueに入れておく用 --}}
 @include('components.forMembers.pageSubTitle', ['subTitle'=>'セキュリティ情報変更'])
 <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">メールアドレス</p>
+@if (count($errors) > 0)
+@error('email')
+<td style="color: red;">{{$message}}</td>
+@enderror
+@error('email_confirm')
+{{-- TODO:エラーメッセージなぜか赤色にならない 機能的には問題なし--}}
+<td class="text-red-600">※メールアドレスが一致していません</td>
+@enderror
+@endif
 <form method="POST" action="/security/update/email">
     @csrf
     <div class="flex flex-wrap items-center mb-2">

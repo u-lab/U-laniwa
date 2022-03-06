@@ -990,6 +990,10 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -997,10 +1001,6 @@ select {
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
-}
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1110,9 +1110,6 @@ select {
 .mb-32 {
   margin-bottom: 8rem;
 }
-.mb-80 {
-  margin-bottom: 20rem;
-}
 .ml-20 {
   margin-left: 5rem;
 }
@@ -1139,6 +1136,9 @@ select {
 }
 .hidden {
   display: none;
+}
+.\!hidden {
+  display: none !important;
 }
 .h-5 {
   height: 1.25rem;
@@ -1348,9 +1348,9 @@ select {
 .gap-2 {
   gap: 0.5rem;
 }
-.gap-x-12 {
-  -moz-column-gap: 3rem;
-       column-gap: 3rem;
+.gap-x-4 {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
 }
 .gap-y-8 {
   row-gap: 2rem;
@@ -1361,6 +1361,10 @@ select {
 }
 .gap-y-16 {
   row-gap: 4rem;
+}
+.gap-x-12 {
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1379,9 +1383,6 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
-}
-.overflow-x-auto {
-  overflow-x: auto;
 }
 .overflow-y-auto {
   overflow-y: auto;
@@ -1483,6 +1484,10 @@ select {
 .border-bg {
   --tw-border-opacity: 1;
   border-color: rgb(254 223 223 / var(--tw-border-opacity));
+}
+.border-red-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1684,6 +1689,9 @@ select {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
+.pb-20 {
+  padding-bottom: 5rem;
+}
 .pl-4 {
   padding-left: 1rem;
 }
@@ -1710,6 +1718,9 @@ select {
 }
 .pb-16 {
   padding-bottom: 4rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -2030,6 +2041,11 @@ h2 {
         width: 500px;
     }
 
+    .tree {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
     .timeline-p > .tree,
     .individual > .tree,
     .userTimeline > .tree {
@@ -2107,8 +2123,8 @@ h2 {
     max-width: 1200px;
     min-height: 400px;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 2rem;
+    margin-right: 2rem;
     margin-top: 5rem;
     margin-bottom: 5rem;
     padding-left: 5rem;
@@ -2257,6 +2273,125 @@ textarea:focus {
     html {
         font-size: 90%;
     }
+    #link table,
+    #link tbody,
+    #link tr,
+    #link td,
+    #link th {
+        width: 100% !important; /* 幅を100%にする */
+        display: block; /* ブロック要素にする */
+    }
+
+    #link tr {
+        border-bottom: 2px dotted #fedfdf;
+    }
+
+    #link tr:last-of-type {
+        border-bottom: none;
+    }
+
+    #link td:first-of-type {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+    #link td:first-of-type {
+    text-align: center;
+  }
+
+    #link td:first-of-type {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+    #link td:first-of-type {
+    font-weight: 700;
+  }
+
+    #link tr:last-of-type td {
+    text-align: left;
+  }
+
+    #link tr:last-of-type td {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+    #link tr:last-of-type td {
+    font-weight: 400;
+  }
+
+    #timeline table,
+    #timeline tbody,
+    #timeline tr,
+    #timeline td,
+    #timeline th {
+        width: 100% !important; /* 幅を100%にする */
+        display: block; /* ブロック要素にする */
+    }
+
+    #timeline tr {
+        border-bottom: 2px dotted #fedfdf;
+    }
+
+    #timeline tr:last-of-type {
+        border-bottom: none;
+    }
+
+    #timeline td:first-of-type {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+    #timeline td:first-of-type {
+    text-align: center;
+  }
+
+    #timeline td:first-of-type {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+    #timeline td:first-of-type {
+    font-weight: 700;
+  }
+
+    #timeline tr:last-of-type td {
+    text-align: left;
+  }
+
+    #timeline tr:last-of-type td {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+    #timeline tr:last-of-type td {
+    font-weight: 400;
+  }
+
+    #timeline tr td.timeline-genre {
+        width: 80% !important;
+        padding-right: 20px;
+        margin: auto;
+    }
+
+    #timeline tr td:nth-of-type(1), #timeline tr td:nth-of-type(6) {
+    padding-bottom: 0px;
+  }
+
+    #timeline tr:last-of-type td {
+    padding-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 1200px) and (min-width: 1024px) {
+    .calender.pc > iframe {
+        height: 600px !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .calender.sp > iframe {
+        width: 100% !important;
+    }
 }
 /* チャート用 */
 .chartWrapper {
@@ -2271,6 +2406,32 @@ textarea:focus {
     /* overflow-x: scroll; */
     width: 300px;
     height: 300px;
+}
+@media screen and (max-width: 640px) {
+    .chart {
+        width: 400px !important;
+        height: 400px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 400px;
+        height: 400px;
+    }
+}
+@media screen and (max-width: 460px) {
+    .chart {
+        width: 360px !important;
+        height: 360px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 360px;
+        height: 360px;
+    }
 }
 /* カレンダーグレースケール化 */
 .calender iframe,
@@ -2706,6 +2867,10 @@ textarea:focus {
     margin-top: 0px;
   }
 
+  .md\:mb-80 {
+    margin-bottom: 20rem;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2718,12 +2883,12 @@ textarea:focus {
     margin-left: 1rem;
   }
 
-  .md\:mb-80 {
-    margin-bottom: 20rem;
-  }
-
   .md\:block {
     display: block;
+  }
+
+  .md\:\!table-row {
+    display: table-row !important;
   }
 
   .md\:grid {
@@ -2762,12 +2927,9 @@ textarea:focus {
     gap: 2rem;
   }
 
-  .md\:overflow-hidden {
-    overflow: hidden;
-  }
-
-  .md\:overflow-x-hidden {
-    overflow-x: hidden;
+  .md\:gap-x-12 {
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
   }
 
   .md\:border-t-0 {
@@ -2801,6 +2963,11 @@ textarea:focus {
     padding-bottom: 4rem;
   }
 
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -2810,6 +2977,14 @@ textarea:focus {
 
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }
+
+  .lg\:block {
+    display: block;
+  }
+
+  .lg\:hidden {
+    display: none;
   }
 
   .lg\:w-64 {

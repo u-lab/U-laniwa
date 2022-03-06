@@ -7,13 +7,13 @@
 @section('content')
 @include('components.noLogin.pageTitle', ['title'=>'このサイトについて'])
 
-<div class="wrapper mb-20 leading-7 aboutThisSite">
+<div class="wrapper pb-20 leading-7 aboutThisSite">
 
     @include('components.noLogin.aboutThisSite', ['title'=>'対応ブラウザについて', 'text'=>'Chrome や Brave、Microsoft Edge
     などChromium 系のブラウザ、Firefox および Safari に対応しています。<br>Internet Explore でのアクセスは非対応です。'])
 
     @include('components.noLogin.aboutThisSite', ['title'=>'JavaScript', 'text'=>'本サイトでは、グラフの表示をはじめとして JavaScript
-    を使用しています。<br />ご使用のブラウザ設定において JavaScript を有効にされていない場合に、一分機能が動作しない場合や、レイアウトが崩れる場合がありますので、JavaScript
+    を使用しています。<br />ご使用のブラウザ設定において JavaScript を有効にされていない場合に、一部機能が動作しない場合や、レイアウトが崩れる場合がありますので、JavaScript
     を有効にすることをオススメします。'])
 
     @include('components.noLogin.aboutThisSite', ['title'=>'Cookie',

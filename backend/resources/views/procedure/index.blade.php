@@ -38,7 +38,7 @@ $user=Auth::user();
 
 
     <div class="mb-12">
-        <h2 class="mb-4">{{$user->name}}さんの招待ユーザー</h2>
+        <h2 class="mb-4">{{$user->name}}さんが招待したユーザー</h2>
         <div class="flex flex-col gap-2 ml-4">
             @foreach ($invitedUsers as $invitedUser)
             <div>

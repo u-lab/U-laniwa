@@ -90,6 +90,10 @@ h2 {
         width: 500px;
     }
 
+    .tree {
+        @apply !mx-auto;
+    }
+
     .timeline-p > .tree,
     .individual > .tree,
     .userTimeline > .tree {
@@ -168,7 +172,7 @@ h2 {
 .tree {
     max-width: 1200px;
     min-height: 400px;
-    @apply mx-auto my-20 pl-20 relative;
+    @apply mx-8 my-20 pl-20 relative;
 }
 
 .timeline-p > .tree,
@@ -312,6 +316,85 @@ textarea:focus {
     }
 }
 
+@media screen and (max-width: 768px) {
+    #link table,
+    #link tbody,
+    #link tr,
+    #link td,
+    #link th {
+        width: 100% !important; /* 幅を100%にする */
+        display: block; /* ブロック要素にする */
+    }
+
+    #link tr {
+        border-bottom: 2px dotted #fedfdf;
+    }
+
+    #link tr:last-of-type {
+        border-bottom: none;
+    }
+
+    #link td:first-of-type {
+        @apply mx-auto text-center font-bold text-lg;
+    }
+
+    #link tr:last-of-type td {
+        @apply text-left font-normal text-base;
+    }
+
+    #timeline table,
+    #timeline tbody,
+    #timeline tr,
+    #timeline td,
+    #timeline th {
+        width: 100% !important; /* 幅を100%にする */
+        display: block; /* ブロック要素にする */
+    }
+
+    #timeline tr {
+        border-bottom: 2px dotted #fedfdf;
+    }
+
+    #timeline tr:last-of-type {
+        border-bottom: none;
+    }
+
+    #timeline td:first-of-type {
+        @apply mx-auto text-center font-bold text-lg;
+    }
+
+    #timeline tr:last-of-type td {
+        @apply text-left font-normal text-base;
+    }
+
+    #timeline tr td.timeline-genre {
+        width: 80% !important;
+        padding-right: 20px;
+        margin: auto;
+    }
+
+    #timeline tr td:nth-of-type(1),
+    #timeline tr td:nth-of-type(6) {
+        @apply pb-0;
+    }
+
+    #timeline tr:last-of-type td {
+        @apply pb-4;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1024px) {
+    .calender.pc > iframe {
+        height: 600px !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .calender.sp > iframe {
+        width: 100% !important;
+    }
+}
+
 /* チャート用 */
 .chartWrapper {
     margin: 0 auto;
@@ -325,6 +408,34 @@ textarea:focus {
     /* overflow-x: scroll; */
     width: 300px;
     height: 300px;
+}
+
+@media screen and (max-width: 640px) {
+    .chart {
+        width: 400px !important;
+        height: 400px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .chart {
+        width: 360px !important;
+        height: 360px !important;
+    }
+
+    .chartWrapper {
+        margin: 0 auto;
+        /* overflow-x: scroll; */
+        width: 360px;
+        height: 360px;
+    }
 }
 
 /* カレンダーグレースケール化 */

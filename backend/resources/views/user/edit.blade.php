@@ -720,7 +720,7 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10 edit-item">MYLINK</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10 edit-item">MyLink</h2>
 
         @php
         $linkTitle="";
@@ -754,24 +754,26 @@ $user=Auth::user();
 
         </ul>
         @endif
-        <div class="rounded-3xl border-2 border-bg">
+        <div class="rounded-3xl border-2 border-bg" id="link">
             <table class="w-full text-center edit rounded-3xl overflow-hidden" id="linkTable">
-                <tr class="bg-bg-sub">
-                    <td>番号</td>
-                    <td>URL</td>
-                    <td>名称</td>
-                    <td>説明</td>
-                    <td>追加<br class="block md:hidden">変更</td>
-                    <td>削除</td>
+                <tr class="bg-bg-sub md:!table-row !hidden">
+                    <td style="width: 40px !important">番号</td>
+                    <td style="width: 250px !important">URL</td>
+                    <td style="width: 250px !important">名称</td>
+                    <td style="width: 300px !important">説明</td>
+                    <td style="width: 80px !important">追加<br class="block md:hidden">変更</td>
+                    <td style="width: 80px !important">削除</td>
                 </tr>
                 <tr>
                     <form method="POST" action="/user/edit/update/userLink">
                         @csrf
                         <td style="width: 40px">1</td>
-                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl" required></td>
-                        <td style="width: 250px"><input style="width: 80%" type="text" name="linkTitle" required></td>
-                        <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;"
-                                name="linkDescription"></textarea></td>
+                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl"
+                                placeholder="リンクを入力" required></td>
+                        <td style="width: 250px"><input style="width: 80%" type="text" name="linkTitle"
+                                placeholder="名称を入力" required></td>
+                        <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;" name="linkDescription"
+                                placeholder="説明を入力"></textarea></td>
                         <td style="width: 80px"><input type="submit" value="作成"></td>
                     </form>
                 </tr>
@@ -810,9 +812,9 @@ $user=Auth::user();
                 @endforeach
                 @endisset
                 <td colspan="6" class="text-left ">
-                    <p class="md:mx-4 mx-2">使い方の例1：Twitterや自身のSNSのリンクを貼る　リンクの説明欄にフォローよろしくなどのコメントを書く。</p>
-                    <p class="md:mx-4 mx-2">使い方の例2：YouTubeのリンクを張る　リンクの説明欄にこれおすすめ！！って書く</p>
-                    <p class="md:mx-4 mx-2">※まとめての更新ではできませんので、ご注意ください</p>
+                    <p class="md:mx-4 mx-2">使い方の例1：Twitterや自身のSNSのリンクを貼り、説明欄にフォローよろしくなどのコメントを書く。</p>
+                    <p class="md:mx-4 mx-2">使い方の例2：YouTubeのリンクを張り、説明欄にこれおすすめ！！って書く</p>
+                    <p class="md:mx-4 mx-2 font-bold">※ まとめての更新はできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>
@@ -867,9 +869,9 @@ $user=Auth::user();
             @endif
         </ul>
         @endif
-        <div class="rounded-3xl border-2 border-bg">
+        <div class="rounded-3xl border-2 border-bg" id="timeline">
             <table class="w-full text-center edit rounded-3xl overflow-hidden" id="timelineTable">
-                <tr class="bg-bg-sub">
+                <tr class="bg-bg-sub md:!table-row !hidden">
                     <td>番号</td>
                     <td>タイトル</td>
                     <td>説明</td>
@@ -885,11 +887,11 @@ $user=Auth::user();
                         <td style="width: 40px">1</td>
                         <td style=""><input style="width: 80%" type="text" name="timelineTitle"
                                 value="{{$timelineTitle}}" required></td>
-                        <td style=" width: 300px">
+                        <td style="width: 300px">
                             <textarea name="timelineDescription"
                                 style="width: 80%; padding:.5rem;">{{$timelineDescription}}</textarea>
                         </td>
-                        <td>
+                        <td class="timeline-genre">
                             <select name="timelineGenreId">
                                 @php
                                 $id=0;
@@ -936,7 +938,7 @@ $user=Auth::user();
                             <textarea name="timelineDescription"
                                 style="width: 80%; padding:.5rem;">{{$timeline->description ?? ""}}</textarea>
                         </td>
-                        <td>
+                        <td class="timeline-genre">
                             <select name="timelineGenreId">
                                 @php
                                 $id=0;
@@ -974,9 +976,9 @@ $user=Auth::user();
                 @endforeach
                 @endisset
                 <td colspan="7" class="text-left">
-                    <p class=" md:mx-4 mx-2">タイムラインでは、自分の学業、お仕事、資格、所属団体、大会などの結果や情報を時系列で表示できます。<br>
-                        例　けん玉15級を取得、卓球部に入部</p>
-                    <p class=" md:mx-4 mx-2">※まとめての更新ではできませんので、ご注意ください</p>
+                    <p class=" md:mx-4 mx-2">タイムラインでは、自分の学業・お仕事・資格・所属団体・大会などの結果や情報を時系列で表示できます。<br>
+                        例：けん玉15級を取得、卓球部に入部</p>
+                    <p class="md:mx-4 mx-2 font-bold">※ まとめての更新はできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>

@@ -8,7 +8,7 @@
 <h1 class="text-center my-8 text-3xl ">ユーザー統計</h1>
 <div class="mb-20">
 
-    <h2 class="text-center my-12">
+    <h2 class="text-center my-12 md:text-2xl text-xl">
         ユーザー数：
         {{$userValue}}
     </h2>

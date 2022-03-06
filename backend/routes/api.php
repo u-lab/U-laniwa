@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Area\GetCountryController;
 use App\Http\Controllers\Api\Area\GetMunicipalityController;
 use App\Http\Controllers\Api\Area\GetPrefectureController;
+use App\Http\Controllers\Api\Area\SaveProfilePhotoController;
 use App\Http\Controllers\Api\Major\GetMajorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/get/area/prefecture/{country_id}', GetPrefectureController::class)->name('getPrefecture');
 Route::get('/get/area/municipality/{prefecture_id}', GetMunicipalityController::class)->name('getMunicipality');
 Route::get('/get/major/{faculty_id}', GetMajorController::class)->name('getMajor');
+Route::get('/img/profile_photo', SaveProfilePhotoController::class)->name('SaveProfilePhoto');

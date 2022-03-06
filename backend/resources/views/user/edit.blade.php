@@ -63,7 +63,9 @@ $user=Auth::user();
                         <tr>
                             <td style="width: 250px"><img src="{{url('/'. $originImg)}}" class="w-48 inline-block">
                             </td>
-                            <td style="width: 250px"><input style="max-width: 250px" type="file" name="img"></td>
+                            <td style="width: 250px"><input style="max-width: 250px" id="forCompress" type="file"
+                                    name="img"></td>
+                            <input type="file" id="file">
                         </tr>
                     </table>
                 </div>

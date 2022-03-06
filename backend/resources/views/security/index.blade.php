@@ -63,23 +63,27 @@
 
 @include('components.forMembers.pageSubTitle', ['subTitle'=>'DangerZone'])
 <div class="flex items-center justify-center mb-12">
-    <form method="POST" action="/procedure/retire" class="mx-2">
-        @csrf
-        <input type="submit" class="text-white  py-2 px-2 " style="background-color: red!important" value="退部する"
-            onclick="retireEvent()">
-    </form>
     @if($gate->allows('level4~'))
-    <form method="POST" action="/procedure/withdraw" class="mx-2">
+    <form method="POST" action="/procedure/retire" class="mx-2">
         @csrf
         <input type="submit" class="text-white py-2 px-2  " style="background-color: red!important" value="引退する"
             onclick="retireEvent()">
     </form>
     @endif
+    <form method="POST" action="/procedure/withdraw" class="mx-2">
+        @csrf
+        <input type="submit" class="text-white  py-2 px-2 " style="background-color: red!important" value="退部する"
+            onclick="withdrawEvent()">
+    </form>
+
 </div>
 
 <script>
+    function withdrawEvent() {
+        alert('本当に実行しますか？\n{{$user->id}}はU-laniwaへのログインできなくなります。\n(この操作は取り消せません。)')
+    }
     function retireEvent() {
-        alert('本当に実行しますか？\n(この操作は取り消せません。)')
+        alert('本当に実行しますか？\n{{$user->id}}さんはOB・OG権限になります。\n(この操作は取り消せません。)')
     }
 </script>
 @endsection

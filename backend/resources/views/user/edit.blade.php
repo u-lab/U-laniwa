@@ -130,7 +130,7 @@ $user=Auth::user();
                                 </select>
                             </td>
                         </tr>
-                        <tr name="company" class="hidden">
+                        <tr name="company">
                             <td style="width: 200px">会社名/役職名</td>
                             <td>
                                 <input style="width: 38%; margin-right:4%;" type="text" name="company"
@@ -139,19 +139,23 @@ $user=Auth::user();
                             </td>
 
                         </tr>
-                        <tr name="university" class="hidden">
+                        <tr name="university">
                             <td style="width: 200px">大学</td>
                             <td>
-                                <input type="radio" name="univRadio" value="宇都宮大学">
+                                <input type="radio" name="univRadio" value="宇都宮大学" @if ($originUUMajor)
+                                checked
+                                @endif>
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
-                                <input type="radio" name="univRadio" value="他大学">
+                                <input type="radio" name="univRadio" value="他大学" @if ($originUniversity)
+                                checked
+                                @endif>
                                 <label for='他大学'>他大学</label>
                             </td>
                         </tr>
-                        <tr name="university" id="UU" , class="hidden">
+                        <tr name="university" id="UU">
                             <td style="width: 200px">学部/学科</td>
                             <td>
-                                <select name='uuFactory' style="width: 38%; margin-right:4%;">
+                                <select name='uuFaculty' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
                                     <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUFaculty)
                                         selected
@@ -169,7 +173,7 @@ $user=Auth::user();
                                 </select>
                             </td>
                         </tr>
-                        <tr name="university" id="other" class="hidden">
+                        <tr name="university" id="other">
                             <td style="width: 200px">大学名/学部/学科</td>
                             <td>
                                 <input style="width: 24%; margin-right:4%;" type="text" name="university"
@@ -224,8 +228,8 @@ $user=Auth::user();
                                 }
                             });
 
-                            /* 学科条件分岐 */
-                            document.querySelector('select[name="UUFaculty"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
+                            // 初期値による会社・大学の入力項目の条件分岐
+                            window.onload = () => {
                                 /* プルダウン */
                                 const options = document.querySelectorAll('option[name="gradeOption"]');
                                 const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
@@ -233,17 +237,29 @@ $user=Auth::user();
                                 /* プルダウンで制御する項目 */
                                 const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
                                 const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
+
                                 if (selectedOption.value < 10) {  // 学生が選択されているとき
-                                    //会社の入力項目を非表示, 学生ラジオボタンを表示
-                                    company.classList.add('hidden');
-                                    universities.item(0).classList.remove('hidden');
+                                    company.classList.add('hidden');  // 会社の入力項目を非表示
                                 } else {  //社会人・その他が選択されている時
-                                    //会社の入力項目を表示, 学生の入力項目全体をを非表示, 大学ラジオボタンのチェックを外す
-                                    company.classList.remove('hidden');
-                                    [...universities].forEach(university => university.classList.add('hidden'));
-                                    [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
+                                    [...universities].forEach(university => university.classList.add('hidden')); // 学生の入力項目全体をを非表示
                                 }
-                            });
+
+
+                                /* ラジオボタン */
+                                const UUBtn = document.querySelector('input[value="宇都宮大学"]');
+                                const otherBtn = document.querySelector('input[value="他大学"]');
+
+                                /* ラジオボタンで制御する項目 */
+                                const UU = document.querySelector('#UU');  // 宇大の入力項目
+                                const other = document.querySelector('#other');  // 他大の入力項目
+
+                                if (UUBtn.checked) {  // "宇都宮大学"が選択されているとき
+                                    other.classList.add('hidden');  // 他大学の入力項目を非表示
+                                } else if (otherBtn.checked) { // "他大学"が選択されているとき
+                                    UU.classList.add('hidden');  // 宇大の入力項目を非表示
+                                }
+                            }
+
                         </script>
                         <tr>
                             <td style="width: 200px">兼部・サークル</td>

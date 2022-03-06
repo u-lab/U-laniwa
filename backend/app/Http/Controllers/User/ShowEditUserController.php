@@ -182,7 +182,8 @@ class ShowEditUserController extends Controller
         $userBirthArea = [];
         $userLiveArea = [];
 
-        $preUUFaculties = [];
+        $preUUMajors = [];
+
         /** 在住地と出身地を取得 */
         if (isset($userInfo->birth_area_id) && isset($userInfo->live_area_id)) {
             $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
@@ -231,14 +232,16 @@ class ShowEditUserController extends Controller
              * 市区町村情報セット
              */
 
-            $preBirthMunicipalities = Area::where('prefecture_code', $userLiveArea->prefecture_code->value())->get();
-            $preLiveMunicipalities = Area::where('prefecture_code', $userBirthArea->prefecture_code->value())->get();
-            if (isset($userInfo->u_u_faculty_id)) {
-                $prePreUUMajor = UUMajor::where('id', $userInfo->u_u_faculty_id)->first();
+            $preBirthMunicipalities = Area::where('prefecture_code', $userBirthArea->prefecture_code->value())->get();
+            $preLiveMunicipalities = Area::where('prefecture_code', $userLiveArea->prefecture_code->value())->get();
+            if (isset($userInfo->u_u_major_id)) {
+                $prePreUUMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
                 $preUUMajors = UUMajor::where('faculty_id', $prePreUUMajor->faculty_id->value())->get();
             }
         }
-        \Log::debug($preUUMajors);
+
+        \Log::debug($userLiveArea->prefecture_code->value());
+        \Log::debug($preBirthMunicipalities);
 
 
 

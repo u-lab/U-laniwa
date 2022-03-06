@@ -7,6 +7,7 @@ namespace App\Http\Controllers\User;
 use App\Enums\Country;
 use App\Enums\Gender;
 use App\Enums\Grade;
+use App\Enums\Prefecture;
 use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
@@ -103,13 +104,7 @@ class ShowEditUserController extends Controller
             $userInfo->major = '';
         }
 
-        /** 在住地と出身地を取得 */
-        $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
-        // 在住と出身が同じだった場合、返り値1つなので
-        /** @var Area */
-        $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
-        /** @var Area */
-        $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
+
 
         /**
          * DBに格納していないEnum型のデータを取得する
@@ -131,14 +126,14 @@ class ShowEditUserController extends Controller
         //都道府県、市区町村に関しては動的に取得する(api.php参照)
         $countryEnum = Country::cases();
         $countries =  array_map(fn (Country $countryCode): array => [
-            'country_code' => $countryCode, //国コード 名前がスネークケースなのはDBの都合
+            'country_code' => $countryCode->value(), //国コード 名前がスネークケースなのはDBの都合
             'name' => $countryCode->label(), //名前
         ], $countryEnum);
 
         //学部
         $uuFacultyEnum = UUFaculty::cases();
         $uuFaculties =  array_map(fn (UUFaculty $id): array => [
-            'id' => $id, //学部id(学科の取得に用いる)
+            'id' => $id->value(), //学部id(学科の取得に用いる)
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
 
@@ -175,12 +170,81 @@ class ShowEditUserController extends Controller
             'id' => $timelineGenre->value,
             'name' => $timelineGenre->label(), //名前
         ], $timelineGenreEnum);
-        \Log::debug($userInfo->u_u_major_id);
+
+        /**
+         * 初期代入用の値準備
+         * 'key'=>'value
+         */
+        $preBirthPrefectures = [];
+        $preBirthMunicipalities = [];
+        $preLivePrefectures = [];
+        $preLiveMunicipalities = [];
+        $userBirthArea = [];
+        $userLiveArea = [];
+
+        $preUUFaculties = [];
+        /** 在住地と出身地を取得 */
+        if (isset($userInfo->birth_area_id) && isset($userInfo->live_area_id)) {
+            $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
+            // 在住と出身が同じだった場合、返り値1つなので
+            /** @var Area */
+            $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
+            /** @var Area */
+            $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
+            /**
+             * 都道府県情報セット
+             */
+            $prefectureEnum = Prefecture::cases();
+            $prefectures = array_map(fn (Prefecture $prefectureCode): array => [
+                'prefecture_code' => $prefectureCode->value(), //名前がスネークケースなのはDBの都合
+                'name' => $prefectureCode->label(),
+            ], $prefectureEnum);
+            switch ($userBirthArea->country_code->value()) {
+                case 0: //外国
+                    $prefectures = array_shift($prefectures); //配列の先頭(その他だけ取り出す)
+                    break;
+                case 81: //日本
+                    array_shift($prefectures); //配列の先頭を取り出した配列がそのまま残る
+                    break;
+                default:
+                    $prefectures = array_shift($prefectures); //配列の先頭(その他だけ取り出す)
+            }
+            $preBirthPrefectures = $prefectures;
+
+            $prefectures = array_map(fn (Prefecture $prefectureCode): array => [
+                'prefecture_code' => $prefectureCode->value(), //名前がスネークケースなのはDBの都合
+                'name' => $prefectureCode->label(),
+            ], $prefectureEnum);
+            switch ($userBirthArea->country_code->value()) {
+                case 0: //外国
+                    $prefectures = array_shift($prefectures); //配列の先頭(その他だけ取り出す)
+                    break;
+                case 81: //日本
+                    array_shift($prefectures); //配列の先頭を取り出した配列がそのまま残る
+                    break;
+                default:
+                    $prefectures = array_shift($prefectures); //配列の先頭(その他だけ取り出す)
+            }
+            $preLivePrefectures = $prefectures;
+
+            /**
+             * 市区町村情報セット
+             */
+
+            $preBirthMunicipalities = Area::where('prefecture_code', $userLiveArea->prefecture_code->value())->get();
+            $preLiveMunicipalities = Area::where('prefecture_code', $userBirthArea->prefecture_code->value())->get();
+            if (isset($userInfo->u_u_faculty_id)) {
+                $prePreUUMajor = UUMajor::where('id', $userInfo->u_u_faculty_id)->first();
+                $preUUMajors = UUMajor::where('faculty_id', $prePreUUMajor->faculty_id->value())->get();
+            }
+        }
+        \Log::debug($preUUMajors);
+
+
+
         return view('user.edit', [
             'user' => $user,
             'userInfo' => $userInfo,
-            'userBirthArea' => $userBirthArea,
-            'userLiveArea' => $userLiveArea,
             'genders' => $genders,
             'grades' => $grades,
             'countries' => $countries,
@@ -188,6 +252,13 @@ class ShowEditUserController extends Controller
             'links' => $links,
             'timelines' => $timelines,
             'timelineGenres' => $timelineGenres,
+            'preBirthMunicipalities' => $preBirthMunicipalities,
+            'preBirthPrefectures' => $preBirthPrefectures,
+            'preLivePrefectures' => $preLivePrefectures,
+            'preLiveMunicipalities' => $preLiveMunicipalities,
+            'userBirthArea' => $userBirthArea,
+            'userLiveArea' => $userLiveArea,
+            'preUUMajors' => $preUUMajors,
         ]);
     }
 }

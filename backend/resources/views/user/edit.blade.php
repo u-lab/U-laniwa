@@ -36,7 +36,7 @@ $user=Auth::user();
         $originFaculty= $userInfo->faculty?? "";
         $originMajor = $userInfo->major?? "";
         $originUUMajor = $userInfo->u_u_major_id?? "";
-        $originUUFaculty = $userInfo->u_u_faculty_id?? "";
+        $originUUFaculty = $userInfo->u_u_faculty_id? $userInfo->u_u_faculty_id->value(): "";
         //趣味
         $originGroupAffiliation= $userInfo->group_affiliation?? "";
         $originGithubId = $userInfo->github_id?? "";
@@ -358,21 +358,20 @@ $user=Auth::user();
                             <td>
                                 <select name='uuFaculty' style="width: 38%; margin-right:4%;">
                                     <option hidden>選択してください</option>
-                                    @foreach ($uuFaculties as $uuFacultie)
-                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUFaculty)
-                                        selected
-                                        @endif>{{$uuFacultie['name']}}
+                                    @foreach ($uuFaculties as $uuFaculty)
+                                    <option value="{{$uuFaculty['id']}}" @if ($uuFaculty['id']==$originUUFaculty)
+                                        selected @endif>{{$uuFaculty['name']}}
                                     </option>
                                     @endforeach
                                 </select>
                                 <select name='uuMajorId' style="width: 38%; margin-right:4%;">
-                                    @foreach ($uuFaculties as $uuFacultie)
-                                    <option value="1" @if ($loop->iteration==$originUUMajor)
+                                    @foreach ($preUUMajors as $preUUMajor)
+                                    <option value="{{$preUUMajor->id}}" @if ($preUUMajor->id==$originUUMajor)
 
                                         selected
-                                        @endif>{{$uuFacultie['name']}}
+                                        @endif>{{$preUUMajor->name}}
                                     </option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </td>
                         </tr>
@@ -395,14 +394,38 @@ $user=Auth::user();
                             <td style="width: 200px">出身地</td>
                             <td>
                                 <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
-                                    {{-- optionのvalueを国コードにしたいがためにループのカウンタに81かける無茶苦茶な実装になってしまいました --}}
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
-                                    <option value="{{$loop->index * 81}}">{{$country['name']}}</option>
+                                    <option value="{{$country['country_code']}}"
+                                        @if($country['country_code']==$userBirthArea->country_code->value())
+                                        selected
+                                        @endif
+                                        >{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required></select>
-                                <select name='birthMunicipality' style="width: 24%; margin-right:4%;" required></select>
+                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required>
+                                    @if($preBirthPrefectures)
+                                    @foreach($preBirthPrefectures as $preBirthPrefecture)
+                                    <option value="{{$preBirthPrefecture['prefecture_code']}}"
+                                        @if($preBirthPrefecture['prefecture_code']==$userBirthArea->
+                                        prefecture_code->value())
+                                        selected
+                                        @endif>
+                                        {{$preBirthPrefecture['name']}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                                <select name='birthMunicipalityId' style="width: 24%; margin-right:4%;" required>
+                                    @if($preBirthMunicipalities)
+                                    @foreach($preBirthMunicipalities as $preBirthMunicipality)
+                                    <option value="{{$preBirthMunicipality->id}}" @if($preBirthMunicipality->
+                                        id==$userBirthArea->id)
+                                        selected
+                                        @endif>
+                                        {{$preBirthMunicipality->municipality}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -411,11 +434,37 @@ $user=Auth::user();
                                 <select name='liveCountry' style="width: 24%; margin-right:4%;" required>
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
-                                    <option value="{{$loop->index * 81}}">{{$country['name']}}</option>
+                                    <option value="{{$country['country_code']}}"
+                                        @if($country['country_code']==$userLiveArea->country_code->value())
+                                        selected
+                                        @endif
+                                        >{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required></select>
-                                <select name='liveMunicipality' style="width: 24%; margin-right:4%;" required></select>
+                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required>
+                                    @if($preLivePrefectures)
+                                    @foreach($preLivePrefectures as $preLivePrefecture)
+                                    <option value="{{$preLivePrefecture['prefecture_code']}}"
+                                        @if($preLivePrefecture['prefecture_code']==$userLiveArea->
+                                        prefecture_code->value())
+                                        selected
+                                        @endif>
+                                        {{$preLivePrefecture['name']}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                                <select name='liveMunicipalityId' style="width: 24%; margin-right:4%;" required>
+                                    @if($preLiveMunicipalities)
+                                    @foreach($preLiveMunicipalities as $preLiveMunicipality)
+                                    <option value="{{$preLiveMunicipality->id}}" @if($preLiveMunicipality->
+                                        id==$userLiveArea->id)
+                                        selected
+                                        @endif>
+                                        {{$preLiveMunicipality->municipality}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+
                             </td>
                         </tr>
                         <tr>
@@ -503,7 +552,7 @@ $user=Auth::user();
                 // 出身地・現住地のプルダウンを制御する関数
                 function manageAreaSection(country, prefecture, municipality) {
                     createPulldownByAPI(country, 'prefecture', prefecture, 'prefecture_code', 'name');
-                    createPulldownByAPI(prefecture, 'municipality', municipality, 'municipality_code', 'municipality');
+                    createPulldownByAPI(prefecture, 'municipality', municipality, 'id', 'municipality');
                     country.addEventListener('change', () => municipality.innerHTML = '');
 
                     // API経由で地域情報を取得し、プルダウンのオプションを生成する関数
@@ -542,13 +591,13 @@ $user=Auth::user();
                     /* 出身地 */
                     const birthCountry = document.querySelector('select[name="birthCountry"]');
                     const birthPrefecture = document.querySelector('select[name="birthPrefecture"]');
-                    const birthMunicipality = document.querySelector('select[name="birthMunicipality"]');
+                    const birthMunicipality = document.querySelector('select[name="birthMunicipalityId"]');
                     manageAreaSection(birthCountry, birthPrefecture, birthMunicipality);
 
                     /* 現住地 */
                     const liveCountry = document.querySelector('select[name="liveCountry"]');
                     const livePrefecture = document.querySelector('select[name="livePrefecture"]');
-                    const liveMunicipality = document.querySelector('select[name="liveMunicipality"]');
+                    const liveMunicipality = document.querySelector('select[name="liveMunicipalityId"]');
                     manageAreaSection(liveCountry, livePrefecture, liveMunicipality);
 
 

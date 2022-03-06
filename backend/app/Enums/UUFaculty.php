@@ -30,4 +30,18 @@ enum UUFaculty: int
             self::TheUnitedGraduateSchoolOfAgriculturalScienceTokyoUniversityOfAgricultureAndTechnology => "東京農工大学大学院連合農学研究科(博士)",
         };
     }
+    public function value(): int
+    {
+        return match ($this) {
+            self::cooperativeEducation => 1,
+            self::Engineering => 2,
+            self::InternationalStudies => 3,
+            self::regionalDesign => 4,
+            self::agriculture => 5,
+            self::GraduateSchoolOfRegionalDevelopmentAndCreativity_before => 6,
+            self::GraduateSchoolOfEducation => 7,
+            self::GraduateSchoolOfRegionalDevelopmentAndCreativity_after => 8,
+            self::TheUnitedGraduateSchoolOfAgriculturalScienceTokyoUniversityOfAgricultureAndTechnology => 9,
+        };
+    }
 }

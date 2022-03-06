@@ -9,6 +9,7 @@ use App\Models\UserTimeline;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateUserTimelineController extends Controller
 {
@@ -19,16 +20,16 @@ class UpdateUserTimelineController extends Controller
      */
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
+        \Log::debug($request);
         /**
          * バリデーション
          */
         $validateRule = [
             'timelineId' => 'int',
             'timelineTitle' => 'required|string|max:255',
-            'timelineDescription' => 'string|max:1000',
+            'timelineDescription' => 'max:1000',
             'timelineGenreId' => 'required|integer',
             'timelineStartDate' => 'required|date',
-            'timelineEndDate' => 'date',
         ];
         $this->validate($request, $validateRule);
         /**
@@ -37,20 +38,20 @@ class UpdateUserTimelineController extends Controller
          */
         $timelineDate = [
             'title' => $request->timelineTitle,
-            'genre_id' => $request->timelineGenreId,
+            'genre' => $request->timelineGenreId,
             'start_date' => $request->timelineStartDate,
+            'user_id' => Auth::id(),
         ];
         /**
          * 必須じゃない項目の処理
          */
-        $request->timelineDescription != null ? array_merge($timelineDate, ['description' => $request->timelineDescription,]) : "";
-        $request->timelineEndDate != null ? array_merge($timelineDate, ['end_date' => $request->timelineEndDate,]) : "";
-
+        $request->timelineDescription != null ? $timelineDate = array_merge($timelineDate, ['description' => $request->timelineDescription,]) : "";
+        $request->timelineEndDate != null ? $timelineDate = array_merge($timelineDate, ['end_date' => $request->timelineEndDate,]) : "";
         /**無かったら作る、あったら更新する方式 */
         UserTimeline::updateOrCreate(
             ['id' => $request->timelineId],
             $timelineDate
         );
-        return redirect('/user/edit');
+        return redirect('/user/edit#timelineTable');
     }
 }

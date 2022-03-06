@@ -62,14 +62,13 @@ class ShowEditUserController extends Controller
         //リンク
         $links = UserLink::where('user_id', $userId)->get();
         //タイムライン
-        $timelines = UserTimeline::where('user_id', $userId)->get();
+        $timelines = UserTimeline::where('user_id', $userId)->orderBy('start_date', 'desc')->get();
         //タイムラインジャンル
         $timelineGenreEnum = UserTimelineGenre::cases();
         $timelineGenres = array_map(fn (UserTimelineGenre $timelineGenre): array => [
             'id' => $timelineGenre->value,
             'name' => $timelineGenre->label(), //名前
         ], $timelineGenreEnum);
-        \Log::debug($timelines);
         return view('user.edit', [
             'genders' => $genders,
             'grades' => $grades,

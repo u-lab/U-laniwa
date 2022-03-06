@@ -290,29 +290,29 @@ $user=Auth::user();
 
         {{-- エラーの表示 --}}
         <ul class="text-red-500 kiwi-maru text-center">
-            @if($errors->has('title'))
+            @if($errors->has('timelineTitle'))
             <li class="text-red-500 kiwi-maru">
-                {{$errors->first('title')}}
+                {{$errors->first('timelineTitle')}}
             </li>
             @endif
-            @if($errors->has('description'))
+            @if($errors->has('timelineDescription'))
             <li class="text-red-500 kiwi-maru">
-                {{$errors->first('description')}}
+                {{$errors->first('timelineDescription')}}
             </li>
             @endif
-            @if($errors->has('genre'))
+            @if($errors->has('timelineGenreId'))
             <li class="text-red-500 kiwi-maru">
-                {{$errors->first('genre')}}
+                {{$errors->first('timelineGenreId')}}
             </li>
             @endif
-            @if($errors->has('startDate'))
+            @if($errors->has('timelineStartDate'))
             <li class="text-red-500 kiwi-maru">
-                {{$errors->first('startDate')}}
+                {{$errors->first('timelineStartDate')}}
             </li>
             @endif
-            @if($errors->has('endDate'))
+            @if($errors->has('timelineEndDate'))
             <li class="text-red-500 kiwi-maru">
-                {{$errors->first('endDate')}}
+                {{$errors->first('timelineEndDate')}}
             </li>
             @endif
         </ul>
@@ -329,17 +329,17 @@ $user=Auth::user();
                     <td>削除</td>
                 </tr>
                 {{-- 初回分は登録フォームなのでループ外 --}}
-                <form method="POST" action="/user/edit/create/userTimeline">
+                <form method="POST" action="/user/edit/update/userTimeline" id="timelineTable">
                     @csrf
                     <tr>
                         <td style="width: 40px">1</td>
-                        <td style="width: 200px"><input style="width: 80%" type="text" name="timelineTitle"
+                        <td style=""><input style="width: 80%" type="text" name="timelineTitle"
                                 value="{{$timelineTitle}}" required></td>
                         <td style=" width: 300px">
-                            <textarea name="timelineDescription" style="width: 80%; padding:.5rem;"
-                                required>{{$timelineDescription}}</textarea>
+                            <textarea name="timelineDescription"
+                                style="width: 80%; padding:.5rem;">{{$timelineDescription}}</textarea>
                         </td>
-                        <td style="width: 150px">
+                        <td>
                             <select name="timelineGenreId">
                                 @php
                                 $id=0;
@@ -353,12 +353,12 @@ $user=Auth::user();
                                 @endforeach
                             </select>
                         </td>
-                        <td style="width: 300px; font-size:.875rem; ">
-                            <div class="mb-1">開始日 : <input style="width:50%" type="date" name="timelineStartDate"
+                        <td style=" font-size:.875rem; ">
+                            <div class="mb-1">開始日 : <input type="date" name="timelineStartDate"
                                     value="{{$timelineStartDate}}" required>
                             </div>
-                            <div>終了日 : <input style="width:50%" type="date" name="timelineEndDate"
-                                    value={{$timelineEndDate ?? "" }}></div>
+                            <div>終了日 : <input type="date" name="timelineEndDate" value={{$timelineEndDate ?? "" }}>
+                            </div>
                         </td>
                         <td style="width: 80px"><input type="submit" value="作成"></td>
                         <td style="width: 80px">
@@ -380,13 +380,13 @@ $user=Auth::user();
                     <input type="hidden" name="timelineId" value="{{$timeline->id}}">
                     <tr>
                         <td style="width: 40px"> {{$i}}</td>
-                        <td style="width: 200px"><input style="width: 80%" type="text" name="timelineTitle"
+                        <td style=""><input style="width: 80%" type="text" name="timelineTitle"
                                 value="{{$timeline->title}}" required></td>
                         <td style=" width: 200px">
-                            <textarea name="timelineDescription" style="width: 80%; padding:.5rem;"
-                                required>{{$timeline->description ?? ""}}</textarea>
+                            <textarea name="timelineDescription"
+                                style="width: 80%; padding:.5rem;">{{$timeline->description ?? ""}}</textarea>
                         </td>
-                        <td style="width: 150px">
+                        <td>
                             <select name="timelineGenreId">
                                 @php
                                 $id=0;
@@ -403,25 +403,24 @@ $user=Auth::user();
                                 @endforeach
                             </select>
                         </td>
-                        <td style="width: 200px; font-size:.875rem; ">
-                            <div class="mb-1">開始日 : <input style="width:50%" type="timelineStartDate" name="startDate"
+                        <td style=" font-size:.875rem; ">
+                            <div class="mb-1">開始日 : <input type="date" name="timelineStartDate"
                                     value="{{$timeline->start_date->format('Y-m-d')}}" required>
                             </div>
-                            <div>終了日 : <input style="width:50%" type="date" name="timelineEndDate"
-                                    value={{$timeline->end_date->format('Y-m-d')
-                                ??
-                                ""}}></div>
+                            <div>終了日 : <input type="date" name="timelineEndDate" value={{$timeline->end_date ?
+                                $timeline->end_date->format('Y-m-d'):""}}>
+                            </div>
                         </td>
                         <td style="width: 80px"><input type="submit" value="更新"></td>
-                        <td style="width: 80px">
-                            <form method="POST" action="/user/edit/delete/userTimeline">
-                                @csrf
-                                <input type="hidden" name="userTimelineId" value="{{$timeline->id}}">
-                                <input type="submit" value="削除" style="background-color: red; color: #fff;">
-                            </form>
-                        </td>
-                    </tr>
                 </form>
+                <td style="width: 80px">
+                    <form method="POST" action="/user/edit/delete/userTimeline">
+                        @csrf
+                        <input type="hidden" name="userTimelineId" value="{{$timeline->id}}">
+                        <input type="submit" value="削除" style="background-color: red; color: #fff;">
+                    </form>
+                </td>
+                </tr>
                 @endforeach
                 @endisset
                 <td colspan="7">

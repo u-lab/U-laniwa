@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Project;
 
+use App\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\UseCases\Project\GetAllProjectsUseCase;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
 class ShowAllProjectController extends Controller
 {
+    public function __construct(
+        public GetAllProjectsUseCase $getAllProjectsUseCase
+    ) {
+    }
+
     /**
      * 手続きページを表示するコントローラー
      *
@@ -18,6 +24,12 @@ class ShowAllProjectController extends Controller
      */
     public function __invoke(): View|Factory
     {
-        return view('project.index', []);
+        $user = Auth::user();
+        $allProjects = $this->getAllProjectsUseCase->invoke($user->id);
+
+        return view('project.index', [
+            'projectsBelonged' => $allProjects['projectsBelonged'],
+            'projectsNotBelonged' => $allProjects['projectsNotBelonged'],
+        ]);
     }
 }

@@ -31,6 +31,7 @@ $user=Auth::user();
             $originFaculty= $userInfo->faculty?? "";
             $originMajor = $userInfo->major?? "";
             $originUUMajor = $userInfo->u_u_major_id?? "";
+            $originUUFaculty = $userInfo->u_u_faculty_id?? "";
             //趣味
             $originGroupAffiliation= $userInfo->group_affiliation?? "";
             $originGithubId = $userInfo->github_id?? "";
@@ -41,6 +42,14 @@ $user=Auth::user();
             $originInterests = $userInfo->interests?? "";
             $originMotto = $userInfo->motto?? "";
             $originStatus= $userInfo->status?? "";
+            //出身
+            $originBirthCountry= $userInfo->birth_country_id?? "";
+            $originBirthPrefecture= $userInfo->birth_prefecture_id?? "";
+            $originBirthMunicipality= $userInfo->birth_area_id?? "";
+            //現住
+            $originLiveCountry= $userInfo->live_country_id?? "";
+            $originLivePrefecture= $userInfo->live_prefecture_id?? "";
+            $originLiveMunicipality= $userInfo->live_area_id?? "";
             @endphp
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
@@ -142,7 +151,7 @@ $user=Auth::user();
                             <td>
                                 <select name='uuFactory' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
-                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUMajor)
+                                    <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUFaculty)
                                         selected
                                         @endif>{{$uuFacultie['name']}}
                                     </option>
@@ -156,7 +165,6 @@ $user=Auth::user();
                                     </option>
                                     @endforeach
                                 </select>
-                                <input style="width: 38%" type="text">
                             </td>
                         </tr>
                         <tr name="university" id="other" class="hidden">
@@ -215,7 +223,7 @@ $user=Auth::user();
                             });
 
                             /* 学科条件分岐 */
-                            document.querySelector('select[name="grade"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
+                            document.querySelector('select[name="UUFaculty"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
                                 /* プルダウン */
                                 const options = document.querySelectorAll('option[name="gradeOption"]');
                                 const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
@@ -243,11 +251,6 @@ $user=Auth::user();
                         <tr>
                             <td style="width: 200px">出身地</td>
                             <td>
-                                {{-- TODO: 出身地・現在地の国はプルダウンメニューでお願いします
-                                @foreach ($countries as $country)
-                                <option value="{{$loop->index}}">{{$country['name']}}</option>
-                                @endforeach
-                                こんな感じで！ --}}
                                 <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
                                     @foreach ($countries as $country)
                                     <option value="{{$loop->iteration}}">{{$country['name']}}</option>

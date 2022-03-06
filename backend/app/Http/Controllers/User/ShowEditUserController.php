@@ -10,10 +10,12 @@ use App\Enums\Grade;
 use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\User;
 use App\Models\UserInfo;
 use App\Models\UserLink;
 use App\Models\UserTimeline;
+use App\Models\UUMajor;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -28,10 +30,25 @@ class ShowEditUserController extends Controller
      */
     public function __invoke(): View|Factory
     {
-        $userId = Auth::id();
+        /**
+         * @var User
+         */
+        $user = Auth::user();
+        $userId = $user->id;
 
-        $user = User::where('id', $userId)->first();
-
+        /**
+         * @var userInfo
+         * @property string $company
+         * @property string $position
+         * @property string $university
+         * @property string $faculty
+         * @property string $major
+         * @property int $u_u_faculty_id
+         * @property int $birth_country_id
+         * @property int $birth_prefecture_id
+         * @property int $live_country_id
+         * @property int $live_prefecture_id
+         */
         $userInfo = UserInfo::where('user_id', $userId)->first();
 
         /**
@@ -91,6 +108,28 @@ class ShowEditUserController extends Controller
             'id' => $id, //学部id(学科の取得に用いる)
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
+
+        /**
+         * ユーザー情報追加取得
+         */
+        //学科
+        /** @var UUMajor */
+        $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
+        $userInfo->u_u_faculty_id = $uuMajor->uu_faculty_id;
+
+        $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
+        // 在住と出身が同じだった場合、返り値1つなので
+        /** @var Area */
+        $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
+        /** @var Area */
+        $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
+        // userにbirthとliveプロパティを追加
+        \Log::debug($userAreas);
+        $user->live_prefecture_id = $userLiveArea->prefecture_code;
+        $user->live_country_id =  $userLiveArea->country_code;
+        $user->birth_prefecture_id = $userBirthArea->prefecture_code;
+        $user->birth_country_id =  $userBirthArea->country_code;
+
 
         //リンク
         $links = UserLink::where('user_id', $userId)->orderBy('id', 'desc')->get();

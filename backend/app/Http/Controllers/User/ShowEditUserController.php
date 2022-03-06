@@ -103,6 +103,13 @@ class ShowEditUserController extends Controller
             $userInfo->major = '';
         }
 
+        /** 在住地と出身地を取得 */
+        $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
+        // 在住と出身が同じだった場合、返り値1つなので
+        /** @var Area */
+        $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
+        /** @var Area */
+        $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
 
         /**
          * DBに格納していないEnum型のデータを取得する
@@ -143,6 +150,7 @@ class ShowEditUserController extends Controller
         $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
         $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
 
+        /** ユーザー出身地・現住地を取得 */
         $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
         // 在住と出身が同じだった場合、返り値1つなので
         /** @var Area */
@@ -156,6 +164,7 @@ class ShowEditUserController extends Controller
         $userInfo->birth_country_id =  $userBirthArea->country_code;
 
 
+
         //リンク
         $links = UserLink::where('user_id', $userId)->orderBy('id', 'desc')->get();
         //タイムライン
@@ -166,9 +175,12 @@ class ShowEditUserController extends Controller
             'id' => $timelineGenre->value,
             'name' => $timelineGenre->label(), //名前
         ], $timelineGenreEnum);
+        \Log::debug($userInfo->u_u_major_id);
         return view('user.edit', [
             'user' => $user,
             'userInfo' => $userInfo,
+            'userBirthArea' => $userBirthArea,
+            'userLiveArea' => $userLiveArea,
             'genders' => $genders,
             'grades' => $grades,
             'countries' => $countries,

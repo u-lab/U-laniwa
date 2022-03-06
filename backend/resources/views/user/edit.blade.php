@@ -311,7 +311,7 @@ $user=Auth::user();
                             <td style="width: 200px">性別</td>
                             <td>
                                 <select name='gender' style="width: 80%" required>
-                                    <option value="0">選択してください</option>
+                                    <option hidden>選択してください</option>
                                     @foreach ($genders as $gender)
                                     <option value="{{$loop->iteration}}" @if ($loop->iteration==$originGender)
                                         selected
@@ -324,7 +324,7 @@ $user=Auth::user();
                             <td style="width: 200px">学年</td>
                             <td>
                                 <select name='grade' style="width: 80%" required>
-                                    <option name='gradeOption' value="0" selected>選択してください</option>
+                                    <option name='gradeOption' hidden>選択してください</option>
                                     @foreach ($grades as $grade)
                                     <option name='gradeOption' value="{{$loop->iteration}}" @if ($loop->
                                         iteration==$originGrade)
@@ -357,6 +357,7 @@ $user=Auth::user();
                             <td style="width: 200px">学部/学科</td>
                             <td>
                                 <select name='uuFaculty' style="width: 38%; margin-right:4%;">
+                                    <option hidden>選択してください</option>
                                     @foreach ($uuFaculties as $uuFacultie)
                                     <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUFaculty)
                                         selected
@@ -367,10 +368,11 @@ $user=Auth::user();
                                 <select name='uuMajorId' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
                                     <option value="1" @if ($loop->iteration==$originUUMajor)
+
                                         selected
                                         @endif>{{$uuFacultie['name']}}
                                     </option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </td>
                         </tr>
@@ -384,52 +386,6 @@ $user=Auth::user();
                                 <input style="width: 24%" type="text" name="major" value={{$originMajor}}>
                             </td>
                         </tr>
-                        <script>
-                            /* ラジオボタン */
-                            const radioBtns = document.querySelectorAll('input[name="univRadio"]');  // 大学のラジオボタンのNodeList
-
-                            /* ラジオボタンで制御する項目 */
-                            const UU = document.querySelector('#UU');  // 宇大の入力項目
-                            const other = document.querySelector('#other');  // 他大の入力項目
-
-
-
-                            /* 大学のラジオボタンによる条件分岐 */
-                            [...radioBtns].forEach(radioBtn => {
-                                radioBtn.addEventListener('change', () => {  // ラジオボタンの各選択肢が更新されたとき
-                                    if (radioBtn.checked && radioBtn.value === '宇都宮大学') {  // 宇大がcheckedのとき
-                                        // 宇大の入力項目を表示・他大の入力項目を非表示
-                                        UU.classList.remove('hidden');
-                                        other.classList.add('hidden');
-                                    } else {  // 他大がcheckedのとき
-                                        // 宇大の入力項目を非表示・他大の入力項目を表示
-                                        UU.classList.add('hidden');
-                                        other.classList.remove('hidden');
-                                    }
-                                });
-                            });
-                            /* 学年のプルダウンメニューによる条件分岐 */
-                            document.querySelector('select[name="grade"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
-                                /* プルダウン */
-                                const options = document.querySelectorAll('option[name="gradeOption"]');
-                                const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
-
-                                /* プルダウンで制御する項目 */
-                                const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
-                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
-                                if (selectedOption.value < 10) {  // 学生が選択されているとき
-                                    //会社の入力項目を非表示, 学生ラジオボタンを表示
-                                    company.classList.add('hidden');
-                                    universities.item(0).classList.remove('hidden');
-                                } else {  //社会人・その他が選択されている時
-                                    //会社の入力項目を表示, 学生の入力項目全体をを非表示, 大学ラジオボタンのチェックを外す
-                                    company.classList.remove('hidden');
-                                    [...universities].forEach(university => university.classList.add('hidden'));
-                                    [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
-                                }
-                            });
-
-                        </script>
                         <tr>
                             <td style="width: 200px">兼部・サークル</td>
                             <td><input style="width: 80%" type="text" name="groupAffiliation"
@@ -438,42 +394,28 @@ $user=Auth::user();
                         <tr>
                             <td style="width: 200px">出身地</td>
                             <td>
-                                <select name='birthCountryId' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
+                                    {{-- optionのvalueを国コードにしたいがためにループのカウンタに81かける無茶苦茶な実装になってしまいました --}}
+                                    <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
-                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    <option value="{{$loop->index * 81}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthPrefectureId' style="width: 24%; margin-right:4%;" required>
-                                    @foreach ($countries as $country)
-                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
-                                    @endforeach
-                                </select>
-                                <select name='birthMunicipalityId' style="width: 24%; margin-right:4%;" required>
-                                    @foreach ($countries as $country)
-                                    <option value="2">{{$country['name']}}</option>
-                                    @endforeach
-                                </select>
+                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required></select>
+                                <select name='birthMunicipality' style="width: 24%; margin-right:4%;" required></select>
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 200px">現住地</td>
                             <td>
-                                {{-- TODO: 同上 --}}
-                                <select name='liveCountryId' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveCountry' style="width: 24%; margin-right:4%;" required>
+                                    <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
-                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
+                                    <option value="{{$loop->index * 81}}">{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='livePrefectureId' style="width: 24%; margin-right:4%;" required>
-                                    @foreach ($countries as $country)
-                                    <option value="{{$loop->iteration}}">{{$country['name']}}</option>
-                                    @endforeach
-                                </select>
-                                <select name='liveMunicipalityId' style="width: 24%; margin-right:4%;" required>
-                                    @foreach ($countries as $country)
-                                    <option value="2">{{$country['name']}}</option>
-                                    @endforeach
-                                </select>
+                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required></select>
+                                <select name='liveMunicipality' style="width: 24%; margin-right:4%;" required></select>
                             </td>
                         </tr>
                         <tr>
@@ -487,6 +429,162 @@ $user=Auth::user();
                     </table>
                 </div>
             </div>
+
+            <script>
+                /* 大学のラジオボタンによる条件分岐 */
+                /* ラジオボタン */
+                const radioBtns = document.querySelectorAll('input[name="univRadio"]');  // 大学のラジオボタンのNodeList
+
+                /* ラジオボタンで制御する項目 */
+                const UU = document.querySelector('#UU');  // 宇大の入力項目
+                const other = document.querySelector('#other');  // 他大の入力項目
+
+                [...radioBtns].forEach(radioBtn => {
+                    radioBtn.addEventListener('change', () => {  // ラジオボタンの各選択肢が更新されたとき
+                        if (radioBtn.checked && radioBtn.value === '宇都宮大学') {  // 宇大がcheckedのとき
+                            // 宇大の入力項目を表示・他大の入力項目を非表示
+                            UU.classList.remove('hidden');
+                            other.classList.add('hidden');
+                        } else {  // 他大がcheckedのとき
+                            // 宇大の入力項目を非表示・他大の入力項目を表示
+                            UU.classList.add('hidden');
+                            other.classList.remove('hidden');
+                        }
+                    });
+                });
+
+
+                /* 学年のプルダウンメニューによる条件分岐 */
+                document.querySelector('select[name="grade"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
+                    /* プルダウン */
+                    const options = document.querySelectorAll('option[name="gradeOption"]');
+                    const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
+
+                    /* プルダウンで制御する項目 */
+                    const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
+                    const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
+
+                    if (selectedOption.value < 10) {  // 学生が選択されているとき
+                        //会社の入力項目を非表示, 学生ラジオボタンを表示
+                        company.classList.add('hidden');
+                        universities.item(0).classList.remove('hidden');
+                    } else {  //社会人・その他が選択されている時
+                        //会社の入力項目を表示, 学生の入力項目全体をを非表示, 大学ラジオボタンのチェックを外す
+                        company.classList.remove('hidden');
+                        [...universities].forEach(university => university.classList.add('hidden'));
+                        [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
+                    }
+                });
+
+                // 学科のプルダウンを制御する関数
+                function manageMajor(listened, target) {
+                    listened.addEventListener('change', () => {
+                        const options = listened.childNodes;
+                        const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
+                        fetchMajor(selectedOption.value)
+                            .then(data => {
+                                target.innerHTML = '';
+                                data.forEach(elem => {
+                                    target.appendChild(document.createElement('option'));
+                                    const option = target.lastElementChild;
+                                    option.value = elem.id;
+                                    option.textContent = elem.name;
+                                });
+                            })
+                            .catch(err => console.log(err));
+                    });
+
+                    async function fetchMajor(id) {
+                        const res = await fetch('https://u-laniwa.tk' + `/api/get/major/${id}`);
+                        return await res.json();
+                    }
+                }
+
+                // 出身地・現住地のプルダウンを制御する関数
+                function manageAreaSection(country, prefecture, municipality) {
+                    createPulldownByAPI(country, 'prefecture', prefecture, 'prefecture_code', 'name');
+                    createPulldownByAPI(prefecture, 'municipality', municipality, 'municipality_code', 'municipality');
+                    country.addEventListener('change', () => municipality.innerHTML = '');
+
+                    // API経由で地域情報を取得し、プルダウンのオプションを生成する関数
+                    function createPulldownByAPI(listened, property, target, code, content) {
+                        listened.addEventListener('change', () => {
+                            const options = listened.childNodes;
+                            const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
+                            fetchArea(property, selectedOption.value)
+                                .then(data => {
+                                    target.innerHTML = '';
+                                    data.forEach(elem => {
+                                        target.appendChild(document.createElement('option'));
+                                        const option = target.lastElementChild;
+                                        option.value = elem[code];
+                                        option.textContent = elem[content];
+                                    });
+                                })
+                                .catch(err => console.log(err));
+                        });
+
+                        async function fetchArea(property, id) {
+                            const res = await fetch('https://u-laniwa.tk' + `/api/get/area/${property}/${id}`);
+                            return await res.json();
+                        }
+                    }
+                }
+
+
+                window.onload = () => {
+                    // API経由で学科情報を取得し、プルダウンのオプションを生成
+                    const uuFaculty = document.querySelector('select[name="uuFaculty"]');
+                    const uuMajor = document.querySelector('select[name="uuMajor"]');
+                    manageMajor(uuFaculty, uuMajor);
+
+                    // API経由で地域情報を取得し、プルダウンのオプションを生成
+                    /* 出身地 */
+                    const birthCountry = document.querySelector('select[name="birthCountry"]');
+                    const birthPrefecture = document.querySelector('select[name="birthPrefecture"]');
+                    const birthMunicipality = document.querySelector('select[name="birthMunicipality"]');
+                    manageAreaSection(birthCountry, birthPrefecture, birthMunicipality);
+
+                    /* 現住地 */
+                    const liveCountry = document.querySelector('select[name="liveCountry"]');
+                    const livePrefecture = document.querySelector('select[name="livePrefecture"]');
+                    const liveMunicipality = document.querySelector('select[name="liveMunicipality"]');
+                    manageAreaSection(liveCountry, livePrefecture, liveMunicipality);
+
+
+
+                    // 初期値による会社・大学の入力項目の条件分岐
+                    /* プルダウン */
+                    const options = document.querySelectorAll('option[name="gradeOption"]');
+                    const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
+
+                    /* プルダウンで制御する項目 */
+                    const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
+                    const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
+
+                    if (selectedOption.value < 10) {  // 学生が選択されているとき
+                        company.classList.add('hidden');  // 会社の入力項目を非表示
+                    } else {  //社会人・その他が選択されている時
+                        [...universities].forEach(university => university.classList.add('hidden')); // 学生の入力項目全体をを非表示
+                    }
+
+
+                    /* ラジオボタン */
+                    const UUBtn = document.querySelector('input[value="宇都宮大学"]');
+                    const otherBtn = document.querySelector('input[value="他大学"]');
+
+                    /* ラジオボタンで制御する項目 */
+                    const UU = document.querySelector('#UU');  // 宇大の入力項目
+                    const other = document.querySelector('#other');  // 他大の入力項目
+
+                    if (UUBtn.checked) {  // "宇都宮大学"が選択されているとき
+                        other.classList.add('hidden');  // 他大学の入力項目を非表示
+                    } else if (otherBtn.checked) { // "他大学"が選択されているとき
+                        UU.classList.add('hidden');  // 宇大の入力項目を非表示
+                    }
+                }
+
+            </script>
 
             <div class="mx-auto mb-12 w-full">
                 <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">パーソナルデータ

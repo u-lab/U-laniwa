@@ -25,7 +25,7 @@ class ShowAllTimelineController extends Controller
          */
         $timelines = UserTimeline::with('User:id,name')
             ->orderBy('start_date', 'desc')
-            ->limit(100)
+            ->limit('400')
             ->get();
         foreach ($timelines as $timeline) {
             $timeline->genreName = $timeline->genre->label();

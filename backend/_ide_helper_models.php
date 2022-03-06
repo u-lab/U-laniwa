@@ -268,7 +268,7 @@ namespace App\Models{
  * @property int $birth_area_id
  * @property int $is_dark_mode ダークモードにするか？
  * @property int $is_publish_birth_day 誕生日公開するか？
- * @property string $description 自己紹介
+ * @property string|null $description 自己紹介
  * @property string|null $group_affiliation 所属団体
  * @property string|null $status ひとこと(GitHubのstatusと同じ)
  * @property string|null $github_id GitHubのid

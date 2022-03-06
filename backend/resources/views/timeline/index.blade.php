@@ -21,8 +21,6 @@
         'genre'=>$timeline->genre->label(),
         'title'=>$timeline->title,
         'text'=>$timeline->description])
-        {{-- この値でタイムラインの表示件数を変更(1件~20件) --}}
-        @break ($loop->iteration == 10)
         @endforeach
 
     </div>

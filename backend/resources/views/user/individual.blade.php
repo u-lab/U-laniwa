@@ -133,7 +133,7 @@ $name = $user->last_name." ".$user->first_name;
     </div>
 </div>
 
-<div class="mx-auto mb-32" style='max-width: 1000px'>
+<div class="mx-auto mb-32" style='max-width: 1200px'>
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
         <div class="flex flex-wrap gap-x-12 my-8">

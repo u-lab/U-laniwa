@@ -30,4 +30,12 @@ class Notice extends Model
     protected $casts = [
         'genre' => NoticeGenre::class,
     ];
+
+
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['date'];
 }

@@ -32,6 +32,13 @@ class Project extends Model
     ];
 
     /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['start_date', 'end_date'];
+
+    /**
      * プロジェクト進捗取得
      *
      * @return HasMany

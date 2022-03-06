@@ -22,4 +22,14 @@ enum UserTimelineGenre: int
             self::contest => '大会',
         };
     }
+    public function value(): int
+    {
+        return match ($this) {
+            self::schoolwork => 1,
+            self::work => 2,
+            self::qualification => 3,
+            self::group_affiliation => 4,
+            self::contest => 5,
+        };
+    }
 }

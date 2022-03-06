@@ -66,6 +66,12 @@ class UserInfo extends Model
         'grade' => Grade::class,
     ];
 
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['birth_day'];
 
     /**
      * ユーザーを繋ぐ

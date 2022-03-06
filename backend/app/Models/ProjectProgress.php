@@ -24,6 +24,13 @@ class ProjectProgress extends Model
     public static $rules = array();
 
     /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['date'];
+
+    /**
      * プロジェクトをつなぐ
      *
      * @return BelongsTo

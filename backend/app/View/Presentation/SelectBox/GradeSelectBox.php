@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\View\Presentation;
+namespace App\View\Presentation\SelectBox;
 
 use App\Enums\Grade;
 

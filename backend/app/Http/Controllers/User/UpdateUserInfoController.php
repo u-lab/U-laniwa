@@ -27,7 +27,7 @@ class UpdateUserInfoController extends Controller
             'userName' => 'required | string | max:255',
             'lastName' => 'required | string | max:255',
             'firstName' => 'required | string | max:255',
-            'birthDay' => 'required | date | before:today',
+            'birthDay' => 'required | date',
             'isPublishBirthDay' => ['regex:/(on|null)/'],
             'gender' => 'required | integer | not_in:0',
             'grade' => 'required | integer | digits_between:1,2 | not_in:0',
@@ -80,7 +80,6 @@ class UpdateUserInfoController extends Controller
             'last_name' => $request->lastName,
             'first_name' => $request->firstName,
             'birth_day' => $request->birthDay,
-            'description' => "",
             'is_publish_birth_day' => $request->isPublishBirthDay == "on" ? 1 : 0,
             'gender' => $request->gender,
             'grade' => $request->grade,
@@ -104,7 +103,7 @@ class UpdateUserInfoController extends Controller
         /**
          * 宇大の学部学科or大学名学部学科or会社名役職の条件分岐
          */
-        if ($request->company !== null && $request->grade >= 10) {
+        if ($request->company != null && $request->grade >= 10) {
             $userInfoData = array_merge($userInfoData, [
                 'company_meta' => json_encode(
                     [
@@ -113,7 +112,7 @@ class UpdateUserInfoController extends Controller
                     ]
                 )
             ]);
-        } else if ($request->university !== "" && $request->univRadio === "else") {
+        } else if ($request->university != "" && $request->univRadio == "else") {
             $userInfoData = array_merge($userInfoData, [
                 'university_meta' => json_encode(
                     [
@@ -123,7 +122,7 @@ class UpdateUserInfoController extends Controller
                     ]
                 )
             ]);
-        } else if ($request->uuMajorId !== "" && $request->univRadio === "uu") {
+        } else if ($request->uuMajorId != "" && $request->univRadio == "uu") {
             $userInfoData = array_merge($userInfoData, [
                 'u_u_major_id' => $request->uuMajorId,
             ]);
@@ -133,11 +132,11 @@ class UpdateUserInfoController extends Controller
         }
 
         /**ユーザーテーブルのアップデート */
-        if (UserInfo::where('user_id', $userId)->exists()) {
-            UserInfo::where('user_id', $userId)->update($userInfoData);
-        } else {
-            UserInfo::create($userInfoData);
-        }
+        /**ユーザーインフォのアップデート */
+        UserInfo::updateOrCreate(
+            ['user_id' => $userId],
+            $userInfoData
+        );
 
         /**画像が変わり、かつデフォルト画像でなかったら古い画像のデータを消す */
         if ($request->profilePhotoPath != $user->profile_photo_path && $user->profile_photo_path != "images/default/default_profile_photo.png") {

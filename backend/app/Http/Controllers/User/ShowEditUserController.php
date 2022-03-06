@@ -17,7 +17,7 @@ use App\Models\UserInfo;
 use App\Models\UserLink;
 use App\Models\UserTimeline;
 use App\Models\UUMajor;
-use App\View\Presentation\GradeSelectBox;
+use App\View\Presentation\SelectBox\GradeSelectBox;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;

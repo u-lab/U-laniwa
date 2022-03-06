@@ -24,6 +24,7 @@ $user=Auth::user();
             $originGrade = $userInfo->grade;
             $originCompany = $userInfo->company;
             $originPosition = $userInfo->position;
+            $originUUfacalty = $userInfo->
             @endphp
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
@@ -80,6 +81,7 @@ $user=Auth::user();
                             こんな感じで！ --}}
                             <td>
                                 <select name='gender' style="width: 80%" required='true'>
+                                    <option value="0">選択してください</option>
                                     @foreach ($genders as $gender)
                                     <option value="{{$loop->iteration}}">{{$gender['name']}}</option>
                                     @endforeach

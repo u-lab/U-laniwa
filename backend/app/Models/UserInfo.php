@@ -18,7 +18,6 @@ class UserInfo extends Model
         'birth_day',
         'last_name',
         'first_name',
-        'description',
         'grade',
         'university_meta',
         'company_meta',

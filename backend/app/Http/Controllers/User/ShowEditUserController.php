@@ -31,7 +31,6 @@ class ShowEditUserController extends Controller
      * @return View|Factory
      */
     public function __invoke(
-        Request $request,
         GradeSelectBox $gradeSelectBox,
     ): View|Factory {
         /**
@@ -145,9 +144,9 @@ class ShowEditUserController extends Controller
          */
         if ($userInfo->university_meta) {
             $decodedArray = json_decode($userInfo->university_meta);
-            $userInfo->university = $decodedArray['university'];
-            $userInfo->faculty = $decodedArray['faculty'];
-            $userInfo->major = $decodedArray['major'];
+            $userInfo->university = $decodedArray->university;
+            $userInfo->faculty = $decodedArray->faculty;
+            $userInfo->major = $decodedArray->major;
         } else {
             $userInfo->university = '';
             $userInfo->faculty = '';
@@ -159,9 +158,10 @@ class ShowEditUserController extends Controller
          */
         //学科
         /** @var UUMajor */
-        $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
-        $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
-
+        if ($userInfo->u_u_faculty_id) {
+            $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
+            $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
+        }
         /** ユーザー出身地・現住地を取得 */
         $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
         // 在住と出身が同じだった場合、返り値1つなので
@@ -266,7 +266,7 @@ class ShowEditUserController extends Controller
             'user' => $user,
             'userInfo' => $userInfo,
             'genders' => $genders,
-            'grades' => $grades,
+            'grades' => $gradesSelectBox,
             'countries' => $countries,
             'uuFaculties' => $uuFaculties,
             'links' => $links,

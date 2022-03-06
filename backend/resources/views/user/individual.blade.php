@@ -58,7 +58,15 @@ $name = $user->last_name." ".$user->first_name;
                 <td class="w-1/2 pl-5">{{$user->user_role}}</td>
             </tr>
             <tr>
-                <td class="text-right font-bold w-1/2 pr-5">学部・学科</td>
+                <td class="text-right font-bold w-1/2 pr-5">
+                    @if ($user->grade === '社会人')
+                    会社名・役職名
+                    @elseif ($user->grade === 'その他')
+                    所属
+                    @else
+                    学部・学科
+                    @endif
+                </td>
                 <td class="w-1/2 pl-5">{{$user->profession}}</td>
             </tr>
             <tr>
@@ -203,8 +211,10 @@ $name = $user->last_name." ".$user->first_name;
                 <div class="w-1/2 px-4">
                     <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
                     <h3 class="ml-2 text-xl mb-2">{{$relatedUser->name}}</h3>
-                    @if($relatedUser->grade == '社会人' || $relatedUser->grade == 'その他' )
+                    @if($relatedUser->grade >= 10)
                     <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">所属</p>
+                    @elseif ($relatedUser->university_meta)
+                    <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">大学名/学部/学科</p>
                     @else
                     <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">学部/学科</p>
                     @endif

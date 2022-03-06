@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id")->constrained()->cascadeOnDelete()->comment("ユーザーid");
             $table->string("url")->comment("url");
-            $table->string("name")->comment("タイトル");
+            $table->string("title")->comment("タイトル");
             $table->string("description")->nullable()->comment("説明");
         });
     }

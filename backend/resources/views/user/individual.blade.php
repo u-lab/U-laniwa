@@ -144,7 +144,7 @@ $name = $user->last_name." ".$user->first_name;
                 <div class="flex items-center w-full mb-4">
                     <img src="{{'http://www.google.com/s2/favicons?sz=64&domain=' . $link->url}}" class="w-12 h-12"
                         alt="">
-                    <h3 class="ml-4 text-xl">{{$link->name}}</h3>
+                    <h3 class="ml-4 text-xl">{{$link->title}}</h3>
                 </div>
                 @if ($link->description)
                 <p class="text-center">{{$link->description}}</p>

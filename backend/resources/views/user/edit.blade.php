@@ -234,20 +234,18 @@ $user=Auth::user();
     <div class="mx-auto mb-20 w-full">
         <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">MYLINK</h2>
         @php
-        $timelineTitle="";
-        $timelineDescription="";
-        $timelineGenre="";
-        $timelineStartDate="";
-        $timelineEndDate="";
+        $linkTitle="";
+        $linkDescription="";
+        $linkUrl="";
+        $linkStartDate="";
+        $linkEndDate="";
         @endphp
         @if(count($errors)>0)
         {{-- バリデーションエラーのとき --}}
         @php
-        $timelineTitle=old("timelineTitle");
-        $timelineDescription=old("timelineDescription");
-        $timelineGenre=old("timelineGenre");
-        $timelineStartDate=old("timelineStartDate");
-        $timelineEndDate=old("timelineEndDate");
+        $linkTitle=old("linkTitle");
+        $linkDescription=old("linkDescription");
+        $linkUrl=old("linkUrl");
         @endphp
         {{-- エラーの表示 --}}
         <ul class="text-red-500 kiwi-maru text-center">

@@ -17,6 +17,7 @@ use App\Models\UserInfo;
 use App\Models\UserLink;
 use App\Models\UserTimeline;
 use App\Models\UUMajor;
+use App\View\Presentation\SelectBox\GradeSelectBox;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -29,14 +30,14 @@ class ShowEditUserController extends Controller
      *
      * @return View|Factory
      */
-    public function __invoke(): View|Factory
-    {
+    public function __invoke(
+        GradeSelectBox $gradeSelectBox,
+    ): View|Factory {
         /**
          * @var User
          */
         $user = Auth::user();
         $userId = $user->id;
-
         /**
          * @var mixed $userInfo
          * @property string $company
@@ -79,34 +80,6 @@ class ShowEditUserController extends Controller
         $userInfo = UserInfo::where('user_id', $userId)->first();
 
         /**
-         * company_metaをデコード
-         */
-        if ($userInfo->company_meta) {
-            $decodedArray = json_decode($userInfo->company_meta);
-            $userInfo->company = $decodedArray['company_name'];
-            $userInfo->position = $decodedArray['position'];
-        } else {
-            $userInfo->company = '';
-            $userInfo->position = '';
-        }
-
-        /**
-         * university_metaをデコード
-         */
-        if ($userInfo->university_meta) {
-            $decodedArray = json_decode($userInfo->university_meta);
-            $userInfo->university = $decodedArray['university'];
-            $userInfo->faculty = $decodedArray['faculty'];
-            $userInfo->major = $decodedArray['major'];
-        } else {
-            $userInfo->university = '';
-            $userInfo->faculty = '';
-            $userInfo->major = '';
-        }
-
-
-
-        /**
          * DBに格納していないEnum型のデータを取得する
          */
         //性別
@@ -116,11 +89,7 @@ class ShowEditUserController extends Controller
         ], $genderEnum);
 
         //学年
-        $gradeEnum = Grade::cases();
-        $grades = array_map(fn (Grade $gradeCode): array => [
-            'grade_code' => $gradeCode, //学年 名前がスネークケースなのはDBの都合
-            'name' => $gradeCode->label(), //名前
-        ], $gradeEnum);
+        $gradesSelectBox = $gradeSelectBox()['grades'];
 
         //国
         //都道府県、市区町村に関しては動的に取得する(api.php参照)
@@ -137,14 +106,62 @@ class ShowEditUserController extends Controller
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
 
+        if ($userInfo === null) {
+            return view('user.edit', [
+                'user' => $user,
+                'userInfo' => $userInfo,
+                'genders' => $genders,
+                'grades' => $gradesSelectBox,
+                'countries' => $countries,
+                'uuFaculties' => $uuFaculties,
+                'links' => [],
+                'timelines' => [],
+                'timelineGenres' => [],
+                'preBirthMunicipalities' => [],
+                'preBirthPrefectures' => [],
+                'preLivePrefectures' => [],
+                'preLiveMunicipalities' => [],
+                'userBirthArea' => [],
+                'userLiveArea' => [],
+                'preUUMajors' => [],
+            ]);
+        }
+
+        /**
+         * company_metaをデコード
+         */
+        if ($userInfo->company_meta) {
+            $decodedArray = json_decode($userInfo->company_meta);
+            $userInfo->company = $decodedArray['company_name'];
+            $userInfo->position = $decodedArray['position'];
+        } else {
+            $userInfo->company = '';
+            $userInfo->position = '';
+        }
+
+        /**
+         * university_metaをデコード
+         */
+        if ($userInfo->university_meta) {
+            $decodedArray = json_decode($userInfo->university_meta);
+            $userInfo->university = $decodedArray->university;
+            $userInfo->faculty = $decodedArray->faculty;
+            $userInfo->major = $decodedArray->major;
+        } else {
+            $userInfo->university = '';
+            $userInfo->faculty = '';
+            $userInfo->major = '';
+        }
+
         /**
          * ユーザー情報追加取得
          */
         //学科
         /** @var UUMajor */
-        $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
-        $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
-
+        if ($userInfo->u_u_faculty_id) {
+            $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
+            $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
+        }
         /** ユーザー出身地・現住地を取得 */
         $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
         // 在住と出身が同じだった場合、返り値1つなので
@@ -249,7 +266,7 @@ class ShowEditUserController extends Controller
             'user' => $user,
             'userInfo' => $userInfo,
             'genders' => $genders,
-            'grades' => $grades,
+            'grades' => $gradesSelectBox,
             'countries' => $countries,
             'uuFaculties' => $uuFaculties,
             'links' => $links,

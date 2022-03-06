@@ -140,7 +140,7 @@ Route::middleware(['auth:sanctum', 'verified', 'first'])->group(function () {
     //ユーザー情報編集(ログイン中のユーザーが対象になるため間にid不要)
     Route::get('/user/edit', ShowEditUserController::class)->name('userEdit'); //ユーザー閲覧
     Route::get('/user/{user_id}', ShowIndividualUserController::class)->name('user'); //各ユーザー情報
-    Route::post('/user/edit/update/userInfo/', UpdateUserInfoController::class)->name('userInfoUpdate'); //ユーザー閲覧
+    Route::post('/user/edit/update/userInfo', UpdateUserInfoController::class)->name('userInfoUpdate'); //ユーザー閲覧
     Route::post('/user/edit/update/userTimeline', UpdateUserTimelineController::class)->name('userTimelineUpdate'); //ユーザー閲覧
     Route::post('/user/edit/update/userLink', UpdateUserLinkController::class)->name('userLinkUpdate'); //ユーザー閲覧
     Route::post('/user/edit/delete/userTimeline', DeleteUserTimelineController::class)->name('userTimelineDelete'); //ユーザー閲覧

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\Area\GetCountryController;
 use App\Http\Controllers\Api\Area\GetMunicipalityController;
 use App\Http\Controllers\Api\Area\GetPrefectureController;
-use App\Http\Controllers\Api\Area\SaveProfilePhotoController;
+use App\Http\Controllers\Api\Img\SaveProfilePhotoController;
 use App\Http\Controllers\Api\Major\GetMajorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

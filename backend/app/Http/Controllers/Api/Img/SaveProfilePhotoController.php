@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Area;
+namespace App\Http\Controllers\Api\Img;
 
 use App\Http\Controllers\Controller;
 use App\Models\Area;

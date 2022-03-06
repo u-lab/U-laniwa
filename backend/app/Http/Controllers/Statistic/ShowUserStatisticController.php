@@ -73,11 +73,22 @@ class ShowUserStatisticController extends Controller
             /**
              * 学年処理
              */
-            $userGradeCounter[$perUserInfo->grade->label()] = $perUserInfo->grade_count;
+            if (!array_key_exists($perUserInfo->grade->label(), $userGradeCounter)) {
+                $userGradeCounter[$perUserInfo->grade->label()] = 0;
+                $userGradeCounter[$perUserInfo->grade->label()] += $perUserInfo->grade_count;
+            } else {
+                $userGradeCounter[$perUserInfo->grade->label()] += $perUserInfo->grade_count;
+            }
             /**
              * 性別処理
              */
-            $userGenderCounter[$perUserInfo->gender->label()] = $perUserInfo->gender_count;
+            if (!array_key_exists($perUserInfo->gender->label(), $userGenderCounter)) {
+                $userGenderCounter[$perUserInfo->gender->label()] = 0;
+                $userGenderCounter[$perUserInfo->gender->label()] += $perUserInfo->gender_count;
+            } else {
+                $userGenderCounter[$perUserInfo->gender->label()] += $perUserInfo->gender_count;
+            }
+
 
             /**
              * 学部学科処理

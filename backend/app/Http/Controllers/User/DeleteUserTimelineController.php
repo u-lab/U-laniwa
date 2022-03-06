@@ -26,6 +26,6 @@ class DeleteUserTimelineController extends Controller
         ]);
         //無駄なuser_idを付けているのは、万が一悪意あるユーザーが他のユーザーのtimeline idに偽装した時を防ぐため
         UserTimeline::where('id', $request->userTimelineId)->where('user_id', Auth::id())->delete();
-        return redirect('/user/edit');
+        return redirect('/user/edit#timelineTable');
     }
 }

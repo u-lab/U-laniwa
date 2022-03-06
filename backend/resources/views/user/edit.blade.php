@@ -22,39 +22,39 @@ $user=Auth::user();
         $originProfilePhotoPath = $user->profile_photo_path;
         $originName = $user->name;
         $originImg = $user->profile_photo_path ?? "";
-        $originLastName = $userInfo->last_name?? "";
-        $originFirstName = $userInfo->first_name?? "";
-        $originGender = $userInfo->gender->value()?? "";
-        $originBirthDay = $userInfo->birth_day?? "";
-        $originIsPublishBirthDay = $userInfo->is_publish_birth_day?? "";
-        $originGrade = $userInfo->grade->value()?? "";
+        $originLastName = $userInfo?->last_name?? "";
+        $originFirstName = $userInfo?->first_name?? "";
+        $originGender = $userInfo?->gender->value()?? "";
+        $originBirthDay = $userInfo?->birth_day?? "";
+        $originIsPublishBirthDay = $userInfo?->is_publish_birth_day?? "";
+        $originGrade = $userInfo?->grade->value()?? "";
         //会社
-        $originCompany = $userInfo->company?? "";
-        $originPosition = $userInfo->position?? "";
+        $originCompany = $userInfo?->company?? "";
+        $originPosition = $userInfo?->position?? "";
         //大学
-        $originUniversity = $userInfo->university?? "";
-        $originFaculty= $userInfo->faculty?? "";
-        $originMajor = $userInfo->major?? "";
-        $originUUMajor = $userInfo->u_u_major_id?? "";
-        $originUUFaculty = $userInfo->u_u_faculty_id? $userInfo->u_u_faculty_id->value(): "";
+        $originUniversity = $userInfo?->university?? "";
+        $originFaculty= $userInfo?->faculty?? "";
+        $originMajor = $userInfo?->major?? "";
+        $originUUMajor = $userInfo?->u_u_major_id?? "";
+        $originUUFaculty = $userInfo?->u_u_faculty_id? $userInfo?->u_u_faculty_id->value(): "";
         //趣味
-        $originGroupAffiliation= $userInfo->group_affiliation?? "";
-        $originGithubId = $userInfo->github_id?? "";
-        $originLineName = $userInfo->line_name?? "";
-        $originSlackName = $userInfo->slack_name?? "";
-        $originDiscordName = $userInfo->discord_name?? "";
-        $originHobbies = $userInfo->hobbies?? "";
-        $originInterests = $userInfo->interests?? "";
-        $originMotto = $userInfo->motto?? "";
-        $originStatus= $userInfo->status?? "";
+        $originGroupAffiliation= $userInfo?->group_affiliation?? "";
+        $originGithubId = $userInfo?->github_id?? "";
+        $originLineName = $userInfo?->line_name?? "";
+        $originSlackName = $userInfo?->slack_name?? "";
+        $originDiscordName = $userInfo?->discord_name?? "";
+        $originHobbies = $userInfo?->hobbies?? "";
+        $originInterests = $userInfo?->interests?? "";
+        $originMotto = $userInfo?->motto?? "";
+        $originStatus= $userInfo?->status?? "";
         //出身
-        $originBirthCountry= $userInfo->birth_country_id?? "";
-        $originBirthPrefecture= $userInfo->birth_prefecture_id?? "";
-        $originBirthMunicipality= $userInfo->birth_area_id?? "";
+        $originBirthCountry= $userInfo?->birth_country_id?? "";
+        $originBirthPrefecture= $userInfo?->birth_prefecture_id?? "";
+        $originBirthMunicipality= $userInfo?->birth_area_id?? "";
         //現住
-        $originLiveCountry= $userInfo->live_country_id?? "";
-        $originLivePrefecture= $userInfo->live_prefecture_id?? "";
-        $originLiveMunicipality= $userInfo->live_area_id?? "";
+        $originLiveCountry= $userInfo?->live_country_id?? "";
+        $originLivePrefecture= $userInfo?->live_prefecture_id?? "";
+        $originLiveMunicipality= $userInfo?->live_area_id?? "";
         @endphp
         @if(count($errors)>0)
         {{-- バリデーションエラーのとき --}}
@@ -401,7 +401,7 @@ $user=Auth::user();
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
                                     <option value="{{$country['country_code']}}"
-                                        @if($country['country_code']==$userBirthArea->country_code->value())
+                                        @if($userBirthArea && $userBirthArea->country_code && $country['country_code']==$userBirthArea->country_code->value())
                                         selected
                                         @endif
                                         >{{$country['name']}}</option>
@@ -412,7 +412,7 @@ $user=Auth::user();
                                     @if($preBirthPrefectures)
                                     @foreach($preBirthPrefectures as $preBirthPrefecture)
                                     <option value="{{$preBirthPrefecture['prefecture_code']}}"
-                                        @if($preBirthPrefecture['prefecture_code']==$userBirthArea->
+                                        @if($userBirthArea && $userBirthArea->prefecture_code && $preBirthPrefecture['prefecture_code']==$userBirthArea->
                                         prefecture_code->value())
                                         selected
                                         @endif>
@@ -441,7 +441,7 @@ $user=Auth::user();
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
                                     <option value="{{$country['country_code']}}"
-                                        @if($country['country_code']==$userLiveArea->country_code->value())
+                                        @if($userLiveArea && $userLiveArea->country_code && $country['country_code']==$userLiveArea->country_code->value())
                                         selected
                                         @endif
                                         >{{$country['name']}}</option>
@@ -452,7 +452,7 @@ $user=Auth::user();
                                     @if($preLivePrefectures)
                                     @foreach($preLivePrefectures as $preLivePrefecture)
                                     <option value="{{$preLivePrefecture['prefecture_code']}}"
-                                        @if($preLivePrefecture['prefecture_code']==$userLiveArea->
+                                        @if($userLiveArea && $userLiveArea->prefecture_code && $preLivePrefecture['prefecture_code']==$userLiveArea->
                                         prefecture_code->value())
                                         selected
                                         @endif>
@@ -830,7 +830,6 @@ $user=Auth::user();
         $timelineGenreId=old("timelineGenreId");
         $timelineStartDate=old("timelineStartDate");
         $timelineEndDate=old("timelineEndDate");
-        var_dump($errors);
         @endphp
 
         {{-- エラーの表示 --}}

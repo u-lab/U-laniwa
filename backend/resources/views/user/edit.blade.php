@@ -24,7 +24,7 @@ $user=Auth::user();
             $originGrade = $userInfo->grade;
             $originCompany = $userInfo->company;
             $originPosition = $userInfo->position;
-            $originUUfacalty = $userInfo->
+            $originUUfacalty = "";
             @endphp
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
@@ -121,7 +121,7 @@ $user=Auth::user();
                                 <label for='他大学'>他大学</label>
                             </td>
                         </tr>
-                        <tr name="university" id="UU", class="hidden">
+                        <tr name="university" id="UU" , class="hidden">
                             <td style="width: 200px">学部/学科</td>
                             {{-- TODO: 学部はプルダウンメニューでお願いします
                             @foreach ($uuFaculties as $uuFacultie)

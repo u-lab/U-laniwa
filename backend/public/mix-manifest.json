@@ -1,6 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/indexChart.js": "/js/indexChart.js",
-    "/js/imageCompress.js": "/js/imageCompress.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=2d9677b3078b0f2c21256bea8cd46bde",
+    "/js/indexChart.js": "/js/indexChart.js?id=bacac4c7ce35fc29f7fabe9aed796e47",
+    "/js/imageCompress.js": "/js/imageCompress.js?id=4bed8061fa403f4661606443225cb07b",
+    "/css/app.css": "/css/app.css?id=e59ee83413d851478d0b5a724c9a8da0"
 }

@@ -44,10 +44,6 @@ h2 {
     width: 100%;
 }
 
-.useritem {
-    width: 300px;
-}
-
 .userpage,
 .userpage-item {
     width: 100%;
@@ -71,9 +67,100 @@ h2 {
     width: 80%;
 }
 
+.user-img {
+    width: 250px;
+    height: 250px;
+}
+
+@media screen and (max-width: 1510px) {
+    .user-img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 1310px) {
+    .user-img {
+        width: 175px;
+        height: 175px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .userpage {
+        width: 660px;
+    }
+    .useritem {
+        width: 500px;
+    }
+
+    .user-img.in {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .userpage {
+        width: 560px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .userpage {
+        width: 460px;
+    }
+
+    .useritem {
+        width: 320px;
+    }
+
+    .user-img {
+        width: 135px;
+        height: 135px;
+    }
+
+    .user-img.in {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .user-img.ex {
+        width: 170px;
+        height: 170px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     #forCompress {
         max-width: 150px !important;
+    }
+
+    .userpage {
+        width: 96%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .user-img.in {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .user-img.in {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .user-img.in {
+        width: 125px;
+        height: 125px;
     }
 }
 
@@ -85,10 +172,10 @@ h2 {
     .side {
         width: 330px !important;
     }
-
+    /*
     .useritem {
         width: 500px;
-    }
+    }*/
 
     .tree {
         @apply !mx-auto;
@@ -100,13 +187,9 @@ h2 {
         width: 80% !important;
     }
 
-    .userpage {
-        width: 1200px;
-    }
-
-    .userpage-item {
-        width: 500px;
-    }
+    /*.userpage-item {
+        width: calc(50% - 1.5rem) !important;
+    }*/
 
     .edit-item {
         margin-left: 200px;
@@ -114,10 +197,6 @@ h2 {
 
     .edit-pic {
         width: 600px;
-    }
-
-    .useritem {
-        width: 300px;
     }
 
     .edit-base {

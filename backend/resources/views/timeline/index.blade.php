@@ -7,8 +7,8 @@
 @section('content')
 @include('components.forMembers.pageTitle', ['title'=>'タイムライン'])
 
-<div class="bg-bg-sub p-8 rounded-3xl mx-auto mb-20" style="max-width: 1000px">
-    <div class="tree timeline" style="width: 80%">
+<div class="bg-bg-sub p-8 rounded-3xl mx-auto mb-20 timeline-p" style="max-width: 1000px">
+    <div class="tree timeline">
 
         @foreach ($timelines as $timeline)
         @include('components.forMembers.timelineItem',[

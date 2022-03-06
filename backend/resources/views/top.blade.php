@@ -5,7 +5,7 @@
 @parent
 @endsection
 @section('content')
-<div class="main-wrapper flex items-center justify-center">
+<div class="w-full flex items-center justify-center" style="min-height: calc(100vh - 110px);">
     <div>
         <div class="py-8">
             <img src="/img/ulaniwa_logo.svg" class='w-48 h-48 mx-auto'>

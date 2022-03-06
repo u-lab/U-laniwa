@@ -960,6 +960,9 @@ select {
 .left-1\/2 {
   left: 50%;
 }
+.top-12 {
+  top: 3rem;
+}
 .top-0 {
   top: 0px;
 }
@@ -969,6 +972,9 @@ select {
 .z-50 {
   z-index: 50;
 }
+.z-10 {
+  z-index: 10;
+}
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
@@ -976,6 +982,12 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -1218,6 +1230,7 @@ select {
   width: -moz-fit-content;
   width: fit-content;
 }
+
 .w-1\/2 {
   width: 50%;
 }
@@ -1227,6 +1240,20 @@ select {
 .w-2\/3 {
   width: 66.666667%;
 }
+
+.w-96 {
+  width: 24rem;
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-2\/3 {
+  width: 66.666667%;
+}
+.w-24 {
+  width: 6rem;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -1334,9 +1361,6 @@ select {
 }
 .gap-2 {
   gap: 0.5rem;
-}
-.gap-8 {
-  gap: 2rem;
 }
 .gap-x-12 {
   -moz-column-gap: 3rem;
@@ -1520,6 +1544,12 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 243 243 / var(--tw-bg-opacity));
 }
+
+.\!bg-bg-sub {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 243 243 / var(--tw-bg-opacity)) !important;
+}
+
 .bg-bg-main {
   --tw-bg-opacity: 1;
   background-color: rgb(241 241 241 / var(--tw-bg-opacity));
@@ -1664,14 +1694,8 @@ select {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
-.pl-60 {
-  padding-left: 15rem;
-}
 .pl-4 {
   padding-left: 1rem;
-}
-.pl-80 {
-  padding-left: 20rem;
 }
 .pr-2 {
   padding-right: 0.5rem;
@@ -1681,6 +1705,12 @@ select {
 }
 .pt-12 {
   padding-top: 3rem;
+}
+.pb-12 {
+  padding-bottom: 3rem;
+}
+.pl-80 {
+  padding-left: 20rem;
 }
 .pb-16 {
   padding-bottom: 4rem;
@@ -1964,6 +1994,50 @@ h2 {
   margin-right: auto;
     max-width: 1200px;
 }
+.home {
+    width: 100%;
+}
+.side {
+    width: 100%;
+}
+.useritem {
+    width: 300px;
+}
+.userpage,
+.userpage-item {
+    width: 100%;
+}
+@media screen and (min-width: 768px) {
+    .home {
+        width: 800px !important;
+    }
+
+    .side {
+        width: 330px !important;
+    }
+
+    .useritem {
+        width: 500px;
+    }
+
+    .timeline-p > .tree,
+    .individual > .tree,
+    .userTimeline > .tree {
+        width: 80% !important;
+    }
+
+    .userpage {
+        width: 1200px;
+    }
+
+    .userpage-item {
+        width: 500px;
+    }
+}
+#nav.in {
+    display: block;
+    transition: 0.2s;
+}
 .deco {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -1992,9 +2066,10 @@ h2 {
     margin-bottom: 5rem;
     padding-left: 5rem;
 }
+.timeline-p > .tree,
 .individual > .tree,
 .userTimeline > .tree {
-    width: 80%;
+    width: 100%;
 }
 .tree::before {
     content: "";
@@ -2068,12 +2143,10 @@ h2 {
 }
 @media screen and (max-width: 640px) {
     .main-wrapper {
-        max-width: 100%;
+        max-width: 96%;
+        margin: 0 2%;
     }
 }
-/*.aaa * {
-    @apply mb-6;
-}*/
 .infoFrame td {
   padding-bottom: 0.25rem;
 }
@@ -2132,6 +2205,11 @@ textarea:focus {
     outline: none;
     --tw-ring-shadow: 0;
     outline-offset: 0px;
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
 }
 /* チャート用 */
 .chartWrapper {
@@ -2567,8 +2645,28 @@ textarea:focus {
     margin-top: 0px;
   }
 
+  .md\:mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
   .md\:grid {
     display: grid;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:h-28 {
+    height: 7rem;
+  }
+
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:grid-cols-3 {
@@ -2579,8 +2677,16 @@ textarea:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
   }
 
   .md\:border-t-0 {
@@ -2589,6 +2695,34 @@ textarea:focus {
 
   .md\:border-l {
     border-left-width: 1px;
+  }
+
+  .md\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .md\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .md\:pl-60 {
+    padding-left: 15rem;
+  }
+
+  .md\:pb-16 {
+    padding-bottom: 4rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 @media (min-width: 1024px) {

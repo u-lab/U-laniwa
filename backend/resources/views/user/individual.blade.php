@@ -13,21 +13,13 @@ $name = $user->last_name." ".$user->first_name;
 @include('components.forMembers.pageTitle', ['title'=>$name])
 
 <div class="w-full text-center">
-    <p>
-        @if($gate->allows('level7~'))
-        あなたは本入部以上のため、すべての情報の閲覧が可能です。
-        @else
-        あなたは本入部以下のため、一部の情報は閲覧できません。
-        @endif
-    </p>
-
     @if ($user->id == $authUser->id)
     <a href='/user/edit' class="inline-block px-10 py-2 bg-bg rounded-lg my-8 text-lg font-bold">edit</a>
     @endif
 </div>
 
-<div class="mx-auto mt-8 mb-16 flex flex-wrap gap-x-3 gap-y-16 justify-between" style="width: 1200px">
-    <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit" style="width: 500px">
+<div class="mx-auto mt-8 mb-16 flex md:flex-row flex-col flex-wrap gap-x-3 gap-y-16 justify-between userpage">
+    <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit userpage-item">
         <div class="flex items-center w-1/2">
             <img src="{{asset('storage/'. $user->profile_photo_path)}}" alt="" class="object-fit-cover">
         </div>
@@ -136,7 +128,7 @@ $name = $user->last_name." ".$user->first_name;
 <div class="mx-auto mb-32" style='max-width: 1200px'>
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
-        <div class="flex flex-wrap gap-x-12 my-8">
+        <div class="flex flex-wrap gap-x-12 gap-y-8  my-8">
             @if($links->isEmpty())
             <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">MyLinkはありません。</p>
             @endif
@@ -163,7 +155,7 @@ $name = $user->last_name." ".$user->first_name;
         @if($projects->isEmpty())
         <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">所属しているプロジェクトはありません。</p>
         @endif
-        <div class=" flex flex-wrap gap-x-12 my-8">
+        <div class=" flex flex-wrap gap-x-12 gap-y-8 my-8">
             @foreach ($projects as $project)
             @include('components.forMembers.projectFrame')
             @endforeach
@@ -188,7 +180,7 @@ $name = $user->last_name." ".$user->first_name;
 
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>
-        <div class="flex flex-wrap gap-x-12 my-8">
+        <div class="flex flex-wrap gap-x-12 gap-y-8 my-8">
             @foreach ($relatedUsers as $relatedUser)
             <a href="{{url('/user/' . $relatedUser->user_id)}}"
                 class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame flex"

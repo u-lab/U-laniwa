@@ -1,5 +1,5 @@
-<a href="{{url('/user/'.$user->id)}}" class="flex bg-bg-main rounded-2xl p-6 hover:opacity-80 userFrame"
-    style="transition: .2s; width: 500px">
+<a href="{{url('/user/'.$user->id)}}" class="flex bg-bg-main rounded-2xl p-6 hover:opacity-80 userFrame useritem"
+    style="transition: .2s;">
     <div class="flex items-center w-1/2">
         <img src="{{asset('storage/'.$user->profile_photo_path)}}" alt="" class="object-fit-cover">
     </div>

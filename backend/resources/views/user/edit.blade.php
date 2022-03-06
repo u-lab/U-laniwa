@@ -131,7 +131,7 @@ $user=Auth::user();
                                 </select>
                             </td>
                         </tr>
-                        <tr name="company" class="hidden">
+                        <tr name="company">
                             <td style="width: 200px">会社名/役職名</td>
                             <td>
                                 <input style="width: 38%; margin-right:4%;" type="text" name="company"
@@ -140,19 +140,23 @@ $user=Auth::user();
                             </td>
 
                         </tr>
-                        <tr name="university" class="hidden">
+                        <tr name="university">
                             <td style="width: 200px">大学</td>
                             <td>
-                                <input type="radio" name="univRadio" value="宇都宮大学">
+                                <input type="radio" name="univRadio" value="宇都宮大学" @if ($originUUMajor)
+                                checked
+                                @endif>
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
-                                <input type="radio" name="univRadio" value="他大学">
+                                <input type="radio" name="univRadio" value="他大学" @if ($originUniversity)
+                                checked
+                                @endif>
                                 <label for='他大学'>他大学</label>
                             </td>
                         </tr>
-                        <tr name="university" id="UU" , class="hidden">
+                        <tr name="university" id="UU">
                             <td style="width: 200px">学部/学科</td>
                             <td>
-                                <select name='uuFactory' style="width: 38%; margin-right:4%;">
+                                <select name='uuFaculty' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
                                     <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUFaculty)
                                         selected
@@ -170,7 +174,7 @@ $user=Auth::user();
                                 </select>
                             </td>
                         </tr>
-                        <tr name="university" id="other" class="hidden">
+                        <tr name="university" id="other">
                             <td style="width: 200px">大学名/学部/学科</td>
                             <td>
                                 <input style="width: 24%; margin-right:4%;" type="text" name="university"
@@ -224,7 +228,6 @@ $user=Auth::user();
                                     [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
                                 }
                             });
-
 
                         </script>
                         <tr>

@@ -53,6 +53,17 @@ h2 {
     width: 100px;
 }
 
+.required {
+    @apply relative;
+}
+
+.required::after {
+    content: "*";
+    padding-left: 2px;
+    color: red;
+    @apply absolute;
+}
+
 .edit-1,
 .edit-2,
 .edit-3 {

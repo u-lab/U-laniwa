@@ -144,58 +144,47 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <script>
-                            // 学年のプルダウンメニューによる条件分岐
+                            /* ラジオボタン */
+                            const radioBtns = document.querySelectorAll('input[name="univRadio"]');  // 大学のラジオボタンのNodeList
+
+                            /* ラジオボタンで制御する項目 */
+                            const UU = document.querySelector('#UU');  // 宇大の入力項目
+                            const other = document.querySelector('#other');  // 他大の入力項目
+
+                            /* 大学のラジオボタンによる条件分岐 */
+                            [...radioBtns].forEach(radioBtn => {
+                                radioBtn.addEventListener('change', () => {  // ラジオボタンの各選択肢が更新されたとき
+                                    if (radioBtn.checked && radioBtn.value === '宇都宮大学') {  // 宇大がcheckedのとき
+                                        // 宇大の入力項目を表示・他大の入力項目を非表示
+                                        UU.classList.remove('hidden');
+                                        other.classList.add('hidden');
+                                    } else {  // 他大がcheckedのとき
+                                        // 宇大の入力項目を非表示・他大の入力項目を表示
+                                        UU.classList.add('hidden');
+                                        other.classList.remove('hidden');
+                                    }
+                                });
+                            });
+                            /* 学年のプルダウンメニューによる条件分岐 */
                             document.querySelector('select[name="grade"]').addEventListener('change', () => {  // 学年プルダウンが更新されたとき
-                                const options = document.querySelectorAll('option[name="gradeOption"]');  // プルダウンの選択肢のNodeList
+                                /* プルダウン */
+                                const options = document.querySelectorAll('option[name="gradeOption"]');
                                 const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
 
-                                const company = document.querySelector('tr[name="company"]');  // 会社の項目
-                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の項目のNodeList
+                                /* プルダウンで制御する項目 */
+                                const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
+                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
                                 if (selectedOption.value < 10) {  // 学生が選択されているとき
-                                    //会社を非表示, 学生ラジオボタンを表示
+                                    //会社の入力項目を非表示, 学生ラジオボタンを表示
                                     company.classList.add('hidden');
-                                    // [...universities].forEach(university => university.classList.remove('hidden'));
                                     universities.item(0).classList.remove('hidden');
                                 } else {  //社会人・その他が選択されている時
-                                    //会社を表示, 学生全体を非表示
+                                    //会社の入力項目を表示, 学生の入力項目全体をを非表示, 大学ラジオボタンのチェックを外す
                                     company.classList.remove('hidden');
                                     [...universities].forEach(university => university.classList.add('hidden'));
+                                    [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
                                 }
                             });
-
-                            // 大学のラジオボタンによる条件分岐
-
-                            const UU = document.querySelector('#UU');
-                            const other = document.querySelector('#other');
-                            // UUBtn.addEventListener('change', () => {
-                            //     if (UUBtn.checked) {
-                            //         console.log('hoge');
-                            //         UU.classList.remove('hidden');
-                            //         other.classList.add('hidden');
-                            //     } else {
-                            //         console.log('fuga');
-                            //         UU.classList.add('hidden');
-                            //         other.classList.remove('hidden');
-                            //     }
-                            // });
-                            // window.onload = () => {
-                            //     const radioBtns = document.querySelectorAll('input[name="univRadio]"');
-                            //     [...radioBtns].forEach(radioBtn => {
-                            //         console.log(radioBtn);
-                            //     });
-                            // }
-                                // radioBtn.addEventListener('change', () => {
-                                //     if (radioBtn.checked && radioBtn.value === '宇都宮大学') {
-                                //         console.log('hoge');
-                                //         UU.classList.remove('hidden');
-                                //         other.classList.add('hidden');
-                                //     } else {
-                                //         console.log('fuga');
-                                //         UU.classList.add('hidden');
-                                //         other.classList.remove('hidden');
-                                //     }
-                                // });
-                            // });
                         </script>
                         <tr>
                             <td style="width: 200px">兼部・サークル</td>

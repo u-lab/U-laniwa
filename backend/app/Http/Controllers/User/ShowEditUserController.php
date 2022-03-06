@@ -12,7 +12,6 @@ use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserInfo;
-use Auth;
 use App\Models\UserLink;
 use App\Models\UserTimeline;
 use Illuminate\Http\Request;

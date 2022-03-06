@@ -1073,9 +1073,6 @@ select {
 .mb-20 {
   margin-bottom: 5rem;
 }
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
 .mt-36 {
   margin-top: 9rem;
 }
@@ -1087,6 +1084,9 @@ select {
 }
 .mt-20 {
   margin-top: 5rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .mt-12 {
   margin-top: 3rem;
@@ -1230,11 +1230,11 @@ select {
 .w-1\/2 {
   width: 50%;
 }
-.w-2\/3 {
-  width: 66.666667%;
-}
 .w-24 {
   width: 6rem;
+}
+.w-2\/3 {
+  width: 66.666667%;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1451,6 +1451,9 @@ select {
 .border-b {
   border-bottom-width: 1px;
 }
+.border-dotted {
+  border-style: dotted;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1564,11 +1567,11 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-12 {
-  padding: 3rem;
-}
 .p-8 {
   padding: 2rem;
+}
+.p-12 {
+  padding: 3rem;
 }
 .p-5 {
   padding: 1.25rem;
@@ -1680,12 +1683,6 @@ select {
 .pr-2 {
   padding-right: 0.5rem;
 }
-.pr-5 {
-  padding-right: 1.25rem;
-}
-.pl-5 {
-  padding-left: 1.25rem;
-}
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1695,8 +1692,11 @@ select {
 .pb-12 {
   padding-bottom: 3rem;
 }
-.pl-80 {
-  padding-left: 20rem;
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
 }
 .pb-16 {
   padding-bottom: 4rem;
@@ -1948,6 +1948,7 @@ body {
     font-weight: 500;
     --tw-text-opacity: 1;
     color: rgb(38 37 31 / var(--tw-text-opacity));
+    scroll-behavior: smooth;
 }
 ol {
     list-style-type: decimal;
@@ -2204,6 +2205,15 @@ textarea:focus {
     /* overflow-x: scroll; */
     width: 300px;
     height: 300px;
+}
+/* カレンダーグレースケール化 */
+.calender iframe,
+.calender object,
+.calender embed {
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

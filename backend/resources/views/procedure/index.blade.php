@@ -25,6 +25,7 @@ $user=Auth::user();
     <input type="submit" class="text-white  py-2 px-2" value="ログアウト">
 </form>
 
+
 <div class="wrapper">
     <div class="mb-12">
         <h2 class="mb-2">招待コード</h2>
@@ -35,12 +36,13 @@ $user=Auth::user();
         @endempty
     </div>
 
+
     <div class="mb-12">
         <h2 class="mb-4">{{$user->name}}さんの招待ユーザー</h2>
         <div class="flex flex-col gap-2 ml-4">
             @foreach ($invitedUsers as $invitedUser)
             <div>
-                <img src="{{url('/' . $invitedUser->profile_photo_path)}}" alt=""
+                <img src="{{asset('storage/'. $invitedUser->profile_photo_path)}}" alt=""
                     class="w-12 h-12 rounded-full inline-block">
                 <p class="inline-block pl-4">{{$invitedUser->name}}</p>
                 {{-- この値で表示数を変更(1件~20件) --}}

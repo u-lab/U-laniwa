@@ -10,7 +10,7 @@
 <div class="tree release">
 
     @include('components.noLogin.treeContent',[
-    'date'=>'2022年3月5日',
+    'date'=>'2022年3月6日',
     'title'=>'U-laniwaリリース',
     'text'=>'U-labユーザー向けに公開しました。'])
     @include('components.noLogin.treeContent',[

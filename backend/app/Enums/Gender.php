@@ -18,4 +18,12 @@ enum Gender: int
             self::others => 'その他',
         };
     }
+    public function value(): int
+    {
+        return match ($this) {
+            self::man => 1,
+            self::woman => 2,
+            self::others => 3,
+        };
+    }
 }

@@ -34,4 +34,20 @@ enum Grade: int
             self::others => "その他",
         };
     }
+    public function value(): int
+    {
+        return match ($this) {
+            self::b1 => 1,
+            self::b2 => 2,
+            self::b3 => 3,
+            self::b4 => 4,
+            self::m1 => 5,
+            self::m2 => 6,
+            self::d1 => 7,
+            self::d2 => 8,
+            self::d3 => 9,
+            self::memberOfSociety => 10,
+            self::others => 11,
+        };
+    }
 }

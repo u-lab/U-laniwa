@@ -37,7 +37,7 @@ class ShowEditUserController extends Controller
         $userId = $user->id;
 
         /**
-         * @var userInfo $userInfo
+         * @var mixed $userInfo
          * @property string $company
          * @property string $position
          * @property string $university
@@ -48,6 +48,32 @@ class ShowEditUserController extends Controller
          * @property int $birth_prefecture_id
          * @property int $live_country_id
          * @property int $live_prefecture_id
+         * @property int $id
+         * @property int $user_id
+         * @property string $birth_day — 誕生日
+         * @property string|null $last_name — 姓
+         * @property string $first_name — 名
+         * @property \App\Enums\Grade $grade — enum学年
+         * @property int|null $u_u_major_id
+         * @property mixed|null $university_meta — 大学情報
+         * @property mixed|null $company_meta — 企業情報
+         * @property \App\Enums\Gender $gender — enum性別
+         * @property int $live_area_id
+         * @property int $birth_area_id
+         * @property int $is_dark_mode — ダークモードにするか？
+         * @property int $is_publish_birth_day — 誕生日公開するか？
+         * @property string $description — 自己紹介
+         * @property string|null $group_affiliation — 所属団体
+         * @property string|null $status — ひとこと(GitHubのstatusと同じ)
+         * @property string|null $github_id — GitHubのid
+         * @property string|null $line_name — LINEでのユーザー名
+         * @property string|null $slack_name — Slackでのユーザー名
+         * @property string|null $discord_name — Discordでのユーザー名
+         * @property string|null $hobbies — 趣味
+         * @property string|null $interests — 興味
+         * @property string|null $motto — 座右の銘
+         * @property \Illuminate\Support\Carbon|null $created_at
+         * @property \Illuminate\Support\Carbon|null $updated_at
          */
         $userInfo = UserInfo::where('user_id', $userId)->first();
 
@@ -115,7 +141,7 @@ class ShowEditUserController extends Controller
         //学科
         /** @var UUMajor */
         $uuMajor = UUMajor::where('id', $userInfo->u_u_major_id)->first();
-        $userInfo->u_u_faculty_id = $uuMajor->uu_faculty_id;
+        $userInfo->u_u_faculty_id = $uuMajor->faculty_id;
 
         $userAreas = Area::whereIn('id', [$userInfo->birth_area_id, $userInfo->live_area_id])->get();
         // 在住と出身が同じだった場合、返り値1つなので
@@ -125,10 +151,10 @@ class ShowEditUserController extends Controller
         $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
         // userにbirthとliveプロパティを追加
         \Log::debug($userAreas);
-        $user->live_prefecture_id = $userLiveArea->prefecture_code;
-        $user->live_country_id =  $userLiveArea->country_code;
-        $user->birth_prefecture_id = $userBirthArea->prefecture_code;
-        $user->birth_country_id =  $userBirthArea->country_code;
+        $userInfo->live_prefecture_id = $userLiveArea->prefecture_code;
+        $userInfo->live_country_id =  $userLiveArea->country_code;
+        $userInfo->birth_prefecture_id = $userBirthArea->prefecture_code;
+        $userInfo->birth_country_id =  $userBirthArea->country_code;
 
 
         //リンク

@@ -17,6 +17,7 @@ use App\Models\UserInfo;
 use App\Models\UserLink;
 use App\Models\UserTimeline;
 use App\Models\UUMajor;
+use App\View\Presentation\GradeSelectBox;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -29,8 +30,10 @@ class ShowEditUserController extends Controller
      *
      * @return View|Factory
      */
-    public function __invoke(): View|Factory
-    {
+    public function __invoke(
+        Request $request,
+        GradeSelectBox $gradeSelectBox,
+    ): View|Factory {
         /**
          * @var User
          */
@@ -87,11 +90,7 @@ class ShowEditUserController extends Controller
         ], $genderEnum);
 
         //学年
-        $gradeEnum = Grade::cases();
-        $grades = array_map(fn (Grade $gradeCode): array => [
-            'grade_code' => $gradeCode, //学年 名前がスネークケースなのはDBの都合
-            'name' => $gradeCode->label(), //名前
-        ], $gradeEnum);
+        $gradesSelectBox = $gradeSelectBox()['grades'];
 
         //国
         //都道府県、市区町村に関しては動的に取得する(api.php参照)
@@ -113,7 +112,7 @@ class ShowEditUserController extends Controller
                 'user' => $user,
                 'userInfo' => $userInfo,
                 'genders' => $genders,
-                'grades' => $grades,
+                'grades' => $gradesSelectBox,
                 'countries' => $countries,
                 'uuFaculties' => $uuFaculties,
                 'links' => [],

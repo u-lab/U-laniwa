@@ -28,7 +28,7 @@ class Project extends Model
      * @var array
      */
     protected $attributes = [
-        "thumbnail" => "img/default_project_thumbnail.png",
+        "thumbnail" => "public/images/default/default_project_thumbnail.png",
     ];
 
     /**

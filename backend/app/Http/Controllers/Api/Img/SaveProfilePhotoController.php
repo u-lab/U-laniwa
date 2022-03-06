@@ -19,7 +19,7 @@ class SaveProfilePhotoController extends Controller
         \Log::debug($request);
         $validateRule = ['file' => 'required | mimes:jpeg,png,bmp,gif',];
         $this->validate($request, $validateRule);
-        $path = $request->file->store('images/user'); // storage/app/imagesフォルダに保存
+        $path = $request->file->store('public/images/user'); // storage/app/imagesフォルダに保存
         return   response()->json([
             'path' => $path,
         ]);

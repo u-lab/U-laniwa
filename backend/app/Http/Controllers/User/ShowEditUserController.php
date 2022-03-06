@@ -60,7 +60,7 @@ class ShowEditUserController extends Controller
         ], $uuFacultyEnum);
 
         //リンク
-        $links = UserLink::where('user_id', $userId)->get();
+        $links = UserLink::where('user_id', $userId)->orderBy('id', 'desc')->get();
         //タイムライン
         $timelines = UserTimeline::where('user_id', $userId)->orderBy('start_date', 'desc')->get();
         //タイムラインジャンル

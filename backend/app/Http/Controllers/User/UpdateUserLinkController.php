@@ -20,7 +20,6 @@ class UpdateUserLinkController extends Controller
      */
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
-        \Log::debug($request);
         /**
          * バリデーション
          */
@@ -37,6 +36,7 @@ class UpdateUserLinkController extends Controller
          */
         $linkDate = [
             'title' => $request->linkTitle,
+            'url' => $request->linkUrl,
             'user_id' => Auth::id(),
         ];
         /**

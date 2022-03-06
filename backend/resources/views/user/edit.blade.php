@@ -237,8 +237,6 @@ $user=Auth::user();
         $linkTitle="";
         $linkDescription="";
         $linkUrl="";
-        $linkStartDate="";
-        $linkEndDate="";
         @endphp
         @if(count($errors)>0)
         {{-- バリデーションエラーのとき --}}
@@ -279,9 +277,10 @@ $user=Auth::user();
                 </tr>
                 <tr>
                     <form method="POST" action="/user/edit/update/userLink">
+                        @csrf
                         <td style="width: 40px">1</td>
-                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl"></td>
-                        <td style="width: 250px"><input style="width: 80%" type="text" name="linkTitle"></td>
+                        <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl" required></td>
+                        <td style="width: 250px"><input style="width: 80%" type="text" name="linkTitle" required></td>
                         <td style="width: 300px"><textarea style="width: 80%; padding:.5rem;"
                                 name="linkDescription"></textarea></td>
                         <td style="width: 80px"><input type="submit" value="作成"></td>
@@ -302,9 +301,9 @@ $user=Auth::user();
                     <tr>
                         <td style="width: 40px"> {{$i}}</td>
                         <td style="width: 250px"><input style="width: 80%" type="url" name="linkUrl"
-                                value="{{$link->url}}"></td>
+                                value="{{$link->url}}" required></td>
                         <td style=""><input style=" width: 80%" type="text" name="linkTitle" value="{{$link->title}}"
-                                required></td>
+                                required required></td>
                         <td style=" width: 200px">
                             <textarea name="linkDescription"
                                 style="width: 80%; padding:.5rem;">{{$link->description ?? ""}}</textarea>
@@ -314,7 +313,7 @@ $user=Auth::user();
                 <td style="width: 80px">
                     <form method="POST" action="/user/edit/delete/userLink">
                         @csrf
-                        <input type="hidden" name="userlinkId" value="{{$link->id}}">
+                        <input type="hidden" name="userLinkId" value="{{$link->id}}">
                         <input type="submit" value="削除" style="background-color: red; color: #fff;">
                     </form>
                 </td>

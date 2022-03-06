@@ -53,8 +53,9 @@ $name = $user->last_name." ".$user->first_name;
                 <td class="w-1/2 pl-5">{{$user->gender}}</td>
             </tr>
             <tr>
-                <td class="text-right font-bold w-1/2 pr-5">権限レベル</td>
-                <td class="w-1/2 pl-5">{{$user->user_role_id}}</td>
+                <td class="text-right font-bold w-1/2 pr-5">ポジション
+                </td>
+                <td class="w-1/2 pl-5">{{$user->user_role}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">学部・学科</td>

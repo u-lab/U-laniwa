@@ -21,7 +21,7 @@ class SaveProfilePhotoController extends Controller
         $this->validate($request, $validateRule);
         $path = $request->file->store('public/images/user'); // storage/app/imagesフォルダに保存
         return   response()->json([
-            'path' => $path,
+            'path' => str_replace("public/", "", $path)
         ]);
     }
 }

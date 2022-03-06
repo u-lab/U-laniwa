@@ -25,14 +25,17 @@ document.getElementById("forCompress").addEventListener("change", (e) => {
             axios
                 .post("/api/img/upload/profile_photo", formData)
                 .then((response) => {
+                    console.log("アップロードに成功しました");
+                    //画像パス挿入
                     document.getElementById("profilePhotoPath").value =
                         response.data.path;
-                    document.getElementById("userImage").src =
-                        location.protocol +
-                        location.host +
-                        "/storage/" +
-                        response.data.path;
-                    console.log("アップロードに成功しました");
+                    //画像プレビュー挿入
+                    let fileReader = new FileReader();
+                    fileReader.onload = function (event) {
+                        document.getElementById("userImage").src =
+                            fileReader.result;
+                    };
+                    fileReader.readAsDataURL(file);
                 });
         },
         error(err) {

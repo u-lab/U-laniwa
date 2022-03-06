@@ -584,7 +584,7 @@ $user=Auth::user();
                 window.onload = () => {
                     // API経由で学科情報を取得し、プルダウンのオプションを生成
                     const uuFaculty = document.querySelector('select[name="uuFaculty"]');
-                    const uuMajor = document.querySelector('select[name="uuMajor"]');
+                    const uuMajor = document.querySelector('select[name="uuMajorId"]');
                     manageMajor(uuFaculty, uuMajor);
 
                     // API経由で地域情報を取得し、プルダウンのオプションを生成

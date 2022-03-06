@@ -24,7 +24,7 @@ class UpdateUserLinkController extends Controller
          * バリデーション
          */
         $validateRule = [
-            'linkId' => 'required | int',
+            'linkId' => 'nullable | int',
             'linkTitle' => 'required|string|max:255',
             'linkDescription' => 'nullable | string | max:1000',
             'linkUrl' => 'required | url',

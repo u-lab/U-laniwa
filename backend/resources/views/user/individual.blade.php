@@ -29,7 +29,7 @@ $name = $user->last_name." ".$user->first_name;
             </p>
             @empty($user->status)
             @else
-            <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">一言コメント</p>
+            <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">ひとことコメント</p>
             <p class="xl:text-lg pl-2 mb-2">{{$user->status}}</p>
             @endempty
             @if($user->grade == '社会人' || $user->grade == 'その他' )
@@ -70,7 +70,7 @@ $name = $user->last_name." ".$user->first_name;
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">兼部・サークル</td>
-                <td class="w-1/2 pl-5">{{$user->group_affiliation}}</td>
+                <td class="w-1/2 pl-5">{{$user->group_affiliation!="" ?$user->group_affiliation:"---"}}</td>
             </tr>
         </table>
     </div>
@@ -86,15 +86,15 @@ $name = $user->last_name." ".$user->first_name;
             @endif
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">趣味</td>
-                <td class="w-1/2 pl-5">{{$user->hobbies}}</td>
+                <td class="w-1/2 pl-5">{{$user->hobbies!="" ?$user->hobbies:"---"}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">興味</td>
-                <td class="w-1/2 pl-5">{{$user->interests}}</td>
+                <td class="w-1/2 pl-5">{{$user->interests!="" ?$user->interests:"---"}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">座右の銘</td>
-                <td class="w-1/2 pl-5">{{$user->motto}}</td>
+                <td class="w-1/2 pl-5">{{$user->motto!="" ?$user->motto:"---"}}</td>
             </tr>
         </table>
     </div>
@@ -104,21 +104,25 @@ $name = $user->last_name." ".$user->first_name;
         <table class="mt-4 mx-auto">
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">Slack名</td>
-                <td class="w-1/2 pl-5">{{$user->slack_name}}</td>
+                <td class="w-1/2 pl-5">{{$user->slack_name!="" ?$user->slack_name:"---"}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">Discord名</td>
-                <td class="w-1/2 pl-5">{{$user->discord_name}}</td>
+                <td class="w-1/2 pl-5">{{$user->discord_name!="" ?$user->discord_name:"---"}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">LINE名</td>
-                <td class="w-1/2 pl-5">{{$user->line_name}}</td>
+                <td class="w-1/2 pl-5">{{$user->line_name!="" ?$user->line_name:"---"}}</td>
             </tr>
             <tr>
                 <td class="text-right font-bold w-1/2 pr-5">GitHubID</td>
                 <td class="w-1/2 pl-5">
+                    @if($user->github_id!="")
                     <a href='https://github.com/{{$user->github_id}}' target="_blank" rel="noopener"
                         class="inline-block">{{$user->github_id}}</a>
+                    @else
+                    ---
+                    @endif
                 </td>
             </tr>
         </table>
@@ -131,41 +135,44 @@ $name = $user->last_name." ".$user->first_name;
         <div class="flex flex-wrap gap-x-12 gap-y-8  my-8">
             @if($links->isEmpty())
             <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">MyLinkはありません。</p>
-            @endif
+            @else
             @foreach ($links as $link)
             <a href="{{$link->url}}" target="_blank" rel="noopener"
                 class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame"
                 style="transition: .2s; width: 500px">
                 <div class="flex items-center w-full mb-4">
-                    <img src="{{'http://www.google.com/s2/favicons?sz=64&domain=' . $link->url}}" class="w-12 h-12"
+                    <img src="{{'http://www.google.com/s2/favicons?sz=128&domain=' . $link->url}}" class="w-6 h-6"
                         alt="">
-                    <h3 class="ml-4 text-xl">{{$link->title}}</h3>
+                    <h3 class="ml-2 text-xl">{{$link->title}}</h3>
                 </div>
                 @if ($link->description)
                 <p class="text-center">{{$link->description}}</p>
                 @endif
             </a>
             @endforeach
+            @endif
         </div>
     </div>
 
     <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative mb-16">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクト
         </h2>
-        @if($projects->isEmpty())
-        <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">所属しているプロジェクトはありません。</p>
-        @endif
         <div class=" flex flex-wrap gap-x-12 gap-y-8 my-8">
+            @if($projects->isEmpty())
+            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">所属しているプロジェクトはありません。</p>
+            @else
             @foreach ($projects as $project)
             @include('components.forMembers.projectFrame')
             @endforeach
         </div>
+        @endif
     </div>
 
+    @if($projects->isEmpty())
+    @else
     <div class="individual bg-bg-sub w-full p-8 rounded-3xl mb-20">
         <h2 class="text-xl">タイムライン</h2>
         <div class="tree">
-
             @foreach ($events as $event)
             @include('components.forMembers.userTimeline',[
             'start_date'=>$event->start_date,
@@ -174,13 +181,17 @@ $name = $user->last_name." ".$user->first_name;
             'title'=>$event->title,
             'text'=>$event->description])
             @endforeach
-
         </div>
+        @endif
     </div>
 
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>
         <div class="flex flex-wrap gap-x-12 gap-y-8 my-8">
+            @if($relatedUsers->isEmpty())
+            <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">関連ユーザーはいません</p>
+
+            @else
             @foreach ($relatedUsers as $relatedUser)
             <a href="{{url('/user/' . $relatedUser->user_id)}}"
                 class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame flex"
@@ -200,6 +211,7 @@ $name = $user->last_name." ".$user->first_name;
                 </div>
             </a>
             @endforeach
+            @endif
         </div>
     </div>
 </div>

@@ -8,10 +8,13 @@
 @php
 $user=Auth::user();
 @endphp
-@include('components.forMembers.pageTitle', ['title'=>'ユーザー情報編集'])
-<p class="text-center mb-12">{{$user->name}} さん</p>
+@include('components.forMembers.pageTitle', ['title'=>$user->name.'さんのユーザー情報編集'])
 
 <div class="mx-auto mb-80" style="max-width: 1200px">
+    <div class="w-full text-center">
+        <a href='/user/{{$user->id}}'
+            class="inline-block px-10 py-2 bg-bg rounded-lg my-8 text-lg font-bold">ユーザー詳細へ戻る</a>
+    </div>
     <div class="border-4 p-2 mb-20 rounded-2xl border-dotted border-bg">
         @php
         $originProfilePhotoPath = $user->profile_photo_path;
@@ -249,7 +252,7 @@ $user=Auth::user();
         <form action="/user/edit/update/userInfo" method="post" id="userInfoTable">
             @csrf
             <div class="mx-auto mb-20" style="width: 600px">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20">プロフィール画像</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10">プロフィール画像</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -270,7 +273,7 @@ $user=Auth::user();
             </div>
 
             <div class="mx-auto mb-20 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">基本情報</h2>
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">基本情報</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -474,7 +477,7 @@ $user=Auth::user();
                         <tr>
                             <td colspan="2">
                                 <p>
-                                    ユーザー名、一言コメント、学部学科はメンバー一覧で表示されます<br>
+                                    ユーザー名、ひとことコメント、学部学科はメンバー一覧で表示されます<br>
                                     兼部・サークルがある場合は「卓球、写真サークル」のように部とサークルの間を“、”で分割してお書き下さい
                                 </p>
                             </td>
@@ -484,7 +487,7 @@ $user=Auth::user();
             </div>
 
             <div class="mx-auto mb-12 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">パーソナルデータ
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">パーソナルデータ
                 </h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
@@ -526,7 +529,7 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">一言コメント</td>
+                            <td style="width: 200px">ひとことコメント</td>
                             <td><input style="width: 80%" type="text" name="status" value="{{$originStatus}}"></td>
                         </tr>
                         <tr>
@@ -547,7 +550,7 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">MYLINK</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">MYLINK</h2>
         @php
         $linkTitle="";
         $linkDescription="";
@@ -559,6 +562,7 @@ $user=Auth::user();
         $linkTitle=old("linkTitle");
         $linkDescription=old("linkDescription");
         $linkUrl=old("linkUrl");
+        var_dump($errors);
         @endphp
         {{-- エラーの表示 --}}
         <ul class="text-red-500 text-center">
@@ -645,7 +649,7 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-20" style="margin-left: 200px">タイムライン登録</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">タイムライン登録</h2>
         @php
         $timelineTitle="";
         $timelineDescription="";

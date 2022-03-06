@@ -24,7 +24,7 @@ class UpdateUserTimelineController extends Controller
          * バリデーション
          */
         $validateRule = [
-            'timelineId' => 'required|int',
+            'timelineId' => 'nullable|int',
             'timelineTitle' => 'required|string|max:255',
             'timelineDescription' => 'nullable| string |max:1000',
             'timelineGenreId' => 'required|integer',

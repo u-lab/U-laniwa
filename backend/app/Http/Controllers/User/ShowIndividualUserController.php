@@ -12,8 +12,10 @@ use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
+use App\Models\Project;
 use App\Models\User;
 use App\Models\UserInfo;
+use App\Models\UserLink;
 use App\Models\UserTimeline;
 use App\Models\UUMajor;
 use Auth;
@@ -89,14 +91,16 @@ class ShowIndividualUserController extends Controller
         $user->birth_area = $userBirthArea->prefecture_code == null ?  "-" : $userBirthArea->prefecture_code->label()  . $userBirthArea->municipality;
         $user->live_area = $userLiveArea->prefecture_code == null ?  "-" : $userLiveArea->prefecture_code->label() . $userLiveArea->municipality;
 
-        $links = DB::table('user_links')
-            ->where('user_id', $user_id)
-            ->get();
+        /** @var UserLink */
+        $links = UserLink::where('user_id', $user_id)->get();
 
+
+        /** @var Project */
         $projects = DB::table('project_belongeds')
             ->where('user_id', $user_id)
             ->join('projects', 'project_belongeds.project_id', '=', 'projects.id')
             ->get();
+        \Log::debug($projects);
 
         /** @var UserTimeline */
         $events = UserTimeline::where('user_id', $user_id)

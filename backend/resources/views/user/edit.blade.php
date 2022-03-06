@@ -540,6 +540,10 @@ $user=Auth::user();
                         fetchMajor(selectedOption.value)
                             .then(data => {
                                 target.innerHTML = '';
+                                target.appendChild(document.createElement('option'));
+                                const initialOption = target.lastElementChild;
+                                initialOption.hidden = true;
+                                initialOption.textContent = '選択してください';
                                 data.forEach(elem => {
                                     target.appendChild(document.createElement('option'));
                                     const option = target.lastElementChild;
@@ -570,6 +574,10 @@ $user=Auth::user();
                             fetchArea(property, selectedOption.value)
                                 .then(data => {
                                     target.innerHTML = '';
+                                    target.appendChild(document.createElement('option'));
+                                    const initialOption = target.lastElementChild;
+                                    initialOption.hidden = true;
+                                    initialOption.textContent = '選択してください';
                                     data.forEach(elem => {
                                         target.appendChild(document.createElement('option'));
                                         const option = target.lastElementChild;

@@ -6,12 +6,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProjectProgress extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "project_id", "date", "title", "description", "created_at", "updated_at"
+        "project_id", "date", "title", "subtitle", "description", "created_at", "updated_at"
     ];
 
     /**
@@ -20,4 +22,21 @@ class ProjectProgress extends Model
      * @var array
      */
     public static $rules = array();
+
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['date'];
+
+    /**
+     * プロジェクトをつなぐ
+     *
+     * @return BelongsTo
+     */
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class)->withDefault();
+    }
 }

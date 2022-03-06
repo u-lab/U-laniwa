@@ -8,6 +8,8 @@ use App\Enums\Gender;
 use App\Enums\Grade;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class UserInfo extends Model
 {
@@ -18,21 +20,16 @@ class UserInfo extends Model
         'first_name',
         'description',
         'grade',
-        'is_udai',
         'university_meta',
         'company_meta',
         'faculty_id',
-        'uu_major_id',
+        'u_u_major_id',
         'gender',
-        'lived_country_id',
-        'lived_prefecture_id',
-        'lived_municipality_id',
-        'birth_country_id',
-        'birth_prefecture_id',
-        'birth_municipality_id',
+        'live_area_id',
+        'birth_area_id',
+        'group_affiliation',
         'is_dark_mode',
         'is_publish_birth_day',
-        'is_graduate',
         'status',
         'github_id',
         'line_name',
@@ -50,6 +47,14 @@ class UserInfo extends Model
      */
     public static $rules = array();
 
+    /**
+     * 初期値設定
+     * @var array
+     */
+    protected $attributes = [
+        "is_publish_birth_day" => true,
+        "is_dark_mode" => false,
+    ];
 
     /**
      * Enumキャスト
@@ -60,4 +65,48 @@ class UserInfo extends Model
         'gender' => Gender::class,
         'grade' => Grade::class,
     ];
+
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['birth_day'];
+
+    /**
+     * ユーザーを繋ぐ
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'foreign_key', 'user_id')->withDefault();
+    }
+    /**
+     * 専攻をつなぐ
+     *
+     * @return BelongsTo
+     */
+    public function uuMajor(): BelongsTo
+    {
+        return $this->belongsTo(UUMajor::class)->withDefault();
+    }
+    /**
+     * 在住地域をつなぐ
+     *
+     * @return BelongsTo
+     */
+    public function liveArea(): BelongsTo
+    {
+        return $this->belongsTo(Area::class, 'foreign_key', 'live_area_id')->withDefault();
+    }
+    /**
+     * 出身地域をつなぐ
+     *
+     * @return BelongsTo
+     */
+    public function birthArea(): BelongsTo
+    {
+        return $this->belongsTo(Area::class, 'foreign_key', 'birth_area_id')->withDefault();
+    }
 }

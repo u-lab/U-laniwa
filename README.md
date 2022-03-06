@@ -17,71 +17,64 @@ https://github.com/u-lab/U-laniwa/wiki
 make init
 ```
 
-.env のコピーなど不要
+※Windows は標準で make コマンド無いので、別途インストールまたは WSL 側でコマンド叩いて実行してください。
 
-※Windows は make コマンド無いので、WSL 側でコマンド叩いて実行する
-
-node は docker 側で持っていないので、ローカルで npm install 関連動かす
+npm install
 
 ```
-cd backend && npm install && npm run dev
+make npm-install
 ```
+
+## よく使うコマンド集
 
 データベースクリア
 
 ```
-dc exec app php artisan migrate:fresh --seed
+make fresh
 ```
 
 テスト
 
 ```
-dc exec app php artisan test
+make test
 ```
 
 Larastan による静的解析
 
 ```
-dc exec app ./vendor/bin/phpstan analyse
+make stan
 ```
 
 それ以降
 
 ```
-docker-compose up -d
+make up
 ```
 
 ide-helper
 
 ```
-	docker compose exec app php artisan clear-compiled
-	docker compose exec app php artisan ide-helper:generate
-	docker compose exec app php artisan ide-helper:meta
-	docker compose exec app php artisan ide-helper:models --nowrite
+make ide-helper
 ```
 
 Mysql 直打ち
 
 ```
-docker-compose exec db mysql -u phper -p
-Enter password:secret
+make sql
 ```
 
 ## リンク
 
-メール
-
-http://127.0.0.1:8025/
-
-ローカルホスト
-
+ローカルホスト  
 http://127.0.0.1:213/
 
-PHPMyAdmin
-
+PHPMyAdmin  
 http://127.0.0.1:214/
 
-# サイト
+メール  
+http://127.0.0.1:215/
+
+# 本番環境のサイト
 
 https://u-laniwa.tk/
 
@@ -95,6 +88,10 @@ https://u-laniwa.tk/
   → 永年無料枠を使用、東京は混雑してるので大阪のサーバーに
 - タスク管理:Asana+Instagantt
   → 無料でガントチャートが気持ちよく使える構成
+- メール配信:Mailgun
+  → 無料枠
+- バックアップ:Google Cloud Platform
+  → 無料枠
 - デザイン制作:Figma
 - 議事録管理:Notion
 - wiki:GitHub Wiki
@@ -103,16 +100,19 @@ https://u-laniwa.tk/
 - 連絡:Slack
 - 会議:Discord
 - PHP コーディングスタイル:PSR-12
+- 静的解析:Larastan
+- CI:GitHub Actions
+- エラー通知:Slack
 
 # 開発メンバー
 
-| GitHub アカウント名                         | 役職                          | 備考                                                                 |
-| ------------------------------------------- | ----------------------------- | -------------------------------------------------------------------- |
-| [Usuyuki](https://github.com/Usuyuki)       | 代表＆雑用&インフラエンジニア |                                                                      |
-| [tomori2226](https://github.com/tomori2226) | デザイン&UI 設計              |                                                                      |
-| [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア            |                                                                      |
-| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア        |                                                                      |
-| [H37kouya](https://github.com/H37kouya)     | スペシャルサンクス            | DB 設計やルーティング、機能、Larastan に関してアドバイス頂きました。 |
+| GitHub アカウント名                         | 役職                                                                   | 備考                                                                 |
+| ------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [Usuyuki](https://github.com/Usuyuki)       | 代表＆雑用&インフラエンジニア&バックエンドとフロントエンドとデザイン q |                                                                      |
+| [tomori2226](https://github.com/tomori2226) | デザイン&UI 設計                                                       |                                                                      |
+| [tetsu1615](https://github.com/tetsu1615)   | フロントエンジニア                                                     |                                                                      |
+| [SeigoMori](https://github.com/SeigoMori)   | バックエンドエンジニア                                                 |                                                                      |
+| [H37kouya](https://github.com/H37kouya)     | スペシャルサンクス                                                     | DB 設計やルーティング、機能、Larastan に関してアドバイス頂きました。 |
 
 # U-laniwa について
 

@@ -1,8 +1,4 @@
-@php
-use Illuminate\Support\Carbon;
-@endphp
-
-@extends("layouts.noLogin")
+@extends("layouts.main")
 @section("title","プロジェクト編集")
 
 @section('header')

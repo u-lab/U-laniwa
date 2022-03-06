@@ -18,7 +18,7 @@ class UserInviteCodeTableSeeder extends Seeder
     {
         $param = [
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'code' => Str::uuid(),
             ],
         ];

@@ -15,6 +15,6 @@ class ProjectBelongedTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\ProjectBelonged::factory(50)->create();
+        \App\Models\ProjectBelonged::factory(40)->create();
     }
 }

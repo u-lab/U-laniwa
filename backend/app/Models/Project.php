@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Project extends Model
@@ -30,22 +31,55 @@ class Project extends Model
     public static $rules = array();
 
     /**
-     * キャストする属性
+     * 日付の登録(format使えるために)
      *
      * @var array
      */
-    protected $casts = [
-        'start_date' => 'date',
-        'end_date' => 'date',
+    protected $dates = ['start_date', 'end_date'];
+
+    /**
+     * 初期値設定
+     * @var array
+     */
+    protected $attributes = [
+        "thumbnail" => "images/default/default_project_thumbnail.png",
     ];
 
     /**
-     * Project に所属している
+     * プロジェクト進捗取得
+     *
+     * @return HasMany
+     */
+    public function projectProgress(): HasMany
+    {
+        return $this->hasMany(ProjectProgress::class);
+    }
+    /**
+     * プロジェクト参加者取得
+     *
+     * @return HasMany
+     */
+    public function projectBelonged(): HasMany
+    {
+        return $this->hasMany(ProjectBelonged::class);
+    }
+    /**
+     * プロジェクト参加リクエスト取得
+     *
+     * @return HasMany
+     */
+    public function projectParticipationRequest(): HasMany
+    {
+        return $this->hasMany(ProjectParticipationRequest::class);
+    }
+
+    /**
+     * プロジェクトをつなぐ
      *
      * @return HasOne
      */
-    public function projectBelonged(): HasOne
+    public function project(): HasOne
     {
-        return $this->hasOne(ProjectBelonged::class, 'project_id', 'id');
+        return $this->hasOne(Project::class)->withDefault();
     }
 }

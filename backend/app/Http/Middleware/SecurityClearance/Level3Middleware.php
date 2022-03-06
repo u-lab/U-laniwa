@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+declare(strict_types=1);
+
+namespace App\Http\Middleware\SecurityClearance;
 
 use App\Facades\Auth;
 use Closure;

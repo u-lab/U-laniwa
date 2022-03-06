@@ -18,11 +18,7 @@
     <div class="mb-20">
         <a href='https://forms.gle/tShu2ho87U8ioB4U9' class="inline-block p-2 border-2 border-bg">お問い合わせ</a>
     </div>
-
-    <div class="inline-block rounded-xl bg-bg-sub p-12 mx-auto">
-        <p class="text-lg font-bold mb-2">高木壱哲の秘密②</p>
-        <p>おススメの本は赤川次郎さんの「杉原爽香」シリーズ</p>
-    </div>
+    @include('components.messages.developer')
 
 </div>
 

@@ -157,6 +157,13 @@ class ShowEditUserController extends Controller
         $userBirthArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->birth_area_id);
         /** @var Area */
         $userLiveArea = $userAreas->first(fn (Area $area) => $area->id === $userInfo->live_area_id);
+        // userにbirthとliveプロパティを追加
+        $userInfo->live_prefecture_id = $userLiveArea->prefecture_code;
+        $userInfo->live_country_id =  $userLiveArea->country_code;
+        $userInfo->birth_prefecture_id = $userBirthArea->prefecture_code;
+        $userInfo->birth_country_id =  $userBirthArea->country_code;
+
+
 
         //リンク
         $links = UserLink::where('user_id', $userId)->orderBy('id', 'desc')->get();

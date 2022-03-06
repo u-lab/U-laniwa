@@ -28,12 +28,11 @@ class UpdateUserInfoController extends Controller
             'firstName' => 'required | string | max:255',
             'gender' => 'required | integer | not_in:0',
             'birthDay' => 'required | date',
-            // TODO: フロントで実装チェックしてから確認
             'isPublishBirthDay' => 'required | in:0,1',
             'grade' => 'required | integer | digits_between:1,2 | not_in:0',
             'companyName' => 'string | max:255',
             'position' => 'string | max:255',
-            'UUMajor' => 'integer | digits_between:1,2',
+            'uuMajorId' => 'integer | digits_between:1,2',
             'university' => 'string | max:255',
             'faculty' => 'string | max:255',
             'major' => 'string | max:255',
@@ -103,9 +102,9 @@ class UpdateUserInfoController extends Controller
                     ]
                 )
             ]);
-        } else if ($request->uuMajor) {
+        } else if ($request->uuMajorId) {
             $userInfoData = array_merge($userInfoData, [
-                'u_u_major_id' => $request->uuMajor,
+                'u_u_major_id' => $request->uuMajorId,
             ]);
         } else {
             //どれも無いなんてありえないが、不正すれば出来るので、エラーを出す

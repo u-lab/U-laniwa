@@ -161,7 +161,7 @@ $user=Auth::user();
                                     </option>
                                     @endforeach
                                 </select>
-                                <select name='uuMajor' style="width: 38%; margin-right:4%;">
+                                <select name='uuMajorId' style="width: 38%; margin-right:4%;">
                                     @foreach ($uuFaculties as $uuFacultie)
                                     <option value="{{$loop->iteration}}" @if ($loop->iteration==$originUUMajor)
                                         selected

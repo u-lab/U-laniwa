@@ -7,7 +7,7 @@
         style="transition: .2s; border-radius: 0 20px 20px 0">
         <div class="w-full">
             <div>
-                <a href="/home" class="inline-block w-full mb-2 hover:opacity-80" style="transition: .2s">
+                <a href="/" class="inline-block w-full mb-2 hover:opacity-80" style="transition: .2s">
                     <img src="/img/ulaniwa_logo.svg" alt="U-laniwa">
                 </a>
                 <nav class="flex flex-col gap-2 sidenav">
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <a href="/">
+    <a href="/home">
         <img src="/img/ulaniwa_logo.svg" class="w-16 h-16 inline-block" alt="U-laniwa">
     </a>
 

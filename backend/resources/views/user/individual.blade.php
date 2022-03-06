@@ -191,8 +191,8 @@ $name = $user->last_name." ".$user->first_name;
             'text'=>$event->description])
             @endforeach
         </div>
-        @endif
     </div>
+    @endif
 
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>

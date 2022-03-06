@@ -35,6 +35,29 @@ h2 {
     max-width: 1200px;
 }
 
+.home {
+    width: 100%;
+}
+
+.side {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .home {
+        width: 800px !important;
+    }
+
+    .side {
+        width: 330px !important;
+    }
+}
+
+#nav.in {
+    display: block;
+    transition: 0.2s;
+}
+
 .deco {
     @apply w-fit;
     position: relative;
@@ -134,13 +157,10 @@ h2 {
 }
 @media screen and (max-width: 640px) {
     .main-wrapper {
-        max-width: 100%;
+        max-width: 96%;
+        margin: 0 2%;
     }
 }
-
-/*.aaa * {
-    @apply mb-6;
-}*/
 
 .infoFrame td {
     @apply pb-1;
@@ -194,6 +214,12 @@ textarea:focus {
     outline: none;
     --tw-ring-shadow: 0;
     @apply outline-offset-0;
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
 }
 
 /* チャート用 */

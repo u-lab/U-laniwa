@@ -15,7 +15,7 @@
 <body>
 
     <!---コンテンツここから--->
-    <div class="flex relative pl-80">
+    <div class="flex relative mf:pl-60 md:flex-row flex-col">
         <!---サイドバーここから--->
         @component('components.basis.sidebar')
         <!---サイドバーここまで--->

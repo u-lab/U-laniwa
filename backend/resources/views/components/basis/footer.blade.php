@@ -1,6 +1,6 @@
 <!---PCフッターここから--->
-<footer class="w-full flex justify-center items-center flex-col bg-bg-sub text-center text-sm" style='height: 110px'>
-    <div class="flex gap-8 justify-center mb-2">
+<footer class="w-full flex justify-center items-center flex-col bg-bg-sub text-center text-sm md:h-28 h-auto">
+    <div class="flex md:gap-8 gap-2 justify-center md:mb-2 md:flex-row flex-col my-4">
         <a href='/releaseNote'>リリースノート</a>
         <a href='/aboutThisSite'>このサイトについて</a>
         <a href='/'>トップ</a>

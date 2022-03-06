@@ -10,7 +10,7 @@ final class GetProjectUseCase
 {
     public function invoke(
         int $projectId
-    ) {
+    ): Project {
         $project = Project::find($projectId);
 
         return $project;

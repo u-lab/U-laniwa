@@ -173,8 +173,8 @@ $name = $user->last_name." ".$user->first_name;
             @foreach ($projects as $project)
             @include('components.forMembers.projectFrame')
             @endforeach
+            @endif
         </div>
-        @endif
     </div>
 
     @if($events->isEmpty())

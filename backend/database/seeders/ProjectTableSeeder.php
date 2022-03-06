@@ -24,7 +24,7 @@ class ProjectTableSeeder extends Seeder
                 'subtitle' => "U-lab内部向けシステム",
                 'description' => "このプロジェクトではLTS版LaravelやOracleCloudを用いることで費用のかからない持続可能サービスを作成することを目指しました。",
                 'place_of_activity' => "インターネット",
-                'thumbnail' => "public/images/default/default_project_thumbnail.png",
+                'thumbnail' => "images/default/default_project_thumbnail.png",
                 'start_date' => Carbon::create(2021, 12, 30),
             ],
         ];

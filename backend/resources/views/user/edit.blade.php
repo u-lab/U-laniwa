@@ -61,7 +61,8 @@ $user=Auth::user();
                             <td>画像を追加</td>
                         </tr>
                         <tr>
-                            <td style="width: 250px"><img src="{{url('/'. $originImg)}}" class="w-48 inline-block">
+                            <td style="width: 250px"><img id="userImage" src="{{asset('storage/'.$originImg)}}"
+                                    class="w-48 inline-block">
                             </td>
                             <td style="width: 250px"><input style="max-width: 250px" id="forCompress" type="file"
                                     name="img"></td>

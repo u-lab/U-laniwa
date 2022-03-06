@@ -3,9 +3,9 @@
         <p class="text-sm mb-1">{{$start_date}}〜{{$end_date}}</p>
         <p class="mb-1 font-bold text-lg">{{$title}}</p>
         <a href="{{url('/user'.'/'.$timeline->user->id)}}" class="w-fit h-fit mb-1 flex flex-row items-center">
-            <img src="{{url('/'.$timeline->user->profile_photo_path)}}" alt=""
+            <img src="{{asset('storage/'.$timeline->user->profile_photo_path)}}" alt=""
                 class="w-6 h-6 inline-block rounded-full">
-            <p class="inline-block pl-3"><img src="">{{$name}}</p>
+            <p class="inline-block pl-3">{{$name}}</p>
         </a>
         <p>{{$text}}</p>
     </div>

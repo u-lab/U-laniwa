@@ -1,7 +1,7 @@
 <a href="{{url('/user/'.$user->id)}}" class="flex bg-bg-main rounded-2xl p-6 hover:opacity-80 userFrame"
     style="transition: .2s; width: 500px">
     <div class="flex items-center w-1/2">
-        <img src="{{url('/'.$user->profile_photo_path)}}" alt="" class="object-fit-cover">
+        <img src="{{asset('storage/'.$user->profile_photo_path)}}" alt="" class="object-fit-cover">
     </div>
     <div class="px-4 text-left w-1/2">
         <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>

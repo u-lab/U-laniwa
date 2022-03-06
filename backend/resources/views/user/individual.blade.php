@@ -29,7 +29,7 @@ $name = $user->last_name." ".$user->first_name;
 <div class="mx-auto mt-8 mb-16 flex flex-wrap gap-x-3 gap-y-16 justify-between" style="width: 1200px">
     <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit" style="width: 500px">
         <div class="flex items-center w-1/2">
-            <img src="{{url('/'.$user->profile_photo_path)}}" alt="" class="object-fit-cover">
+            <img src="{{asset('storage/'. $user->profile_photo_path)}}" alt="" class="object-fit-cover">
         </div>
         <div class="px-4 text-left w-1/2">
             <h3 class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</h3>
@@ -194,7 +194,7 @@ $name = $user->last_name." ".$user->first_name;
                 class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame flex"
                 style="transition: .2s; width: 500px">
                 <div class="flex items-center w-1/2">
-                    <img src="{{url('/' . $relatedUser->profile_photo_path)}}" alt="" class="object-fit-cover">
+                    <img src="{{asset('storage/'. $relatedUser->profile_photo_path)}}" alt="" class="object-fit-cover">
                 </div>
                 <div class="w-1/2 px-4">
                     <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>

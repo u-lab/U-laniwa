@@ -35,7 +35,8 @@
             <a href="{{url('/project/' . $userProject->project_id)}}" target="_blank" rel="noopener"
                 class="bg-bg-sub text-center rounded-2xl p-6 hover:opacity-80 userFrame"
                 style="transition: .2s; width: 500px">
-                <img src="{{url('/' . $userProject->thumbnail)}}" alt="" class="rounded mb-8">
+                <img src="{{asset('storage/'. $userProject->thumbnail)}}" alt="" class="rounded mb-8">
+
                 <h3 class="ml-4 text-xl font-bold mb-2">{{$userProject->title}}</h3>
                 <p class="mb-2">{{$userProject->subtitle}}</p>
                 <p class="text-sm mb-4">{{$userProject->start_date}} 〜 {{$userProject->end_date}}</p>

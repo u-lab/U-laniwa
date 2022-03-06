@@ -27,7 +27,7 @@
 
 <h2>招待ユーザー</h2>
 @foreach ($invitedUsers as $invitedUser)
-<img src="{{url('/' . $invitedUser->profile_photo_path)}}" alt="">
+<img src="{{asset('storage/'.$invitedUser->profile_photo_path)}}" alt="">
 <p>{{$invitedUser->name}}</p>
 {{-- この値で表示数を変更(1件~20件) --}}
 @break ($loop->iteration == 3)

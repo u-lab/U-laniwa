@@ -81,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $attributes = [
-        "profile_photo_path" => "public/images/default/default_profile_photo.png",
+        "profile_photo_path" => "images/default/default_profile_photo.png",
     ];
 
     /**

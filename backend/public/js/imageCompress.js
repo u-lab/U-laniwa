@@ -3539,8 +3539,8 @@ document.getElementById("forCompress").addEventListener("change", function (e) {
       formData.append("file", result, result.name); // Send the compressed image file to server with XMLHttpRequest.
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/img/upload/profile_photo", formData).then(function (response) {
-        console.log(response);
         document.getElementById("profilePhotoPath").value = response.data.path;
+        document.getElementById("userImage").src = location.protocol + location.host + "/storage/" + response.data.path;
         console.log("アップロードに成功しました");
       });
     },

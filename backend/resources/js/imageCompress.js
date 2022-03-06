@@ -25,8 +25,12 @@ document.getElementById("forCompress").addEventListener("change", (e) => {
             axios
                 .post("/api/img/upload/profile_photo", formData)
                 .then((response) => {
-                    console.log(response);
                     document.getElementById("profilePhotoPath").value =
+                        response.data.path;
+                    document.getElementById("userImage").src =
+                        location.protocol +
+                        location.host +
+                        "/storage/" +
                         response.data.path;
                     console.log("アップロードに成功しました");
                 });

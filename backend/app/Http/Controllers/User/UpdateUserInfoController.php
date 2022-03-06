@@ -19,7 +19,6 @@ class UpdateUserInfoController extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         $validateRule = [
-            'img' => 'required | mimes:jpeg,png,bmp,gif',
             'name' => 'required | string | max:255',
             'lastName' => 'required | string | max:255',
             'firstName' => 'required | string | max:255',

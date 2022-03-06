@@ -19,6 +19,7 @@ use App\Models\UUMajor;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class ShowEditUserController extends Controller
 {

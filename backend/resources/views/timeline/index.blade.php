@@ -8,6 +8,9 @@
 @include('components.forMembers.pageTitle', ['title'=>'タイムライン'])
 
 <div class="bg-bg-sub p-8 rounded-3xl mx-auto mb-20 timeline-p" style="max-width: 1000px">
+    @if($timelines)
+    <p class="py-6 text-center">タイムラインはまだありません。</p>
+    @else
     <div class="tree timeline">
 
         @foreach ($timelines as $timeline)
@@ -23,6 +26,7 @@
         @endforeach
 
     </div>
+    @endif
 </div>
 
 @endsection

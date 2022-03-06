@@ -7,10 +7,13 @@
                 @include('components.buttons.navButton', ['link'=>'/home', 'title'=>'ホーム'])
                 {{--@include('components.buttons.navButton', ['link'=>'/notice', 'title'=>'お知らせ'])--}}
                 @include('components.buttons.navButton', ['link'=>'/calender', 'title'=>'カレンダー'])
+                @include('components.buttons.navButton', ['link'=>'/timeline', 'title'=>'タイムライン'])
                 @include('components.buttons.navButton', ['link'=>'/user', 'title'=>'ユーザー一覧'])
-                @include('components.buttons.navButton', ['link'=>'/project', 'title'=>'プロジェクト'])
-                @include('components.buttons.navButton', ['link'=>'/groupRules', 'title'=>'U-labの決め事'])
+                {{--@include('components.buttons.navButton', ['link'=>'/project', 'title'=>'プロジェクト'])--}}
+                {{--@include('components.buttons.navButton', ['link'=>'/groupRules', 'title'=>'U-labの決め事'])--}}
                 @include('components.buttons.navButton', ['link'=>'/statistic/user', 'title'=>'統計情報'])
+                @include('components.buttons.navButton', ['link'=>'/procedure', 'title'=>'手続きページ'])
+                @include('components.buttons.navButton', ['link'=>'/security', 'title'=>'セキュリティ'])
             </nav>
         </div>
     </div>

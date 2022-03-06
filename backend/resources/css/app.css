@@ -32,7 +32,7 @@ h2 {
 
 .wrapper {
     @apply mx-auto;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 .deco {
@@ -69,7 +69,7 @@ h2 {
     left: 0;
     width: 1rem;
     height: calc(100% + 60px);
-    @apply absolute bg-bg-gray rounded-full;
+    @apply absolute bg-main-btn rounded-full;
 }
 
 .tree-content {
@@ -82,7 +82,7 @@ h2 {
     top: 0;
     width: 2rem;
     height: 2rem;
-    @apply absolute rounded-full bg-bg-gray;
+    @apply absolute rounded-full bg-main-btn;
 }
 
 .belongsProject .tree {
@@ -93,14 +93,23 @@ h2 {
     @apply bg-main-btn;
 }
 
-.belongsProject .tree-content::after {
+.belongsProject .tree-content::after,
+.userTimeline .tree-content::after,
+.timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
     transform: translateY(-50%);
     @apply bg-main-btn;
 }
 
-.belongsProject .tree-content::before {
+.userTimeline .tree-content::after,
+.timeline .tree-content::after {
+    left: -5.5rem;
+}
+
+.belongsProject .tree-content::before,
+.userTimeline .tree-content::before,
+.timeline .tree-content::before {
     content: "";
     height: 1rem;
     width: 5rem;
@@ -108,6 +117,12 @@ h2 {
     left: -4rem;
     transform: translateY(-50%);
     @apply absolute rounded-full bg-main-btn;
+}
+
+.release.tree::before,
+.release.tree .tree-content::before,
+.release.tree .tree-content::after {
+    @apply bg-bg-gray;
 }
 
 .main-wrapper {
@@ -152,16 +167,24 @@ input[type="submit"] {
 }
 
 input[type="text"],
+input[type="email"],
+input[type="password"],
 input[type="url"],
 input[type="date"],
 input[type="checkbox"],
 select,
 textarea {
+    resize: none;
     border: none;
-    @apply bg-bg-main rounded px-0 pl-4;
+    @apply bg-bg-main rounded py-2 px-2;
+}
+select {
+    width: 110%;
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
 input[type="url"]:focus,
 input[type="date"]:focus,
 input[type="checkbox"]:focus,
@@ -172,6 +195,17 @@ textarea:focus {
     @apply outline-offset-0;
 }
 
-/*input[type="checkbox"] {
-    @apply p-0;
-}*/
+/* チャート用 */
+.chartWrapper {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 600px;
+}
+.chartWrapper_small {
+    margin: 0 auto;
+    padding: 2em;
+    /* overflow-x: scroll; */
+    width: 300px;
+    height: 300px;
+}

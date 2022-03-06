@@ -5,7 +5,7 @@
     </div>
     <div class="px-4 text-left w-1/2">
         <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>
-        <p class="xl:text-lg pl-2 mb-2">{{$user->last_name}} {{$user->first_name}} ({{$user->name}})</p>
+        <h3 class="xl:text-lg pl-2 mb-2">{{$user->last_name}} {{$user->first_name}} ({{$user->name}})</h3>
         @empty($user->status)
         @else
         <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">一言コメント</p>

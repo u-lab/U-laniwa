@@ -5,17 +5,24 @@
 @parent
 @endsection
 @section('content')
-<h1 class="text-center my-8 text-3xl ">タイムライン</h1>
-@foreach ($timelines as $timeline)
-<p>{{$timeline->start_date}}〜{{$timeline->end_date}}</p>
-<h2>タイトル: {{$timeline->title}}</h2>
-<p>ジャンル: {{$timeline->genreName}}</p>
-<p>名前: {{$timeline->user->name}}</p>
-<p>ユーザーアイコン:</p>
-<img src="{{url('/' . $timeline->user->profile_photo_path)}}" alt="">
-<p>説明: {{$timeline->description}}</p>
-<br><br>
-{{-- この値でタイムラインの表示件数を変更(1件~10件) --}}
-@break ($loop->iteration == 5)
-@endforeach
+@include('components.forMembers.pageTitle', ['title'=>'タイムライン'])
+
+<div class="bg-bg-sub p-8 rounded-3xl mx-auto mb-20" style="max-width: 1000px">
+    <div class="tree timeline" style="width: 80%">
+
+        @foreach ($timelines as $timeline)
+        @include('components.forMembers.timelineItem',[
+        'start_date'=>$timeline->start_date,
+        'end_date'=>$timeline->end_date,
+        'name'=>$timeline->user->name,
+        'genre'=>$timeline->genre->label(),
+        'title'=>$timeline->title,
+        'text'=>$timeline->description])
+        {{-- この値でタイムラインの表示件数を変更(1件~20件) --}}
+        @break ($loop->iteration == 10)
+        @endforeach
+
+    </div>
+</div>
+
 @endsection

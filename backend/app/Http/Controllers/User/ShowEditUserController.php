@@ -7,14 +7,18 @@ namespace App\Http\Controllers\User;
 use App\Enums\Country;
 use App\Enums\Gender;
 use App\Enums\Grade;
+use App\Enums\UserTimelineGenre;
 use App\Enums\UUFaculty;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserInfo;
 use Auth;
+use App\Models\UserLink;
+use App\Models\UserTimeline;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class ShowEditUserController extends Controller
 {
@@ -89,7 +93,17 @@ class ShowEditUserController extends Controller
             'id' => $id, //学部id(学科の取得に用いる)
             'name' => $id->label(), //学部名
         ], $uuFacultyEnum);
-        \Log::debug($grades);
+
+        //リンク
+        $links = UserLink::where('user_id', $userId)->get();
+        //タイムライン
+        $timelines = UserTimeline::where('user_id', $userId)->orderBy('start_date', 'desc')->get();
+        //タイムラインジャンル
+        $timelineGenreEnum = UserTimelineGenre::cases();
+        $timelineGenres = array_map(fn (UserTimelineGenre $timelineGenre): array => [
+            'id' => $timelineGenre->value,
+            'name' => $timelineGenre->label(), //名前
+        ], $timelineGenreEnum);
         return view('user.edit', [
             'user' => $user,
             'userInfo' => $userInfo,
@@ -97,6 +111,9 @@ class ShowEditUserController extends Controller
             'grades' => $grades,
             'countries' => $countries,
             'uuFaculties' => $uuFaculties,
+            'links' => $links,
+            'timelines' => $timelines,
+            'timelineGenres' => $timelineGenres,
         ]);
     }
 }

@@ -59,6 +59,7 @@ h2 {
     @apply mx-auto my-20 pl-20 relative;
 }
 
+.individual > .tree,
 .userTimeline > .tree {
     width: 80%;
 }
@@ -94,7 +95,7 @@ h2 {
 }
 
 .belongsProject .tree-content::after,
-.userTimeline .tree-content::after,
+.individual .tree-content::after,
 .timeline .tree-content::after {
     left: -4.5rem;
     top: 50%;
@@ -102,13 +103,13 @@ h2 {
     @apply bg-main-btn;
 }
 
-.userTimeline .tree-content::after,
+.individual .tree-content::after,
 .timeline .tree-content::after {
     left: -5.5rem;
 }
 
 .belongsProject .tree-content::before,
-.userTimeline .tree-content::before,
+.individual .tree-content::before,
 .timeline .tree-content::before {
     content: "";
     height: 1rem;

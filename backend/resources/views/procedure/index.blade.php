@@ -25,6 +25,7 @@ $user=Auth::user();
     <input type="submit" class="text-white  py-2 px-2" value="ログアウト">
 </form>
 
+
 <div class="wrapper">
     <div class="mb-12">
         <h2 class="mb-2">招待コード</h2>
@@ -34,6 +35,7 @@ $user=Auth::user();
         <input type="text" readonly='true' class="ml-4 w-96" value='{{$inviteCode->code}}'>
         @endempty
     </div>
+
 
     <div class="mb-12">
         <h2 class="mb-4">{{$user->name}}さんの招待ユーザー</h2>

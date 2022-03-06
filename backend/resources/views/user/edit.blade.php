@@ -61,11 +61,12 @@ $user=Auth::user();
                             <td>画像を追加</td>
                         </tr>
                         <tr>
-                            <td style="width: 250px"><img src="{{url('/'. $originImg)}}" class="w-48 inline-block">
+                            <td style="width: 250px"><img id="userImage" src="{{asset('storage/'.$originImg)}}"
+                                    class="w-48 inline-block">
                             </td>
                             <td style="width: 250px"><input style="max-width: 250px" id="forCompress" type="file"
                                     name="img"></td>
-                            <input type="file" id="file">
+                            <input type="hidden" id="profilePhotoPath" name="profilePhotoPath">
                         </tr>
                     </table>
                 </div>
@@ -227,38 +228,6 @@ $user=Auth::user();
                                     [...radioBtns].forEach(radioBtn => radioBtn.checked = radioBtn.checked && false);
                                 }
                             });
-
-                            // 初期値による会社・大学の入力項目の条件分岐
-                            window.onload = () => {
-                                /* プルダウン */
-                                const options = document.querySelectorAll('option[name="gradeOption"]');
-                                const selectedOption = [...options].find(option => option.selected);  // 選択状態のプルダウンの選択肢
-
-                                /* プルダウンで制御する項目 */
-                                const company = document.querySelector('tr[name="company"]');  // 会社の入力項目
-                                const universities = document.querySelectorAll('tr[name="university"]');  // 大学の入力項目のNodeList
-
-                                if (selectedOption.value < 10) {  // 学生が選択されているとき
-                                    company.classList.add('hidden');  // 会社の入力項目を非表示
-                                } else {  //社会人・その他が選択されている時
-                                    [...universities].forEach(university => university.classList.add('hidden')); // 学生の入力項目全体をを非表示
-                                }
-
-
-                                /* ラジオボタン */
-                                const UUBtn = document.querySelector('input[value="宇都宮大学"]');
-                                const otherBtn = document.querySelector('input[value="他大学"]');
-
-                                /* ラジオボタンで制御する項目 */
-                                const UU = document.querySelector('#UU');  // 宇大の入力項目
-                                const other = document.querySelector('#other');  // 他大の入力項目
-
-                                if (UUBtn.checked) {  // "宇都宮大学"が選択されているとき
-                                    other.classList.add('hidden');  // 他大学の入力項目を非表示
-                                } else if (otherBtn.checked) { // "他大学"が選択されているとき
-                                    UU.classList.add('hidden');  // 宇大の入力項目を非表示
-                                }
-                            }
 
                         </script>
                         <tr>
@@ -644,4 +613,5 @@ $user=Auth::user();
     </div>
 </div>
 
+<script src="{{ mix('js/imageCompress.js') }}"></script>
 @endsection

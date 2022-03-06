@@ -50,7 +50,7 @@ class CreateSystemUserCommand extends Command
                 'email_verified_at' => now(),
                 'password' => Hash::make($this->argument('user_password')),
                 'remember_token' => Str::random(10),
-                'profile_photo_path' => "img/default_profile_photo.png",
+                'profile_photo_path' => "images/default/default_profile_photo.png",
                 'user_role_id' => 60,
                 'created_at' => now(),
                 'updated_at' => now(),

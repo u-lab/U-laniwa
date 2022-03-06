@@ -994,6 +994,10 @@ select {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -1073,6 +1077,9 @@ select {
 .mb-20 {
   margin-bottom: 5rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .mt-36 {
   margin-top: 9rem;
 }
@@ -1084,9 +1091,6 @@ select {
 }
 .mt-20 {
   margin-top: 5rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .mt-12 {
   margin-top: 3rem;
@@ -1230,11 +1234,11 @@ select {
 .w-1\/2 {
   width: 50%;
 }
-.w-24 {
-  width: 6rem;
-}
 .w-2\/3 {
   width: 66.666667%;
+}
+.w-24 {
+  width: 6rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1375,6 +1379,9 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.overflow-x-auto {
+  overflow-x: auto;
 }
 .overflow-y-auto {
   overflow-y: auto;
@@ -1567,11 +1574,11 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-8 {
-  padding: 2rem;
-}
 .p-12 {
   padding: 3rem;
+}
+.p-8 {
+  padding: 2rem;
 }
 .p-5 {
   padding: 1.25rem;
@@ -1683,6 +1690,12 @@ select {
 .pr-2 {
   padding-right: 0.5rem;
 }
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
+}
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1692,11 +1705,8 @@ select {
 .pb-12 {
   padding-bottom: 3rem;
 }
-.pr-5 {
-  padding-right: 1.25rem;
-}
-.pl-5 {
-  padding-left: 1.25rem;
+.pl-80 {
+  padding-left: 20rem;
 }
 .pb-16 {
   padding-bottom: 4rem;
@@ -1988,6 +1998,25 @@ h2 {
 .userpage-item {
     width: 100%;
 }
+.edit-base {
+    width: 100px;
+}
+.edit-1,
+.edit-2,
+.edit-3 {
+    width: 100%;
+}
+.edit-birth {
+    width: 100%;
+}
+.edit-birth-p {
+    width: 80%;
+}
+@media screen and (max-width: 768px) {
+    #forCompress {
+        max-width: 150px !important;
+    }
+}
 @media screen and (min-width: 768px) {
     .home {
         width: 800px !important;
@@ -2013,6 +2042,43 @@ h2 {
 
     .userpage-item {
         width: 500px;
+    }
+
+    .edit-item {
+        margin-left: 200px;
+    }
+
+    .edit-pic {
+        width: 600px;
+    }
+
+    .useritem {
+        width: 300px;
+    }
+
+    .edit-base {
+        width: 200px;
+    }
+
+    .edit-1 {
+        width: 80%;
+    }
+
+    .edit-2 {
+        width: 38%;
+    }
+
+    .edit-3 {
+        width: 24%;
+    }
+
+    .edit-birth {
+        width: 50%;
+        margin-right: 5%;
+    }
+
+    .edit-birth-p {
+        width: 20%;
     }
 }
 #nav.in {
@@ -2122,7 +2188,7 @@ h2 {
     margin: 0 auto;
     min-height: calc(100vh - 110px);
 }
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     .main-wrapper {
         max-width: 96%;
         margin: 0 2%;
@@ -2631,12 +2697,29 @@ textarea:focus {
     grid-column: span 1 / span 1;
   }
 
+  .md\:mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .md\:mt-0 {
     margin-top: 0px;
   }
 
+  .md\:mb-0 {
+    margin-bottom: 0px;
+  }
+
   .md\:mb-2 {
     margin-bottom: 0.5rem;
+  }
+
+  .md\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .md\:mb-80 {
+    margin-bottom: 20rem;
   }
 
   .md\:block {
@@ -2677,6 +2760,14 @@ textarea:focus {
 
   .md\:gap-8 {
     gap: 2rem;
+  }
+
+  .md\:overflow-hidden {
+    overflow: hidden;
+  }
+
+  .md\:overflow-x-hidden {
+    overflow-x: hidden;
   }
 
   .md\:border-t-0 {

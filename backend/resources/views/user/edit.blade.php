@@ -10,7 +10,7 @@ $user=Auth::user();
 @endphp
 @include('components.forMembers.pageTitle', ['title'=>$user->name.'さんのユーザー情報編集'])
 
-<div class="mx-auto mb-80" style="max-width: 1200px">
+<div class="mx-auto md:mb-80 mb-20" style="max-width: 1200px">
     <div class="w-full text-center">
         <a href='/user/{{$user->id}}'
             class="inline-block px-10 py-2 bg-bg rounded-lg mt-8  text-lg font-bold">ユーザー詳細へ戻る</a>
@@ -251,9 +251,10 @@ $user=Auth::user();
 
         </ul>
         @endif
+
         <form action="/user/edit/update/userInfo" method="post" id="userInfoTable">
             @csrf
-            <div class="mx-auto mb-20" style="width: 600px">
+            <div class="mx-auto mb-20 edit-pic">
                 <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10">プロフィール画像</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
@@ -262,11 +263,12 @@ $user=Auth::user();
                             <td>画像を追加</td>
                         </tr>
                         <tr>
-                            <td style="width: 250px"><img id="userImage" src="{{asset('storage/'.$originImg)}}"
-                                    class="w-48 inline-block">
+                            <td style="width: 250px">
+                                <img id="userImage" src="{{asset('storage/'.$originImg)}}" class="w-48 inline-block">
                             </td>
-                            <td style="width: 250px"><input style="max-width: 250px" id="forCompress" type="file"
-                                    name="img"></td>
+                            <td style="width: 250px">
+                                <input style="max-width: 250px" id="forCompress" type="file" name="img">
+                            </td>
                             <input type="hidden" id="profilePhotoPath" name="profilePhotoPath"
                                 value="{{$originProfilePhotoPath}}">
                         </tr>
@@ -274,8 +276,8 @@ $user=Auth::user();
                 </div>
             </div>
 
-            <div class="mx-auto mb-20 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">基本情報</h2>
+            <div class="mx-auto mb-20 w-full edit-items">
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10 edit-item">基本情報</h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
                         <tr class="bg-bg-sub">
@@ -283,34 +285,33 @@ $user=Auth::user();
                             <td></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">ユーザー名</td>
-                            <td><input required style="width: 80%" type="text" name="userName" value="{{$originName}}">
+                            <td class="edit-base">ユーザー名</td>
+                            <td><input required class="edit-1" type="text" name="userName" value="{{$originName}}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">姓/名</td>
+                            <td class="edit-base">姓/名</td>
                             <td>
-                                <input required style="width: 38%; margin-right:4%;" type="text" name="lastName"
-                                    value="{{$originLastName}}">
-                                <input required style="width: 38%" type="text" name="firstName"
+                                <input required class="edit-2 md:mb-0 mb-2" style="margin-right:4%;" type="text"
+                                    name="lastName" value="{{$originLastName}}">
+                                <input required class="edit-2" type="text" name="firstName"
                                     value="{{$originFirstName}}">
                             </td>
                         </tr>
                         <tr>
-                            <td style=" width: 200px">誕生日
+                            <td class="edit-base">誕生日
                             </td>
                             <td>
-                                <input style="width: 50%; margin-right:5%;" type="date" name="birthDay"
-                                    value={{$originBirthDay}}>
-                                <p class="inline-block text-right" style="width: 20%">公開する</p>
+                                <input class="edit-birth" type="date" name="birthDay" value={{$originBirthDay}}>
+                                <p class="inline-block text-right edit-birth-p">公開する</p>
                                 <input type="checkbox" name="isPublishBirthDay" {{$originIsPublishBirthDay==1
                                     ? "checked" :""}}>
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">性別</td>
+                            <td class="edit-base">性別</td>
                             <td>
-                                <select name='gender' style="width: 80%" required>
+                                <select name='gender' class="edit-1" required>
                                     <option hidden>選択してください</option>
                                     @foreach ($genders as $gender)
                                     <option value="{{$loop->iteration}}" @if ($loop->iteration==$originGender)
@@ -321,9 +322,9 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">学年</td>
+                            <td class="edit-base">学年</td>
                             <td>
-                                <select name='grade' style="width: 80%" required>
+                                <select name='grade' class="edit-1" required>
                                     <option name='gradeOption' hidden>選択してください</option>
                                     @foreach ($grades as $grade)
                                     <option name='gradeOption' value="{{$loop->iteration}}" @if ($loop->
@@ -335,16 +336,16 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr name="company">
-                            <td style="width: 200px">会社名/役職名</td>
+                            <td class="edit-base">会社名/役職名</td>
                             <td>
-                                <input style="width: 38%; margin-right:4%;" type="text" name="company"
+                                <input class="edit-2 md:mb-0 mb-2" style="margin-right:4%;" type="text" name="company"
                                     value="{{$originCompany}}">
-                                <input style="width: 38%;" type="text" name="position" value="{{$originPosition}}">
+                                <input class="edit-2" type="text" name="position" value="{{$originPosition}}">
                             </td>
 
                         </tr>
                         <tr name="university">
-                            <td style="width: 200px">大学</td>
+                            <td class="edit-base">大学</td>
                             <td>
                                 <input type="radio" name="univRadio" value="uu" @if ($originUUMajor) checked @endif>
                                 <label for='宇都宮大学' style='margin-right: 10%'>宇都宮大学</label>
@@ -354,9 +355,9 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr name="university" id="UU">
-                            <td style="width: 200px">学部/学科</td>
+                            <td class="edit-base">学部/学科</td>
                             <td>
-                                <select name='uuFaculty' style="width: 38%; margin-right:4%;">
+                                <select name='uuFaculty' class="edit-2 md:mb-0 mb-2" style="margin-right:4%;">
                                     <option hidden>選択してください</option>
                                     @foreach ($uuFaculties as $uuFaculty)
                                     <option value="{{$uuFaculty['id']}}" @if ($uuFaculty['id']==$originUUFaculty)
@@ -364,7 +365,7 @@ $user=Auth::user();
                                     </option>
                                     @endforeach
                                 </select>
-                                <select name='uuMajorId' style="width: 38%; margin-right:4%;">
+                                <select name='uuMajorId' class="edit-2 md:mb-0 mb-2" style="margin-right:4%;">
                                     @if($preUUMajors)
                                     @foreach ($preUUMajors as $preUUMajor)
                                     <option value="{{$preUUMajor->id}}" @if ($preUUMajor->id==$originUUMajor)
@@ -378,24 +379,25 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr name="university" id="other">
-                            <td style="width: 200px">大学名/学部/学科</td>
+                            <td class="edit-base">大学名/学部/学科</td>
                             <td>
-                                <input style="width: 24%; margin-right:4%;" type="text" name="university"
-                                    value={{$originUniversity}}>
-                                <input style="width: 24%; margin-right:4%;" type="text" name="faculty"
+                                <input class="edit-3 md:mb-0 mb-2" style="margin-right:4%;" type="text"
+                                    name="university" value={{$originUniversity}}>
+                                <input class="edit-3 md:mb-0 mb-2" style="margin-right:4%;" type="text" name="faculty"
                                     value={{$originFaculty}}>
-                                <input style="width: 24%" type="text" name="major" value={{$originMajor}}>
+                                <input class="edit-3 md:mb-0 mb-2" type="text" name="major" value={{$originMajor}}>
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">兼部・サークル</td>
-                            <td><input style="width: 80%" type="text" name="groupAffiliation"
+                            <td class="edit-base">兼部・<br class="block md:hidden">サークル</td>
+                            <td><input class="edit-1" type="text" name="groupAffiliation"
                                     value="{{$originGroupAffiliation}}"></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">出身地</td>
+                            <td class="edit-base">出身地</td>
                             <td>
-                                <select name='birthCountry' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthCountry' class="edit-3 md:mb-0 mb-2" style="margin-right:4%;"
+                                    required>
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
                                     <option value="{{$country['country_code']}}"
@@ -405,7 +407,8 @@ $user=Auth::user();
                                         >{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='birthPrefecture' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthPrefecture' class="edit-3 md:mb-0 mb-2" style="margin-right:4%;"
+                                    required>
                                     @if($preBirthPrefectures)
                                     @foreach($preBirthPrefectures as $preBirthPrefecture)
                                     <option value="{{$preBirthPrefecture['prefecture_code']}}"
@@ -417,7 +420,7 @@ $user=Auth::user();
                                     @endforeach
                                     @endif
                                 </select>
-                                <select name='birthMunicipalityId' style="width: 24%; margin-right:4%;" required>
+                                <select name='birthMunicipalityId' class="edit-3 md:mb-0 mb-2" required>
                                     @if($preBirthMunicipalities)
                                     @foreach($preBirthMunicipalities as $preBirthMunicipality)
                                     <option value="{{$preBirthMunicipality->id}}" @if($preBirthMunicipality->
@@ -431,9 +434,10 @@ $user=Auth::user();
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">現住地</td>
+                            <td class="edit-base">現住地</td>
                             <td>
-                                <select name='liveCountry' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveCountry' class="edit-3 md:mb-0 mb-2" style="margin-right:4%;"
+                                    required>
                                     <option hidden>選択してください</option>
                                     @foreach ($countries as $country)
                                     <option value="{{$country['country_code']}}"
@@ -443,7 +447,8 @@ $user=Auth::user();
                                         >{{$country['name']}}</option>
                                     @endforeach
                                 </select>
-                                <select name='livePrefecture' style="width: 24%; margin-right:4%;" required>
+                                <select name='livePrefecture' class="edit-3 md:mb-0 mb-2" style="margin-right:4%;"
+                                    required>
                                     @if($preLivePrefectures)
                                     @foreach($preLivePrefectures as $preLivePrefecture)
                                     <option value="{{$preLivePrefecture['prefecture_code']}}"
@@ -455,7 +460,7 @@ $user=Auth::user();
                                     @endforeach
                                     @endif
                                 </select>
-                                <select name='liveMunicipalityId' style="width: 24%; margin-right:4%;" required>
+                                <select name='liveMunicipalityId' class="edit-3 md:mb-0 mb-2" required>
                                     @if($preLiveMunicipalities)
                                     @foreach($preLiveMunicipalities as $preLiveMunicipality)
                                     <option value="{{$preLiveMunicipality->id}}" @if($preLiveMunicipality->
@@ -471,9 +476,9 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <p>
-                                    ユーザー名、ひとことコメント、学部学科はメンバー一覧で表示されます<br>
-                                    兼部・サークルがある場合は「卓球、写真サークル」のように部とサークルの間を“、”で分割してお書き下さい
+                                <p class="text-left md:mx-4 mx-2">
+                                    ユーザー名、ひとことコメント、学部学科はメンバー一覧で表示されます。<br>
+                                    兼部・サークルがある場合は「卓球、写真サークル」のように部とサークルの間を“、”で分割してお書き下さい。
                                 </p>
                             </td>
                         </tr>
@@ -638,7 +643,7 @@ $user=Auth::user();
             </script>
 
             <div class="mx-auto mb-12 w-full">
-                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">パーソナルデータ
+                <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10 edit-item">パーソナルデータ
                 </h2>
                 <div class="rounded-3xl border-2 border-bg">
                     <table class="w-full text-center edit rounded-3xl overflow-hidden">
@@ -647,41 +652,41 @@ $user=Auth::user();
                             <td></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">趣味</td>
-                            <td><input style="width: 80%" type="text" name="hobbies" value="{{$originHobbies}}"></td>
+                            <td class="edit-base">趣味</td>
+                            <td><input class="edit-1" type="text" name="hobbies" value="{{$originHobbies}}"></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">興味</td>
-                            <td><input style="width: 80%" type="text" name="interests" value="{{$originInterests }}">
+                            <td class="edit-base">興味</td>
+                            <td><input class="edit-1" type="text" name="interests" value="{{$originInterests }}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">座右の銘</td>
-                            <td><input style="width: 80%" type="text" name="motto" value="{{$originMotto}}"></td>
+                            <td class="edit-base">座右の銘</td>
+                            <td><input class="edit-1" type="text" name="motto" value="{{$originMotto}}"></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">GitHub ID</td>
-                            <td><input style="width: 80%" type="text" name="githubId" value="{{$originGithubId}}">
+                            <td class="edit-base">GitHub ID</td>
+                            <td><input class="edit-1" type="text" name="githubId" value="{{$originGithubId}}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">LINEでのお名前</td>
-                            <td><input style="width: 80%" type="text" name="lineName" value="{{$originLineName}}">
+                            <td class="edit-base">LINEでの<br class="block md:hidden">お名前</td>
+                            <td><input class="edit-1" type="text" name="lineName" value="{{$originLineName}}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">Slackでのお名前</td>
-                            <td><input style="width: 80%" type="text" name="slackName" value="{{$originSlackName }}">
+                            <td class="edit-base">Slackでの<br class="block md:hidden">お名前</td>
+                            <td><input class="edit-1" type="text" name="slackName" value="{{$originSlackName }}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">Discordでのお名前</td>
-                            <td><input style="width: 80%" type="text" name="discordName" value="{{$originDiscordName}}">
+                            <td class="edit-base">Discordでの<br class="block md:hidden">お名前</td>
+                            <td><input class="edit-1" type="text" name="discordName" value="{{$originDiscordName}}">
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 200px">ひとことコメント</td>
-                            <td><input style="width: 80%" type="text" name="status" value="{{$originStatus}}"></td>
+                            <td class="edit-base">ひとこと<br class="block md:hidden">コメント</td>
+                            <td><input class="edit-1" type="text" name="status" value="{{$originStatus}}"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -701,7 +706,7 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">MYLINK</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10 edit-item">MYLINK</h2>
 
         @php
         $linkTitle="";
@@ -742,7 +747,7 @@ $user=Auth::user();
                     <td>URL</td>
                     <td>名称</td>
                     <td>説明</td>
-                    <td>追加変更</td>
+                    <td>追加<br class="block md:hidden">変更</td>
                     <td>削除</td>
                 </tr>
                 <tr>
@@ -790,10 +795,10 @@ $user=Auth::user();
                 </tr>
                 @endforeach
                 @endisset
-                <td colspan="6" class="text-left pl-4">
-                    <p>使い方の例1：Twitterや自身のSNSのリンクを貼る　リンクの説明欄にフォローよろしくなどのコメントを書く。</p>
-                    <p>使い方の例2：YouTubeのリンクを張る　リンクの説明欄にこれおすすめ！！って書く</p>
-                    <p>※まとめての更新ではできませんので、ご注意ください</p>
+                <td colspan="6" class="text-left ">
+                    <p class="md:mx-4 mx-2">使い方の例1：Twitterや自身のSNSのリンクを貼る　リンクの説明欄にフォローよろしくなどのコメントを書く。</p>
+                    <p class="md:mx-4 mx-2">使い方の例2：YouTubeのリンクを張る　リンクの説明欄にこれおすすめ！！って書く</p>
+                    <p class="md:mx-4 mx-2">※まとめての更新ではできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>
@@ -801,7 +806,7 @@ $user=Auth::user();
     </div>
 
     <div class="mx-auto mb-20 w-full">
-        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10" style="margin-left: 200px">タイムライン登録</h2>
+        <h2 class="text-lg px-6 inline-block bg-bg rounded-full mb-4 mt-10 edit-item">タイムライン登録</h2>
         @php
         $timelineTitle="";
         $timelineDescription="";
@@ -857,7 +862,7 @@ $user=Auth::user();
                     <td>説明</td>
                     <td>ジャンル</td>
                     <td>開始日/終了日</td>
-                    <td>追加変更</td>
+                    <td>追加<br class="block md:hidden">変更</td>
                     <td>削除</td>
                 </tr>
                 {{-- 初回分は登録フォームなのでループ外 --}}
@@ -955,10 +960,10 @@ $user=Auth::user();
                 </tr>
                 @endforeach
                 @endisset
-                <td colspan="7" class="text-left pl-4">
-                    <p>タイムラインでは、自分の学業、お仕事、資格、所属団体、大会などの結果や情報を時系列で表示できます。<br>
+                <td colspan="7" class="text-left">
+                    <p class=" md:mx-4 mx-2">タイムラインでは、自分の学業、お仕事、資格、所属団体、大会などの結果や情報を時系列で表示できます。<br>
                         例　けん玉15級を取得、卓球部に入部</p>
-                    <p>※まとめての更新ではできませんので、ご注意ください</p>
+                    <p class=" md:mx-4 mx-2">※まとめての更新ではできませんので、ご注意ください</p>
                 </td>
                 </tr>
             </table>

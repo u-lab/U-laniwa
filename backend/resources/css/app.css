@@ -32,7 +32,7 @@ h2 {
 
 .wrapper {
     @apply mx-auto;
-    max-width: 1000px;
+    max-width: 1200px;
 }
 
 .deco {
@@ -175,8 +175,12 @@ input[type="date"],
 input[type="checkbox"],
 select,
 textarea {
+    resize: none;
     border: none;
-    @apply bg-bg-main rounded px-0 pl-4;
+    @apply bg-bg-main rounded py-2 px-2;
+}
+select {
+    width: 110%;
 }
 
 input[type="text"]:focus,

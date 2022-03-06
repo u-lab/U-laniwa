@@ -15,6 +15,10 @@
     <input type="submit" class="text-black" value="招待コード再生成">
 </form>
 @endif
+<form class="mx-2" method="POST" action="/logout">
+    @csrf
+    <input type="submit" class="text-white  py-2 px-2" value="ログアウト">
+</form>
 @empty($inviteCode)
 <h2>招待コードはありません</h2>
 @else

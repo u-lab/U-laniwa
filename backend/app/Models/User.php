@@ -84,6 +84,13 @@ class User extends Authenticatable implements MustVerifyEmail
         "profile_photo_path" => "img/default_profile_photo.png",
     ];
 
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['retired_at'];
+
 
     /**
      * ユーザー情報とつなぐ用のやつ

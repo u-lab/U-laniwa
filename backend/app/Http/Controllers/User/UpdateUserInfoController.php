@@ -23,11 +23,11 @@ class UpdateUserInfoController extends Controller
             'name' => 'required | string | max:255',
             'lastName' => 'required | string | max:255',
             'firstName' => 'required | string | max:255',
-            'gender' => 'required | integer',
+            'gender' => 'required | integer | not_in:0',
             'birthDay' => 'required | date',
             // TODO: フロントで実装チェックしてから確認
             'isPublishBirthDay' => 'required | in:0,1',
-            'grade' => 'required | integer | digits_between:1,2',
+            'grade' => 'required | integer | digits_between:1,2 | not_in:0',
             'companyName' => 'string | max:255',
             'position' => 'string | max:255',
             'UUMajor' => 'integer | digits_between:1,2',

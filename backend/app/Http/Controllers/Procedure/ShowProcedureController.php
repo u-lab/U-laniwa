@@ -45,6 +45,6 @@ class ShowProcedureController extends Controller
          * https://github.com/u-lab/U-laniwa/wiki/507_%E8%AA%8D%E5%8F%AF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
          * 認可をフロントで用いることをおすすめします。。
          */
-        return view('procedure.index', ['gate' => $this->gate, 'inviteCode' => $inviteCodeTable->code, 'invitedUsers' => $invitedUsers]);
+        return view('procedure.index', ['gate' => $this->gate, 'inviteCode' => $inviteCodeTable, 'invitedUsers' => $invitedUsers]);
     }
 }

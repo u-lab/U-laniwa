@@ -26,9 +26,10 @@ class UpdateUserTimelineController extends Controller
         $validateRule = [
             'timelineId' => 'int',
             'timelineTitle' => 'required|string|max:255',
-            'timelineDescription' => 'max:1000',
+            'timelineDescription' => 'nullable|max:1000',
             'timelineGenreId' => 'required|integer',
             'timelineStartDate' => 'required|date',
+            'timelineStartDate' => 'nullable|date',
         ];
         $this->validate($request, $validateRule);
         /**

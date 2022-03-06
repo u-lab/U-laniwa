@@ -44,17 +44,17 @@ class UpdateUserInfoController extends Controller
             'faculty' => 'nullable | string | max:255',
             'major' => 'nullable | string | max:255',
 
-            'groupAffiliation' => 'string | max:255',
+            'groupAffiliation' => 'nullable | string | max:255',
             'birthMunicipalityId' => 'required | integer',
             'liveMunicipalityId' => 'required | integer',
-            'hobbies' => 'string | max:255',
-            'interests' => 'string | max:255',
-            'motto' => 'string | max:255',
-            'githubId' => 'string | max:255',
-            'lineName' => 'string | max:255',
-            'slackName' => 'string | max:255',
-            'discordName' => 'string | max:255',
-            'description' => 'string | max:255',
+            'hobbies' => 'nullable | string | max:255',
+            'interests' => 'nullable | string | max:255',
+            'motto' => 'nullable | string | max:255',
+            'githubId' => 'nullable | string | max:255',
+            'lineName' => 'nullable | string | max:255',
+            'slackName' => 'nullable | string | max:255',
+            'discordName' => 'nullable | string | max:255',
+            'description' => 'nullable | string | max:255',
         ];
         $this->validate($request, $validateRule);
 
@@ -86,6 +86,19 @@ class UpdateUserInfoController extends Controller
             'grade' => $request->grade,
             'birth_area_id' => $request->birthMunicipalityId,
             'live_area_id' => $request->liveMunicipalityId,
+            /**
+             * 下記より必須でない項目
+             * そもそも値を入れなければいいと考えていたが、存在する→存在しないの処理が大変なので下記のようにした
+             */
+            'group_affiliation' => $request->groupAffiliation ?? "",
+            'hobbies' => $request->hobbies ?? "",
+            'interests' => $request->interests ?? "",
+            'motto' => $request->motto ?? "",
+            'github_id' => $request->githubId ?? "",
+            'line_name' => $request->lineName ?? "",
+            'slack_name' => $request->slackName ?? "",
+            'discord_name' => $request->discordName ?? "",
+            'status' => $request->status ?? "",
         ];
 
         /**
@@ -95,8 +108,8 @@ class UpdateUserInfoController extends Controller
             $userInfoData = array_merge($userInfoData, [
                 'company_meta' => json_encode(
                     [
-                        'company_name' => $request->company,
-                        'position' => $request->position,
+                        'company_name' => $request->company ?? "",
+                        'position' => $request->position ?? "",
                     ]
                 )
             ]);
@@ -104,9 +117,9 @@ class UpdateUserInfoController extends Controller
             $userInfoData = array_merge($userInfoData, [
                 'university_meta' => json_encode(
                     [
-                        'university' => $request->originUniversity,
-                        'faculty' => $request->originFaculty,
-                        'major' => $request->originMajor,
+                        'university' => $request->originUniversity ?? "",
+                        'faculty' => $request->originFaculty ?? "",
+                        'major' => $request->originMajor ?? "",
                     ]
                 )
             ]);
@@ -119,19 +132,6 @@ class UpdateUserInfoController extends Controller
             abort(500);
         }
 
-        /**
-         * 必須でない項目
-         */
-        $request->groupAffiliation != null ? $userInfoData = array_merge($userInfoData, ['group_affiliation' => $request->groupAffiliation,]) : "";
-        $request->hobbies != null ? $userInfoData = array_merge($userInfoData, ['hobbies' => $request->hobbies,]) : "";
-        $request->interests != null ? $userInfoData = array_merge($userInfoData, ['interests' => $request->interests,]) : "";
-        $request->motto != null ? $userInfoData = array_merge($userInfoData, ['motto' => $request->motto,]) : "";
-        $request->githubId != null ? $userInfoData = array_merge($userInfoData, ['github_id' => $request->githubId,]) : "";
-        $request->lineName != null ? $userInfoData = array_merge($userInfoData, ['line_name' => $request->lineName,]) : "";
-        $request->slackName != null ? $userInfoData = array_merge($userInfoData, ['slack_name' => $request->slackName,]) : "";
-        $request->discordName != null ? $userInfoData = array_merge($userInfoData, ['discord_name' => $request->discordName,]) : "";
-        $request->status != null ? $userInfoData = array_merge($userInfoData, ['status' => $request->status,]) : "";
-
         /**ユーザーテーブルのアップデート */
         /**ユーザーインフォのアップデート */
         UserInfo::updateOrCreate(
@@ -140,7 +140,7 @@ class UpdateUserInfoController extends Controller
         );
 
         /**画像が変わり、かつデフォルト画像でなかったら古い画像のデータを消す */
-        if ($request->profilePhotoPath != $user->profile_photo_path && $user->profilePhotoPath != "images/default/default_profile_photo.png") {
+        if ($request->profilePhotoPath != $user->profile_photo_path && $user->profile_photo_path != "images/default/default_profile_photo.png") {
             Storage::delete('public/' . $user->profile_photo_path);
         }
 

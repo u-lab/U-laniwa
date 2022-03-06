@@ -37,7 +37,7 @@ class ShowEditUserController extends Controller
         $userId = $user->id;
 
         /**
-         * @var userInfo
+         * @var userInfo $userInfo
          * @property string $company
          * @property string $position
          * @property string $university

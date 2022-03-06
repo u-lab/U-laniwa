@@ -20,8 +20,8 @@ $name = $user->last_name." ".$user->first_name;
 
 <div class="mx-auto mt-8 mb-16 flex xl:flex-row flex-col flex-wrap gap-x-3 gap-y-16 justify-between userpage">
     <div class="flex bg-bg-main rounded-2xl p-6 infoFrame h-fit userpage-item">
-        <div class="flex items-center w-1/2">
-            <img src="{{asset('storage/'. $user->profile_photo_path)}}" alt="" class="object-fit-cover">
+        <div class="flex items-center justify-center w-1/2">
+            <img src="{{asset('storage/'. $user->profile_photo_path)}}" alt="" class="object-cover user-img in">
         </div>
         <div class="px-4 text-left w-1/2">
             <h3 class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</h3>
@@ -141,7 +141,7 @@ $name = $user->last_name." ".$user->first_name;
 <div class="mx-auto mb-32" style='max-width: 1200px'>
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">MyLink</h2>
-        <div class="flex flex-wrap gap-x-12 gap-y-8  my-8">
+        <div class="flex flex-wrap gap-x-12 gap-y-8  my-8 xl:justify-start justify-around">
             @if($links->isEmpty())
             <p class="absolute top-1/2 left-0 w-full text-center">MyLinkはありません。</p>
             @else
@@ -166,7 +166,7 @@ $name = $user->last_name." ".$user->first_name;
     <div class="basicInformation h-fit p-6 border-4 border-bg rounded-2xl relative mb-16">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">所属プロジェクト
         </h2>
-        <div class=" flex flex-wrap gap-x-12 gap-y-8 my-8">
+        <div class=" flex flex-wrap gap-x-12 gap-y-8 my-8 xl:justify-start justify-around">
             @if($projects->isEmpty())
             <p class="absolute top-1/2 left-0 w-full text-center">所属しているプロジェクトはありません。</p>
             @else
@@ -196,7 +196,7 @@ $name = $user->last_name." ".$user->first_name;
 
     <div class="basicInformation mb-16 h-fit p-6 border-4 border-bg rounded-2xl relative">
         <h2 class="absolute py-2 px-6 bg-bg rounded-full text-base font-bold" style="top: -1.125rem;">関連ユーザ</h2>
-        <div class="flex flex-wrap gap-x-12 gap-y-8 my-8">
+        <div class="flex flex-wrap gap-x-12 gap-y-8 my-8 xl:justify-start justify-around">
             @if($relatedUsers->isEmpty())
             <p class="absolute top-1/2 left-1/2" style="transform: translateX(-50%)">関連ユーザーはいません。</p>
 
@@ -205,8 +205,9 @@ $name = $user->last_name." ".$user->first_name;
             <a href="{{url('/user/' . $relatedUser->user_id)}}"
                 class="bg-bg-sub rounded-2xl p-6 hover:opacity-80 h-auto userFrame flex"
                 style="transition: .2s; width: 500px">
-                <div class="flex items-center w-1/2">
-                    <img src="{{asset('storage/'. $relatedUser->profile_photo_path)}}" alt="" class="object-fit-cover">
+                <div class="flex items-center justify-center w-1/2">
+                    <img src="{{asset('storage/'. $relatedUser->profile_photo_path)}}" alt=""
+                        class="object-cover user-img in ex">
                 </div>
                 <div class="w-1/2 px-4">
                     <p class="text-sm xl:text-base px-2 mb-1 bg-bg rounded-full inline-block">なまえ</p>

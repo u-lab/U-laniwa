@@ -1478,6 +1478,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(254 223 223 / var(--tw-border-opacity));
 }
+.border-red-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity));
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1704,6 +1708,9 @@ select {
 }
 .pb-16 {
   padding-bottom: 4rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -2736,6 +2743,10 @@ textarea:focus {
 
   .md\:mb-2 {
     margin-bottom: 0.5rem;
+  }
+
+  .md\:ml-4 {
+    margin-left: 1rem;
   }
 
   .md\:block {

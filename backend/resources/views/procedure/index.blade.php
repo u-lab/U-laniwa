@@ -47,10 +47,8 @@ $user=Auth::user();
                     <img src="{{asset('storage/'. $invitedUser->profile_photo_path)}}" alt=""
                         class="w-12 h-12 rounded-full inline-block">
                     <p class="inline-block pl-4">{{$invitedUser->name}}</p>
-                    {{-- この値で表示数を変更(1件~20件) --}}
                 </a>
             </div>
-            @break ($loop->iteration == 3)
             @endforeach
         </div>
     </div>

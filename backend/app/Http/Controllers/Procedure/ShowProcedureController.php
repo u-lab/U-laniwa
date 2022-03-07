@@ -36,9 +36,10 @@ class ShowProcedureController extends Controller
         $inviteCodeTable = UserInviteCode::where('user_id', $userId)->first();
 
         // ログインユーザーが招待したユーザーの一覧を取得
-        $invitedUsers = User::where('invited_id', $userId)
+        $invitedUsers = User::has('UserInfo')
+            ->where('invited_id', $userId)
             ->orderBy('created_at', 'desc')
-            ->take(20)
+            ->take(100)
             ->get();
 
         /**

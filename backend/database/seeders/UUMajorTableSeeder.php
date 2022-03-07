@@ -52,7 +52,7 @@ class UUMajorTableSeeder extends Seeder
             ],
             [
                 'faculty_id' => 2,
-                'name' => "電気電子分野工学科",
+                'name' => "電気電子工学科",
             ],
             [
                 'faculty_id' => 2,

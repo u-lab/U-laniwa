@@ -17,7 +17,7 @@
             <x-buttons.loginButton url='/login' name='ログイン' />
             <x-buttons.loginButton url='/register' name='U-laniwaに登録' />
             @else
-            <p>ログイン済みです。</p>
+            <x-buttons.loginButton url='/home' name='ホーム' />
             @endguest
         </div>
 

@@ -48,7 +48,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'Test1234',
             'password_confirmation' => 'Test1234',
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+            'terms' => true,
         ]);
 
         $this->assertAuthenticated();

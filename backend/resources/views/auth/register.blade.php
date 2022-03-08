@@ -33,30 +33,32 @@
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required />
+                <x-jet-input id="email" style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" class="
+                    block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                    autocomplete="new-password" />
+                <x-jet-input id="password" style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));"
+                    class=" block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
                 <p class="text-gray-500 text-sm">パスワードは、アルファベット大文字小文字と数字を含む8文字以上60字以下である必要があります。</p>
                 <p class="text-gray-500 text-sm">パスワードはハッシュ化されてデータベースに登録されます。</p>
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                    name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation"
+                    style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" class=" block mt-1 w-full"
+                    type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
 
             <div class="mt-4">
                 <x-jet-label for="terms">
                     <div class="flex items-center">
-                        <x-jet-checkbox name="terms" id="terms" />
-                        <div class="ml-2">
+                        <x-jet-checkbox name="terms" id="terms"
+                            style="background-color: rgb(254 223 223 / var(--tw-bg-opacity));" />
+                        <div class=" ml-2">
                             {!! __('I agree to the :terms_of_service and :privacy_policy', [
                             '利用規約' => '<a target="_blank" href="'.url('terms').'"
                                 class="underline text-sm text-gray-600 hover:text-gray-900">利用規約</a>',

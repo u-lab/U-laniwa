@@ -5,7 +5,8 @@
 
 U-lab 内部向けシステム
 
-U-laniwa wiki をご覧ください。
+# 技術者、開発目的などに興味のある方へ
+U-laniwa wiki をご覧ください。  
 https://github.com/u-lab/U-laniwa/wiki
 
 # ローカルでの使い方

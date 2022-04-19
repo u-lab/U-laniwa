@@ -982,13 +982,13 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .mx-2 {
   margin-left: 0.5rem;
@@ -1071,6 +1071,12 @@ select {
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mb-12 {
+  margin-bottom: 3rem;
+}
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .mt-36 {
   margin-top: 9rem;
 }
@@ -1086,17 +1092,11 @@ select {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
-.mb-12 {
-  margin-bottom: 3rem;
-}
 .mt-12 {
   margin-top: 3rem;
 }
 .mb-28 {
   margin-bottom: 7rem;
-}
-.mb-20 {
-  margin-bottom: 5rem;
 }
 .mb-1 {
   margin-bottom: 0.25rem;
@@ -1585,14 +1585,14 @@ select {
 .p-8 {
   padding: 2rem;
 }
+.p-12 {
+  padding: 3rem;
+}
 .p-5 {
   padding: 1.25rem;
 }
 .p-4 {
   padding: 1rem;
-}
-.p-12 {
-  padding: 3rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -2302,8 +2302,13 @@ h2 {
     }
 }
 @media screen and (min-width: 1900px) {
-    .userFrame {
+    .userlist .userFrame {
         width: calc(100% / 3 - 2rem) !important;
+    }
+
+    .user-img {
+        width: 215px !important;
+        height: 215px !important;
     }
 }
 .edit td {
@@ -3050,6 +3055,10 @@ textarea:focus {
 
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }
+
+  .lg\:mb-0 {
+    margin-bottom: 0px;
   }
 
   .lg\:block {

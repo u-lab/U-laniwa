@@ -13,8 +13,12 @@
         <h1 class="text-center mb-6 font-bold">U-laniwaへようこそ！</h1>
 
         <div class="flex justify-center gap-4 mb-8">
+            @guest
             <x-buttons.loginButton url='/login' name='ログイン' />
             <x-buttons.loginButton url='/register' name='U-laniwaに登録' />
+            @else
+            <x-buttons.loginButton url='/home' name='ホーム' />
+            @endguest
         </div>
 
         <div class="wrapper">

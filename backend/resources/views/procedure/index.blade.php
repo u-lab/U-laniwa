@@ -32,14 +32,18 @@ $user=Auth::user();
         @empty($inviteCode)
         <p class="ml-4">招待コードはありません。</p>
         @else
-        <input type="text" readonly='true' class="ml-4 w-96" value='{{$inviteCode->code}}'>
+        <input id="copyTarget" type="text" readonly='true' class="ml-4 mb-1 lg:mb-0 w-96" value='{{$inviteCode->code}}'>
+        <button onclick="copyToClipboard()" class="ml-4 px-4 py-2 bg-bg-sub rounded-xl">招待コードをコピーする</button>
         @endempty
     </div>
 
 
-    <div class="mb-12">
+    <div class=" mb-12">
         <h2 class="mb-4">{{$user->name}}さんが招待したユーザー</h2>
         <div class="flex flex-col gap-2 ml-4">
+            @if($invitedUsers->isEmpty())
+            <p>招待したユーザーはいません。</p>
+            @else
             @foreach ($invitedUsers as $invitedUser)
             <div>
                 <a href="{{url('/user/'. $invitedUser->id)}}">
@@ -47,12 +51,27 @@ $user=Auth::user();
                     <img src="{{asset('storage/'. $invitedUser->profile_photo_path)}}" alt=""
                         class="w-12 h-12 rounded-full inline-block">
                     <p class="inline-block pl-4">{{$invitedUser->name}}</p>
-                    {{-- この値で表示数を変更(1件~20件) --}}
                 </a>
             </div>
-            @break ($loop->iteration == 3)
             @endforeach
+            @endif
         </div>
     </div>
 </div>
+
+<script>
+    function copyToClipboard() {
+    // コピー対象をJavaScript上で変数として定義する
+    var copyTarget = document.getElementById("copyTarget");
+
+    // コピー対象のテキストを選択する
+    copyTarget.select();
+
+    // 選択しているテキストをクリップボードにコピーする
+    document.execCommand("Copy");
+
+    // コピーをお知らせする
+    alert("コピーできました！");
+    }
+</script>
 @endsection

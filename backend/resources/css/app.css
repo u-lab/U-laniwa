@@ -358,11 +358,15 @@ h2 {
 }
 
 @media screen and (min-width: 1900px) {
-    .userFrame {
+    .userlist .userFrame {
         width: calc(100% / 3 - 2rem) !important;
     }
-}
 
+    .user-img {
+        width: 215px !important;
+        height: 215px !important;
+    }
+}
 .edit td {
     @apply py-4;
 }

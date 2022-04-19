@@ -69,7 +69,7 @@ enum Prefecture: int
             self::miyagi => "宮城県",
             self::akita => "秋田県",
             self::yamagata => "山形県",
-            self::fukusima => "福岡県",
+            self::fukusima => "福島県",
             self::ibaraki => "茨城県",
             self::tochigi => "栃木県",
             self::gunma => "群馬県",

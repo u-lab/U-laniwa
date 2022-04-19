@@ -392,8 +392,8 @@ $user=Auth::user();
                         </tr>
                         <tr>
                             <td class="edit-base">兼部・<br class="block md:hidden">サークル</td>
-                            <td><input class="edit-1" type="text" name="groupAffiliation"
-                                    value="{{$originGroupAffiliation}}"></td>
+                            <td><textarea class="edit-1 h-10" wrap="off" name="groupAffiliation"
+                                    value="{{$originGroupAffiliation}}"></textarea></td>
                         </tr>
                         <tr>
                             <td class="edit-base required">出身地</td>

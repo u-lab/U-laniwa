@@ -393,9 +393,8 @@ $user=Auth::user();
                         <tr>
                             <td class="edit-base">兼部・<br class="block md:hidden">サークル</td>
                             <td>
-                                <textarea class="edit-1 h-10 overscroll-y-none" wrap="off" name="groupAffiliation">
-                                    {{$originGroupAffiliation}}
-                                </textarea>
+                                <textarea class="edit-1 h-10 overscroll-y-none" wrap="off"
+                                    name="groupAffiliation">{{$originGroupAffiliation}}</textarea>
                             </td>
                         </tr>
                         <tr>

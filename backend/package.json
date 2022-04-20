@@ -12,6 +12,7 @@
     "devDependencies": {
         "@tailwindcss/forms": "^0.4.0",
         "@tailwindcss/typography": "^0.5.2",
+        "@types/jquery": "^3.5.14",
         "alpinejs": "^3.0.6",
         "axios": "^0.25",
         "browser-sync": "^2.27.7",
@@ -24,6 +25,7 @@
     },
     "dependencies": {
         "chart.js": "^3.7.1",
-        "compressorjs": "^1.1.1"
+        "compressorjs": "^1.1.1",
+        "jquery": "^3.6.0"
     }
 }

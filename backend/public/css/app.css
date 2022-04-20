@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
+! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -431,6 +431,11 @@ input::placeholder,textarea::placeholder {
 
 ::-webkit-date-and-time-value {
   min-height: 1.5em;
+}
+
+::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 select {
@@ -1399,10 +1404,16 @@ select {
 .overflow-x-scroll {
   overflow-x: scroll;
 }
+.overscroll-y-none {
+  overscroll-behavior-y: none;
+}
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.break-all {
+  word-break: break-all;
 }
 .rounded-md {
   border-radius: 0.375rem;
@@ -1701,12 +1712,6 @@ select {
 .pr-2 {
   padding-right: 0.5rem;
 }
-.pr-5 {
-  padding-right: 1.25rem;
-}
-.pl-5 {
-  padding-left: 1.25rem;
-}
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1716,8 +1721,11 @@ select {
 .pb-12 {
   padding-bottom: 3rem;
 }
-.pl-80 {
-  padding-left: 20rem;
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
 }
 .pb-16 {
   padding-bottom: 4rem;
@@ -2380,31 +2388,16 @@ textarea:focus {
     #link td:first-of-type {
     margin-left: auto;
     margin-right: auto;
-  }
-
-    #link td:first-of-type {
     text-align: center;
-  }
-
-    #link td:first-of-type {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-    #link td:first-of-type {
     font-weight: 700;
   }
 
     #link tr:last-of-type td {
     text-align: left;
-  }
-
-    #link tr:last-of-type td {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-    #link tr:last-of-type td {
     font-weight: 400;
   }
 
@@ -2428,31 +2421,16 @@ textarea:focus {
     #timeline td:first-of-type {
     margin-left: auto;
     margin-right: auto;
-  }
-
-    #timeline td:first-of-type {
     text-align: center;
-  }
-
-    #timeline td:first-of-type {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-    #timeline td:first-of-type {
     font-weight: 700;
   }
 
     #timeline tr:last-of-type td {
     text-align: left;
-  }
-
-    #timeline tr:last-of-type td {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-    #timeline tr:last-of-type td {
     font-weight: 400;
   }
 

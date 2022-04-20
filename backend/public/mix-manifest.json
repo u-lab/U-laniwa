@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/js/indexChart.js": "/js/indexChart.js",
     "/js/imageCompress.js": "/js/imageCompress.js",
+    "/js/lineBreakPrevention.js": "/js/lineBreakPrevention.js",
     "/css/app.css": "/css/app.css"
 }

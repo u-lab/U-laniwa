@@ -1004,18 +1004,5 @@ $user=Auth::user();
 </div>
 
 <script src="{{ mix('js/imageCompress.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(function () {
-        $('.edit-1')
-        // cancelEnterとついたクラスにkeydownイベントを付与
-            .on('keydown', function (e) {
-            // e.key == 'Enter'でエンターキーが押された場合の条件を設定
-            if (e.key == 'Enter') {
-            // 何もせずに処理を終える
-                return false;
-            }
-            })
-        });
-</script>
+<script src="{{ mix('js/lineBreakPrevention.js') }}"></script>
 @endsection

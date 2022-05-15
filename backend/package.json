@@ -10,18 +10,18 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.4.0",
+        "@tailwindcss/forms": "^0.5.1",
         "@tailwindcss/typography": "^0.5.2",
         "@types/jquery": "^3.5.14",
-        "alpinejs": "^3.0.6",
-        "axios": "^0.25",
-        "browser-sync": "^2.27.7",
+        "alpinejs": "^3.10.2",
+        "axios": "^0.27",
+        "browser-sync": "^2.27.9",
         "browser-sync-webpack-plugin": "^2.3.0",
         "laravel-mix": "^6.0.43",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "postcss-import": "^14.0.1",
-        "tailwindcss": "^3.0.23"
+        "lodash": "^4.17.21",
+        "postcss": "^8.4.13",
+        "postcss-import": "^14.1.0",
+        "tailwindcss": "^3.0.24"
     },
     "dependencies": {
         "chart.js": "^3.7.1",

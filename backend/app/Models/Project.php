@@ -12,8 +12,15 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Project extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        "representative_id", "name", "description",  "thumbnail", "place_of_activity", "start_date", "end_date", "created_at", "updated_at"
+        "representative_id",
+        "name",
+        "description",
+        "thumbnail",
+        "place_of_activity",
+        "start_date",
+        "end_date",
     ];
 
     /**
@@ -24,19 +31,19 @@ class Project extends Model
     public static $rules = array();
 
     /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['start_date', 'end_date'];
+
+    /**
      * 初期値設定
      * @var array
      */
     protected $attributes = [
         "thumbnail" => "images/default/default_project_thumbnail.png",
     ];
-
-    /**
-     * 日付の登録(format使えるために)
-     *
-     * @var array
-     */
-    protected $dates = ['start_date', 'end_date'];
 
     /**
      * プロジェクト進捗取得
